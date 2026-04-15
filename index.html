@@ -295,15 +295,20 @@ function parseDefinitions(wikitext) {
   for (const line of lines) {
     if (line.match(/^#[^#:*]/)) {
       let def = line.slice(1).trim();
-      def = def.replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, '$2');
-      def = def.replace(/\[\[([^\]]+)\]\]/g, '$1');
-      def = def.replace(/\{\{lb\|hy\|[^}]*\}\}/g, '');
-      def = def.replace(/\{\{[^}]*\}\}/g, '');
-      def = def.replace(/'{2,3}([^']+)'{2,3}/g, '$1');
+      // Extract text from [[link]] and {{templates}}
+      def = def.replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, '$2');  // [[word|text]] -> text
+      def = def.replace(/\[\[([^\]]+)\]\]/g, '$1');              // [[word]] -> word
+      def = def.replace(/\{\{lb\|hy\|[^}]*\}\}/g, '');           // Remove language tags
+      def = def.replace(/\{\{[^}]*\}\}/g, '');                   // Remove all other templates
+      def = def.replace(/'{2,3}([^']+)'{2,3}/g, '$1');           // Remove bold/italic
+      def = def.replace(/[\[\]{}]/g, '');                        // Remove any remaining brackets/braces
       def = def.trim();
-      if (def.length > 0) defs.push(def);
+      if (def.length > 1) {  // Only add if more than just punctuation
+        defs.push(def);
+      }
     }
   }
+  console.log('Extracted definitions:', defs);
   return defs;
 }
 
@@ -334,8 +339,10 @@ function parseEtymology(entry) {
   // First try stored etymology
   if (entry.etymology && entry.etymology.length > 0) {
     const text = entry.etymology[0].text || '';
-    // Stored etymologies are already clean, so return them directly
-    if (text) result = text;
+    // Filter out incomplete etymologies (just punctuation or placeholder text)
+    if (text && text.length > 3 && !text.match(/^[\s.,:;-]+$/) && text !== 'Etymology needs further research.') {
+      result = text;
+    }
   }
   
   // Then try parsing from wikitext
@@ -345,7 +352,9 @@ function parseEtymology(entry) {
     if (etyMatch) {
       let ety = etyMatch[1].trim();
       const cleaned = cleanEtymology(ety);
-      if (cleaned) result = cleaned;
+      if (cleaned && cleaned.length > 3 && !cleaned.match(/^[\s.,:;-]+$/)) {
+        result = cleaned;
+      }
     }
   }
   
