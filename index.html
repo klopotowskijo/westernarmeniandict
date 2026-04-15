@@ -609,27 +609,30 @@ const searchEl = document.getElementById('search');
 const wordSearchBtn = document.getElementById('wordSearchBtn');
 const langSearchBtn = document.getElementById('langSearchBtn');
 
-wordSearchBtn.addEventListener('click', () => {
-  searchMode = 'word';
-  wordSearchBtn.classList.add('active');
-  langSearchBtn.classList.remove('active');
-  searchEl.placeholder = "Search a word… e.g. ժամանակ, հայր, մայր";
-  hideSuggestions();
-  searchEl.value = '';
-  document.getElementById('result').style.display = 'none';
-  document.getElementById('placeholder').style.display = 'block';
-});
+// Make sure buttons exist before attaching listeners
+if (wordSearchBtn && langSearchBtn) {
+  wordSearchBtn.addEventListener('click', () => {
+    searchMode = 'word';
+    wordSearchBtn.classList.add('active');
+    langSearchBtn.classList.remove('active');
+    searchEl.placeholder = "Search a word… e.g. ժամանակ, հայր, մայր";
+    hideSuggestions();
+    searchEl.value = '';
+    document.getElementById('result').style.display = 'none';
+    document.getElementById('placeholder').style.display = 'block';
+  });
 
-langSearchBtn.addEventListener('click', () => {
-  searchMode = 'language';
-  langSearchBtn.classList.add('active');
-  wordSearchBtn.classList.remove('active');
-  searchEl.placeholder = "Search by origin language… e.g. turkish, greek, persian";
-  hideSuggestions();
-  searchEl.value = '';
-  document.getElementById('result').style.display = 'none';
-  document.getElementById('placeholder').style.display = 'block';
-});
+  langSearchBtn.addEventListener('click', () => {
+    searchMode = 'language';
+    langSearchBtn.classList.add('active');
+    wordSearchBtn.classList.remove('active');
+    searchEl.placeholder = "Search by origin language… e.g. turkish, greek, persian";
+    hideSuggestions();
+    searchEl.value = '';
+    document.getElementById('result').style.display = 'none';
+    document.getElementById('placeholder').style.display = 'block';
+  });
+}
 
 searchEl.addEventListener('input', () => {
   // Debounce search to avoid running on every keystroke
