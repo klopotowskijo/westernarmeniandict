@@ -193,76 +193,122 @@ let searchMode = 'word'; // 'word' or 'language'
 let dictionaryLoaded = false;
 let searchTimeout = null;
 
-// ========== FIXED: Convert Wiktionary templates to readable text ==========
+// ========== Convert Wiktionary templates to readable text ==========
+
+// Language code → human-readable name
+const LANG_NAMES = {
+  'hy': 'Armenian', 'xcl': 'Old Armenian', 'axm': 'Middle Armenian',
+  'fa': 'Persian', 'ota': 'Ottoman Turkish', 'tr': 'Turkish',
+  'ar': 'Arabic', 'grc': 'Ancient Greek', 'el': 'Greek',
+  'ru': 'Russian', 'fr': 'French', 'la': 'Latin', 'en': 'English',
+  'de': 'German', 'it': 'Italian', 'es': 'Spanish', 'pt': 'Portuguese',
+  'ku': 'Kurdish', 'syr': 'Syriac', 'syc': 'Syriac', 'arc': 'Aramaic',
+  'he': 'Hebrew', 'ka': 'Georgian', 'hu': 'Hungarian', 'pl': 'Polish',
+  'orv': 'Old Russian', 'fro': 'Old French', 'ML.': 'Medieval Latin',
+  'gem': 'Germanic', 'ine': 'Proto-Indo-European', 'grk': 'Greek',
+  'peo': 'Old Persian', 'pal': 'Pahlavi', 'sog': 'Sogdian',
+  'otr': 'Old Turkish', 'az': 'Azerbaijani', 'ady': 'Adyghe',
+};
+
+function langName(code) {
+  return LANG_NAMES[code] || code;
+}
+
+// Extract the display word from a template argument list like "xcl|բան||word"
+// Returns the word part (index 1 after the lang code, skipping empty and named params)
+function extractWord(parts) {
+  // parts[0] is lang code, parts[1] is the word, rest are optional
+  const word = parts[1] || '';
+  // Remove named params like tr=... t=...
+  if (word.includes('=')) return '';
+  return word;
+}
 
 function cleanEtymology(text) {
   if (!text) return null;
   
   let result = text;
-  
-  // ===== FIRST, EXTRACT WORDS FROM TEMPLATES BEFORE REMOVING THEM =====
-  // {{m|hy|խահվէ}} → խահվէ
-  result = result.replace(/\{\{m\|hy\|([^|}]+)[^}]*\}\}/g, '$1');
-  // {{m|xcl|...}} → ...
-  result = result.replace(/\{\{m\|xcl\|([^|}]+)[^}]*\}\}/g, '$1');
-  // {{lang|hy|...}} → ...
-  result = result.replace(/\{\{lang\|hy\|([^}]+)\}\}/g, '$1');
-  // {{l|hy|...}} → ...
-  result = result.replace(/\{\{l\|hy\|([^|}]+)[^}]*\}\}/g, '$1');
 
-   // ===== EXTRACT NAMES FROM XLIT TEMPLATES =====
-  result = result.replace(/\{\{xlit\|hy\|([^}]+)\}\}/g, '$1');
-  result = result.replace(/\{\{xlit\|axm\|([^}]+)\}\}/g, '$1');
-  result = result.replace(/\{\{xlit\|xcl\|([^}]+)\}\}/g, '$1');
- 
-  // ===== REMOVE REFERENCE/CITATION TEMPLATES =====
-  result = result.replace(/\{\{R[^}]+\}\}/g, '');
-  result = result.replace(/\{\{R\|[^}]+\}\}/g, '');
-  result = result.replace(/\{\{R:[^}]+\}\}/g, '');
-  result = result.replace(/\{\{citation[^}]+\}\}/g, '');
-  result = result.replace(/\{\{Q[^}]+\}\}/g, '');
-  result = result.replace(/\{\{w[^}]+\}\}/g, '');
-  result = result.replace(/\{\{xlit[^}]+\}\}/g, '');
+  // ===== HANDLE AFFIX/COMPOUND/PREFIX/SUFFIX TEMPLATES (most common - 2000+ entries) =====
+  // {{affix|hy|Աղա|-յան}} → "from Աղա + -յան"
+  // {{affix|hy|Ամիր|-յան|t1=lord}} → "from Ամիր + -յան"
+  result = result.replace(/\{\{(?:affix|af)\|hy\|([^}]+)\}\}/g, (match, inner) => {
+    const parts = inner.split('|').filter(p => !p.includes('=') && p.trim());
+    if (parts.length === 0) return '';
+    return 'from ' + parts.join(' + ');
+  });
+  result = result.replace(/\{\{(?:prefix|pref)\|hy\|([^|]+)\|([^|}]+)[^}]*\}\}/g, 'from $1- + $2');
+  result = result.replace(/\{\{(?:suffix|suf)\|hy\|([^|]+)\|([^|}]+)[^}]*\}\}/g, 'from $1 + -$2');
+  result = result.replace(/\{\{compound\|hy\|([^}]+)\}\}/g, (match, inner) => {
+    const parts = inner.split('|').filter(p => !p.includes('=') && p.trim());
+    return 'compound of ' + parts.join(' + ');
+  });
+
+  // ===== HANDLE BORROWING / INHERITANCE TEMPLATES =====
+  result = result.replace(/\{\{(?:learned borrowing|lbor)\|hy\|([^|]+)\|([^|}]*)[^}]*\}\}/gi, (m, lang, word) => {
+    word = word.replace(/=.*/, '').trim();
+    return `Learned borrowing from ${langName(lang)}${word ? ' ' + word : ''}`;
+  });
+  result = result.replace(/\{\{(?:semi-learned borrowing|slbor)\|hy\|([^|]+)\|([^|}]*)[^}]*\}\}/gi, (m, lang, word) => {
+    word = word.replace(/=.*/, '').trim();
+    return `Semi-learned borrowing from ${langName(lang)}${word ? ' ' + word : ''}`;
+  });
+  result = result.replace(/\{\{(?:inherited|inh)\|hy\|([^|]+)\|([^|}]*)[^}]*\}\}/gi, (m, lang, word) => {
+    word = word.replace(/=.*/, '').trim();
+    return `Inherited from ${langName(lang)}${word ? ' ' + word : ''}`;
+  });
+  result = result.replace(/\{\{(?:borrowed|bor)\|hy\|([^|]+)\|([^|}]*)[^}]*\}\}/gi, (m, lang, word) => {
+    word = word.replace(/=.*/, '').trim();
+    return `Borrowed from ${langName(lang)}${word ? ' ' + word : ''}`;
+  });
+  result = result.replace(/\{\{(?:calque|cal)\|hy\|([^|]+)\|([^|}]*)[^}]*\}\}/gi, (m, lang, word) => {
+    word = word.replace(/=.*/, '').trim();
+    return `Calque of ${langName(lang)}${word ? ' ' + word : ''}`;
+  });
+  result = result.replace(/\{\{(?:partial calque|pcal)\|hy\|([^|]+)\|([^|}]*)[^}]*\}\}/gi, (m, lang, word) => {
+    word = word.replace(/=.*/, '').trim();
+    return `Partial calque of ${langName(lang)}${word ? ' ' + word : ''}`;
+  });
+  result = result.replace(/\{\{(?:uder|der)\|hy\|([^|]+)\|([^|}]*)[^}]*\}\}/gi, (m, lang, word) => {
+    word = word.replace(/=.*/, '').trim();
+    return `From ${langName(lang)}${word ? ' ' + word : ''}`;
+  });
+
+  // ===== FIX "From . ..." PATTERN (missing word after From) =====
+  // This happens when the source word template was already stripped. Use source_language if we can.
+  // We just clean up the leftover "From ." to "From [language]" using surrounding context.
+  // The source_language will be prepended by parseEtymology before calling this.
+
+  // ===== MENTION/LINK TEMPLATES =====
+  result = result.replace(/\{\{(?:m|l|mention)\|[^|]+\|([^|}\s][^|}]*)[^}]*\}\}/g, '$1');
+  result = result.replace(/\{\{(?:lang)\|[^|]+\|([^}]+)\}\}/g, '$1');
+  result = result.replace(/\{\{(?:xlit)\|[^|]+\|([^}]+)\}\}/g, '$1');
+  result = result.replace(/\{\{(?:t|t\+|t-check)\|[^|]+\|([^|}\s][^|}]*)[^}]*\}\}/g, '$1');
+
+  // ===== COGNATE / COMPARISON TEMPLATES — just remove =====
+  result = result.replace(/\{\{(?:cog|noncog|ncog|cognate|noncognate)[^}]+\}\}/g, '');
   
-    // ===== REMOVE LANGUAGE COMPARISON TEMPLATES =====
-  result = result.replace(/\{\{noncog[^}]+\}\}/g, '');
-  // Keep Hungarian word from cog template
-  result = result.replace(/\{\{cog\|hu\|([^}]+)\}\}/g, 'Hungarian $1');
-  result = result.replace(/\{\{cog\|[^}]+\}\}/g, '');
-  result = result.replace(/\{\{ncog[^}]+\}\}/g, '');
-  
-  // ===== CONVERT ETYMOLOGY TEMPLATES =====
-  result = result.replace(/\{\{lbor\|hy\|xcl\|([^}]+)\}\}/g, 'Learned borrowing from Old Armenian $1');
-  result = result.replace(/\{\{inh\|hy\|xcl\|([^}]+)\}\}/g, 'Inherited from Old Armenian $1');
-  result = result.replace(/\{\{bor\|hy\|fa\|([^|]+)\|tr=([^}]+)\}\}/g, 'Borrowed from Persian $1 ($2)');
-  result = result.replace(/\{\{bor\|hy\|ota\|([^|]+)\|tr=([^}]+)\}\}/g, 'Borrowed from Ottoman Turkish $1 ($2)');
-  result = result.replace(/\{\{bor\|hy\|ru\|([^}]+)\}\}/g, 'Borrowed from Russian $1');
-  result = result.replace(/\{\{bor\|hy\|fr\|([^}]+)\}\}/g, 'Borrowed from French $1');
-  result = result.replace(/\{\{bor\|hy\|ar\|([^}]+)\}\}/g, 'Borrowed from Arabic $1');
-  result = result.replace(/\{\{bor\|hy\|grc\|([^}]+)\}\}/g, 'Borrowed from Ancient Greek $1');
-  result = result.replace(/\{\{der\|hy\|fa\|([^}]+)\}\}/g, 'From Persian $1');
-  result = result.replace(/\{\{uder\|hy\|fa\|([^}]+)\}\}/g, 'From Persian $1');
-  result = result.replace(/\{\{doublet\|hy\|([^}]+)\}\}/g, 'Doublet of $1');
-  result = result.replace(/\{\{dbt\|hy\|([^}]+)\}\}/g, 'Doublet of $1');
-  
-  // ===== HANDLE SPECIAL WORDS =====
-  result = result.replace(/\{\{unk\|hy\|title=unknown\}\}/g, 'unknown');
-  result = result.replace(/\{\{onomatopoeic\|hy\|nocap=1\}\}/g, 'onomatopoeic');
-  result = result.replace(/\{\{onomatopoeia\}\}/g, 'onomatopoeic');
+  // ===== DOUBLET =====
+  result = result.replace(/\{\{(?:doublet|dbt)\|hy\|([^|}]+)[^}]*\}\}/g, 'Doublet of $1');
+
+  // ===== SPECIAL/MISC TEMPLATES =====
+  result = result.replace(/\{\{unk[^}]*\}\}/g, 'unknown origin');
+  result = result.replace(/\{\{(?:onomatopoeic|onom)[^}]*\}\}/g, 'onomatopoeic');
+  result = result.replace(/\{\{onomatopoeia[^}]*\}\}/g, 'onomatopoeic');
   result = result.replace(/\{\{lit\|([^}]+)\}\}/g, 'literally "$1"');
-  
-  // ===== HANDLE AFFIX TEMPLATES =====
-  result = result.replace(/\{\{af\|hy\|([^}]+)\}\}/g, (match, parts) => {
-    const pieces = parts.split('|');
-    return `from ${pieces.join(' + ')}`;
+  result = result.replace(/\{\{(?:rfe|rfety|rfelite)[^}]*\}\}/g, '');
+  result = result.replace(/\{\{(?:etystub|etymon|nonlemma|PAGENAME)[^}]*\}\}/g, '');
+  result = result.replace(/\{\{(?:learned|lbor)[^}]*\}\}/g, 'Learned borrowing');
+
+  // ===== REFERENCE/CITATION TEMPLATES — remove =====
+  result = result.replace(/\{\{R[^}]*\}\}/g, '');
+  result = result.replace(/\{\{citation[^}]*\}\}/g, '');
+  result = result.replace(/\{\{Q[^}]*\}\}/g, '');
+  result = result.replace(/\{\{w\|[^}]+\}\}/g, (m) => {
+    // {{w|Khachatur Abovyan}} → just remove
+    return '';
   });
-  result = result.replace(/\{\{prefix\|hy\|([^|]+)\|([^}]+)\}\}/g, 'from $1- + $2');
-  result = result.replace(/\{\{suffix\|hy\|([^|]+)\|([^}]+)\}\}/g, 'from $1 + -$2');
-  result = result.replace(/\{\{compound\|hy\|([^}]+)\}\}/g, (match, parts) => {
-    const pieces = parts.split('|');
-    return `compound of ${pieces.join(' + ')}`;
-  });
-  
+
   // ===== REMOVE ANY REMAINING TEMPLATES =====
   result = result.replace(/\{\{[^}]+\}\}/g, '');
   
@@ -272,16 +318,21 @@ function cleanEtymology(text) {
   result = result.replace(/'{2,3}([^']+)'{2,3}/g, '$1');
   result = result.replace(/''/g, '');
   
-  // ===== FIX SPACING =====
+  // ===== FIX SPACING AND PUNCTUATION =====
   result = result.replace(/\s+/g, ' ').trim();
   result = result.replace(/\s+\./g, '.');
-  result = result.replace(/\.\s+\./g, '.');
+  result = result.replace(/\.\s*\./g, '.');
   result = result.replace(/,\s*,/g, ',');
+  result = result.replace(/\(\s*\)/g, '');          // remove empty parens
+  result = result.replace(/\s*\+\s*/g, ' + ');      // normalize + spacing
   
-  // ===== FIX "From from" =====
-  result = result.replace(/From\s+from/, 'From');
-  result = result.replace(/from\s+from/, 'from');
-  
+  // ===== FIX "From from" / "from from" =====
+  result = result.replace(/\bFrom\s+from\b/gi, 'From');
+
+  // ===== FIX "From ." (blank source word) =====
+  // After all template cleanup, "From ." means the word was empty — drop the orphan period
+  result = result.replace(/^From\s*\.\s*/i, 'From an uncertain source. ');
+
   // ===== ADD SPACES AFTER PERIODS =====
   result = result.replace(/\.([A-Z])/g, '. $1');
   
@@ -339,42 +390,50 @@ function parsePOS(wikitext) {
 }
 
 function parseEtymology(entry) {
-  // Check cache first
-  if (etymologyCache[entry.title]) {
-    return etymologyCache[entry.title];
-  }
+  if (etymologyCache[entry.title]) return etymologyCache[entry.title];
   
   let result = null;
   
-  // First try stored etymology
   if (entry.etymology && entry.etymology.length > 0) {
-    const text = entry.etymology[0].text || '';
-    // Filter out incomplete etymologies (just punctuation or placeholder text)
-    if (text && text.length > 3 && !text.match(/^[\s.,:;-]+$/) && text !== 'Etymology needs further research.') {
-      result = text;
+    const etyObj = entry.etymology[0];
+    let text = etyObj.text || '';
+    const sourceLang = etyObj.source_language || '';
+
+    // Clean unresolved templates in stored text
+    if (text.includes('{{')) {
+      text = cleanEtymology(text) || '';
+    }
+
+    // Fix "From an uncertain source." when we have a known source_language
+    if (text.startsWith('From an uncertain source.') && sourceLang) {
+      text = text.replace('From an uncertain source.', 'From ' + sourceLang + '.');
+    }
+
+    // Prepend source language if text has no etymology opener
+    if (text && sourceLang && !text.match(/^(From|Borrowed|Inherited|Learned|Calque|Doublet|Compound|Semi)/i)) {
+      text = 'From ' + sourceLang + '. ' + text;
+    }
+
+    if (text && text.length > 3 && !text.match(/^[\s.,:;-]+$/) && text.trim() !== 'Etymology needs further research.') {
+      result = text.trim();
     }
   }
   
-  // Then try parsing from wikitext - only Armenian section
+  // Fallback: parse from wikitext Armenian section
   if (!result) {
     const wikitext = entry.wikitext || '';
     const armenianMatch = wikitext.match(/==Armenian==\n([\s\S]*?)(?=\n==[^=]|$)/);
     const searchWikitext = armenianMatch ? armenianMatch[1] : wikitext;
     const etyMatch = searchWikitext.match(/===Etymology===\n([\s\S]*?)(?=\n===|$)/);
     if (etyMatch) {
-      let ety = etyMatch[1].trim();
-      const cleaned = cleanEtymology(ety);
+      const cleaned = cleanEtymology(etyMatch[1].trim());
       if (cleaned && cleaned.length > 3 && !cleaned.match(/^[\s.,:;-]+$/)) {
         result = cleaned;
       }
     }
   }
   
-  // Cache the result
-  if (result) {
-    etymologyCache[entry.title] = result;
-  }
-  
+  if (result) etymologyCache[entry.title] = result;
   return result;
 }
 
