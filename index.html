@@ -417,11 +417,14 @@ function showSuggestions(query) {
   
   let matches = [];
   const lowerQuery = query.toLowerCase();
+  console.log('Looking for:', lowerQuery, 'in', allTitles.length, 'titles');
   
   try {
     if (searchMode === 'word') {
       // Word search - substring match
+      console.log('Word search mode');
       matches = allTitles.filter(t => t.toLowerCase().includes(lowerQuery)).slice(0, 8);
+      console.log('Word search found', matches.length, 'matches');
     } else {
       // Language search - search in etymologies and source language
       matches = dictionary.filter(entry => {
@@ -499,6 +502,8 @@ function initializeDictionary(data, source) {
   }
   allTitles = data.map(e => e.title).sort();
   console.log('Dictionary ready, titleIndex has', Object.keys(titleIndex).length, 'entries');
+  console.log('allTitles array has', allTitles.length, 'entries');
+  console.log('First 5 titles:', allTitles.slice(0, 5));
   
   let statusText = `${data.length.toLocaleString()} entries · 100% etymologies`;
   if (source === 'cached') statusText += ' (cached)';
@@ -613,8 +618,11 @@ const searchEl = document.getElementById('search');
 const wordSearchBtn = document.getElementById('wordSearchBtn');
 const langSearchBtn = document.getElementById('langSearchBtn');
 
+console.log('DOM elements found - searchEl:', searchEl, 'wordSearchBtn:', wordSearchBtn, 'langSearchBtn:', langSearchBtn);
+
 // Make sure buttons exist before attaching listeners
 if (wordSearchBtn && langSearchBtn) {
+  console.log('Attaching button listeners...');
   wordSearchBtn.addEventListener('click', () => {
     searchMode = 'word';
     wordSearchBtn.classList.add('active');
@@ -638,35 +646,40 @@ if (wordSearchBtn && langSearchBtn) {
   });
 }
 
-searchEl.addEventListener('input', () => {
-  // Debounce search to avoid running on every keystroke
-  console.log('Input event fired, value:', searchEl.value);
-  if (searchTimeout) clearTimeout(searchTimeout);
-  searchTimeout = setTimeout(() => {
-    const trimmed = searchEl.value.trim();
-    console.log('Calling showSuggestions with:', trimmed);
-    showSuggestions(trimmed);
-  }, 150); // 150ms delay for smoother performance
-});
+if (searchEl) {
+  console.log('Attaching search input listener...');
+  searchEl.addEventListener('input', () => {
+    // Debounce search to avoid running on every keystroke
+    console.log('Input event fired, value:', searchEl.value);
+    if (searchTimeout) clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+      const trimmed = searchEl.value.trim();
+      console.log('Calling showSuggestions with:', trimmed);
+      showSuggestions(trimmed);
+    }, 150); // 150ms delay for smoother performance
+  });
 
-searchEl.addEventListener('keydown', e => {
-  if (e.key === 'Enter') {
-    const query = searchEl.value.trim();
-    if (searchMode === 'word') {
-      lookup(query);
-    } else {
-      // For language search, show first match or list
-      const matches = dictionary.filter(entry => {
-        const ety = parseEtymology(entry);
-        return ety && ety.toLowerCase().includes(query.toLowerCase());
-      });
-      if (matches.length > 0) {
-        lookup(matches[0].title);
+  searchEl.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      const query = searchEl.value.trim();
+      if (searchMode === 'word') {
+        lookup(query);
+      } else {
+        // For language search, show first match or list
+        const matches = dictionary.filter(entry => {
+          const ety = parseEtymology(entry);
+          return ety && ety.toLowerCase().includes(query.toLowerCase());
+        });
+        if (matches.length > 0) {
+          lookup(matches[0].title);
+        }
       }
     }
-  }
-  if (e.key === 'Escape') hideSuggestions();
-});
+    if (e.key === 'Escape') hideSuggestions();
+  });
+} else {
+  console.error('Search element not found!');
+}
 
 document.addEventListener('click', e => {
   if (!e.target.closest('.search-wrap')) hideSuggestions();
