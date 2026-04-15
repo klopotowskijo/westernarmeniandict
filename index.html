@@ -400,7 +400,7 @@ function lookup(word) {
 
 function showSuggestions(query) {
   const sugEl = document.getElementById('suggestions');
-  if (!query) { hideSuggestions(); return; }
+  if (!query || !dictionaryLoaded) { hideSuggestions(); return; }
   
   // Show loading indicator during search
   const spinnerEl = document.getElementById('loadingSpinner');
@@ -409,15 +409,32 @@ function showSuggestions(query) {
   let matches = [];
   const lowerQuery = query.toLowerCase();
   
-  if (searchMode === 'word') {
-    // Word search - substring match
-    matches = allTitles.filter(t => t.toLowerCase().includes(lowerQuery)).slice(0, 8);
-  } else {
-    // Language search - search in etymologies
-    matches = dictionary.filter(entry => {
-      const ety = parseEtymology(entry);
-      return ety && ety.toLowerCase().includes(lowerQuery);
-    }).map(entry => entry.title).slice(0, 8);
+  try {
+    if (searchMode === 'word') {
+      // Word search - substring match
+      matches = allTitles.filter(t => t.toLowerCase().includes(lowerQuery)).slice(0, 8);
+    } else {
+      // Language search - search in etymologies and source language
+      matches = dictionary.filter(entry => {
+        // Check source_language field
+        if (entry.etymology && entry.etymology.length > 0) {
+          const sourceLang = entry.etymology[0].source_language || '';
+          if (sourceLang.toLowerCase().includes(lowerQuery)) {
+            return true;
+          }
+        }
+        
+        // Also check etymology text
+        const ety = parseEtymology(entry);
+        if (ety && ety.toLowerCase().includes(lowerQuery)) {
+          return true;
+        }
+        
+        return false;
+      }).map(entry => entry.title).slice(0, 20); // Show up to 20 results for language search
+    }
+  } catch (e) {
+    console.error('Search error:', e);
   }
   
   spinnerEl.classList.remove('active'); // Hide spinner when done
