@@ -476,26 +476,33 @@ function loadDictionary() {
     } catch (e) {}
   }
   
-  // No cache, fetch from server
+// No cache, fetch from server
   fetch('western_armenian_wiktionary.json')
-    .then(r => r.json())
+    .then(r => {
+      console.log('Fetch response status:', r.status);
+      return r.json();
+    })
     .then(data => {
+      console.log('Parsed data length:', data.length);
       localStorage.setItem(CACHE_KEY, JSON.stringify(data));
       localStorage.setItem(CACHE_TIME_KEY, Date.now());
       initializeDictionary(data, 'fresh');
     })
-    .catch(() => {
+    .catch(error => {
+      console.error('Dictionary load error:', error);
       document.getElementById('count').textContent = 'Failed to load dictionary.';
     });
 }
 
 function initializeDictionary(data, source) {
+  console.log('Initializing dictionary with', data.length, 'entries, source:', source);
   dictionary = data;
   dictionaryLoaded = true;
   for (const entry of data) {
     titleIndex[entry.title] = entry;
   }
   allTitles = data.map(e => e.title).sort();
+  console.log('Title index built with', Object.keys(titleIndex).length, 'entries');
   
   let statusText = `${data.length.toLocaleString()} entries · 100% etymologies`;
   if (source === 'cached') statusText += ' (cached)';
