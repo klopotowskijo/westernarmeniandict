@@ -120,6 +120,27 @@
     border: 1px solid #c8b89a;
     border-radius: 4px;
   }
+
+  .loading-spinner {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    color: #8b1a1a;
+    font-size: 14px;
+  }
+  .loading-spinner.active { display: block; }
+  .spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #c8b89a;
+    border-top-color: #8b1a1a;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
 </style>
 <script src="https://unpkg.com/vis-network@9.1.2/dist/vis-network.min.js"></script>
 </head>
@@ -127,7 +148,10 @@
 <div class="container">
   <h1>Արեւմտահայ Բառարան</h1>
   <div class="subtitle">Western Armenian Etymological Dictionary</div>
-  <div class="count" id="count">Loading…</div>
+  <div class="count" id="count">Loading dictionary…</div>
+  <div class="loading-spinner" id="loadingSpinner">
+    <span class="spinner"></span>Searching…
+  </div>
   <button id="showGraphBtn" style="display: none; margin-bottom: 20px; padding: 10px 20px; background: #8b1a1a; color: white; border: none; border-radius: 4px; cursor: pointer;">Show Language Tree Graph</button>
 
   <div class="search-wrap">
@@ -163,7 +187,10 @@
 let dictionary = [];
 let titleIndex = {};
 let allTitles = [];
+let etymologyCache = {}; // Cache parsed etymologies
 let searchMode = 'word'; // 'word' or 'language'
+let dictionaryLoaded = false;
+let searchTimeout = null;
 
 // ========== FIXED: Convert Wiktionary templates to readable text ==========
 
@@ -296,23 +323,37 @@ function parsePOS(wikitext) {
 }
 
 function parseEtymology(entry) {
+  // Check cache first
+  if (etymologyCache[entry.title]) {
+    return etymologyCache[entry.title];
+  }
+  
+  let result = null;
+  
   // First try stored etymology
   if (entry.etymology && entry.etymology.length > 0) {
     const text = entry.etymology[0].text || '';
     // Stored etymologies are already clean, so return them directly
-    if (text) return text;
+    if (text) result = text;
   }
   
   // Then try parsing from wikitext
-  const wikitext = entry.wikitext || '';
-  const etyMatch = wikitext.match(/===Etymology===\n([\s\S]*?)(?=\n===|$)/);
-  if (etyMatch) {
-    let ety = etyMatch[1].trim();
-    const cleaned = cleanEtymology(ety);
-    if (cleaned) return cleaned;
+  if (!result) {
+    const wikitext = entry.wikitext || '';
+    const etyMatch = wikitext.match(/===Etymology===\n([\s\S]*?)(?=\n===|$)/);
+    if (etyMatch) {
+      let ety = etyMatch[1].trim();
+      const cleaned = cleanEtymology(ety);
+      if (cleaned) result = cleaned;
+    }
   }
   
-  return null;
+  // Cache the result
+  if (result) {
+    etymologyCache[entry.title] = result;
+  }
+  
+  return result;
 }
 
 // ========== Lookup & render ==========
@@ -361,6 +402,10 @@ function showSuggestions(query) {
   const sugEl = document.getElementById('suggestions');
   if (!query) { hideSuggestions(); return; }
   
+  // Show loading indicator during search
+  const spinnerEl = document.getElementById('loadingSpinner');
+  spinnerEl.classList.add('active');
+  
   let matches = [];
   const lowerQuery = query.toLowerCase();
   
@@ -375,6 +420,8 @@ function showSuggestions(query) {
     }).map(entry => entry.title).slice(0, 8);
   }
   
+  spinnerEl.classList.remove('active'); // Hide spinner when done
+  
   if (matches.length === 0) { hideSuggestions(); return; }
   sugEl.innerHTML = matches.map(m =>
     `<div class="suggestion" onclick="lookup('${m}')">${m}</div>`
@@ -388,20 +435,57 @@ function hideSuggestions() {
 
 // ========== Load data ==========
 
-fetch('western_armenian_wiktionary.json')
-  .then(r => r.json())
-  .then(data => {
-    dictionary = data;
-    for (const entry of data) {
-      titleIndex[entry.title] = entry;
-    }
-    allTitles = data.map(e => e.title).sort();
-    document.getElementById('count').textContent = `${data.length.toLocaleString()} entries · 100% etymologies`;
-    document.getElementById('showGraphBtn').style.display = 'block';
-  })
-  .catch(() => {
-    document.getElementById('count').textContent = 'Failed to load dictionary.';
-  });
+// Try to load from localStorage cache first for instant repeated visits
+const CACHE_KEY = 'armenian_dict_v1';
+const CACHE_TIME_KEY = 'armenian_dict_time';
+
+function loadDictionary() {
+  // Try cache first
+  const cached = localStorage.getItem(CACHE_KEY);
+  if (cached) {
+    try {
+      const data = JSON.parse(cached);
+      initializeDictionary(data, 'cached');
+      // Still fetch fresh copy in background
+      fetch('western_armenian_wiktionary.json')
+        .then(r => r.json())
+        .then(data => {
+          localStorage.setItem(CACHE_KEY, JSON.stringify(data));
+          localStorage.setItem(CACHE_TIME_KEY, Date.now());
+        })
+        .catch(() => {});
+      return;
+    } catch (e) {}
+  }
+  
+  // No cache, fetch from server
+  fetch('western_armenian_wiktionary.json')
+    .then(r => r.json())
+    .then(data => {
+      localStorage.setItem(CACHE_KEY, JSON.stringify(data));
+      localStorage.setItem(CACHE_TIME_KEY, Date.now());
+      initializeDictionary(data, 'fresh');
+    })
+    .catch(() => {
+      document.getElementById('count').textContent = 'Failed to load dictionary.';
+    });
+}
+
+function initializeDictionary(data, source) {
+  dictionary = data;
+  dictionaryLoaded = true;
+  for (const entry of data) {
+    titleIndex[entry.title] = entry;
+  }
+  allTitles = data.map(e => e.title).sort();
+  
+  let statusText = `${data.length.toLocaleString()} entries · 100% etymologies`;
+  if (source === 'cached') statusText += ' (cached)';
+  document.getElementById('count').textContent = statusText;
+  document.getElementById('showGraphBtn').style.display = 'block';
+}
+
+loadDictionary();
 
 // Load and render graph
 let graphData = null;
@@ -531,7 +615,11 @@ langSearchBtn.addEventListener('click', () => {
 });
 
 searchEl.addEventListener('input', () => {
-  showSuggestions(searchEl.value.trim());
+  // Debounce search to avoid running on every keystroke
+  if (searchTimeout) clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(() => {
+    showSuggestions(searchEl.value.trim());
+  }, 150); // 150ms delay for smoother performance
 });
 
 searchEl.addEventListener('keydown', e => {
