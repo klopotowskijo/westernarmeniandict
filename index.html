@@ -459,23 +459,32 @@ const CACHE_TIME_KEY = 'armenian_dict_time';
 
 function loadDictionary() {
   // Skip localStorage caching due to size limits - fetch fresh each time
+  console.log('Starting dictionary load...');
   fetch('western_armenian_wiktionary.json')
-    .then(r => r.json())
+    .then(r => {
+      console.log('Fetch status:', r.status, r.statusText);
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.json();
+    })
     .then(data => {
+      console.log('Dictionary loaded with', data.length, 'entries');
       initializeDictionary(data, 'fresh');
     })
-    .catch(() => {
-      document.getElementById('count').textContent = 'Failed to load dictionary.';
+    .catch(error => {
+      console.error('Dictionary load failed:', error);
+      document.getElementById('count').textContent = 'Failed to load dictionary: ' + error.message;
     });
 }
 
 function initializeDictionary(data, source) {
+  console.log('Initializing dictionary with', data.length, 'entries');
   dictionary = data;
   dictionaryLoaded = true;
   for (const entry of data) {
     titleIndex[entry.title] = entry;
   }
   allTitles = data.map(e => e.title).sort();
+  console.log('Dictionary ready, titleIndex has', Object.keys(titleIndex).length, 'entries');
   
   let statusText = `${data.length.toLocaleString()} entries · 100% etymologies`;
   if (source === 'cached') statusText += ' (cached)';
