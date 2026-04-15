@@ -361,6 +361,7 @@ function parseEtymology(entry) {
 
 function lookup(word) {
   word = word.trim();
+  console.log('Looking up word:', word, 'exists in titleIndex:', word in titleIndex);
   document.getElementById('search').value = word;
   hideSuggestions();
   document.getElementById('placeholder').style.display = 'none';
@@ -370,9 +371,11 @@ function lookup(word) {
   resultEl.style.display = 'block';
 
   if (!entry) {
+    console.log('Entry not found for:', word);
     resultEl.innerHTML = `<div class="not-found">❌ "<strong>${word}</strong>" was not found in the dictionary.</div>`;
     return;
   }
+  console.log('Entry found, displaying...');
 
   const defs = parseDefinitions(entry.wikitext || '');
   const pos = parsePOS(entry.wikitext || '');
@@ -401,7 +404,12 @@ function lookup(word) {
 
 function showSuggestions(query) {
   const sugEl = document.getElementById('suggestions');
-  if (!query || !dictionaryLoaded) { hideSuggestions(); return; }
+  console.log('showSuggestions called with query:', query, 'dictionaryLoaded:', dictionaryLoaded, 'allTitles length:', allTitles.length);
+  if (!query || !dictionaryLoaded) { 
+    console.log('Exiting early: query empty or not loaded');
+    hideSuggestions(); 
+    return; 
+  }
   
   // Show loading indicator during search
   const spinnerEl = document.getElementById('loadingSpinner');
@@ -440,11 +448,17 @@ function showSuggestions(query) {
   
   spinnerEl.classList.remove('active'); // Hide spinner when done
   
-  if (matches.length === 0) { hideSuggestions(); return; }
+  console.log('Search matches found:', matches.length, 'matches:', matches.slice(0, 3));
+  if (matches.length === 0) { 
+    console.log('No matches found');
+    hideSuggestions(); 
+    return; 
+  }
   sugEl.innerHTML = matches.map(m =>
     `<div class="suggestion" onclick="lookup('${m}')">${m}</div>`
   ).join('');
   sugEl.style.display = 'block';
+  console.log('Suggestions displayed');
 }
 
 function hideSuggestions() {
@@ -626,9 +640,12 @@ if (wordSearchBtn && langSearchBtn) {
 
 searchEl.addEventListener('input', () => {
   // Debounce search to avoid running on every keystroke
+  console.log('Input event fired, value:', searchEl.value);
   if (searchTimeout) clearTimeout(searchTimeout);
   searchTimeout = setTimeout(() => {
-    showSuggestions(searchEl.value.trim());
+    const trimmed = searchEl.value.trim();
+    console.log('Calling showSuggestions with:', trimmed);
+    showSuggestions(trimmed);
   }, 150); // 150ms delay for smoother performance
 });
 
