@@ -509,6 +509,80 @@ function initializeDictionary(data, source) {
   if (source === 'cached') statusText += ' (cached)';
   document.getElementById('count').textContent = statusText;
   document.getElementById('showGraphBtn').style.display = 'block';
+  
+  // Now initialize event listeners
+  console.log('Setting up event listeners...');
+  const searchEl = document.getElementById('search');
+  const wordSearchBtn = document.getElementById('wordSearchBtn');
+  const langSearchBtn = document.getElementById('langSearchBtn');
+  
+  console.log('DOM elements: searchEl=', !!searchEl, 'wordSearchBtn=', !!wordSearchBtn, 'langSearchBtn=', !!langSearchBtn);
+  
+  if (wordSearchBtn && langSearchBtn) {
+    console.log('Setting up button listeners');
+    wordSearchBtn.addEventListener('click', () => {
+      searchMode = 'word';
+      wordSearchBtn.classList.add('active');
+      langSearchBtn.classList.remove('active');
+      searchEl.placeholder = "Search a word… e.g. ժամանակ, հայր, մայր";
+      hideSuggestions();
+      searchEl.value = '';
+      document.getElementById('result').style.display = 'none';
+      document.getElementById('placeholder').style.display = 'block';
+    });
+
+    langSearchBtn.addEventListener('click', () => {
+      searchMode = 'language';
+      langSearchBtn.classList.add('active');
+      wordSearchBtn.classList.remove('active');
+      searchEl.placeholder = "Search by origin language… e.g. turkish, greek, persian";
+      hideSuggestions();
+      searchEl.value = '';
+      document.getElementById('result').style.display = 'none';
+      document.getElementById('placeholder').style.display = 'block';
+    });
+    console.log('Button listeners attached');
+  }
+
+  if (searchEl) {
+    console.log('Setting up search input listener');
+    searchEl.addEventListener('input', () => {
+      console.log('Search input event:', searchEl.value);
+      if (searchTimeout) clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => {
+        const trimmed = searchEl.value.trim();
+        console.log('Calling showSuggestions with:', trimmed);
+        showSuggestions(trimmed);
+      }, 150);
+    });
+
+    searchEl.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        const query = searchEl.value.trim();
+        if (searchMode === 'word') {
+          lookup(query);
+        } else {
+          const matches = dictionary.filter(entry => {
+            const ety = parseEtymology(entry);
+            return ety && ety.toLowerCase().includes(query.toLowerCase());
+          });
+          if (matches.length > 0) {
+            lookup(matches[0].title);
+          }
+        }
+      }
+      if (e.key === 'Escape') hideSuggestions();
+    });
+    console.log('Search input listener attached');
+  } else {
+    console.error('ERROR: Search input element not found!');
+  }
+
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.search-wrap')) hideSuggestions();
+  });
+  
+  console.log('Event listeners setup complete');
 }
 
 loadDictionary();
@@ -612,78 +686,7 @@ function showGraph() {
   network = new vis.Network(container, data, options);
 }
 
-// ========== Events ==========
-
-const searchEl = document.getElementById('search');
-const wordSearchBtn = document.getElementById('wordSearchBtn');
-const langSearchBtn = document.getElementById('langSearchBtn');
-
-console.log('DOM elements found - searchEl:', searchEl, 'wordSearchBtn:', wordSearchBtn, 'langSearchBtn:', langSearchBtn);
-
-// Make sure buttons exist before attaching listeners
-if (wordSearchBtn && langSearchBtn) {
-  console.log('Attaching button listeners...');
-  wordSearchBtn.addEventListener('click', () => {
-    searchMode = 'word';
-    wordSearchBtn.classList.add('active');
-    langSearchBtn.classList.remove('active');
-    searchEl.placeholder = "Search a word… e.g. ժամանակ, հայր, մայր";
-    hideSuggestions();
-    searchEl.value = '';
-    document.getElementById('result').style.display = 'none';
-    document.getElementById('placeholder').style.display = 'block';
-  });
-
-  langSearchBtn.addEventListener('click', () => {
-    searchMode = 'language';
-    langSearchBtn.classList.add('active');
-    wordSearchBtn.classList.remove('active');
-    searchEl.placeholder = "Search by origin language… e.g. turkish, greek, persian";
-    hideSuggestions();
-    searchEl.value = '';
-    document.getElementById('result').style.display = 'none';
-    document.getElementById('placeholder').style.display = 'block';
-  });
-}
-
-if (searchEl) {
-  console.log('Attaching search input listener...');
-  searchEl.addEventListener('input', () => {
-    // Debounce search to avoid running on every keystroke
-    console.log('Input event fired, value:', searchEl.value);
-    if (searchTimeout) clearTimeout(searchTimeout);
-    searchTimeout = setTimeout(() => {
-      const trimmed = searchEl.value.trim();
-      console.log('Calling showSuggestions with:', trimmed);
-      showSuggestions(trimmed);
-    }, 150); // 150ms delay for smoother performance
-  });
-
-  searchEl.addEventListener('keydown', e => {
-    if (e.key === 'Enter') {
-      const query = searchEl.value.trim();
-      if (searchMode === 'word') {
-        lookup(query);
-      } else {
-        // For language search, show first match or list
-        const matches = dictionary.filter(entry => {
-          const ety = parseEtymology(entry);
-          return ety && ety.toLowerCase().includes(query.toLowerCase());
-        });
-        if (matches.length > 0) {
-          lookup(matches[0].title);
-        }
-      }
-    }
-    if (e.key === 'Escape') hideSuggestions();
-  });
-} else {
-  console.error('Search element not found!');
-}
-
-document.addEventListener('click', e => {
-  if (!e.target.closest('.search-wrap')) hideSuggestions();
-});
+// ========== Make lookup globally accessible ==========
 
 window.lookup = lookup;
 </script>
