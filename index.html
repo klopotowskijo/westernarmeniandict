@@ -458,25 +458,8 @@ const CACHE_KEY = 'armenian_dict_v2';
 const CACHE_TIME_KEY = 'armenian_dict_time';
 
 function loadDictionary() {
-  // Try cache first
-  const cached = localStorage.getItem(CACHE_KEY);
-  if (cached) {
-    try {
-      const data = JSON.parse(cached);
-      initializeDictionary(data, 'cached');
-      // Still fetch fresh copy in background
-      fetch('western_armenian_wiktionary.json')
-        .then(r => r.json())
-        .then(data => {
-          localStorage.setItem(CACHE_KEY, JSON.stringify(data));
-          localStorage.setItem(CACHE_TIME_KEY, Date.now());
-        })
-        .catch(() => {});
-      return;
-    } catch (e) {}
-  }
-  
-// No cache, fetch from server
+  // Skip localStorage caching due to size limits - fetch fresh each time
+  console.log('Fetching dictionary data...');
   fetch('western_armenian_wiktionary.json')
     .then(r => {
       console.log('Fetch response status:', r.status);
@@ -484,9 +467,7 @@ function loadDictionary() {
     })
     .then(data => {
       console.log('Parsed data length:', data.length);
-      localStorage.setItem(CACHE_KEY, JSON.stringify(data));
-      localStorage.setItem(CACHE_TIME_KEY, Date.now());
-      initializeDictionary(data, 'fresh');
+      // Don't cache to localStorage due to size limits
     })
     .catch(error => {
       console.error('Dictionary load error:', error);
