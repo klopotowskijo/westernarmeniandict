@@ -291,7 +291,7 @@ function cleanEtymology(text) {
 
 function parseDefinitions(wikitext) {
   // Only extract definitions from the Armenian section (not Old Armenian)
-  const armenianMatch = wikitext.match(/==Armenian==([\s\S]*?)(?:==\w|$)/);
+  const armenianMatch = wikitext.match(/==Armenian==\n([\s\S]*?)\n==/);
   if (!armenianMatch) return [];
   
   const armenianSection = armenianMatch[1];
@@ -320,7 +320,7 @@ function parseDefinitions(wikitext) {
 
 function parsePOS(wikitext) {
   // Only look at Armenian section for POS
-  const armenianMatch = wikitext.match(/==Armenian==([\s\S]*?)(?:==\w|$)/);
+  const armenianMatch = wikitext.match(/==Armenian==\n([\s\S]*?)\n==/);
   const searchWikitext = armenianMatch ? armenianMatch[1] : wikitext;
   
   const posMap = {
@@ -358,7 +358,7 @@ function parseEtymology(entry) {
   // Then try parsing from wikitext - only Armenian section
   if (!result) {
     const wikitext = entry.wikitext || '';
-    const armenianMatch = wikitext.match(/==Armenian==([\s\S]*?)(?:==\w|$)/);
+    const armenianMatch = wikitext.match(/==Armenian==\n([\s\S]*?)\n==/);
     const searchWikitext = armenianMatch ? armenianMatch[1] : wikitext;
     const etyMatch = searchWikitext.match(/===Etymology===\n([\s\S]*?)(?=\n===|$)/);
     if (etyMatch) {
