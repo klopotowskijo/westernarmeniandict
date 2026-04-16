@@ -1335,11 +1335,12 @@
         for (const l of treeLinks) {
           addWordNode(l.parent, "word");
           addWordNode(l.child, "word");
+          const rel = String(l.relation || "").trim();
           edges.push({
             from: l.parent,
             to: l.child,
             arrows: "to",
-            label: l.relation,
+            label: rel.length <= 22 ? rel : "",
             font: { size: 10, align: "middle" },
             color: { color: "#b69b7f", highlight: "#8a4f28" },
             smooth: false
@@ -1350,13 +1351,14 @@
         for (const l of links) {
           const src = String(l.source);
           const tgt = String(l.target);
+          const rel = String(l.relation || "").trim();
           addWordNode(src, "word");
           addWordNode(tgt, "word");
           edges.push({
             from: src,
             to: tgt,
             arrows: "to",
-            label: l.relation || "",
+            label: rel.length <= 22 ? rel : "",
             font: { size: 10, align: "middle" },
             color: { color: "#b69b7f", highlight: "#8a4f28" }
           });
@@ -1420,23 +1422,48 @@
         physics: mode === "lineage"
       });
       network.once("stabilized", () => {
-        network.fit({ animation: { duration: 350, easingFunction: "easeInOutQuad" } });
+        if (seedWord) {
+          network.focus(seedWord, {
+            scale: 1.05,
+            animation: { duration: 350, easingFunction: "easeInOutQuad" }
+          });
+        } else {
+          network.fit({ animation: { duration: 350, easingFunction: "easeInOutQuad" } });
+          network.moveTo({ scale: 0.85 });
+        }
+      });
+      network.on("doubleClick", params => {
+        if (params.nodes && params.nodes.length) {
+          network.focus(params.nodes[0], {
+            scale: 1.12,
+            animation: { duration: 250, easingFunction: "easeInOutQuad" }
+          });
+        }
       });
     }
     function renderGraph(mode) {
       const seed = getGraphSeedWord();
       let links = [];
+      const maxEdges = mode === "language" ? 90 : 140;
+      const depth = mode === "language" ? 1 : 2;
       if (seed) {
-        links = extractNeighborhood(seed, 2, 220);
+        links = extractNeighborhood(seed, depth, maxEdges);
       } else if (mode === "tree" && allTitles.length) {
         currentWord = allTitles[0];
-        links = extractNeighborhood(currentWord, 2, 220);
+        links = extractNeighborhood(currentWord, 2, 140);
+      } else if (!graphSelectedLanguages.size) {
+        const container = document.getElementById("graphContainer");
+        const note = document.getElementById("graphNote");
+        container.innerHTML = "<p style=\"padding:0.8rem\">Search a word first, or choose a language preset, to get a focused graph.</p>";
+        note.textContent = "Tip: word-first gives the clearest graph.";
+        updateUrlState(searchMode, document.getElementById("search").value.trim());
+        return;
       }
       if (!links.length && graphData && Array.isArray(graphData.links)) {
         const fallback = graphSelectedLanguages.size
           ? graphData.links.filter(l => matchesGraphLanguage(l))
           : graphData.links;
-        links = fallback.slice(0, 120);
+        links = fallback.slice(0, mode === "language" ? 80 : 110);
       }
       renderGraphForLinks(links, mode, seed || currentWord || "");
       updateUrlState(searchMode, document.getElementById("search").value.trim());
