@@ -111,7 +111,10 @@
       box-shadow: 0 -10px 24px rgba(56, 33, 14, 0.12);
     }
     .keyboard-wrap {
-      margin-bottom: 0.75rem;
+      margin-top: 0.75rem;
+      margin-bottom: 0;
+      padding-top: 0.55rem;
+      border-top: 1px dashed #d8c9b4;
     }
     #toggleKeyboardBtn {
       font-family: "IBM Plex Sans", sans-serif;
@@ -659,16 +662,16 @@
         <input id="search" type="text" placeholder="Search for a word..." autocomplete="off" />
         <div id="suggestions"></div>
       </div>
-      <div class="keyboard-wrap">
-        <button id="toggleKeyboardBtn" type="button" aria-expanded="true">Hide Armenian Keyboard</button>
-        <div id="armenianKeyboard" class="keyboard-panel" aria-hidden="false" style="display:block"></div>
-      </div>
       <div class="button-row">
         <button id="wordSearchBtn" class="active">Word Search</button>
         <button id="langSearchBtn">Language Search</button>
         <button id="showGraphBtn" style="display:none">Show Etymology Graph</button>
         <button id="openLanguageTreeBtn" style="display:none">Language Tree</button>
         <button id="randomWordBtn" title="Load a random entry">&#9684; Random</button>
+      </div>
+      <div class="keyboard-wrap">
+        <button id="toggleKeyboardBtn" type="button" aria-expanded="true">Hide Armenian Keyboard</button>
+        <div id="armenianKeyboard" class="keyboard-panel" aria-hidden="false" style="display:block"></div>
       </div>
     </section>
     <main id="result"></main>
