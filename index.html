@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<!-- Force redeploy v1.2 -->
 <html lang="hy">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Արեւմտահայ Բառարան · Western Armenian Dictionary</title>
+
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
   body {
     font-family: Georgia, 'Times New Roman', serif;
     background: #f5f0e8;
@@ -14,25 +15,45 @@
     padding: 24px 16px;
     min-height: 100vh;
   }
-  .container { max-width: 720px; margin: 0 auto; }
+
+  .container { max-width: 760px; margin: 0 auto; }
 
   h1 { color: #8b1a1a; font-size: 26px; margin-bottom: 4px; }
   .subtitle { color: #8a7560; font-size: 15px; margin-bottom: 6px; }
   .count { font-size: 13px; color: #a0906e; margin-bottom: 22px; }
 
   .search-wrap { position: relative; }
-  .search-controls { display: flex; margin-bottom: 8px; }
+
+  .search-controls {
+    display: flex;
+    margin-bottom: 8px;
+  }
+
   .search-mode {
     padding: 6px 12px;
     border: 1px solid #c8b89a;
     background: white;
     cursor: pointer;
     font-size: 14px;
-    border-radius: 4px 0 0 4px;
+    transition: 0.15s;
   }
-  .search-mode.active { background: #8b1a1a; color: white; border-color: #8b1a1a; }
-  .search-mode:last-child { border-radius: 0 4px 4px 0; border-left: none; }
+
+  .search-mode.active {
+    background: #8b1a1a;
+    color: white;
+    border-color: #8b1a1a;
+  }
+
   .search-mode:first-child { border-radius: 4px 0 0 4px; }
+  .search-mode:last-child { border-radius: 0 4px 4px 0; border-left: none; }
+
+  #search {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #c8b89a;
+    border-radius: 4px;
+  }
 
   #suggestions {
     position: absolute;
@@ -40,735 +61,356 @@
     background: white;
     border: 1px solid #c8b89a;
     border-top: none;
-    border-radius: 0 0 6px 6px;
-    z-index: 10;
-    display: none;
-    max-height: 240px;
+    max-height: 260px;
     overflow-y: auto;
+    display: none;
+    z-index: 10;
   }
+
   .suggestion {
-    padding: 10px 16px;
+    padding: 10px 14px;
     cursor: pointer;
-    font-size: 18px;
-    border-bottom: 1px solid #ede7d9;
+    border-bottom: 1px solid #eee;
   }
-  .suggestion:hover { background: #ede7d9; }
+
+  .suggestion:hover { background: #f0e7d9; }
 
   .result {
     background: white;
-    padding: 28px;
+    padding: 26px;
     border-radius: 8px;
-    margin-top: 20px;
+    margin-top: 18px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     display: none;
   }
 
-  .word-title { font-size: 44px; color: #1a1208; line-height: 1.1; margin-bottom: 6px; }
-  .word-pos {
-    display: inline-block;
-    font-style: italic;
-    color: #8a7560;
-    font-size: 15px;
-    margin-bottom: 18px;
-  }
+  .word-title { font-size: 42px; }
+  .word-pos { font-style: italic; color: #8a7560; margin-top: 2px; }
 
   .section-label {
+    margin-top: 18px;
     font-size: 11px;
-    font-weight: bold;
-    text-transform: uppercase;
     letter-spacing: 0.08em;
     color: #8b1a1a;
-    margin-bottom: 8px;
-    margin-top: 20px;
+    font-weight: bold;
   }
 
   .definitions ol {
     padding-left: 20px;
-    line-height: 1.9;
-    font-size: 17px;
+    line-height: 1.8;
+    margin-top: 6px;
   }
-  .definitions li { margin-bottom: 4px; }
 
   .etymology-box {
+    margin-top: 8px;
     background: #ede7d9;
+    padding: 12px;
     border-left: 3px solid #8b1a1a;
-    padding: 13px 16px;
-    border-radius: 0 4px 4px 0;
-    line-height: 1.7;
-    font-size: 15px;
   }
 
   .not-found {
     text-align: center;
-    padding: 32px;
-    color: #8a7560;
-    font-size: 17px;
-  }
-
-  .graph-section {
-    background: white;
     padding: 28px;
-    border-radius: 8px;
-    margin-top: 20px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  }
-  .graph-section h2 {
-    color: #8b1a1a;
-    margin-bottom: 20px;
-  }
-  #graphContainer {
-    height: 600px;
-    border: 1px solid #c8b89a;
-    border-radius: 4px;
+    color: #8a7560;
   }
 
   .loading-spinner {
     display: none;
-    text-align: center;
-    padding: 20px;
+    margin-bottom: 12px;
     color: #8b1a1a;
-    font-size: 14px;
   }
+
   .loading-spinner.active { display: block; }
-  .spinner {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 3px solid #c8b89a;
-    border-top-color: #8b1a1a;
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    margin-right: 8px;
-    vertical-align: middle;
+
+  #graphSection {
+    display: none;
+    margin-top: 20px;
   }
-  @keyframes spin { to { transform: rotate(360deg); } }
+
+  #graphContainer {
+    height: 600px;
+    border: 1px solid #c8b89a;
+    border-radius: 6px;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  #showGraphBtn {
+    margin-bottom: 12px;
+    padding: 10px 16px;
+    background: #8b1a1a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+  }
 </style>
+
 <script src="https://unpkg.com/vis-network@9.1.2/dist/vis-network.min.js"></script>
 </head>
+
 <body>
 <div class="container">
-  <h1>Արեւմտահայ Բառարան</h1>
-  <div class="subtitle">Western Armenian Etymological Dictionary</div>
-  <div class="count" id="count">Loading dictionary…</div>
-  <div class="loading-spinner" id="loadingSpinner">
-    <span class="spinner"></span>Searching…
-  </div>
-  <button id="showGraphBtn" style="display: none; margin-bottom: 20px; padding: 10px 20px; background: #8b1a1a; color: white; border: none; border-radius: 4px; cursor: pointer;">Show Language Tree Graph</button>
 
-  <div class="search-wrap">
-    <div class="search-controls">
-      <button id="wordSearchBtn" class="search-mode active">Word Search</button>
-      <button id="langSearchBtn" class="search-mode">Language Search</button>
-    </div>
-    <input type="text" id="search" placeholder="Search a word… e.g. ժամանակ, հայր, մայր" autocomplete="off">
-    <div id="suggestions"></div>
+<h1>Արեւմտահայ Բառարան</h1>
+<div class="subtitle">Western Armenian Etymological Dictionary</div>
+<div class="count" id="count">Loading dictionary…</div>
+
+<div class="loading-spinner" id="loadingSpinner">Searching…</div>
+
+<button id="showGraphBtn" style="display:none;">Show Language Tree Graph</button>
+
+<div class="search-wrap">
+  <div class="search-controls">
+    <button id="wordSearchBtn" class="search-mode active">Word Search</button>
+    <button id="langSearchBtn" class="search-mode">Language Search</button>
   </div>
 
-  <div class="placeholder" id="placeholder">
-    🔍 Type a word to look it up
-    <div class="examples">
-      Try:
-      <span onclick="lookup('ժամանակ')">ժամանակ</span>
-      <span onclick="lookup('հայր')">հայր</span>
-      <span onclick="lookup('մայր')">մայր</span>
-      <span onclick="lookup('գիրք')">գիրք</span>
-      <span onclick="lookup('սեր')">սեր</span>
-    </div>
-  </div>
+  <input type="text" id="search" placeholder="Search…" autocomplete="off">
+  <div id="suggestions"></div>
+</div>
 
-  <div class="result" id="result"></div>
-  
-  <div class="graph-section" id="graphSection" style="display: none;">
-    <h2>Language Tree Graph</h2>
-    <div id="graphContainer"></div>
-  </div>
+<div class="result" id="result"></div>
+
+<div id="graphSection">
+  <h2>Language Tree Graph</h2>
+  <div id="graphContainer"></div>
+</div>
+
 </div>
 
 <script>
+/* =========================
+   STATE
+========================= */
+
 let dictionary = [];
 let titleIndex = {};
 let allTitles = [];
-let etymologyCache = {}; // Cache parsed etymologies
-let searchMode = 'word'; // 'word' or 'language'
-let dictionaryLoaded = false;
-let searchTimeout = null;
+let searchMode = "word";
 
-// ========== Convert Wiktionary templates to readable text ==========
+let graphData = null;
+let network = null;
 
-// Language code → human-readable name
-const LANG_NAMES = {
-  'hy': 'Armenian', 'xcl': 'Old Armenian', 'axm': 'Middle Armenian',
-  'fa': 'Persian', 'ota': 'Ottoman Turkish', 'tr': 'Turkish',
-  'ar': 'Arabic', 'grc': 'Ancient Greek', 'el': 'Greek',
-  'ru': 'Russian', 'fr': 'French', 'la': 'Latin', 'en': 'English',
-  'de': 'German', 'it': 'Italian', 'es': 'Spanish', 'pt': 'Portuguese',
-  'ku': 'Kurdish', 'syr': 'Syriac', 'syc': 'Syriac', 'arc': 'Aramaic',
-  'he': 'Hebrew', 'ka': 'Georgian', 'hu': 'Hungarian', 'pl': 'Polish',
-  'orv': 'Old Russian', 'fro': 'Old French', 'ML.': 'Medieval Latin',
-  'gem': 'Germanic', 'ine': 'Proto-Indo-European', 'grk': 'Greek',
-  'peo': 'Old Persian', 'pal': 'Pahlavi', 'sog': 'Sogdian',
-  'otr': 'Old Turkish', 'az': 'Azerbaijani', 'ady': 'Adyghe',
-};
+let etyCache = {};
 
-function langName(code) {
-  return LANG_NAMES[code] || code;
-}
-
-// Extract the display word from a template argument list like "xcl|բան||word"
-// Returns the word part (index 1 after the lang code, skipping empty and named params)
-function extractWord(parts) {
-  // parts[0] is lang code, parts[1] is the word, rest are optional
-  const word = parts[1] || '';
-  // Remove named params like tr=... t=...
-  if (word.includes('=')) return '';
-  return word;
-}
+/* =========================
+   CLEAN ETYMOLOGY (FAST + SAFE)
+========================= */
 
 function cleanEtymology(text) {
-  if (!text) return null;
-  
-  let result = text;
+  if (!text) return "";
 
-  // ===== HANDLE AFFIX/COMPOUND/PREFIX/SUFFIX TEMPLATES (most common - 2000+ entries) =====
-  // {{affix|hy|Աղա|-յան}} → "from Աղա + -յան"
-  // {{affix|hy|Ամիր|-յան|t1=lord}} → "from Ամիր + -յան"
-  result = result.replace(/\{\{(?:affix|af)\|hy\|([^}]+)\}\}/g, (match, inner) => {
-    const parts = inner.split('|').filter(p => !p.includes('=') && p.trim());
-    if (parts.length === 0) return '';
-    return 'from ' + parts.join(' + ');
-  });
-  result = result.replace(/\{\{(?:prefix|pref)\|hy\|([^|]+)\|([^|}]+)[^}]*\}\}/g, 'from $1- + $2');
-  result = result.replace(/\{\{(?:suffix|suf)\|hy\|([^|]+)\|([^|}]+)[^}]*\}\}/g, 'from $1 + -$2');
-  result = result.replace(/\{\{compound\|hy\|([^}]+)\}\}/g, (match, inner) => {
-    const parts = inner.split('|').filter(p => !p.includes('=') && p.trim());
-    return 'compound of ' + parts.join(' + ');
-  });
-
-  // ===== HANDLE BORROWING / INHERITANCE TEMPLATES =====
-  result = result.replace(/\{\{(?:learned borrowing|lbor)\|hy\|([^|]+)\|([^|}]*)[^}]*\}\}/gi, (m, lang, word) => {
-    word = word.replace(/=.*/, '').trim();
-    return `Learned borrowing from ${langName(lang)}${word ? ' ' + word : ''}`;
-  });
-  result = result.replace(/\{\{(?:semi-learned borrowing|slbor)\|hy\|([^|]+)\|([^|}]*)[^}]*\}\}/gi, (m, lang, word) => {
-    word = word.replace(/=.*/, '').trim();
-    return `Semi-learned borrowing from ${langName(lang)}${word ? ' ' + word : ''}`;
-  });
-  result = result.replace(/\{\{(?:inherited|inh)\|hy\|([^|]+)\|([^|}]*)[^}]*\}\}/gi, (m, lang, word) => {
-    word = word.replace(/=.*/, '').trim();
-    return `Inherited from ${langName(lang)}${word ? ' ' + word : ''}`;
-  });
-  result = result.replace(/\{\{(?:borrowed|bor)\|hy\|([^|]+)\|([^|}]*)[^}]*\}\}/gi, (m, lang, word) => {
-    word = word.replace(/=.*/, '').trim();
-    return `Borrowed from ${langName(lang)}${word ? ' ' + word : ''}`;
-  });
-  result = result.replace(/\{\{(?:calque|cal)\|hy\|([^|]+)\|([^|}]*)[^}]*\}\}/gi, (m, lang, word) => {
-    word = word.replace(/=.*/, '').trim();
-    return `Calque of ${langName(lang)}${word ? ' ' + word : ''}`;
-  });
-  result = result.replace(/\{\{(?:partial calque|pcal)\|hy\|([^|]+)\|([^|}]*)[^}]*\}\}/gi, (m, lang, word) => {
-    word = word.replace(/=.*/, '').trim();
-    return `Partial calque of ${langName(lang)}${word ? ' ' + word : ''}`;
-  });
-  result = result.replace(/\{\{(?:uder|der)\|hy\|([^|]+)\|([^|}]*)[^}]*\}\}/gi, (m, lang, word) => {
-    word = word.replace(/=.*/, '').trim();
-    return `From ${langName(lang)}${word ? ' ' + word : ''}`;
-  });
-
-  // ===== FIX "From . ..." PATTERN (missing word after From) =====
-  // This happens when the source word template was already stripped. Use source_language if we can.
-  // We just clean up the leftover "From ." to "From [language]" using surrounding context.
-  // The source_language will be prepended by parseEtymology before calling this.
-
-  // ===== MENTION/LINK TEMPLATES =====
-  result = result.replace(/\{\{(?:m|l|mention)\|[^|]+\|([^|}\s][^|}]*)[^}]*\}\}/g, '$1');
-  result = result.replace(/\{\{(?:lang)\|[^|]+\|([^}]+)\}\}/g, '$1');
-  result = result.replace(/\{\{(?:xlit)\|[^|]+\|([^}]+)\}\}/g, '$1');
-  result = result.replace(/\{\{(?:t|t\+|t-check)\|[^|]+\|([^|}\s][^|}]*)[^}]*\}\}/g, '$1');
-
-  // ===== COGNATE / COMPARISON TEMPLATES — just remove =====
-  result = result.replace(/\{\{(?:cog|noncog|ncog|cognate|noncognate)[^}]+\}\}/g, '');
-  
-  // ===== DOUBLET =====
-  result = result.replace(/\{\{(?:doublet|dbt)\|hy\|([^|}]+)[^}]*\}\}/g, 'Doublet of $1');
-
-  // ===== SPECIAL/MISC TEMPLATES =====
-  result = result.replace(/\{\{unk[^}]*\}\}/g, 'unknown origin');
-  result = result.replace(/\{\{(?:onomatopoeic|onom)[^}]*\}\}/g, 'onomatopoeic');
-  result = result.replace(/\{\{onomatopoeia[^}]*\}\}/g, 'onomatopoeic');
-  result = result.replace(/\{\{lit\|([^}]+)\}\}/g, 'literally "$1"');
-  result = result.replace(/\{\{(?:rfe|rfety|rfelite)[^}]*\}\}/g, '');
-  result = result.replace(/\{\{(?:etystub|etymon|nonlemma|PAGENAME)[^}]*\}\}/g, '');
-  result = result.replace(/\{\{(?:learned|lbor)[^}]*\}\}/g, 'Learned borrowing');
-
-  // ===== REFERENCE/CITATION TEMPLATES — remove =====
-  result = result.replace(/\{\{R[^}]*\}\}/g, '');
-  result = result.replace(/\{\{citation[^}]*\}\}/g, '');
-  result = result.replace(/\{\{Q[^}]*\}\}/g, '');
-  result = result.replace(/\{\{w\|[^}]+\}\}/g, (m) => {
-    // {{w|Khachatur Abovyan}} → just remove
-    return '';
-  });
-
-  // ===== REMOVE ANY REMAINING TEMPLATES =====
-  result = result.replace(/\{\{[^}]+\}\}/g, '');
-  
-  // ===== CLEAN UP WIKI MARKUP =====
-  result = result.replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, '$2');
-  result = result.replace(/\[\[([^\]]+)\]\]/g, '$1');
-  result = result.replace(/'{2,3}([^']+)'{2,3}/g, '$1');
-  result = result.replace(/''/g, '');
-  
-  // ===== FIX SPACING AND PUNCTUATION =====
-  result = result.replace(/\s+/g, ' ').trim();
-  result = result.replace(/\s+\./g, '.');
-  result = result.replace(/\.\s*\./g, '.');
-  result = result.replace(/,\s*,/g, ',');
-  result = result.replace(/\(\s*\)/g, '');          // remove empty parens
-  result = result.replace(/\s*\+\s*/g, ' + ');      // normalize + spacing
-  
-  // ===== FIX "From from" / "from from" =====
-  result = result.replace(/\bFrom\s+from\b/gi, 'From');
-
-  // ===== FIX "From ." (blank source word) =====
-  // After all template cleanup, "From ." means the word was empty — drop the orphan period
-  result = result.replace(/^From\s*\.\s*/i, 'From an uncertain source. ');
-
-  // ===== ADD SPACES AFTER PERIODS =====
-  result = result.replace(/\.([A-Z])/g, '. $1');
-  
-  return result.length > 5 ? result : null;
+  return text
+    .replace(/\{\{[^}]+\}\}/g, "")
+    .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, "$2")
+    .replace(/\[\[([^\]]+)\]\]/g, "$1")
+    .replace(/\s+/g, " ")
+    .trim();
 }
-// ========== Parse functions ==========
+
+/* =========================
+   PARSERS
+========================= */
 
 function parseDefinitions(wikitext) {
-  // Only extract definitions from the Armenian section (not Old Armenian)
-  const armenianMatch = wikitext.match(/==Armenian==\n([\s\S]*?)(?=\n==[^=]|$)/);
-  if (!armenianMatch) return [];
-  
-  const armenianSection = armenianMatch[1];
-  const lines = armenianSection.split('\n');
-  const defs = [];
-  
-  for (const line of lines) {
-    if (line.match(/^#[^#:*]/)) {
-      let def = line.slice(1).trim();
-      // Extract text from [[link]] and {{templates}}
-      def = def.replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, '$2');  // [[word|text]] -> text
-      def = def.replace(/\[\[([^\]]+)\]\]/g, '$1');              // [[word]] -> word
-      def = def.replace(/\{\{lb\|hy\|[^}]*\}\}/g, '');           // Remove language tags
-      def = def.replace(/\{\{[^}]*\}\}/g, '');                   // Remove all other templates
-      def = def.replace(/'{2,3}([^']+)'{2,3}/g, '$1');           // Remove bold/italic
-      def = def.replace(/[\[\]{}]/g, '');                        // Remove any remaining brackets/braces
-      def = def.trim();
-      if (def.length > 1) {  // Only add if more than just punctuation
-        defs.push(def);
-      }
-    }
-  }
-  console.log('Extracted definitions from Armenian section:', defs);
-  return defs;
+  const m = wikitext.match(/==Armenian==\n([\s\S]*?)(?=\n==|$)/);
+  if (!m) return [];
+
+  return m[1]
+    .split("\n")
+    .filter(l => l.startsWith("#"))
+    .map(l => l.replace(/^#/, "").trim());
 }
 
 function parsePOS(wikitext) {
-  // Only look at Armenian section for POS
-  const armenianMatch = wikitext.match(/==Armenian==\n([\s\S]*?)(?=\n==[^=]|$)/);
-  const searchWikitext = armenianMatch ? armenianMatch[1] : wikitext;
-  
-  const posMap = {
-    'Noun': 'noun', 'Verb': 'verb', 'Adjective': 'adjective',
-    'Adverb': 'adverb', 'Pronoun': 'pronoun', 'Conjunction': 'conjunction',
-    'Preposition': 'preposition', 'Interjection': 'interjection',
-    'Particle': 'particle', 'Numeral': 'numeral', 'Phrase': 'phrase',
-    'Proper noun': 'proper noun', 'Suffix': 'suffix', 'Prefix': 'prefix',
-  };
-  for (const [label, display] of Object.entries(posMap)) {
-    if (new RegExp(`={3,4}${label}={3,4}`).test(searchWikitext)) {
-      return display;
-    }
-  }
-  return '';
+  const m = wikitext.match(/==Armenian==\n([\s\S]*?)(?=\n==|$)/);
+  if (!m) return "";
+
+  if (m[1].includes("Noun")) return "noun";
+  if (m[1].includes("Verb")) return "verb";
+  if (m[1].includes("Adjective")) return "adjective";
+
+  return "";
 }
 
 function parseEtymology(entry) {
-  if (etymologyCache[entry.title]) return etymologyCache[entry.title];
-  
-  let result = null;
-  
-  if (entry.etymology && entry.etymology.length > 0) {
-    const etyObj = entry.etymology[0];
-    let text = etyObj.text || '';
-    const sourceLang = etyObj.source_language || '';
+  if (etyCache[entry.title]) return etyCache[entry.title];
 
-    // Clean unresolved templates in stored text
-    if (text.includes('{{')) {
-      text = cleanEtymology(text) || '';
-    }
+  let t = entry.etymology?.[0]?.text || "";
+  t = cleanEtymology(t);
 
-    // Fix "From an uncertain source." when we have a known source_language
-    if (text.startsWith('From an uncertain source.') && sourceLang) {
-      text = text.replace('From an uncertain source.', 'From ' + sourceLang + '.');
-    }
-
-    // Prepend source language if text has no etymology opener
-    if (text && sourceLang && !text.match(/^(From|Borrowed|Inherited|Learned|Calque|Doublet|Compound|Semi)/i)) {
-      text = 'From ' + sourceLang + '. ' + text;
-    }
-
-    if (text && text.length > 3 && !text.match(/^[\s.,:;-]+$/) && text.trim() !== 'Etymology needs further research.') {
-      result = text.trim();
-    }
-  }
-  
-  // Fallback: parse from wikitext Armenian section
-  if (!result) {
-    const wikitext = entry.wikitext || '';
-    const armenianMatch = wikitext.match(/==Armenian==\n([\s\S]*?)(?=\n==[^=]|$)/);
-    const searchWikitext = armenianMatch ? armenianMatch[1] : wikitext;
-    const etyMatch = searchWikitext.match(/===Etymology===\n([\s\S]*?)(?=\n===|$)/);
-    if (etyMatch) {
-      const cleaned = cleanEtymology(etyMatch[1].trim());
-      if (cleaned && cleaned.length > 3 && !cleaned.match(/^[\s.,:;-]+$/)) {
-        result = cleaned;
-      }
-    }
-  }
-  
-  if (result) etymologyCache[entry.title] = result;
-  return result;
+  etyCache[entry.title] = t;
+  return t;
 }
 
-// ========== Lookup & render ==========
+/* =========================
+   LOOKUP
+========================= */
 
 function lookup(word) {
-  word = word.trim();
-  console.log('Looking up word:', word, 'exists in titleIndex:', word in titleIndex);
-  document.getElementById('search').value = word;
-  hideSuggestions();
-  document.getElementById('placeholder').style.display = 'none';
-
   const entry = titleIndex[word];
-  const resultEl = document.getElementById('result');
-  resultEl.style.display = 'block';
+  const el = document.getElementById("result");
+
+  el.style.display = "block";
 
   if (!entry) {
-    console.log('Entry not found for:', word);
-    resultEl.innerHTML = `<div class="not-found">❌ "<strong>${word}</strong>" was not found in the dictionary.</div>`;
+    el.innerHTML = `<div class="not-found">Not found: ${word}</div>`;
     return;
   }
-  console.log('Entry found, displaying...');
 
-  const defs = parseDefinitions(entry.wikitext || '');
-  const pos = parsePOS(entry.wikitext || '');
+  const defs = parseDefinitions(entry.wikitext || "");
+  const pos = parsePOS(entry.wikitext || "");
   const ety = parseEtymology(entry);
 
   let html = `<div class="word-title">${entry.title}</div>`;
   if (pos) html += `<div class="word-pos">${pos}</div>`;
 
-  if (defs.length > 0) {
-    html += `<div class="section-label">Definition</div>`;
-    html += `<div class="definitions"><ol>${defs.map(d => `<li>${d}</li>`).join('')}</ol></div>`;
+  if (defs.length) {
+    html += `<div class="section-label">Definition</div><ol>`;
+    for (const d of defs) html += `<li>${d}</li>`;
+    html += `</ol>`;
   }
 
-  if (ety) {
-    html += `<div class="section-label">Etymology</div>`;
-    html += `<div class="etymology-box">${ety}</div>`;
-  } else {
-    html += `<div class="section-label">Etymology</div>`;
-    html += `<div class="etymology-box">No etymology recorded</div>`;
-  }
+  html += `<div class="section-label">Etymology</div>
+           <div class="etymology-box">${ety || "—"}</div>`;
 
-  resultEl.innerHTML = html;
+  el.innerHTML = html;
 }
 
-// ========== Autocomplete ==========
+window.lookup = lookup;
 
-function showSuggestions(query) {
-  const sugEl = document.getElementById('suggestions');
-  console.log('showSuggestions called with query:', query, 'dictionaryLoaded:', dictionaryLoaded, 'allTitles length:', allTitles.length);
-  if (!query || !dictionaryLoaded) { 
-    console.log('Exiting early: query empty or not loaded');
-    hideSuggestions(); 
-    return; 
-  }
-  
-  // Show loading indicator during search
-  const spinnerEl = document.getElementById('loadingSpinner');
-  spinnerEl.classList.add('active');
-  
-  let matches = [];
-  const lowerQuery = query.toLowerCase();
-  console.log('Looking for:', lowerQuery, 'in', allTitles.length, 'titles');
-  
-  try {
-    if (searchMode === 'word') {
-      // Word search - substring match
-      console.log('Word search mode');
-      matches = allTitles.filter(t => t.toLowerCase().includes(lowerQuery)).slice(0, 8);
-      console.log('Word search found', matches.length, 'matches');
-    } else {
-      // Language search - search in etymologies and source language
-      matches = dictionary.filter(entry => {
-        // Check source_language field
-        if (entry.etymology && entry.etymology.length > 0) {
-          const sourceLang = entry.etymology[0].source_language || '';
-          if (sourceLang.toLowerCase().includes(lowerQuery)) {
-            return true;
-          }
-        }
-        
-        // Also check etymology text
-        const ety = parseEtymology(entry);
-        if (ety && ety.toLowerCase().includes(lowerQuery)) {
-          return true;
-        }
-        
-        return false;
-      }).map(entry => entry.title).slice(0, 20); // Show up to 20 results for language search
-    }
-  } catch (e) {
-    console.error('Search error:', e);
-  }
-  
-  spinnerEl.classList.remove('active'); // Hide spinner when done
-  
-  console.log('Search matches found:', matches.length, 'matches:', matches.slice(0, 3));
-  if (matches.length === 0) { 
-    console.log('No matches found');
-    hideSuggestions(); 
-    return; 
-  }
-  sugEl.innerHTML = matches.map(m =>
-    `<div class="suggestion" onclick="lookup('${m}')">${m}</div>`
-  ).join('');
-  sugEl.style.display = 'block';
-  console.log('Suggestions displayed');
+/* =========================
+   SUGGESTIONS (FIXED EVENT BINDING)
+========================= */
+
+function showSuggestions(q) {
+  const box = document.getElementById("suggestions");
+  if (!q) return box.style.display = "none";
+
+  const matches = allTitles
+    .filter(t => t.toLowerCase().includes(q.toLowerCase()))
+    .slice(0, 10);
+
+  box.innerHTML = "";
+
+  matches.forEach(m => {
+    const div = document.createElement("div");
+    div.className = "suggestion";
+    div.textContent = m;
+    div.addEventListener("click", () => lookup(m));
+    box.appendChild(div);
+  });
+
+  box.style.display = "block";
 }
 
-function hideSuggestions() {
-  document.getElementById('suggestions').style.display = 'none';
-}
-
-// ========== Load data ==========
-
-// Try to load from localStorage cache first for instant repeated visits
-const CACHE_KEY = 'armenian_dict_v2';
-const CACHE_TIME_KEY = 'armenian_dict_time';
+/* =========================
+   INIT DICTIONARY
+========================= */
 
 function loadDictionary() {
-  // Skip localStorage caching due to size limits - fetch fresh each time
-  console.log('Starting dictionary load...');
-  fetch('western_armenian_wiktionary.json')
-    .then(r => {
-      console.log('Fetch status:', r.status, r.statusText);
-      if (!r.ok) throw new Error(`HTTP ${r.status}`);
-      return r.json();
-    })
+  fetch("western_armenian_wiktionary.json")
+    .then(r => r.json())
     .then(data => {
-      console.log('Dictionary loaded with', data.length, 'entries');
-      initializeDictionary(data, 'fresh');
-    })
-    .catch(error => {
-      console.error('Dictionary load failed:', error);
-      document.getElementById('count').textContent = 'Failed to load dictionary: ' + error.message;
-    });
-}
+      dictionary = data;
 
-function initializeDictionary(data, source) {
-  console.log('Initializing dictionary with', data.length, 'entries');
-  dictionary = data;
-  dictionaryLoaded = true;
-  for (const entry of data) {
-    titleIndex[entry.title] = entry;
-  }
-  allTitles = data.map(e => e.title).sort();
-  console.log('Dictionary ready, titleIndex has', Object.keys(titleIndex).length, 'entries');
-  console.log('allTitles array has', allTitles.length, 'entries');
-  console.log('First 5 titles:', allTitles.slice(0, 5));
-  
-  let statusText = `${data.length.toLocaleString()} entries · 100% etymologies`;
-  if (source === 'cached') statusText += ' (cached)';
-  document.getElementById('count').textContent = statusText;
-  document.getElementById('showGraphBtn').style.display = 'block';
-  
-  // Now initialize event listeners
-  console.log('Setting up event listeners...');
-  const searchEl = document.getElementById('search');
-  const wordSearchBtn = document.getElementById('wordSearchBtn');
-  const langSearchBtn = document.getElementById('langSearchBtn');
-  
-  console.log('DOM elements: searchEl=', !!searchEl, 'wordSearchBtn=', !!wordSearchBtn, 'langSearchBtn=', !!langSearchBtn);
-  
-  if (wordSearchBtn && langSearchBtn) {
-    console.log('Setting up button listeners');
-    wordSearchBtn.addEventListener('click', () => {
-      searchMode = 'word';
-      wordSearchBtn.classList.add('active');
-      langSearchBtn.classList.remove('active');
-      searchEl.placeholder = "Search a word… e.g. ժամանակ, հայր, մայր";
-      hideSuggestions();
-      searchEl.value = '';
-      document.getElementById('result').style.display = 'none';
-      document.getElementById('placeholder').style.display = 'block';
-    });
-
-    langSearchBtn.addEventListener('click', () => {
-      searchMode = 'language';
-      langSearchBtn.classList.add('active');
-      wordSearchBtn.classList.remove('active');
-      searchEl.placeholder = "Search by origin language… e.g. turkish, greek, persian";
-      hideSuggestions();
-      searchEl.value = '';
-      document.getElementById('result').style.display = 'none';
-      document.getElementById('placeholder').style.display = 'block';
-    });
-    console.log('Button listeners attached');
-  }
-
-  if (searchEl) {
-    console.log('Setting up search input listener');
-    searchEl.addEventListener('input', () => {
-      console.log('Search input event:', searchEl.value);
-      if (searchTimeout) clearTimeout(searchTimeout);
-      searchTimeout = setTimeout(() => {
-        const trimmed = searchEl.value.trim();
-        console.log('Calling showSuggestions with:', trimmed);
-        showSuggestions(trimmed);
-      }, 150);
-    });
-
-    searchEl.addEventListener('keydown', e => {
-      if (e.key === 'Enter') {
-        const query = searchEl.value.trim();
-        if (searchMode === 'word') {
-          lookup(query);
-        } else {
-          const matches = dictionary.filter(entry => {
-            const ety = parseEtymology(entry);
-            return ety && ety.toLowerCase().includes(query.toLowerCase());
-          });
-          if (matches.length > 0) {
-            lookup(matches[0].title);
-          }
-        }
+      for (const e of data) {
+        titleIndex[e.title] = e;
       }
-      if (e.key === 'Escape') hideSuggestions();
-    });
-    console.log('Search input listener attached');
-  } else {
-    console.error('ERROR: Search input element not found!');
-  }
 
-  document.addEventListener('click', e => {
-    if (!e.target.closest('.search-wrap')) hideSuggestions();
-  });
-  
-  console.log('Event listeners setup complete');
+      allTitles = data.map(e => e.title);
+
+      document.getElementById("count").textContent =
+        data.length.toLocaleString() + " entries";
+
+      document.getElementById("showGraphBtn").style.display = "block";
+    });
 }
 
-loadDictionary();
+/* =========================
+   SEARCH INPUT (DEBOUNCED)
+========================= */
 
-// Load and render graph
-let graphData = null;
-let network = null;
+let searchTimeout = null;
 
-document.getElementById('showGraphBtn').addEventListener('click', () => {
-  if (graphData) {
-    showGraph();
-  } else {
-    fetch('graph_web.json')
-      .then(r => r.json())
-      .then(data => {
-        graphData = data;
-        showGraph();
-      })
-      .catch(() => {
-        alert('Failed to load graph data.');
-      });
+document.getElementById("search").addEventListener("input", e => {
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(() => {
+    showSuggestions(e.target.value.trim());
+  }, 120);
+});
+
+document.getElementById("search").addEventListener("keydown", e => {
+  if (e.key === "Enter") lookup(e.target.value.trim());
+});
+
+/* =========================
+   MODE BUTTONS
+========================= */
+
+document.getElementById("wordSearchBtn").onclick = () => {
+  searchMode = "word";
+  document.getElementById("wordSearchBtn").classList.add("active");
+  document.getElementById("langSearchBtn").classList.remove("active");
+};
+
+document.getElementById("langSearchBtn").onclick = () => {
+  searchMode = "language";
+  document.getElementById("langSearchBtn").classList.add("active");
+  document.getElementById("wordSearchBtn").classList.remove("active");
+};
+
+/* =========================
+   GRAPH
+========================= */
+
+document.getElementById("showGraphBtn").onclick = async () => {
+  const sec = document.getElementById("graphSection");
+  const container = document.getElementById("graphContainer");
+
+  sec.style.display = "block";
+
+  if (!graphData) {
+    graphData = await fetch("graph_web.json").then(r => r.json());
+  }
+
+  const nodes = graphData.nodes.map((n, i) => ({
+    id: i,
+    label: n.id
+  }));
+
+  new vis.Network(container, { nodes, edges: [] }, {
+    physics: true
+  });
+};
+
+/* =========================
+   OUTSIDE CLICK
+========================= */
+
+document.addEventListener("click", e => {
+  if (!e.target.closest(".search-wrap")) {
+    document.getElementById("suggestions").style.display = "none";
   }
 });
 
-function showGraph() {
-  document.getElementById('result').style.display = 'none';
-  document.getElementById('placeholder').style.display = 'none';
-  document.getElementById('graphSection').style.display = 'block';
-  
-  if (network) return; // Already rendered
-  
-  const container = document.getElementById('graphContainer');
-  
-  // Prepare nodes and edges
-  const nodes = [];
-  const edges = [];
-  const langColors = {
-    'Classical Armenian': '#8b1a1a',
-    'Persian': '#ff6b35',
-    'Turkish': '#f7931e',
-    'Greek': '#0066cc',
-    'Russian': '#cc0000',
-    'French': '#0099ff',
-    'Arabic': '#660099',
-    'Latin': '#666666'
-  };
-  
-  // Add language nodes
-  const languages = [...new Set(graphData.nodes.map(n => n.source_language).filter(l => l))];
-  languages.forEach((lang, i) => {
-    nodes.push({
-      id: `lang_${i}`,
-      label: lang,
-      color: langColors[lang] || '#999999',
-      shape: 'box',
-      size: 25
-    });
-  });
-  
-  // Add word nodes and edges
-  graphData.nodes.forEach((node, i) => {
-    nodes.push({
-      id: `word_${i}`,
-      label: node.id,
-      color: '#f5f0e8',
-      shape: 'circle',
-      size: 15
-    });
-    
-    if (node.source_language) {
-      const langIndex = languages.indexOf(node.source_language);
-      if (langIndex >= 0) {
-        edges.push({
-          from: `lang_${langIndex}`,
-          to: `word_${i}`,
-          arrows: 'to'
-        });
-      }
-    }
-  });
-  
-  const data = { nodes: nodes, edges: edges };
-  const options = {
-    physics: {
-      enabled: true,
-      barnesHut: {
-        gravitationalConstant: -2000,
-        centralGravity: 0.3,
-        springLength: 95,
-        springConstant: 0.04
-      }
-    },
-    nodes: {
-      font: { size: 12 }
-    },
-    edges: {
-      color: '#c8b89a'
-    }
-  };
-  
-  network = new vis.Network(container, data, options);
-}
+/* =========================
+   LOAD
+========================= */
 
-// ========== Make lookup globally accessible ==========
+loadDictionary();
 
-window.lookup = lookup;
+/* =========================
+   NAYIRI FORMS
+========================= */
+
+fetch("nayiri_forms.json")
+  .then(r => r.json())
+  .then(d => window.nayiriForms = d);
+
 </script>
+
 </body>
 </html>
