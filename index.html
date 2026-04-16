@@ -103,13 +103,6 @@
       overflow-y: auto;
       box-shadow: 0 12px 28px rgba(56, 33, 14, 0.12);
     }
-    .search-wrap.keyboard-open #suggestions {
-      top: auto;
-      bottom: calc(100% + 2px);
-      border-top: 1px solid #cabba8;
-      border-bottom: none;
-      box-shadow: 0 -10px 24px rgba(56, 33, 14, 0.12);
-    }
     .keyboard-wrap {
       margin-top: 0.75rem;
       margin-bottom: 0;
@@ -658,7 +651,7 @@
     </header>
     <section class="controls">
       <div id="count"></div>
-      <div id="searchWrap" class="search-wrap keyboard-open">
+      <div id="searchWrap" class="search-wrap">
         <input id="search" type="text" placeholder="Search for a word..." autocomplete="off" />
         <div id="suggestions"></div>
       </div>
@@ -670,8 +663,8 @@
         <button id="randomWordBtn" title="Load a random entry">&#9684; Random</button>
       </div>
       <div class="keyboard-wrap">
-        <button id="toggleKeyboardBtn" type="button" aria-expanded="true">Hide Armenian Keyboard</button>
-        <div id="armenianKeyboard" class="keyboard-panel" aria-hidden="false" style="display:block"></div>
+        <button id="toggleKeyboardBtn" type="button" aria-expanded="false">Show Armenian Keyboard</button>
+        <div id="armenianKeyboard" class="keyboard-panel" aria-hidden="true"></div>
       </div>
     </section>
     <main id="result"></main>
@@ -1541,12 +1534,10 @@
     function setKeyboardOpen(open) {
       const panel = document.getElementById("armenianKeyboard");
       const btn = document.getElementById("toggleKeyboardBtn");
-      const wrap = document.getElementById("searchWrap");
       panel.style.display = open ? "block" : "none";
       panel.setAttribute("aria-hidden", open ? "false" : "true");
       btn.setAttribute("aria-expanded", open ? "true" : "false");
       btn.textContent = open ? "Hide Armenian Keyboard" : "Show Armenian Keyboard";
-      if (wrap) wrap.classList.toggle("keyboard-open", open);
     }
     function renderArmenianKeyboard() {
       const panel = document.getElementById("armenianKeyboard");
@@ -1617,7 +1608,7 @@
       if (!open) document.getElementById("search").focus();
     };
     renderArmenianKeyboard();
-    setKeyboardOpen(true);
+    setKeyboardOpen(false);
     document.getElementById("wordSearchBtn").onclick = () => {
       setMode("word");
       updateUrlState("word", document.getElementById("search").value.trim());
