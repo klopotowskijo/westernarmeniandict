@@ -1979,6 +1979,7 @@
       const container = document.getElementById("graphContainer");
       sec.style.display = "block";
       graphVisible = true;
+      sec.scrollIntoView({ behavior: "smooth", block: "start" });
       if (!graphData) {
         try {
           graphData = await fetch("graph_web.json").then(r => r.json());
