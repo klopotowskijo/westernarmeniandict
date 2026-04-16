@@ -657,6 +657,7 @@
     let graphAvailableLanguages = [];
     let graphSelectedLanguages = new Set();
     let graphVisible = false;
+    let pendingRandomRequest = false;
     function escapeHtml(value) {
       return String(value)
         .replace(/&/g, "&amp;")
@@ -1448,6 +1449,23 @@
       });
       box.style.display = "block";
     }
+    function triggerRandomWordLookup() {
+      const pool = allTitles.filter(Boolean);
+      if (!pool.length) return false;
+      let idx = Math.floor(Math.random() * pool.length);
+      if (pool.length > 1 && currentWord) {
+        const currentIdx = pool.indexOf(currentWord);
+        if (currentIdx !== -1 && idx === currentIdx) {
+          const step = 1 + Math.floor(Math.random() * (pool.length - 1));
+          idx = (idx + step) % pool.length;
+        }
+      }
+      const word = pool[idx];
+      setMode("word");
+      document.getElementById("search").value = word;
+      lookup(word, true);
+      return true;
+    }
     function loadDictionary() {
       fetch("western_armenian_wiktionary.json")
         .then(r => r.json())
@@ -1465,6 +1483,10 @@
           applyStateFromUrl();
           if (graphVisible) {
             document.getElementById("showGraphBtn").click();
+          }
+          if (pendingRandomRequest) {
+            pendingRandomRequest = false;
+            triggerRandomWordLookup();
           }
         });
     }
@@ -1491,20 +1513,13 @@
       updateUrlState("language", document.getElementById("search").value.trim());
     };
     document.getElementById("randomWordBtn").onclick = () => {
-      const pool = allTitles.filter(Boolean);
-      if (!pool.length) return;
-      let idx = Math.floor(Math.random() * pool.length);
-      if (pool.length > 1 && currentWord) {
-        const currentIdx = pool.indexOf(currentWord);
-        if (currentIdx !== -1 && idx === currentIdx) {
-          const step = 1 + Math.floor(Math.random() * (pool.length - 1));
-          idx = (idx + step) % pool.length;
+      if (!triggerRandomWordLookup()) {
+        pendingRandomRequest = true;
+        const countEl = document.getElementById("count");
+        if (countEl && !countEl.textContent.trim()) {
+          countEl.textContent = "Loading entries...";
         }
       }
-      const word = pool[idx];
-      setMode("word");
-      document.getElementById("search").value = word;
-      lookup(word, true);
     };
     async function openGraphSection() {
       const sec = document.getElementById("graphSection");
