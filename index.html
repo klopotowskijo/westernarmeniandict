@@ -103,6 +103,18 @@
       overflow-y: auto;
       box-shadow: 0 12px 28px rgba(56, 33, 14, 0.12);
     }
+    @media (min-width: 980px) {
+      .search-wrap.side-suggestions #suggestions {
+        top: 0;
+        left: calc(100% + 0.55rem);
+        right: auto;
+        width: min(320px, 34vw);
+        border-top: 1px solid #cabba8;
+        border-bottom: 1px solid #cabba8;
+        max-height: 220px;
+        box-shadow: 0 10px 24px rgba(56, 33, 14, 0.12);
+      }
+    }
     .keyboard-wrap {
       margin-top: 0.75rem;
       margin-bottom: 0;
@@ -651,7 +663,7 @@
     </header>
     <section class="controls">
       <div id="count"></div>
-      <div id="searchWrap" class="search-wrap">
+      <div id="searchWrap" class="search-wrap side-suggestions">
         <input id="search" type="text" placeholder="Search for a word..." autocomplete="off" />
         <div id="suggestions"></div>
       </div>
