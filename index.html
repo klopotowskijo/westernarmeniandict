@@ -1045,7 +1045,7 @@
           ? "Language Tree: languages point to words, then words point to descendants. Start with a word search for the cleanest map."
           : graphMode === "lineage"
             ? "Word Lineage: direct word-to-word borrowing paths. Best for tracing one term after searching it first."
-            : "Strict Tree: a layered root-to-branch expansion. Use this for the most legible family-style view.";
+            : "Strict Tree: etytree-style top-down family layout. Hover branch lines to view relation notes.";
       }
     }
     function updateUrlState(mode, query) {
@@ -1396,19 +1396,53 @@
           note.textContent = "";
           return;
         }
+        const levelByNode = new Map([[seedWord, 0]]);
         addWordNode(seedWord, "word");
+        nodeMap.set(seedWord, {
+          ...nodeMap.get(seedWord),
+          shape: "box",
+          level: 0,
+          margin: { top: 6, right: 8, bottom: 6, left: 8 },
+          font: { face: "EB Garamond", size: 19, color: "#2f1b0d" },
+          color: { background: "#e8c7a0", border: "#8a4f28" },
+          borderWidth: 2
+        });
         for (const l of treeLinks) {
+          const parentLevel = levelByNode.get(l.parent) ?? 0;
+          const childLevel = parentLevel + 1;
+          levelByNode.set(l.child, childLevel);
           addWordNode(l.parent, "word");
           addWordNode(l.child, "word");
-          const rel = String(l.relation || "").trim();
+          nodeMap.set(l.parent, {
+            ...nodeMap.get(l.parent),
+            shape: "box",
+            level: levelByNode.get(l.parent) ?? parentLevel,
+            margin: { top: 5, right: 7, bottom: 5, left: 7 },
+            font: { face: "EB Garamond", size: l.parent === seedWord ? 19 : 16, color: "#2f2922" },
+            color: l.parent === seedWord
+              ? { background: "#e8c7a0", border: "#8a4f28" }
+              : { background: "#fff7ea", border: "#b89b7d" },
+            borderWidth: l.parent === seedWord ? 2 : 1
+          });
+          nodeMap.set(l.child, {
+            ...nodeMap.get(l.child),
+            shape: "box",
+            level: childLevel,
+            margin: { top: 5, right: 7, bottom: 5, left: 7 },
+            font: { face: "EB Garamond", size: 16, color: "#2f2922" },
+            color: { background: "#fff7ea", border: "#b89b7d" },
+            borderWidth: 1
+          });
+          const rel = String(l.relation || "").trim() || "etymological link";
           edges.push({
             from: l.parent,
             to: l.child,
             arrows: "to",
-            label: rel.length <= 22 ? rel : "",
-            font: { size: 10, align: "middle" },
-            color: { color: "#b69b7f", highlight: "#8a4f28" },
-            smooth: false
+            title: rel,
+            label: "",
+            color: { color: "#b69b7f", highlight: "#8a4f28", hover: "#8a4f28" },
+            width: 1.2,
+            smooth: { type: "cubicBezier", forceDirection: "vertical", roundness: 0.26 }
           });
         }
         note.textContent = `Strict tree view rooted at ${seedWord}${getGraphLanguageSuffix()}`;
@@ -1480,15 +1514,31 @@
         interaction: { hover: true, navigationButtons: true, keyboard: true },
         nodes: {
           borderWidth: 1,
-          color: { background: "#fcf4e5", border: "#b79b7e" }
+          color: { background: "#fcf4e5", border: "#b79b7e" },
+          shapeProperties: { borderDashes: false }
         },
         edges: {
-          smooth: { type: "continuous", roundness: 0.18 },
-          font: { size: 11, color: "#5f4f3f", strokeWidth: 3, strokeColor: "#fffef9" }
+          smooth: { type: "continuous", roundness: 0.16 },
+          font: { size: 11, color: "#5f4f3f", strokeWidth: 3, strokeColor: "#fffef9" },
+          selectionWidth: 1.5
         },
-        layout: mode === "language" || mode === "tree"
-          ? { hierarchical: { enabled: true, direction: "LR", sortMethod: "directed", levelSeparation: mode === "tree" ? 180 : 130 } }
-          : {},
+        layout: mode === "tree"
+          ? {
+              hierarchical: {
+                enabled: true,
+                direction: "UD",
+                sortMethod: "directed",
+                levelSeparation: 140,
+                nodeSpacing: 180,
+                treeSpacing: 220,
+                edgeMinimization: true,
+                parentCentralization: true,
+                blockShifting: true
+              }
+            }
+          : mode === "language"
+            ? { hierarchical: { enabled: true, direction: "LR", sortMethod: "directed", levelSeparation: 130 } }
+            : {},
         physics: mode === "lineage"
       });
       network.once("stabilized", () => {
