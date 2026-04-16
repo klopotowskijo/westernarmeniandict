@@ -37,37 +37,52 @@
       box-shadow: 0 12px 45px rgba(66, 40, 18, 0.12);
     }
     .topbar {
-      border-bottom: 1px solid var(--line);
-      padding: 1.3rem 1.6rem 1.1rem;
-      background: linear-gradient(180deg, #fffdf8 0%, #faf3e8 100%);
+      border-top: 3px double #b69e7e;
+      border-bottom: 3px double #b69e7e;
+      padding: 0.95rem 1.6rem 0.9rem;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          #fffdf9 0,
+          #fffdf9 26px,
+          #f9f1e5 26px,
+          #f9f1e5 27px
+        );
       position: relative;
     }
     .topbar::after {
       content: "";
       display: block;
-      margin-top: 0.72rem;
-      height: 8px;
-      background:
-        linear-gradient(90deg, transparent 0 2%, #ccb79b 2% 3%, transparent 3% 11%, #ccb79b 11% 12%, transparent 12% 88%, #ccb79b 88% 89%, transparent 89% 97%, #ccb79b 97% 98%, transparent 98% 100%);
-      opacity: 0.8;
+      margin-top: 0.62rem;
+      border-bottom: 1px solid #d7c6af;
+    }
+    .masthead-kicker {
+      font-family: "IBM Plex Sans", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.64rem;
+      color: #7d6244;
+      margin-bottom: 0.42rem;
     }
     h1 {
       margin: 0;
-      font-size: clamp(1.7rem, 2.5vw, 2.25rem);
+      font-size: clamp(1.85rem, 2.7vw, 2.45rem);
       font-weight: 700;
-      letter-spacing: 0.01em;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
     }
     .subtitle {
-      margin-top: 0.25rem;
+      margin-top: 0.3rem;
       color: var(--ink-soft);
       font-family: "IBM Plex Sans", sans-serif;
-      font-size: 0.92rem;
-      letter-spacing: 0.015em;
+      font-size: 0.84rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
     .controls {
-      padding: 0.5rem 1.6rem 1rem;
+      padding: 0.6rem 1.6rem 1rem;
       border-bottom: 1px solid var(--line);
-      background: #f9f3e8;
+      background: linear-gradient(180deg, #f7efe1 0%, #f4ead9 100%);
     }
     .search-wrap {
       position: relative;
@@ -668,6 +683,7 @@
 <body>
   <div class="container">
     <header class="topbar">
+      <div class="masthead-kicker">Printed Etymology Edition</div>
       <h1>Western Armenian Etymology Dictionary</h1>
       <div class="subtitle">Արեւմտահայերէն Ստուգաբանական Բառարան</div>
     </header>
@@ -682,7 +698,7 @@
         <button id="langSearchBtn">Language Search</button>
         <button id="showGraphBtn" style="display:none">Show Etymology Graph</button>
         <button id="openLanguageTreeBtn" style="display:none">Language Tree</button>
-        <button id="randomWordBtn" title="Load a random entry">&#9684; Random</button>
+        <button id="randomWordBtn" title="Load a random entry">Random</button>
       </div>
     </section>
     <main id="result"></main>
