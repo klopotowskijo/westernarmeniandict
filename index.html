@@ -1,4 +1,45 @@
-<script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Western Armenian Etymology Dictionary</title>
+  <style>
+    body { font-family: sans-serif; margin: 0; padding: 0; background: #fff; color: #222; }
+    .container { max-width: 700px; margin: 2em auto; padding: 2em; background: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 8px #0001; }
+    .search-wrap { position: relative; margin-bottom: 1em; }
+    #search { width: 100%; font-size: 1.2em; padding: 0.5em; border-radius: 4px; border: 1px solid #ccc; }
+    #suggestions { position: absolute; top: 100%; left: 0; right: 0; background: #fff; border: 1px solid #ccc; z-index: 10; display: none; max-height: 200px; overflow-y: auto; }
+    .suggestion { padding: 0.5em; cursor: pointer; }
+    .suggestion:hover { background: #eee; }
+    .word-title { font-size: 2em; font-weight: bold; margin-bottom: 0.2em; }
+    .word-pos { font-size: 1.1em; color: #666; margin-bottom: 0.5em; }
+    .section-label { font-weight: bold; margin-top: 1em; }
+    .etymology-box { background: #f1f1f1; padding: 0.5em; border-radius: 4px; margin-bottom: 1em; }
+    .nayiri-forms { margin: 0.5em 0 1em 1.5em; }
+    .not-found { color: #b00; font-weight: bold; margin-top: 1em; }
+    #showGraphBtn { margin-top: 1em; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Western Armenian Etymology Dictionary</h1>
+    <div id="count"></div>
+    <div class="search-wrap">
+      <input id="search" type="text" placeholder="Search for a word..." autocomplete="off" />
+      <div id="suggestions"></div>
+    </div>
+    <button id="wordSearchBtn" class="active">Word Search</button>
+    <button id="langSearchBtn">Language Search</button>
+    <button id="showGraphBtn" style="display:none">Show Etymology Graph</button>
+    <div id="result"></div>
+    <section id="graphSection" style="display:none">
+      <h2>Etymology Graph</h2>
+      <div id="graphContainer" style="height:400px;"></div>
+    </section>
+  </div>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
 /* =========================
    STATE
 ========================= */
@@ -252,9 +293,13 @@ loadDictionary();
    NAYIRI FORMS
 ========================= */
 
+
 fetch("nayiri_forms.json")
   .then(r => r.json())
   .then(d => window.nayiriForms = d)
   .catch(err => console.error("Could not load nayiri_forms.json:", err));
 
-</script>
+  }); // End DOMContentLoaded
+  </script>
+</body>
+</html>
