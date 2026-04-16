@@ -47,6 +47,7 @@ The dictionary covers borrowings from:
 - **Visualization**: vis.js for interactive graphs
 - **Data**: JSON format with structured etymology information
 - **Processing**: Python scripts for data analysis and maintenance
+- **Indexing**: Client-side in-memory index built from `western_armenian_wiktionary.json` in `index.html`
 
 ## Files
 
