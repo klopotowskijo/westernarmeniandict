@@ -57,249 +57,206 @@ let etyCache = {};
 /* =========================
    CLEAN ETYMOLOGY (FAST + SAFE)
 ========================= */
-
-function cleanEtymology(text) {
-  if (!text) return "";
-
-  return text
-    .replace(/\{\{[^}]+\}\}/g, "")
-    .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, "$2")
-    .replace(/\[\[([^\]]+)\]\]/g, "$1")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-/* =========================
-   PARSERS
-========================= */
-
-function parseDefinitions(wikitext) {
-  // More robust: allow for possible whitespace after section header and before #
-  const m = wikitext.match(/==Armenian==\s*\n([\s\S]*?)(?=\n==|$)/);
-  if (!m) return [];
-
-  return m[1]
-    .split("\n")
-    .map(l => l.trim())
-    .filter(l => l.startsWith("#"))
-    .map(l => l.replace(/^#+/, "").trim());
-}
-
-function parsePOS(wikitext) {
-  const m = wikitext.match(/==Armenian==\n([\s\S]*?)(?=\n==|$)/);
-  if (!m) return "";
-
-  if (m[1].includes("Noun")) return "noun";
-  if (m[1].includes("Verb")) return "verb";
-  if (m[1].includes("Adjective")) return "adjective";
-
-  return "";
-}
-
-function parseEtymology(entry) {
-  if (etyCache[entry.title]) return etyCache[entry.title];
-
-  let t = entry.etymology?.[0]?.text || "";
-  t = cleanEtymology(t);
-
-  etyCache[entry.title] = t;
-  return t;
-}
-
-/* =========================
-   LOOKUP
-========================= */
-
-function lookup(word) {
-  const entry = titleIndex[word];
-  const el = document.getElementById("result");
-  document.getElementById("suggestions").style.display = "none";
-
-  el.style.display = "block";
-
-  if (!entry) {
-    el.innerHTML = `<div class="not-found">Not found: ${word}</div>`;
-    return;
-  }
-
-  const defs = parseDefinitions(entry.wikitext || "");
-  const pos = parsePOS(entry.wikitext || "");
-  const ety = parseEtymology(entry);
-
-  let html = `<div class="word-title">${entry.title}</div>`;
-  if (pos) html += `<div class="word-pos">${pos}</div>`;
-
-  if (defs.length) {
-    html += `<div class="section-label">Definition</div><ol>`;
-    for (const d of defs) html += `<li>${d}</li>`;
-    html += `</ol>`;
-  }
-
-  html += `<div class="section-label">Etymology</div>
-           <div class="etymology-box">${ety || "—"}</div>`;
-
-  // Nayiri forms integration
-  if (window.nayiriForms && window.nayiriForms[entry.title]) {
-    const forms = window.nayiriForms[entry.title];
-    html += `<div class="section-label">Nayiri Forms</div><ul class="nayiri-forms">`;
-    for (const f of forms) html += `<li>${f}</li>`;
-    html += `</ul>`;
-  }
-
-  el.innerHTML = html;
-}
-
-window.lookup = lookup;
-
-/* =========================
-   SUGGESTIONS (FIXED)
-========================= */
-
-function showSuggestions(q) {
-  const box = document.getElementById("suggestions");
-  if (!q) {
-    box.style.display = "none";
-    return;
-  }
-
-  const matches = allTitles
-    .filter(t => t.toLowerCase().includes(q.toLowerCase()))
-    .slice(0, 10);
-
-  box.innerHTML = "";
-
-  matches.forEach(m => {
-    const div = document.createElement("div");
-    div.className = "suggestion";
-    div.textContent = m;
-
-    div.addEventListener("mousedown", (e) => {
-      // Use mousedown so it fires before input loses focus
-      e.preventDefault();
-      lookup(m);
-      box.style.display = "none";
-    });
-
-    box.appendChild(div);
-  });
-
-  box.style.display = "block";
-}
-
-/* =========================
-   INIT DICTIONARY
-========================= */
-
-function loadDictionary() {
-  fetch("western_armenian_wiktionary.json")
-    .then(r => r.json())
-    .then(data => {
-      dictionary = data;
-
-      for (const e of data) {
-        titleIndex[e.title] = e;
-      }
-
-      allTitles = data.map(e => e.title);
-
-      document.getElementById("count").textContent =
-        data.length.toLocaleString() + " entries";
-
-      document.getElementById("showGraphBtn").style.display = "block";
-    });
-}
-
-/* =========================
-   SEARCH INPUT (DEBOUNCED)
-========================= */
-
-let searchTimeout = null;
-
-document.getElementById("search").addEventListener("input", e => {
-  clearTimeout(searchTimeout);
-  searchTimeout = setTimeout(() => {
-    showSuggestions(e.target.value.trim());
-  }, 120);
-});
-
-document.getElementById("search").addEventListener("keydown", e => {
-  if (e.key === "Enter") lookup(e.target.value.trim());
-});
-
-/* =========================
-   MODE BUTTONS
-========================= */
-
-document.getElementById("wordSearchBtn").onclick = () => {
-  searchMode = "word";
-  document.getElementById("wordSearchBtn").classList.add("active");
-  document.getElementById("langSearchBtn").classList.remove("active");
-};
-
-document.getElementById("langSearchBtn").onclick = () => {
-  searchMode = "language";
-  document.getElementById("langSearchBtn").classList.add("active");
-  document.getElementById("wordSearchBtn").classList.remove("active");
-};
-
-/* =========================
-   GRAPH
-========================= */
-
-document.getElementById("showGraphBtn").onclick = async () => {
-  const sec = document.getElementById("graphSection");
-  const container = document.getElementById("graphContainer");
-
-  sec.style.display = "block";
-
-  if (!graphData) {
-    try {
-      graphData = await fetch("graph_web.json").then(r => r.json());
-    } catch (err) {
-      console.error("Failed to load graph data:", err);
-      container.innerHTML = "<p>Could not load graph data.</p>";
-      return;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Western Armenian Etymology Dictionary</title>
+  <style>
+    body { font-family: sans-serif; margin: 0; padding: 0; background: #fff; color: #222; }
+    .container { max-width: 700px; margin: 2em auto; padding: 2em; background: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 8px #0001; }
+    .search-wrap { position: relative; margin-bottom: 1em; }
+    #search { width: 100%; font-size: 1.2em; padding: 0.5em; border-radius: 4px; border: 1px solid #ccc; }
+    #suggestions { position: absolute; top: 100%; left: 0; right: 0; background: #fff; border: 1px solid #ccc; z-index: 10; display: none; max-height: 200px; overflow-y: auto; }
+    .suggestion { padding: 0.5em; cursor: pointer; }
+    .suggestion:hover { background: #eee; }
+    .word-title { font-size: 2em; font-weight: bold; margin-bottom: 0.2em; }
+    .word-pos { font-size: 1.1em; color: #666; margin-bottom: 0.5em; }
+    .section-label { font-weight: bold; margin-top: 1em; }
+    .etymology-box { background: #f1f1f1; padding: 0.5em; border-radius: 4px; margin-bottom: 1em; }
+    .nayiri-forms { margin: 0.5em 0 1em 1.5em; }
+    .not-found { color: #b00; font-weight: bold; margin-top: 1em; }
+    #showGraphBtn { margin-top: 1em; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Western Armenian Etymology Dictionary</h1>
+    <div id="count"></div>
+    <div class="search-wrap">
+      <input id="search" type="text" placeholder="Search for a word..." autocomplete="off" />
+      <div id="suggestions"></div>
+    </div>
+    <button id="wordSearchBtn" class="active">Word Search</button>
+    <button id="langSearchBtn">Language Search</button>
+    <button id="showGraphBtn" style="display:none">Show Etymology Graph</button>
+    <div id="result"></div>
+    <section id="graphSection" style="display:none">
+      <h2>Etymology Graph</h2>
+      <div id="graphContainer" style="height:400px;"></div>
+    </section>
+  </div>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    let dictionary = [];
+    let titleIndex = {};
+    let allTitles = [];
+    let searchMode = "word";
+    let graphData = null;
+    let network = null;
+    let etyCache = {};
+    function cleanEtymology(text) {
+      if (!text) return "";
+      return text
+        .replace(/\{\{[^}]+\}\}/g, "")
+        .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, "$2")
+        .replace(/\[\[([^\]]+)\]\]/g, "$1")
+        .replace(/\s+/g, " ")
+        .trim();
     }
-  }
-
-  const nodes = graphData.nodes.map((n, i) => ({
-    id: i,
-    label: n.id
-  }));
-
-  new vis.Network(container, { nodes, edges: [] }, {
-    physics: true
+    function parseDefinitions(wikitext) {
+      const m = wikitext.match(/==Armenian==\s*\n([\s\S]*?)(?=\n==|$)/);
+      if (!m) return [];
+      return m[1]
+        .split("\n")
+        .map(l => l.trim())
+        .filter(l => l.startsWith("#"))
+        .map(l => l.replace(/^#+/, "").trim());
+    }
+    function parsePOS(wikitext) {
+      const m = wikitext.match(/==Armenian==\n([\s\S]*?)(?=\n==|$)/);
+      if (!m) return "";
+      if (m[1].includes("Noun")) return "noun";
+      if (m[1].includes("Verb")) return "verb";
+      if (m[1].includes("Adjective")) return "adjective";
+      return "";
+    }
+    function parseEtymology(entry) {
+      if (etyCache[entry.title]) return etyCache[entry.title];
+      let t = entry.etymology?.[0]?.text || "";
+      t = cleanEtymology(t);
+      etyCache[entry.title] = t;
+      return t;
+    }
+    function lookup(word) {
+      const entry = titleIndex[word];
+      const el = document.getElementById("result");
+      document.getElementById("suggestions").style.display = "none";
+      el.style.display = "block";
+      if (!entry) {
+        el.innerHTML = `<div class="not-found">Not found: ${word}</div>`;
+        return;
+      }
+      const defs = parseDefinitions(entry.wikitext || "");
+      const pos = parsePOS(entry.wikitext || "");
+      const ety = parseEtymology(entry);
+      let html = `<div class="word-title">${entry.title}</div>`;
+      if (pos) html += `<div class="word-pos">${pos}</div>`;
+      if (defs.length) {
+        html += `<div class="section-label">Definition</div><ol>`;
+        for (const d of defs) html += `<li>${d}</li>`;
+        html += `</ol>`;
+      }
+      html += `<div class="section-label">Etymology</div>\n           <div class="etymology-box">${ety || "—"}</div>`;
+      if (window.nayiriForms && window.nayiriForms[entry.title]) {
+        const forms = window.nayiriForms[entry.title];
+        html += `<div class="section-label">Nayiri Forms</div><ul class="nayiri-forms">`;
+        for (const f of forms) html += `<li>${f}</li>`;
+        html += `</ul>`;
+      }
+      el.innerHTML = html;
+    }
+    window.lookup = lookup;
+    function showSuggestions(q) {
+      const box = document.getElementById("suggestions");
+      if (!q) {
+        box.style.display = "none";
+        return;
+      }
+      const matches = allTitles
+        .filter(t => t.toLowerCase().includes(q.toLowerCase()))
+        .slice(0, 10);
+      box.innerHTML = "";
+      matches.forEach(m => {
+        const div = document.createElement("div");
+        div.className = "suggestion";
+        div.textContent = m;
+        div.addEventListener("mousedown", (e) => {
+          e.preventDefault();
+          lookup(m);
+          box.style.display = "none";
+        });
+        box.appendChild(div);
+      });
+      box.style.display = "block";
+    }
+    function loadDictionary() {
+      fetch("western_armenian_wiktionary.json")
+        .then(r => r.json())
+        .then(data => {
+          dictionary = data;
+          for (const e of data) {
+            titleIndex[e.title] = e;
+          }
+          allTitles = data.map(e => e.title);
+          document.getElementById("count").textContent =
+            data.length.toLocaleString() + " entries";
+          document.getElementById("showGraphBtn").style.display = "block";
+        });
+    }
+    let searchTimeout = null;
+    document.getElementById("search").addEventListener("input", e => {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => {
+        showSuggestions(e.target.value.trim());
+      }, 120);
+    });
+    document.getElementById("search").addEventListener("keydown", e => {
+      if (e.key === "Enter") lookup(e.target.value.trim());
+    });
+    document.getElementById("wordSearchBtn").onclick = () => {
+      searchMode = "word";
+      document.getElementById("wordSearchBtn").classList.add("active");
+      document.getElementById("langSearchBtn").classList.remove("active");
+    };
+    document.getElementById("langSearchBtn").onclick = () => {
+      searchMode = "language";
+      document.getElementById("langSearchBtn").classList.add("active");
+      document.getElementById("wordSearchBtn").classList.remove("active");
+    };
+    document.getElementById("showGraphBtn").onclick = async () => {
+      const sec = document.getElementById("graphSection");
+      const container = document.getElementById("graphContainer");
+      sec.style.display = "block";
+      if (!graphData) {
+        try {
+          graphData = await fetch("graph_web.json").then(r => r.json());
+        } catch (err) {
+          console.error("Failed to load graph data:", err);
+          container.innerHTML = "<p>Could not load graph data.</p>";
+          return;
+        }
+      }
+      const nodes = graphData.nodes.map((n, i) => ({
+        id: i,
+        label: n.id
+      }));
+      new vis.Network(container, { nodes, edges: [] }, {
+        physics: true
+      });
+    };
+    document.addEventListener("click", e => {
+      if (!e.target.closest("#suggestions") && !e.target.closest("#search")) {
+        document.getElementById("suggestions").style.display = "none";
+      }
+    });
+    loadDictionary();
+    fetch("nayiri_forms.json")
+      .then(r => r.json())
+      .then(d => window.nayiriForms = d)
+      .catch(err => console.error("Could not load nayiri_forms.json:", err));
   });
-};
-
-/* =========================
-   OUTSIDE CLICK
-========================= */
-
-document.addEventListener("click", e => {
-  // Always hide suggestions on any click outside suggestions
-  if (!e.target.closest("#suggestions") && !e.target.closest("#search")) {
-    document.getElementById("suggestions").style.display = "none";
-  }
-});
-
-/* =========================
-   LOAD
-========================= */
-
-loadDictionary();
-
-/* =========================
-   NAYIRI FORMS
-========================= */
-
-
-fetch("nayiri_forms.json")
-  .then(r => r.json())
-  .then(d => window.nayiriForms = d)
-  .catch(err => console.error("Could not load nayiri_forms.json:", err));
-
-  }); // End DOMContentLoaded
   </script>
 </body>
 </html>
