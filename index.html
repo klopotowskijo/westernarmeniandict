@@ -662,12 +662,12 @@
         <button id="openLanguageTreeBtn" style="display:none">Language Tree</button>
         <button id="randomWordBtn" title="Load a random entry">&#9684; Random</button>
       </div>
-      <div class="keyboard-wrap">
-        <button id="toggleKeyboardBtn" type="button" aria-expanded="false">Show Armenian Keyboard</button>
-        <div id="armenianKeyboard" class="keyboard-panel" aria-hidden="true"></div>
-      </div>
     </section>
     <main id="result"></main>
+    <div class="keyboard-wrap">
+      <button id="toggleKeyboardBtn" type="button" aria-expanded="false">Show Armenian Keyboard</button>
+      <div id="armenianKeyboard" class="keyboard-panel" aria-hidden="true"></div>
+    </div>
     <section id="graphSection" style="display:none">
       <h2>Etymology Graph</h2>
       <div class="graph-controls">
@@ -1482,7 +1482,7 @@
       const source = searchMode === "word" ? allTitles : sourceLanguageList;
       const matches = source
         .filter(t => t.toLowerCase().includes(q.toLowerCase()))
-        .slice(0, 4);
+        .slice(0, 3);
       if (!matches.length) {
         box.style.display = "none";
         return;
