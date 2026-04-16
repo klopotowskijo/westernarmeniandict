@@ -723,8 +723,7 @@
       <div class="button-row">
         <button id="wordSearchBtn" class="active">Word Search</button>
         <button id="langSearchBtn">Language Search</button>
-        <button id="showGraphBtn" style="display:none">Show Etymology Graph</button>
-        <button id="openLanguageTreeBtn" style="display:none">Language Tree</button>
+        <button id="showGraphBtn" style="display:none">Open Etymology Tree</button>
         <button id="randomWordBtn" title="Load a random entry">Random</button>
       </div>
     </section>
@@ -1906,7 +1905,6 @@
           document.getElementById("count").textContent =
             data.length.toLocaleString() + " entries";
           document.getElementById("showGraphBtn").style.display = "block";
-          document.getElementById("openLanguageTreeBtn").style.display = "block";
           applyStateFromUrl();
           if (graphVisible) {
             document.getElementById("showGraphBtn").click();
@@ -1976,10 +1974,7 @@
       renderGraph(graphMode);
     }
     document.getElementById("showGraphBtn").onclick = () => {
-      openGraphSection();
-    };
-    document.getElementById("openLanguageTreeBtn").onclick = () => {
-      setGraphMode("language");
+      setGraphMode("tree");
       openGraphSection();
       updateUrlState(searchMode, document.getElementById("search").value.trim());
     };
