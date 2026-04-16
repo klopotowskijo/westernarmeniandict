@@ -1,185 +1,3 @@
-<!DOCTYPE html>
-<html lang="hy">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Արեւմտահայ Բառարան · Western Armenian Dictionary</title>
-
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: Georgia, 'Times New Roman', serif;
-    background: #f5f0e8;
-    color: #1a1208;
-    padding: 24px 16px;
-    min-height: 100vh;
-  }
-
-  .container { max-width: 760px; margin: 0 auto; }
-
-  h1 { color: #8b1a1a; font-size: 26px; margin-bottom: 4px; }
-  .subtitle { color: #8a7560; font-size: 15px; margin-bottom: 6px; }
-  .count { font-size: 13px; color: #a0906e; margin-bottom: 22px; }
-
-  .search-wrap { position: relative; }
-
-  .search-controls {
-    display: flex;
-    margin-bottom: 8px;
-  }
-
-  .search-mode {
-    padding: 6px 12px;
-    border: 1px solid #c8b89a;
-    background: white;
-    cursor: pointer;
-    font-size: 14px;
-    transition: 0.15s;
-  }
-
-  .search-mode.active {
-    background: #8b1a1a;
-    color: white;
-    border-color: #8b1a1a;
-  }
-
-  .search-mode:first-child { border-radius: 4px 0 0 4px; }
-  .search-mode:last-child { border-radius: 0 4px 4px 0; border-left: none; }
-
-  #search {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #c8b89a;
-    border-radius: 4px;
-  }
-
-  #suggestions {
-    position: absolute;
-    width: 100%;
-    background: white;
-    border: 1px solid #c8b89a;
-    border-top: none;
-    max-height: 260px;
-    overflow-y: auto;
-    display: none;
-    z-index: 10;
-  }
-
-  .suggestion {
-    padding: 10px 14px;
-    cursor: pointer;
-    border-bottom: 1px solid #eee;
-  }
-
-  .suggestion:hover { background: #f0e7d9; }
-
-  .result {
-    background: white;
-    padding: 26px;
-    border-radius: 8px;
-    margin-top: 18px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    display: none;
-  }
-
-  .word-title { font-size: 42px; }
-  .word-pos { font-style: italic; color: #8a7560; margin-top: 2px; }
-
-  .section-label {
-    margin-top: 18px;
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    color: #8b1a1a;
-    font-weight: bold;
-  }
-
-  .definitions ol {
-    padding-left: 20px;
-    line-height: 1.8;
-    margin-top: 6px;
-  }
-
-  .etymology-box {
-    margin-top: 8px;
-    background: #ede7d9;
-    padding: 12px;
-    border-left: 3px solid #8b1a1a;
-  }
-
-  .not-found {
-    text-align: center;
-    padding: 28px;
-    color: #8a7560;
-  }
-
-  .loading-spinner {
-    display: none;
-    margin-bottom: 12px;
-    color: #8b1a1a;
-  }
-
-  .loading-spinner.active { display: block; }
-
-  #graphSection {
-    display: none;
-    margin-top: 20px;
-  }
-
-  #graphContainer {
-    height: 600px;
-    border: 1px solid #c8b89a;
-    border-radius: 6px;
-  }
-
-  button {
-    cursor: pointer;
-  }
-
-  #showGraphBtn {
-    margin-bottom: 12px;
-    padding: 10px 16px;
-    background: #8b1a1a;
-    color: white;
-    border: none;
-    border-radius: 4px;
-  }
-</style>
-
-<script src="https://unpkg.com/vis-network@9.1.2/dist/vis-network.min.js"></script>
-</head>
-
-<body>
-<div class="container">
-
-<h1>Արեւմտահայ Բառարան</h1>
-<div class="subtitle">Western Armenian Etymological Dictionary</div>
-<div class="count" id="count">Loading dictionary…</div>
-
-<div class="loading-spinner" id="loadingSpinner">Searching…</div>
-
-<button id="showGraphBtn" style="display:none;">Show Language Tree Graph</button>
-
-<div class="search-wrap">
-  <div class="search-controls">
-    <button id="wordSearchBtn" class="search-mode active">Word Search</button>
-    <button id="langSearchBtn" class="search-mode">Language Search</button>
-  </div>
-
-  <input type="text" id="search" placeholder="Search…" autocomplete="off">
-  <div id="suggestions"></div>
-</div>
-
-<div class="result" id="result"></div>
-
-<div id="graphSection">
-  <h2>Language Tree Graph</h2>
-  <div id="graphContainer"></div>
-</div>
-
-</div>
-
 <script>
 /* =========================
    STATE
@@ -215,13 +33,15 @@ function cleanEtymology(text) {
 ========================= */
 
 function parseDefinitions(wikitext) {
-  const m = wikitext.match(/==Armenian==\n([\s\S]*?)(?=\n==|$)/);
+  // More robust: allow for possible whitespace after section header and before #
+  const m = wikitext.match(/==Armenian==\s*\n([\s\S]*?)(?=\n==|$)/);
   if (!m) return [];
 
   return m[1]
     .split("\n")
+    .map(l => l.trim())
     .filter(l => l.startsWith("#"))
-    .map(l => l.replace(/^#/, "").trim());
+    .map(l => l.replace(/^#+/, "").trim());
 }
 
 function parsePOS(wikitext) {
@@ -277,18 +97,29 @@ function lookup(word) {
   html += `<div class="section-label">Etymology</div>
            <div class="etymology-box">${ety || "—"}</div>`;
 
+  // Nayiri forms integration
+  if (window.nayiriForms && window.nayiriForms[entry.title]) {
+    const forms = window.nayiriForms[entry.title];
+    html += `<div class="section-label">Nayiri Forms</div><ul class="nayiri-forms">`;
+    for (const f of forms) html += `<li>${f}</li>`;
+    html += `</ul>`;
+  }
+
   el.innerHTML = html;
 }
 
 window.lookup = lookup;
 
 /* =========================
-   SUGGESTIONS (FIXED EVENT BINDING)
+   SUGGESTIONS (FIXED)
 ========================= */
 
 function showSuggestions(q) {
   const box = document.getElementById("suggestions");
-  if (!q) return box.style.display = "none";
+  if (!q) {
+    box.style.display = "none";
+    return;
+  }
 
   const matches = allTitles
     .filter(t => t.toLowerCase().includes(q.toLowerCase()))
@@ -300,10 +131,14 @@ function showSuggestions(q) {
     const div = document.createElement("div");
     div.className = "suggestion";
     div.textContent = m;
-    div.addEventListener("click", () => {
-  lookup(m);
-  box.style.display = "none";
-});
+
+    div.addEventListener("mousedown", (e) => {
+      // Use mousedown so it fires before input loses focus
+      e.preventDefault();
+      lookup(m);
+      box.style.display = "none";
+    });
+
     box.appendChild(div);
   });
 
@@ -377,7 +212,13 @@ document.getElementById("showGraphBtn").onclick = async () => {
   sec.style.display = "block";
 
   if (!graphData) {
-    graphData = await fetch("graph_web.json").then(r => r.json());
+    try {
+      graphData = await fetch("graph_web.json").then(r => r.json());
+    } catch (err) {
+      console.error("Failed to load graph data:", err);
+      container.innerHTML = "<p>Could not load graph data.</p>";
+      return;
+    }
   }
 
   const nodes = graphData.nodes.map((n, i) => ({
@@ -395,7 +236,8 @@ document.getElementById("showGraphBtn").onclick = async () => {
 ========================= */
 
 document.addEventListener("click", e => {
-  if (!e.target.closest(".search-wrap")) {
+  // Always hide suggestions on any click outside suggestions
+  if (!e.target.closest("#suggestions") && !e.target.closest("#search")) {
     document.getElementById("suggestions").style.display = "none";
   }
 });
@@ -412,9 +254,7 @@ loadDictionary();
 
 fetch("nayiri_forms.json")
   .then(r => r.json())
-  .then(d => window.nayiriForms = d);
+  .then(d => window.nayiriForms = d)
+  .catch(err => console.error("Could not load nayiri_forms.json:", err));
 
 </script>
-
-</body>
-</html>
