@@ -653,8 +653,8 @@
         <div id="suggestions"></div>
       </div>
       <div class="keyboard-wrap">
-        <button id="toggleKeyboardBtn" type="button" aria-expanded="false">Armenian Keyboard</button>
-        <div id="armenianKeyboard" class="keyboard-panel" aria-hidden="true"></div>
+        <button id="toggleKeyboardBtn" type="button" aria-expanded="true">Hide Armenian Keyboard</button>
+        <div id="armenianKeyboard" class="keyboard-panel" aria-hidden="false" style="display:block"></div>
       </div>
       <div class="button-row">
         <button id="wordSearchBtn" class="active">Word Search</button>
@@ -1596,6 +1596,7 @@
       const open = panel.style.display === "block";
       panel.style.display = open ? "none" : "block";
       btn.setAttribute("aria-expanded", open ? "false" : "true");
+      btn.textContent = open ? "Show Armenian Keyboard" : "Hide Armenian Keyboard";
       panel.setAttribute("aria-hidden", open ? "true" : "false");
       if (!open) document.getElementById("search").focus();
     };
