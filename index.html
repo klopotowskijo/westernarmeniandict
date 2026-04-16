@@ -103,18 +103,6 @@
       overflow-y: auto;
       box-shadow: 0 12px 28px rgba(56, 33, 14, 0.12);
     }
-    @media (min-width: 980px) {
-      .search-wrap.side-suggestions #suggestions {
-        top: 0;
-        left: calc(100% + 0.55rem);
-        right: auto;
-        width: min(320px, 34vw);
-        border-top: 1px solid #cabba8;
-        border-bottom: 1px solid #cabba8;
-        max-height: 220px;
-        box-shadow: 0 10px 24px rgba(56, 33, 14, 0.12);
-      }
-    }
     .keyboard-wrap {
       margin-top: 0.75rem;
       margin-bottom: 0;
@@ -1500,6 +1488,10 @@
       const matches = source
         .filter(t => t.toLowerCase().includes(q.toLowerCase()))
         .slice(0, 4);
+      if (!matches.length) {
+        box.style.display = "none";
+        return;
+      }
       box.innerHTML = "";
       matches.forEach(m => {
         const div = document.createElement("div");
