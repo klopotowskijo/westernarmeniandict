@@ -1487,6 +1487,11 @@
     window.lookup = lookup;
     function showSuggestions(q) {
       const box = document.getElementById("suggestions");
+      const keyboardOpen = document.getElementById("armenianKeyboard").style.display === "block";
+      if (keyboardOpen) {
+        box.style.display = "none";
+        return;
+      }
       if (!q) {
         box.style.display = "none";
         return;
@@ -1494,7 +1499,7 @@
       const source = searchMode === "word" ? allTitles : sourceLanguageList;
       const matches = source
         .filter(t => t.toLowerCase().includes(q.toLowerCase()))
-        .slice(0, 10);
+        .slice(0, 4);
       box.innerHTML = "";
       matches.forEach(m => {
         const div = document.createElement("div");
