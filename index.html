@@ -378,6 +378,12 @@
       color: #6f5e4c;
       margin: 0.2rem 0 0.55rem;
     }
+    .attestation-note {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.72rem;
+      color: #5c4d3f;
+      margin: -0.15rem 0 0.5rem;
+    }
     /* Nayiri section panel */
     .nayiri-panel {
       margin-top: 0.3rem;
@@ -777,6 +783,17 @@
         return { label: "strong", className: "high" };
       }
       return { label: "review", className: "medium" };
+    }
+    function inferAttestation(entry, etyText) {
+      const raw = `${entry?.wikitext || ""}\n${entry?.etymology?.[0]?.text || ""}\n${etyText || ""}`;
+      const century = raw.match(/\b(\d{1,2})(?:st|nd|rd|th)?\s+century\b/i);
+      if (century) return `${century[1]}th century`;
+      const year = raw.match(/\b(1[0-9]{3}|20[0-9]{2})\b/);
+      if (year) return year[1];
+      if (/\bOld Armenian\b|\bClassical Armenian\b/i.test(raw)) return "Classical Armenian era";
+      if (/\bMiddle Armenian\b/i.test(raw)) return "Middle Armenian era";
+      if (/\bOttoman Turkish\b/i.test(raw)) return "Ottoman period contact";
+      return "";
     }
     function getSourceLanguages(entry) {
       const langs = new Set();
@@ -1313,6 +1330,7 @@
       const seeAlso = parseWikitextSection(entry.wikitext || "", "See also");
       const ety = parseEtymology(entry);
       const etyConfidence = inferEtymologyConfidence(entry, ety);
+      const attestation = inferAttestation(entry, ety);
       const etySources = getEtymologySourceList(entry);
       const srcLangs = getSourceLanguages(entry);
       const lineage = getEtymologyLineage(entry);
@@ -1336,6 +1354,7 @@
       html += `<div class="section-label">Etymology <span class="source-badge wiktionary">Wiktionary</span><span class="ety-confidence ${escapeHtml(etyConfidence.className)}">${escapeHtml(etyConfidence.label)}</span></div>`;
       html += `<div class="etymology-box">${renderLineage(lineage)}${escapeHtml(ety || "—")}</div>`;
       html += `<div class="ety-sources">Sources: ${etySources.map(s => escapeHtml(s)).join("; ")}</div>`;
+      if (attestation) html += `<div class="attestation-note">Timeline: ${escapeHtml(attestation)}</div>`;
       // Nayiri panel
       const nayiriEntry = window.nayiriIndex && window.nayiriIndex[entry.title];
       if (nayiriEntry) {
@@ -1385,6 +1404,7 @@
       html += `<div class="entry-meta">`;
       html += `<span class="meta-pill">${defs.length || (entry.definition?.length || 0)} defs</span>`;
       html += `<span class="meta-pill">ety ${escapeHtml(etyConfidence.label)}</span>`;
+      if (attestation) html += `<span class="meta-pill">attestation ${escapeHtml(attestation)}</span>`;
       if (srcLangs.length) {
         for (const lang of srcLangs) {
           const encodedLang = encodeURIComponent(lang);
@@ -1473,12 +1493,15 @@
     document.getElementById("randomWordBtn").onclick = () => {
       const pool = allTitles.filter(Boolean);
       if (!pool.length) return;
-      let word = pool[Math.floor(Math.random() * pool.length)];
-      if (pool.length > 1 && word === currentWord) {
-        for (let i = 0; i < 8 && word === currentWord; i += 1) {
-          word = pool[Math.floor(Math.random() * pool.length)];
+      let idx = Math.floor(Math.random() * pool.length);
+      if (pool.length > 1 && currentWord) {
+        const currentIdx = pool.indexOf(currentWord);
+        if (currentIdx !== -1 && idx === currentIdx) {
+          const step = 1 + Math.floor(Math.random() * (pool.length - 1));
+          idx = (idx + step) % pool.length;
         }
       }
+      const word = pool[idx];
       setMode("word");
       document.getElementById("search").value = word;
       lookup(word, true);
