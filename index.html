@@ -4,40 +4,469 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Western Armenian Etymology Dictionary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    body { font-family: sans-serif; margin: 0; padding: 0; background: #fff; color: #222; }
-    .container { max-width: 700px; margin: 2em auto; padding: 2em; background: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 8px #0001; }
-    .search-wrap { position: relative; margin-bottom: 1em; }
-    #search { width: 100%; font-size: 1.2em; padding: 0.5em; border-radius: 4px; border: 1px solid #ccc; }
-    #suggestions { position: absolute; top: 100%; left: 0; right: 0; background: #fff; border: 1px solid #ccc; z-index: 10; display: none; max-height: 200px; overflow-y: auto; }
-    .suggestion { padding: 0.5em; cursor: pointer; }
-    .suggestion:hover { background: #eee; }
-    .word-title { font-size: 2em; font-weight: bold; margin-bottom: 0.2em; }
-    .word-pos { font-size: 1.1em; color: #666; margin-bottom: 0.5em; }
-    .section-label { font-weight: bold; margin-top: 1em; }
-    .etymology-box { background: #f1f1f1; padding: 0.5em; border-radius: 4px; margin-bottom: 1em; }
-    .nayiri-forms { margin: 0.5em 0 1em 1.5em; }
-    .not-found { color: #b00; font-weight: bold; margin-top: 1em; }
-    #showGraphBtn { margin-top: 1em; }
+    :root {
+      --paper: #f3eee2;
+      --ink: #2f2922;
+      --ink-soft: #756a5c;
+      --line: #d8ccbb;
+      --card: #fffdf8;
+      --accent: #8a4f28;
+      --accent-soft: #efe2cf;
+      --warning: #8d2a1e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "EB Garamond", Georgia, serif;
+      background:
+        radial-gradient(circle at 5% 0%, #fff8e9 0%, transparent 40%),
+        radial-gradient(circle at 95% 10%, #efe1cc 0%, transparent 38%),
+        linear-gradient(180deg, #f8f2e6 0%, var(--paper) 100%);
+      min-height: 100vh;
+    }
+    .container {
+      width: min(980px, 92vw);
+      margin: 2.2rem auto;
+      border: 1px solid var(--line);
+      background: var(--card);
+      box-shadow: 0 12px 45px rgba(66, 40, 18, 0.12);
+    }
+    .topbar {
+      border-bottom: 1px solid var(--line);
+      padding: 1.3rem 1.6rem 1.1rem;
+      background: linear-gradient(180deg, #fffdf8 0%, #faf3e8 100%);
+      position: relative;
+    }
+    .topbar::after {
+      content: "";
+      display: block;
+      margin-top: 0.72rem;
+      height: 8px;
+      background:
+        linear-gradient(90deg, transparent 0 2%, #ccb79b 2% 3%, transparent 3% 11%, #ccb79b 11% 12%, transparent 12% 88%, #ccb79b 88% 89%, transparent 89% 97%, #ccb79b 97% 98%, transparent 98% 100%);
+      opacity: 0.8;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(1.7rem, 2.5vw, 2.25rem);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+    .subtitle {
+      margin-top: 0.25rem;
+      color: var(--ink-soft);
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.92rem;
+      letter-spacing: 0.015em;
+    }
+    .controls {
+      padding: 1rem 1.6rem;
+      border-bottom: 1px solid var(--line);
+      background: #f9f3e8;
+    }
+    .search-wrap {
+      position: relative;
+      margin-bottom: 0.75rem;
+    }
+    #search {
+      width: 100%;
+      font-family: "EB Garamond", Georgia, serif;
+      font-size: 1.15rem;
+      padding: 0.6rem 0.72rem;
+      border: 1px solid #c7b9a7;
+      border-radius: 0;
+      background: #fffefb;
+      color: var(--ink);
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+    #search:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(138, 79, 40, 0.14);
+    }
+    #suggestions {
+      position: absolute;
+      top: calc(100% + 2px);
+      left: 0;
+      right: 0;
+      border: 1px solid #cabba8;
+      border-top: none;
+      background: #fffdf9;
+      z-index: 10;
+      display: none;
+      max-height: 260px;
+      overflow-y: auto;
+      box-shadow: 0 12px 28px rgba(56, 33, 14, 0.12);
+    }
+    .suggestion {
+      padding: 0.45rem 0.62rem;
+      cursor: pointer;
+      border-bottom: 1px solid #ede2d3;
+      font-size: 1.02rem;
+    }
+    .suggestion:hover { background: #f2e8da; }
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.48rem;
+      align-items: center;
+      font-family: "IBM Plex Sans", sans-serif;
+    }
+    button {
+      border: 1px solid #bda98e;
+      border-radius: 0;
+      background: #fbf6ec;
+      color: #4f3e2c;
+      padding: 0.38rem 0.62rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: background-color 0.16s ease, color 0.16s ease;
+    }
+    button.active,
+    button:hover {
+      background: var(--accent-soft);
+      color: #2f2010;
+    }
+    #count {
+      font-family: "IBM Plex Sans", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.86rem;
+      margin-bottom: 0.45rem;
+    }
+    #result {
+      padding: 1.25rem 1.6rem 1.6rem;
+      min-height: 130px;
+    }
+    .entry-card {
+      border: 1px solid var(--line);
+      background: #fffefb;
+      animation: entry-fade 0.22s ease;
+    }
+    .entry-head {
+      padding: 0.82rem 0.92rem;
+      border-bottom: 1px solid var(--line);
+      background: #fcf6ea;
+    }
+    .word-title {
+      font-size: clamp(1.85rem, 3vw, 2.55rem);
+      font-weight: 700;
+      line-height: 1.06;
+      margin-bottom: 0.12rem;
+      color: #2b2119;
+    }
+    .word-pos {
+      font-family: "IBM Plex Sans", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      color: var(--ink-soft);
+    }
+    .entry-tools {
+      margin-top: 0.45rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .permalink-btn {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.68rem;
+      border: 1px solid #bda181;
+      background: #fff3e1;
+      color: #5f472d;
+      padding: 0.2rem 0.36rem;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .permalink-btn:hover,
+    .permalink-btn:focus-visible {
+      background: #f5dec0;
+      outline: none;
+    }
+    .permalink-status {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.69rem;
+      color: #6c5a47;
+      min-height: 1em;
+    }
+    .entry-content {
+      padding: 0.96rem 0.92rem 1rem;
+      font-size: 1.08rem;
+      line-height: 1.44;
+    }
+    .etymology-lineage {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin: 0 0 0.48rem;
+      align-items: center;
+      font-family: "IBM Plex Sans", sans-serif;
+    }
+    .lineage-node {
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid #cdbba0;
+      background: #f8eedf;
+      color: #604a34;
+      padding: 0.19rem 0.36rem;
+    }
+    .lineage-arrow {
+      color: #806a53;
+      font-size: 0.75rem;
+      line-height: 1;
+    }
+    .entry-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      align-items: center;
+      margin-top: 0.5rem;
+      padding-top: 0.52rem;
+      border-top: 1px dashed #deceb7;
+    }
+    .meta-pill {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      border: 1px solid #c8b89f;
+      background: #fbf4e7;
+      padding: 0.2rem 0.35rem;
+      color: #715c45;
+    }
+    .source-chip {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.69rem;
+      border: 1px solid #b99e80;
+      background: #fff2de;
+      color: #543c24;
+      padding: 0.21rem 0.4rem;
+      cursor: pointer;
+      transition: background-color 0.14s ease;
+    }
+    .source-chip:hover,
+    .source-chip:focus-visible {
+      background: #f3dcc0;
+      outline: none;
+    }
+    .lang-results-title {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.84rem;
+      letter-spacing: 0.03em;
+      color: #665746;
+      margin-bottom: 0.55rem;
+    }
+    .lang-result-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border: 1px solid var(--line);
+      background: #fffefb;
+    }
+    .lang-result-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.5rem 0.62rem;
+      border-bottom: 1px solid #eee2d2;
+      align-items: baseline;
+    }
+    .lang-result-item:last-child { border-bottom: none; }
+    .lang-result-word {
+      font-size: 1.1rem;
+      cursor: pointer;
+      color: #2e241b;
+    }
+    .lang-result-word:hover { color: var(--accent); }
+    .lang-result-meta {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.72rem;
+      color: #6e5f4f;
+    }
+    .section-label {
+      font-family: "IBM Plex Sans", sans-serif;
+      text-transform: uppercase;
+      font-size: 0.69rem;
+      letter-spacing: 0.08em;
+      color: #6f5f4e;
+      margin: 0.75rem 0 0.22rem;
+      display: flex;
+      align-items: center;
+      gap: 0.42rem;
+    }
+    .section-label::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: linear-gradient(90deg, #dac9b2 0%, transparent 100%);
+    }
+    .entry-content ol,
+    .entry-content ul {
+      margin: 0;
+      padding-left: 1.4rem;
+    }
+    .entry-content li { margin: 0.22rem 0; }
+    .etymology-box {
+      background: #fff7ea;
+      border-left: 3px solid var(--accent);
+      padding: 0.5rem 0.62rem;
+      margin-bottom: 0.45rem;
+    }
+    .nayiri-forms { margin: 0.35rem 0 0; }
+    .not-found {
+      color: var(--warning);
+      font-family: "IBM Plex Sans", sans-serif;
+      font-weight: 600;
+      border: 1px solid #d8bbb4;
+      background: #fff4f2;
+      padding: 0.62rem 0.72rem;
+    }
+    #graphSection {
+      margin: 0 1.6rem 1.6rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--line);
+    }
+    .graph-controls {
+      display: flex;
+      gap: 0.45rem;
+      margin-bottom: 0.6rem;
+      flex-wrap: wrap;
+      align-items: center;
+      font-family: "IBM Plex Sans", sans-serif;
+    }
+    .graph-mode-btn {
+      font-size: 0.74rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .graph-note {
+      font-size: 0.73rem;
+      color: #6f5f4f;
+    }
+    .graph-lang-input {
+      min-width: 220px;
+      border: 1px solid #c7b29a;
+      background: #fffef9;
+      color: #4a3a2a;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.78rem;
+      padding: 0.34rem 0.45rem;
+    }
+    .graph-language-panel {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 0.6rem;
+      margin: 0 0 0.7rem;
+      padding: 0.55rem 0.6rem;
+      border: 1px solid var(--line);
+      background: #fffaf1;
+      max-height: 144px;
+      overflow-y: auto;
+    }
+    .graph-lang-option {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.28rem;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.76rem;
+      color: #5a4a39;
+      white-space: nowrap;
+    }
+    .graph-lang-option input {
+      margin: 0;
+      accent-color: #8a4f28;
+    }
+    .graph-selected {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.73rem;
+      color: #6b5a48;
+      margin: 0 0 0.55rem;
+    }
+    .graph-presets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.38rem;
+      margin: 0 0 0.55rem;
+    }
+    .graph-preset-btn {
+      font-size: 0.7rem;
+      padding: 0.26rem 0.44rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .graph-mini-btn {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      padding: 0.3rem 0.48rem;
+    }
+    #graphContainer { height: 460px; border: 1px solid var(--line); background: #fffef9; }
+    @keyframes entry-fade {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 760px) {
+      .container { width: 100%; margin: 0; border: none; box-shadow: none; }
+      .topbar,
+      .controls,
+      #result,
+      #graphSection { padding-left: 0.95rem; padding-right: 0.95rem; }
+      .entry-content { font-size: 1.04rem; }
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Western Armenian Etymology Dictionary</h1>
-    <div id="count"></div>
-    <div class="search-wrap">
-      <input id="search" type="text" placeholder="Search for a word..." autocomplete="off" />
-      <div id="suggestions"></div>
-    </div>
-    <button id="wordSearchBtn" class="active">Word Search</button>
-    <button id="langSearchBtn">Language Search</button>
-    <button id="showGraphBtn" style="display:none">Show Etymology Graph</button>
-    <div id="result"></div>
+    <header class="topbar">
+      <h1>Western Armenian Etymology Dictionary</h1>
+      <div class="subtitle">Lexical roots, historical pathways, and inherited layers of meaning</div>
+    </header>
+    <section class="controls">
+      <div id="count"></div>
+      <div class="search-wrap">
+        <input id="search" type="text" placeholder="Search for a word..." autocomplete="off" />
+        <div id="suggestions"></div>
+      </div>
+      <div class="button-row">
+        <button id="wordSearchBtn" class="active">Word Search</button>
+        <button id="langSearchBtn">Language Search</button>
+        <button id="showGraphBtn" style="display:none">Show Etymology Graph</button>
+      </div>
+    </section>
+    <main id="result"></main>
     <section id="graphSection" style="display:none">
       <h2>Etymology Graph</h2>
-      <div id="graphContainer" style="height:400px;"></div>
+      <div class="graph-controls">
+        <button id="graphModeLanguageBtn" class="graph-mode-btn active">Cluster by Language</button>
+        <button id="graphModeLineageBtn" class="graph-mode-btn">Word Lineage</button>
+        <button id="graphModeTreeBtn" class="graph-mode-btn">Strict Tree</button>
+        <input id="graphLangSearch" class="graph-lang-input" type="text" placeholder="Search languages..." />
+        <button id="graphLangApplyBtn" class="graph-mini-btn">Apply</button>
+        <button id="graphLangClearBtn" class="graph-mini-btn">All Languages</button>
+        <span id="graphNote" class="graph-note"></span>
+      </div>
+      <div class="graph-presets">
+        <button class="graph-preset-btn" data-graph-preset="Armenian|Classical Armenian">Armenian Layers</button>
+        <button class="graph-preset-btn" data-graph-preset="Turkish|Ottoman Turkish">Turkic</button>
+        <button class="graph-preset-btn" data-graph-preset="Persian">Persian</button>
+        <button class="graph-preset-btn" data-graph-preset="Russian">Russian</button>
+        <button class="graph-preset-btn" data-graph-preset="Arabic">Arabic</button>
+        <button class="graph-preset-btn" data-graph-preset="French">French</button>
+      </div>
+      <div id="graphSelectedSummary" class="graph-selected">Showing all source languages</div>
+      <div id="graphLanguagePanel" class="graph-language-panel"></div>
+      <div id="graphContainer"></div>
     </section>
   </div>
+  <script src="https://unpkg.com/vis-network@9.1.9/dist/vis-network.min.js"></script>
   <script>
   document.addEventListener('DOMContentLoaded', function() {
     let dictionary = [];
@@ -47,6 +476,22 @@
     let graphData = null;
     let network = null;
     let etyCache = {};
+    let sourceLanguageList = [];
+    let graphMode = "language";
+    let currentWord = "";
+    let graphIndex = null;
+    let graphLanguageSearchTerm = "";
+    let graphAvailableLanguages = [];
+    let graphSelectedLanguages = new Set();
+    let graphVisible = false;
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
     function cleanEtymology(text) {
       if (!text) return "";
       return text
@@ -103,20 +548,490 @@
       etyCache[entry.title] = t;
       return t;
     }
-    function lookup(word) {
+    function getSourceLanguages(entry) {
+      const langs = new Set();
+      if (Array.isArray(entry.etymology)) {
+        for (const e of entry.etymology) {
+          if (e && typeof e.source_language === "string" && e.source_language.trim()) {
+            langs.add(e.source_language.trim());
+          }
+          if (e && typeof e.text === "string") {
+            const m = e.text.match(/(?:From|Inherited from|Borrowed from)\s+([A-Z][A-Za-z-]*(?:\s+[A-Z][A-Za-z-]*){0,2})/);
+            if (m && m[1]) langs.add(m[1].trim());
+          }
+        }
+      }
+      return [...langs];
+    }
+    function getEtymologyLineage(entry) {
+      const lineage = [];
+      const found = new Set();
+      const langs = getSourceLanguages(entry);
+      for (const lang of langs) {
+        const v = lang.trim();
+        if (v && !found.has(v.toLowerCase())) {
+          lineage.push(v);
+          found.add(v.toLowerCase());
+        }
+      }
+      const target = "Western Armenian";
+      if (!found.has(target.toLowerCase())) lineage.push(target);
+      return lineage;
+    }
+    function renderLineage(lineage) {
+      if (!lineage.length) return "";
+      let html = `<div class="etymology-lineage">`;
+      lineage.forEach((node, idx) => {
+        if (idx > 0) html += `<span class="lineage-arrow">&#8594;</span>`;
+        html += `<span class="lineage-node">${escapeHtml(node)}</span>`;
+      });
+      html += `</div>`;
+      return html;
+    }
+    function setMode(mode) {
+      searchMode = mode === "language" ? "language" : "word";
+      const isLanguage = searchMode === "language";
+      document.getElementById("langSearchBtn").classList.toggle("active", isLanguage);
+      document.getElementById("wordSearchBtn").classList.toggle("active", !isLanguage);
+      document.getElementById("search").placeholder = isLanguage
+        ? "Search by source language..."
+        : "Search for a word...";
+    }
+    function setGraphMode(mode) {
+      graphMode = mode === "lineage" || mode === "tree" ? mode : "language";
+      document.getElementById("graphModeLanguageBtn").classList.toggle("active", graphMode === "language");
+      document.getElementById("graphModeLineageBtn").classList.toggle("active", graphMode === "lineage");
+      document.getElementById("graphModeTreeBtn").classList.toggle("active", graphMode === "tree");
+    }
+    function updateUrlState(mode, query) {
+      const url = new URL(window.location.href);
+      const cleanMode = mode === "language" ? "language" : "word";
+      const cleanQuery = (query || "").trim();
+      url.searchParams.set("mode", cleanMode);
+      if (cleanQuery) {
+        url.searchParams.set("q", cleanQuery);
+      } else {
+        url.searchParams.delete("q");
+      }
+      if (graphVisible) {
+        url.searchParams.set("graph", "1");
+        url.searchParams.set("gmode", graphMode);
+      } else {
+        url.searchParams.delete("graph");
+        url.searchParams.delete("gmode");
+      }
+      if (graphSelectedLanguages.size) {
+        url.searchParams.set("glang", [...graphSelectedLanguages].join(","));
+      } else {
+        url.searchParams.delete("glang");
+      }
+      history.replaceState({
+        mode: cleanMode,
+        q: cleanQuery,
+        graph: graphVisible,
+        gmode: graphMode,
+        glang: [...graphSelectedLanguages]
+      }, "", url);
+    }
+    async function copyToClipboard(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.left = "-9999px";
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+    }
+    function normalizeLanguageName(raw) {
+      const v = (raw || "").trim();
+      if (!v) return "Unknown";
+      const map = {
+        ru: "Russian",
+        ar: "Arabic",
+        fa: "Persian",
+        tr: "Turkish",
+        ota: "Ottoman Turkish",
+        fr: "French",
+        en: "English",
+        de: "German",
+        hy: "Armenian",
+        xcl: "Classical Armenian"
+      };
+      const lc = v.toLowerCase();
+      return map[lc] || v;
+    }
+    function matchesGraphLanguage(link) {
+      if (!graphSelectedLanguages.size) return true;
+      const lang = normalizeLanguageName(link?.source_language || "");
+      return graphSelectedLanguages.has(lang);
+    }
+    function getGraphLanguageSuffix() {
+      if (!graphSelectedLanguages.size) return "";
+      const preview = [...graphSelectedLanguages].slice(0, 4).join(", ");
+      const extra = graphSelectedLanguages.size > 4 ? ` +${graphSelectedLanguages.size - 4}` : "";
+      return ` | languages: ${preview}${extra}`;
+    }
+    function renderGraphLanguagePanel() {
+      const panel = document.getElementById("graphLanguagePanel");
+      const q = graphLanguageSearchTerm.toLowerCase();
+      const visibleLanguages = graphAvailableLanguages.filter(lang => lang.toLowerCase().includes(q));
+      panel.innerHTML = "";
+      if (!visibleLanguages.length) {
+        panel.innerHTML = '<span class="graph-selected">No languages match that search.</span>';
+        return;
+      }
+      for (const lang of visibleLanguages) {
+        const label = document.createElement("label");
+        label.className = "graph-lang-option";
+        const input = document.createElement("input");
+        input.type = "checkbox";
+        input.value = lang;
+        input.checked = graphSelectedLanguages.has(lang);
+        input.className = "graph-lang-checkbox";
+        const text = document.createElement("span");
+        text.textContent = lang;
+        label.appendChild(input);
+        label.appendChild(text);
+        panel.appendChild(label);
+      }
+    }
+    function updateGraphSelectedSummary() {
+      const summary = document.getElementById("graphSelectedSummary");
+      if (!graphSelectedLanguages.size) {
+        summary.textContent = "Showing all source languages";
+        return;
+      }
+      summary.textContent = `Showing ${graphSelectedLanguages.size} selected source languages: ${[...graphSelectedLanguages].slice(0, 8).join(", ")}${graphSelectedLanguages.size > 8 ? " ..." : ""}`;
+    }
+    function syncGraphLanguagePanelSelections() {
+      const inputs = document.querySelectorAll(".graph-lang-checkbox");
+      inputs.forEach(input => {
+        input.checked = graphSelectedLanguages.has(input.value);
+      });
+    }
+    function applyGraphLanguageSelection(selection) {
+      graphSelectedLanguages = new Set(selection);
+      syncGraphLanguagePanelSelections();
+      updateGraphSelectedSummary();
+      updateUrlState(searchMode, document.getElementById("search").value.trim());
+      if (graphData) renderGraph(graphMode);
+    }
+    function applyGraphLanguagePreset(presetLanguages) {
+      const allowed = new Set(graphAvailableLanguages);
+      const selected = presetLanguages.filter(lang => allowed.has(lang));
+      applyGraphLanguageSelection(selected);
+    }
+    function populateGraphLanguageOptions() {
+      if (!graphData || !Array.isArray(graphData.links)) return;
+      graphAvailableLanguages = [...new Set(
+        graphData.links.map(l => normalizeLanguageName(l?.source_language || "")).filter(Boolean)
+      )].sort((a, b) => a.localeCompare(b));
+      renderGraphLanguagePanel();
+      updateGraphSelectedSummary();
+    }
+    function buildGraphIndex() {
+      if (!graphData || !Array.isArray(graphData.links)) return null;
+      const adjacency = new Map();
+      for (const l of graphData.links) {
+        if (!l || !l.source || !l.target) continue;
+        const a = String(l.source);
+        const b = String(l.target);
+        if (!adjacency.has(a)) adjacency.set(a, []);
+        if (!adjacency.has(b)) adjacency.set(b, []);
+        adjacency.get(a).push(l);
+        adjacency.get(b).push(l);
+      }
+      return { adjacency };
+    }
+    function getGraphSeedWord() {
+      const searchVal = document.getElementById("search").value.trim();
+      if (titleIndex[currentWord]) return currentWord;
+      if (titleIndex[searchVal]) return searchVal;
+      return "";
+    }
+    function extractNeighborhood(word, depth = 2, maxEdges = 220) {
+      if (!graphIndex || !graphIndex.adjacency) return [];
+      const out = [];
+      const visitedNodes = new Set([word]);
+      const visitedEdges = new Set();
+      let frontier = [word];
+      for (let d = 0; d < depth; d++) {
+        const next = [];
+        for (const node of frontier) {
+          const links = graphIndex.adjacency.get(node) || [];
+          for (const l of links) {
+            if (!matchesGraphLanguage(l)) continue;
+            const key = `${l.source}|${l.target}|${l.relation || ""}`;
+            if (visitedEdges.has(key)) continue;
+            visitedEdges.add(key);
+            out.push(l);
+            if (out.length >= maxEdges) return out;
+            const a = String(l.source);
+            const b = String(l.target);
+            if (!visitedNodes.has(a)) {
+              visitedNodes.add(a);
+              next.push(a);
+            }
+            if (!visitedNodes.has(b)) {
+              visitedNodes.add(b);
+              next.push(b);
+            }
+          }
+        }
+        frontier = next;
+        if (!frontier.length) break;
+      }
+      return out;
+    }
+    function buildStrictTreeLinks(seedWord, depth = 3, maxNodes = 160) {
+      if (!graphIndex || !graphIndex.adjacency || !seedWord) return [];
+      const visited = new Set([seedWord]);
+      const tree = [];
+      let frontier = [seedWord];
+
+      for (let d = 0; d < depth; d++) {
+        const next = [];
+        for (const parent of frontier) {
+          const links = graphIndex.adjacency.get(parent) || [];
+          for (const l of links) {
+            if (!matchesGraphLanguage(l)) continue;
+            const src = String(l.source);
+            const tgt = String(l.target);
+            const neighbor = src === parent ? tgt : src;
+            if (visited.has(neighbor)) continue;
+            visited.add(neighbor);
+            tree.push({
+              parent,
+              child: neighbor,
+              relation: l.relation || "",
+              source_language: l.source_language || null
+            });
+            next.push(neighbor);
+            if (visited.size >= maxNodes) return tree;
+          }
+        }
+        frontier = next;
+        if (!frontier.length) break;
+      }
+      return tree;
+    }
+    function renderGraphForLinks(links, mode, seedWord) {
+      const container = document.getElementById("graphContainer");
+      const note = document.getElementById("graphNote");
+      if (!links.length) {
+        container.innerHTML = "<p style=\"padding:0.8rem\">No graph data for this selection.</p>";
+        note.textContent = "";
+        return;
+      }
+      const nodeMap = new Map();
+      const edges = [];
+      const addWordNode = (id, group = "unknown") => {
+        if (!nodeMap.has(id)) {
+          nodeMap.set(id, {
+            id,
+            label: id,
+            group,
+            shape: "dot",
+            size: id === seedWord ? 18 : 11,
+            font: { face: "EB Garamond", size: id === seedWord ? 22 : 16 },
+            color: id === seedWord ? { background: "#c97d46", border: "#8a4f28" } : undefined
+          });
+        }
+      };
+
+      if (mode === "tree") {
+        const treeLinks = buildStrictTreeLinks(seedWord, 3, 160);
+        if (!treeLinks.length) {
+          container.innerHTML = "<p style=\"padding:0.8rem\">No tree data for this selection and language filter. Pick another word or clear filter.</p>";
+          note.textContent = "";
+          return;
+        }
+        addWordNode(seedWord, "word");
+        for (const l of treeLinks) {
+          addWordNode(l.parent, "word");
+          addWordNode(l.child, "word");
+          edges.push({
+            from: l.parent,
+            to: l.child,
+            arrows: "to",
+            label: l.relation,
+            font: { size: 10, align: "middle" },
+            color: { color: "#b69b7f", highlight: "#8a4f28" },
+            smooth: false
+          });
+        }
+        note.textContent = `Strict tree view rooted at ${seedWord}${getGraphLanguageSuffix()}`;
+      } else if (mode === "lineage") {
+        for (const l of links) {
+          const src = String(l.source);
+          const tgt = String(l.target);
+          addWordNode(src, "word");
+          addWordNode(tgt, "word");
+          edges.push({
+            from: src,
+            to: tgt,
+            arrows: "to",
+            label: l.relation || "",
+            font: { size: 10, align: "middle" },
+            color: { color: "#b69b7f", highlight: "#8a4f28" }
+          });
+        }
+        note.textContent = `Word lineage view${seedWord ? ` for ${seedWord}` : ""}${getGraphLanguageSuffix()}`;
+      } else {
+        const langNodes = new Set();
+        for (const l of links) {
+          const src = String(l.source);
+          const tgt = String(l.target);
+          const lang = normalizeLanguageName(l.source_language);
+          addWordNode(src, "word");
+          addWordNode(tgt, "word");
+          const langId = `lang:${lang}`;
+          if (!langNodes.has(langId)) {
+            langNodes.add(langId);
+            nodeMap.set(langId, {
+              id: langId,
+              label: lang,
+              shape: "box",
+              group: "language",
+              font: { face: "IBM Plex Sans", size: 12 },
+              color: { background: "#f6e8d2", border: "#b89674" }
+            });
+          }
+          edges.push({
+            from: langId,
+            to: src,
+            arrows: "to",
+            dashes: true,
+            color: { color: "#d3b796" },
+            width: 1
+          });
+          edges.push({
+            from: src,
+            to: tgt,
+            arrows: "to",
+            color: { color: "#bea487" },
+            width: 1
+          });
+        }
+        note.textContent = `Language-clustered view${seedWord ? ` around ${seedWord}` : ""}${getGraphLanguageSuffix()}`;
+      }
+
+      const nodes = [...nodeMap.values()];
+      if (network) network.destroy();
+      network = new vis.Network(container, { nodes, edges }, {
+        interaction: { hover: true, navigationButtons: true },
+        nodes: {
+          borderWidth: 1,
+          color: { background: "#fcf4e5", border: "#b79b7e" }
+        },
+        edges: {
+          smooth: { type: "continuous" }
+        },
+        layout: mode === "language" || mode === "tree"
+          ? { hierarchical: { enabled: true, direction: "LR", sortMethod: "directed", levelSeparation: mode === "tree" ? 180 : 130 } }
+          : {},
+        physics: mode === "lineage"
+      });
+    }
+    function renderGraph(mode) {
+      const seed = getGraphSeedWord();
+      let links = [];
+      if (seed) {
+        links = extractNeighborhood(seed, 2, 220);
+      } else if (mode === "tree" && allTitles.length) {
+        currentWord = allTitles[0];
+        links = extractNeighborhood(currentWord, 2, 220);
+      }
+      if (!links.length && graphData && Array.isArray(graphData.links)) {
+        const fallback = graphSelectedLanguages.size
+          ? graphData.links.filter(l => matchesGraphLanguage(l))
+          : graphData.links;
+        links = fallback.slice(0, 120);
+      }
+      renderGraphForLinks(links, mode, seed || currentWord || "");
+      updateUrlState(searchMode, document.getElementById("search").value.trim());
+    }
+    function applyStateFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      const mode = params.get("mode") === "language" ? "language" : "word";
+      const q = (params.get("q") || "").trim();
+      const graphParam = params.get("graph") === "1";
+      const urlGraphMode = params.get("gmode");
+      const graphLangs = (params.get("glang") || "")
+        .split(",")
+        .map(v => v.trim())
+        .filter(Boolean);
+      setMode(mode);
+      setGraphMode(urlGraphMode);
+      graphSelectedLanguages = new Set(graphLangs);
+      updateGraphSelectedSummary();
+      graphVisible = graphParam;
+      document.getElementById("graphSection").style.display = graphVisible ? "block" : "none";
+      document.getElementById("search").value = q;
+      if (q) {
+        if (mode === "language") {
+          lookupLanguage(q, false);
+        } else {
+          lookup(q, false);
+        }
+      }
+    }
+    function lookupLanguage(query, syncUrl = true) {
+      const el = document.getElementById("result");
+      const cleanQuery = (query || "").trim();
+      const q = cleanQuery.toLowerCase();
+      if (!q) {
+        el.innerHTML = "";
+        if (syncUrl) updateUrlState("language", "");
+        return;
+      }
+      const matches = dictionary
+        .map(entry => ({ entry, langs: getSourceLanguages(entry) }))
+        .filter(item => item.langs.some(l => l.toLowerCase().includes(q)))
+        .slice(0, 150);
+      if (!matches.length) {
+        el.innerHTML = `<div class="not-found">No entries found for source language: ${escapeHtml(cleanQuery)}</div>`;
+        if (syncUrl) updateUrlState("language", cleanQuery);
+        return;
+      }
+      let html = `<div class="lang-results-title">${matches.length} entries with source language matching "${escapeHtml(cleanQuery)}"</div>`;
+      html += `<ul class="lang-result-list">`;
+      for (const m of matches) {
+        const langs = m.langs.length ? m.langs.join(", ") : "unspecified";
+        const encodedWord = encodeURIComponent(m.entry.title);
+        html += `<li class="lang-result-item"><span class="lang-result-word" data-word="${encodedWord}">${escapeHtml(m.entry.title)}</span><span class="lang-result-meta">${escapeHtml(langs)}</span></li>`;
+      }
+      html += `</ul>`;
+      el.innerHTML = html;
+      if (syncUrl) updateUrlState("language", cleanQuery);
+    }
+    function lookup(word, syncUrl = true) {
       const entry = titleIndex[word];
       const el = document.getElementById("result");
       document.getElementById("suggestions").style.display = "none";
       el.style.display = "block";
       if (!entry) {
-        el.innerHTML = `<div class="not-found">Not found: ${word}</div>`;
+        el.innerHTML = `<div class="not-found">Not found: ${escapeHtml(word)}</div>`;
+        if (syncUrl) updateUrlState("word", word);
         return;
       }
       const defs = parseDefinitions(entry.wikitext || "");
       const pos = parsePOS(entry.wikitext || "");
       const ety = parseEtymology(entry);
-      let html = `<div class="word-title">${entry.title}</div>`;
-      if (pos) html += `<div class="word-pos">${pos}</div>`;
+      const srcLangs = getSourceLanguages(entry);
+      const lineage = getEtymologyLineage(entry);
+      currentWord = entry.title;
+      let html = `<article class="entry-card"><div class="entry-head"><div class="word-title">${escapeHtml(entry.title)}</div>`;
+      if (pos) html += `<div class="word-pos">${escapeHtml(pos)}</div>`;
+      const encodedTitle = encodeURIComponent(entry.title);
+      html += `<div class="entry-tools"><button type="button" class="permalink-btn" data-word="${encodedTitle}">Permalink</button><span class="permalink-status" id="permalinkStatus"></span></div>`;
+      html += `</div><div class="entry-content">`;
       // Prefer explicit definition field if present
       if (entry.definition && Array.isArray(entry.definition) && entry.definition.length) {
         html += `<div class="section-label">Definition</div><ol>`;
@@ -127,14 +1042,28 @@
         for (const d of defs) html += `<li>${d}</li>`;
         html += `</ol>`;
       }
-      html += `<div class="section-label">Etymology</div>\n           <div class="etymology-box">${ety || "—"}</div>`;
+      html += `<div class="section-label">Etymology</div>`;
+      html += `<div class="etymology-box">${renderLineage(lineage)}${escapeHtml(ety || "—")}</div>`;
       if (window.nayiriForms && window.nayiriForms[entry.title]) {
         const forms = window.nayiriForms[entry.title];
         html += `<div class="section-label">Nayiri Forms</div><ul class="nayiri-forms">`;
-        for (const f of forms) html += `<li>${f}</li>`;
+        for (const f of forms) html += `<li>${escapeHtml(f)}</li>`;
         html += `</ul>`;
       }
+      html += `<div class="entry-meta">`;
+      html += `<span class="meta-pill">${defs.length || (entry.definition?.length || 0)} defs</span>`;
+      if (srcLangs.length) {
+        for (const lang of srcLangs) {
+          const encodedLang = encodeURIComponent(lang);
+          html += `<button type="button" class="source-chip" data-lang="${encodedLang}">${escapeHtml(lang)}</button>`;
+        }
+      } else {
+        html += `<span class="meta-pill">source unknown</span>`;
+      }
+      html += `</div>`;
+      html += `</div></article>`;
       el.innerHTML = html;
+      if (syncUrl) updateUrlState("word", entry.title);
     }
     window.lookup = lookup;
     function showSuggestions(q) {
@@ -143,7 +1072,8 @@
         box.style.display = "none";
         return;
       }
-      const matches = allTitles
+      const source = searchMode === "word" ? allTitles : sourceLanguageList;
+      const matches = source
         .filter(t => t.toLowerCase().includes(q.toLowerCase()))
         .slice(0, 10);
       box.innerHTML = "";
@@ -153,7 +1083,12 @@
         div.textContent = m;
         div.addEventListener("mousedown", (e) => {
           e.preventDefault();
-          lookup(m);
+          if (searchMode === "word") {
+            lookup(m, true);
+          } else {
+            lookupLanguage(m, true);
+            document.getElementById("search").value = m;
+          }
           box.style.display = "none";
         });
         box.appendChild(div);
@@ -169,9 +1104,14 @@
             titleIndex[e.title] = e;
           }
           allTitles = data.map(e => e.title);
+          sourceLanguageList = [...new Set(data.flatMap(e => getSourceLanguages(e)))].sort();
           document.getElementById("count").textContent =
             data.length.toLocaleString() + " entries";
           document.getElementById("showGraphBtn").style.display = "block";
+          applyStateFromUrl();
+          if (graphVisible) {
+            document.getElementById("showGraphBtn").click();
+          }
         });
     }
     let searchTimeout = null;
@@ -182,48 +1122,143 @@
       }, 120);
     });
     document.getElementById("search").addEventListener("keydown", e => {
-      if (e.key === "Enter") lookup(e.target.value.trim());
+      if (e.key === "Enter") {
+        const q = e.target.value.trim();
+        if (searchMode === "word") lookup(q, true);
+        else lookupLanguage(q, true);
+      }
     });
     document.getElementById("wordSearchBtn").onclick = () => {
-      searchMode = "word";
-      document.getElementById("wordSearchBtn").classList.add("active");
-      document.getElementById("langSearchBtn").classList.remove("active");
+      setMode("word");
+      updateUrlState("word", document.getElementById("search").value.trim());
     };
     document.getElementById("langSearchBtn").onclick = () => {
-      searchMode = "language";
-      document.getElementById("langSearchBtn").classList.add("active");
-      document.getElementById("wordSearchBtn").classList.remove("active");
+      setMode("language");
+      updateUrlState("language", document.getElementById("search").value.trim());
     };
     document.getElementById("showGraphBtn").onclick = async () => {
       const sec = document.getElementById("graphSection");
       const container = document.getElementById("graphContainer");
       sec.style.display = "block";
+      graphVisible = true;
       if (!graphData) {
         try {
           graphData = await fetch("graph_web.json").then(r => r.json());
+          graphIndex = buildGraphIndex();
+          populateGraphLanguageOptions();
+          syncGraphLanguagePanelSelections();
         } catch (err) {
           console.error("Failed to load graph data:", err);
           container.innerHTML = "<p>Could not load graph data.</p>";
           return;
         }
       }
-      const nodes = graphData.nodes.map((n, i) => ({
-        id: i,
-        label: n.id
-      }));
-      new vis.Network(container, { nodes, edges: [] }, {
-        physics: true
-      });
+      renderGraph(graphMode);
     };
+    document.getElementById("graphModeLanguageBtn").onclick = () => {
+      setGraphMode("language");
+      updateUrlState(searchMode, document.getElementById("search").value.trim());
+      if (graphData) renderGraph(graphMode);
+    };
+    document.getElementById("graphModeLineageBtn").onclick = () => {
+      setGraphMode("lineage");
+      updateUrlState(searchMode, document.getElementById("search").value.trim());
+      if (graphData) renderGraph(graphMode);
+    };
+    document.getElementById("graphModeTreeBtn").onclick = () => {
+      setGraphMode("tree");
+      updateUrlState(searchMode, document.getElementById("search").value.trim());
+      if (graphData) renderGraph(graphMode);
+    };
+    document.getElementById("graphLangApplyBtn").onclick = () => {
+      const checked = document.querySelectorAll(".graph-lang-checkbox:checked");
+      applyGraphLanguageSelection([...checked].map(input => input.value));
+    };
+    document.getElementById("graphLangClearBtn").onclick = () => {
+      graphSelectedLanguages = new Set();
+      graphLanguageSearchTerm = "";
+      document.getElementById("graphLangSearch").value = "";
+      renderGraphLanguagePanel();
+      updateGraphSelectedSummary();
+      updateUrlState(searchMode, document.getElementById("search").value.trim());
+      if (graphData) renderGraph(graphMode);
+    };
+    document.getElementById("graphLangSearch").addEventListener("input", e => {
+      graphLanguageSearchTerm = e.target.value.trim();
+      renderGraphLanguagePanel();
+    });
+    document.getElementById("graphLangSearch").addEventListener("keydown", e => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        const checked = document.querySelectorAll(".graph-lang-checkbox:checked");
+        applyGraphLanguageSelection([...checked].map(input => input.value));
+      }
+    });
+    document.querySelectorAll("[data-graph-preset]").forEach(button => {
+      button.addEventListener("click", () => {
+        const raw = button.getAttribute("data-graph-preset") || "";
+        const langs = raw.split("|").map(v => v.trim()).filter(Boolean);
+        applyGraphLanguagePreset(langs);
+      });
+    });
     document.addEventListener("click", e => {
       if (!e.target.closest("#suggestions") && !e.target.closest("#search")) {
         document.getElementById("suggestions").style.display = "none";
+      }
+      if (e.target.classList.contains("source-chip")) {
+        const lang = e.target.dataset.lang ? decodeURIComponent(e.target.dataset.lang) : "";
+        if (!lang) return;
+        setMode("language");
+        document.getElementById("search").value = lang;
+        lookupLanguage(lang, true);
+      }
+      if (e.target.classList.contains("lang-result-word")) {
+        const w = e.target.dataset.word ? decodeURIComponent(e.target.dataset.word) : "";
+        if (w) {
+          setMode("word");
+          document.getElementById("search").value = w;
+          lookup(w, true);
+        }
+      }
+      if (e.target.classList.contains("permalink-btn")) {
+        const w = e.target.dataset.word ? decodeURIComponent(e.target.dataset.word) : "";
+        if (!w) return;
+        const url = new URL(window.location.href);
+        url.searchParams.set("mode", "word");
+        url.searchParams.set("q", w);
+        copyToClipboard(url.toString())
+          .then(() => {
+            const status = document.getElementById("permalinkStatus");
+            if (!status) return;
+            status.textContent = "Link copied";
+            setTimeout(() => {
+              if (status.textContent === "Link copied") status.textContent = "";
+            }, 1400);
+          })
+          .catch(() => {
+            const status = document.getElementById("permalinkStatus");
+            if (status) status.textContent = "Copy failed";
+          });
+      }
+    });
+    window.addEventListener("popstate", () => {
+      if (!dictionary.length) return;
+      applyStateFromUrl();
+      if (graphVisible && graphData) {
+        syncGraphLanguagePanelSelections();
+        renderGraph(graphMode);
       }
     });
     loadDictionary();
     fetch("nayiri_forms.json")
       .then(r => r.json())
-      .then(d => window.nayiriForms = d)
+      .then(d => {
+        window.nayiriForms = d;
+        if (graphVisible && graphData) {
+          syncGraphLanguagePanelSelections();
+          renderGraph(graphMode);
+        }
+      })
       .catch(err => console.error("Could not load nayiri_forms.json:", err));
   });
   </script>
