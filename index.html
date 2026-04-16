@@ -321,6 +321,65 @@
       margin-bottom: 0.45rem;
     }
     .nayiri-forms { margin: 0.35rem 0 0; }
+    /* Source badges */
+    .source-badge {
+      display: inline-block;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.1rem 0.38rem;
+      border-radius: 3px;
+      vertical-align: middle;
+      margin-left: 0.4rem;
+      line-height: 1.5;
+    }
+    .source-badge.wiktionary {
+      background: #e8f0fa;
+      color: #3a6399;
+      border: 1px solid #b8cde8;
+    }
+    .source-badge.nayiri {
+      background: #f0f7e8;
+      color: #3d6b2f;
+      border: 1px solid #b8d8a0;
+    }
+    /* Nayiri section panel */
+    .nayiri-panel {
+      margin-top: 0.3rem;
+      padding: 0.55rem 0.7rem;
+      background: #f7fdf3;
+      border-left: 3px solid #8dbb6f;
+      border-radius: 0 4px 4px 0;
+    }
+    .nayiri-gloss {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.82rem;
+      color: #3d4a2e;
+      margin-bottom: 0.3rem;
+    }
+    .nayiri-pos {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.72rem;
+      color: #6a7a5e;
+      font-style: italic;
+      margin-bottom: 0.4rem;
+    }
+    .nayiri-forms-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 0.5rem;
+      font-family: "EB Garamond", serif;
+      font-size: 0.85rem;
+    }
+    .nayiri-form-pill {
+      background: #e8f2e0;
+      border: 1px solid #b8d4a0;
+      border-radius: 3px;
+      padding: 0.05rem 0.35rem;
+      color: #2d4a20;
+    }
     .not-found {
       color: var(--warning);
       font-family: "IBM Plex Sans", sans-serif;
@@ -1034,21 +1093,37 @@
       html += `</div><div class="entry-content">`;
       // Prefer explicit definition field if present
       if (entry.definition && Array.isArray(entry.definition) && entry.definition.length) {
-        html += `<div class="section-label">Definition</div><ol>`;
+        html += `<div class="section-label">Definition <span class="source-badge wiktionary">Wiktionary</span></div><ol>`;
         for (const d of entry.definition) html += `<li>${d}</li>`;
         html += `</ol>`;
       } else if (defs.length) {
-        html += `<div class="section-label">Definition</div><ol>`;
+        html += `<div class="section-label">Definition <span class="source-badge wiktionary">Wiktionary</span></div><ol>`;
         for (const d of defs) html += `<li>${d}</li>`;
         html += `</ol>`;
       }
-      html += `<div class="section-label">Etymology</div>`;
+      html += `<div class="section-label">Etymology <span class="source-badge wiktionary">Wiktionary</span></div>`;
       html += `<div class="etymology-box">${renderLineage(lineage)}${escapeHtml(ety || "—")}</div>`;
-      if (window.nayiriForms && window.nayiriForms[entry.title]) {
-        const forms = window.nayiriForms[entry.title];
-        html += `<div class="section-label">Nayiri Forms</div><ul class="nayiri-forms">`;
-        for (const f of forms) html += `<li>${escapeHtml(f)}</li>`;
-        html += `</ul>`;
+      // Nayiri panel
+      const nayiriEntry = window.nayiriIndex && window.nayiriIndex[entry.title];
+      if (nayiriEntry) {
+        html += `<div class="section-label">Nayiri <span class="source-badge nayiri">Nayiri</span></div>`;
+        html += `<div class="nayiri-panel">`;
+        if (nayiriEntry.description) {
+          // Extract just the parenthetical gloss if present
+          const glossMatch = nayiriEntry.description.match(/\((.+)\)/);
+          const gloss = glossMatch ? glossMatch[1] : nayiriEntry.description;
+          html += `<div class="nayiri-gloss">${escapeHtml(gloss)}</div>`;
+        }
+        if (nayiriEntry.partOfSpeech) {
+          html += `<div class="nayiri-pos">${escapeHtml(nayiriEntry.partOfSpeech.toLowerCase())}</div>`;
+        }
+        if (nayiriEntry.wordForms && nayiriEntry.wordForms.length) {
+          const forms = [...new Set(nayiriEntry.wordForms)].slice(0, 12);
+          html += `<div class="nayiri-forms-grid">`;
+          for (const f of forms) html += `<span class="nayiri-form-pill">${escapeHtml(f)}</span>`;
+          html += `</div>`;
+        }
+        html += `</div>`;
       }
       html += `<div class="entry-meta">`;
       html += `<span class="meta-pill">${defs.length || (entry.definition?.length || 0)} defs</span>`;
@@ -1250,16 +1325,25 @@
       }
     });
     loadDictionary();
-    fetch("nayiri_forms.json")
+    fetch("nayiri-armenian-lexicon-2026-02-15-v1%202.json")
       .then(r => r.json())
       .then(d => {
-        window.nayiriForms = d;
-        if (graphVisible && graphData) {
-          syncGraphLanguagePanelSelections();
-          renderGraph(graphMode);
+        // Build index: lemmaString → { description, partOfSpeech, wordForms }
+        window.nayiriIndex = {};
+        for (const lex of (d.lexemes || [])) {
+          for (const lemma of (lex.lemmas || [])) {
+            const key = lemma.lemmaString;
+            if (key && !window.nayiriIndex[key]) {
+              window.nayiriIndex[key] = {
+                description: lex.description || "",
+                partOfSpeech: lemma.partOfSpeech || "",
+                wordForms: (lemma.wordForms || []).map(f => f.s)
+              };
+            }
+          }
         }
       })
-      .catch(err => console.error("Could not load nayiri_forms.json:", err));
+      .catch(err => console.error("Could not load Nayiri lexicon:", err));
   });
   </script>
 </body>
