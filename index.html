@@ -4,40 +4,767 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Western Armenian Etymology Dictionary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    body { font-family: sans-serif; margin: 0; padding: 0; background: #fff; color: #222; }
-    .container { max-width: 700px; margin: 2em auto; padding: 2em; background: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 8px #0001; }
-    .search-wrap { position: relative; margin-bottom: 1em; }
-    #search { width: 100%; font-size: 1.2em; padding: 0.5em; border-radius: 4px; border: 1px solid #ccc; }
-    #suggestions { position: absolute; top: 100%; left: 0; right: 0; background: #fff; border: 1px solid #ccc; z-index: 10; display: none; max-height: 200px; overflow-y: auto; }
-    .suggestion { padding: 0.5em; cursor: pointer; }
-    .suggestion:hover { background: #eee; }
-    .word-title { font-size: 2em; font-weight: bold; margin-bottom: 0.2em; }
-    .word-pos { font-size: 1.1em; color: #666; margin-bottom: 0.5em; }
-    .section-label { font-weight: bold; margin-top: 1em; }
-    .etymology-box { background: #f1f1f1; padding: 0.5em; border-radius: 4px; margin-bottom: 1em; }
-    .nayiri-forms { margin: 0.5em 0 1em 1.5em; }
-    .not-found { color: #b00; font-weight: bold; margin-top: 1em; }
-    #showGraphBtn { margin-top: 1em; }
+    :root {
+      --paper: #f3eee2;
+      --ink: #2f2922;
+      --ink-soft: #756a5c;
+      --line: #d8ccbb;
+      --card: #fffdf8;
+      --accent: #8a4f28;
+      --accent-soft: #efe2cf;
+      --warning: #8d2a1e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "EB Garamond", Georgia, serif;
+      background:
+        radial-gradient(circle at 5% 0%, #fff8e9 0%, transparent 40%),
+        radial-gradient(circle at 95% 10%, #efe1cc 0%, transparent 38%),
+        linear-gradient(180deg, #f8f2e6 0%, var(--paper) 100%);
+      min-height: 100vh;
+    }
+    .container {
+      width: min(980px, 92vw);
+      margin: 2.2rem auto;
+      border: 1px solid var(--line);
+      background: var(--card);
+      box-shadow: 0 12px 45px rgba(66, 40, 18, 0.12);
+    }
+    .topbar {
+      border-top: 3px double #b69e7e;
+      border-bottom: 3px double #b69e7e;
+      padding: 1.05rem 1.6rem 0.95rem;
+      background: linear-gradient(180deg, #fffdf9 0%, #f8f0e2 100%);
+      position: relative;
+    }
+    .topbar::after {
+      content: "";
+      display: block;
+      margin-top: 0.62rem;
+      border-bottom: 1px solid #d7c6af;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(1.65rem, 2.35vw, 2.15rem);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      line-height: 1.12;
+    }
+    .subtitle {
+      margin-top: 0.35rem;
+      color: var(--ink-soft);
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.025em;
+      line-height: 1.35;
+    }
+    .controls {
+      padding: 0.6rem 1.6rem 1rem;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, #f7efe1 0%, #f4ead9 100%);
+    }
+    .search-wrap {
+      position: relative;
+      margin-bottom: 0.75rem;
+    }
+    #search {
+      width: 100%;
+      font-family: "EB Garamond", Georgia, serif;
+      font-size: 1.15rem;
+      padding: 0.6rem 0.72rem;
+      border: 1px solid #c7b9a7;
+      border-radius: 0;
+      background: #fffefb;
+      color: var(--ink);
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+    #search:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(138, 79, 40, 0.14);
+    }
+    #suggestions {
+      position: absolute;
+      top: calc(100% + 2px);
+      left: 0;
+      right: 0;
+      border: 1px solid #cabba8;
+      border-top: none;
+      background: #fffdf9;
+      z-index: 10;
+      display: none;
+      max-height: 260px;
+      overflow-y: auto;
+      box-shadow: 0 12px 28px rgba(56, 33, 14, 0.12);
+    }
+    .keyboard-wrap {
+      margin-top: 1.2rem;
+      margin-bottom: 0;
+      padding-top: 0.55rem;
+      border-top: 1px dashed #d8c9b4;
+    }
+    #toggleKeyboardBtn {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.76rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      padding: 0.28rem 0.48rem;
+    }
+    .keyboard-panel {
+      margin-top: 0.7rem;
+      border: 2px solid #6b4c2a;
+      border-radius: 8px;
+      background: linear-gradient(160deg, #2b1e0f 0%, #3d2a14 60%, #2b1e0f 100%);
+      padding: 0.9rem 0.75rem 0.75rem;
+      display: none;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+    .keyboard-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 0.35rem;
+      justify-content: center;
+    }
+    .keyboard-row:last-child {
+      margin-bottom: 0;
+    }
+    .kbd-key {
+      min-width: 2.1rem;
+      padding: 0.38rem 0.42rem;
+      font-size: 1rem;
+      font-family: "EB Garamond", serif;
+      background: linear-gradient(180deg, #f5ede0 0%, #dac9b0 100%);
+      border: 1px solid #7a5630;
+      border-bottom: 3px solid #4a2e10;
+      border-radius: 5px;
+      color: #1e0f00;
+      line-height: 1;
+      cursor: pointer;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.35);
+      transition: transform 0.07s, box-shadow 0.07s, border-bottom-width 0.07s;
+      user-select: none;
+    }
+    .kbd-key:hover {
+      background: linear-gradient(180deg, #fdf5e8 0%, #e8d4b6 100%);
+    }
+    .kbd-key:active {
+      transform: translateY(2px);
+      border-bottom-width: 1px;
+      box-shadow: 0 0 2px rgba(0,0,0,0.25);
+    }
+    .kbd-key.action {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.68rem;
+      min-width: 3.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      background: linear-gradient(180deg, #c9bba8 0%, #a08060 100%);
+      border-color: #5a3a18;
+      border-bottom-color: #2e1a08;
+      color: #1a0e00;
+    }
+    .kbd-key.wide {
+      min-width: 5.5rem;
+    }
+    .suggestion {
+      padding: 0.45rem 0.62rem;
+      cursor: pointer;
+      border-bottom: 1px solid #ede2d3;
+      font-size: 1.02rem;
+    }
+    .suggestion:hover { background: #f2e8da; }
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.48rem;
+      align-items: center;
+      font-family: "IBM Plex Sans", sans-serif;
+    }
+    button {
+      border: 1px solid #bda98e;
+      border-radius: 0;
+      background: #fbf6ec;
+      color: #4f3e2c;
+      padding: 0.38rem 0.62rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: background-color 0.16s ease, color 0.16s ease;
+    }
+    button.active,
+    button:hover {
+      background: var(--accent-soft);
+      color: #2f2010;
+    }
+    #count {
+      font-family: "IBM Plex Sans", sans-serif;
+      color: var(--ink-soft);
+      font-size: 0.86rem;
+      margin-bottom: 0.45rem;
+    }
+    #result {
+      padding: 1.25rem 1.6rem 1.6rem;
+      min-height: 130px;
+    }
+    .entry-card {
+      border: 1px solid var(--line);
+      background: #fffefb;
+      animation: entry-fade 0.22s ease;
+    }
+    .entry-head {
+      padding: 0.82rem 0.92rem;
+      border-bottom: 1px solid var(--line);
+      background: #fcf6ea;
+    }
+    .word-title {
+      font-size: clamp(1.85rem, 3vw, 2.55rem);
+      font-weight: 700;
+      line-height: 1.06;
+      margin-bottom: 0.12rem;
+      color: #2b2119;
+    }
+    .word-pos {
+      font-family: "IBM Plex Sans", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      color: var(--ink-soft);
+    }
+    .entry-tools {
+      margin-top: 0.45rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .permalink-btn {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.68rem;
+      border: 1px solid #bda181;
+      background: #fff3e1;
+      color: #5f472d;
+      padding: 0.2rem 0.36rem;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .permalink-btn:hover,
+    .permalink-btn:focus-visible {
+      background: #f5dec0;
+      outline: none;
+    }
+    .permalink-status {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.69rem;
+      color: #6c5a47;
+      min-height: 1em;
+    }
+    .entry-content {
+      padding: 0.96rem 0.92rem 1rem;
+      font-size: 1.08rem;
+      line-height: 1.44;
+    }
+    .etymology-lineage {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin: 0 0 0.48rem;
+      align-items: center;
+      font-family: "IBM Plex Sans", sans-serif;
+    }
+    .lineage-node {
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid #cdbba0;
+      background: #f8eedf;
+      color: #604a34;
+      padding: 0.19rem 0.36rem;
+    }
+    .lineage-arrow {
+      color: #806a53;
+      font-size: 0.75rem;
+      line-height: 1;
+    }
+    .entry-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      align-items: center;
+      margin-top: 0.5rem;
+      padding-top: 0.52rem;
+      border-top: 1px dashed #deceb7;
+    }
+    .meta-pill {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      border: 1px solid #c8b89f;
+      background: #fbf4e7;
+      padding: 0.2rem 0.35rem;
+      color: #715c45;
+    }
+    .source-chip {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.69rem;
+      border: 1px solid #b99e80;
+      background: #fff2de;
+      color: #543c24;
+      padding: 0.21rem 0.4rem;
+      cursor: pointer;
+      transition: background-color 0.14s ease;
+    }
+    .source-chip:hover,
+    .source-chip:focus-visible {
+      background: #f3dcc0;
+      outline: none;
+    }
+    .lang-results-title {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.84rem;
+      letter-spacing: 0.03em;
+      color: #665746;
+      margin-bottom: 0.55rem;
+    }
+    .lang-result-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border: 1px solid var(--line);
+      background: #fffefb;
+    }
+    .lang-result-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.5rem 0.62rem;
+      border-bottom: 1px solid #eee2d2;
+      align-items: baseline;
+    }
+    .lang-result-item:last-child { border-bottom: none; }
+    .lang-result-word {
+      font-size: 1.1rem;
+      cursor: pointer;
+      color: #2e241b;
+    }
+    .lang-result-word:hover { color: var(--accent); }
+    .lang-result-meta {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.72rem;
+      color: #6e5f4f;
+    }
+    .section-label {
+      font-family: "IBM Plex Sans", sans-serif;
+      text-transform: uppercase;
+      font-size: 0.69rem;
+      letter-spacing: 0.08em;
+      color: #6f5f4e;
+      margin: 0.75rem 0 0.22rem;
+      display: flex;
+      align-items: center;
+      gap: 0.42rem;
+    }
+    .section-label::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: linear-gradient(90deg, #dac9b2 0%, transparent 100%);
+    }
+    .entry-content ol,
+    .entry-content ul {
+      margin: 0;
+      padding-left: 1.4rem;
+    }
+    .entry-content li { margin: 0.22rem 0; }
+    .etymology-box {
+      background: #fff7ea;
+      border-left: 3px solid var(--accent);
+      padding: 0.5rem 0.62rem;
+      margin-bottom: 0.45rem;
+    }
+    .nayiri-forms { margin: 0.35rem 0 0; }
+    /* Source badges */
+    .source-badge {
+      display: inline-block;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.1rem 0.38rem;
+      border-radius: 3px;
+      vertical-align: middle;
+      margin-left: 0.4rem;
+      line-height: 1.5;
+    }
+    .source-badge.wiktionary {
+      background: #e8f0fa;
+      color: #3a6399;
+      border: 1px solid #b8cde8;
+    }
+    .source-badge.nayiri {
+      background: #f0f7e8;
+      color: #3d6b2f;
+      border: 1px solid #b8d8a0;
+    }
+    .ety-confidence {
+      display: inline-block;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.1rem 0.36rem;
+      border-radius: 3px;
+      margin-left: 0.25rem;
+      border: 1px solid transparent;
+      line-height: 1.5;
+    }
+    .ety-confidence.high {
+      background: #edf6e8;
+      color: #315f28;
+      border-color: #b8d7a8;
+    }
+    .ety-confidence.medium {
+      background: #fff6e6;
+      color: #7d5a24;
+      border-color: #e3cda0;
+    }
+    .ety-confidence.low {
+      background: #fdeeee;
+      color: #8a3737;
+      border-color: #e3b4b4;
+    }
+    .ety-sources {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.72rem;
+      color: #6f5e4c;
+      margin: 0.2rem 0 0.55rem;
+    }
+    .attestation-note {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.72rem;
+      color: #5c4d3f;
+      margin: -0.15rem 0 0.5rem;
+    }
+    /* Nayiri section panel */
+    .nayiri-panel {
+      margin-top: 0.3rem;
+      padding: 0.55rem 0.7rem;
+      background: #f7fdf3;
+      border-left: 3px solid #8dbb6f;
+      border-radius: 0 4px 4px 0;
+    }
+    .nayiri-gloss {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.82rem;
+      color: #3d4a2e;
+      margin-bottom: 0.3rem;
+    }
+    .nayiri-pos {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.72rem;
+      color: #6a7a5e;
+      font-style: italic;
+      margin-bottom: 0.4rem;
+    }
+    .nayiri-forms-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 0.5rem;
+      font-family: "EB Garamond", serif;
+      font-size: 0.85rem;
+    }
+    .nayiri-form-pill {
+      background: #e8f2e0;
+      border: 1px solid #b8d4a0;
+      border-radius: 3px;
+      padding: 0.05rem 0.35rem;
+      color: #2d4a20;
+    }
+    .not-found {
+      color: var(--warning);
+      font-family: "IBM Plex Sans", sans-serif;
+      font-weight: 600;
+      border: 1px solid #d8bbb4;
+      background: #fff4f2;
+      padding: 0.62rem 0.72rem;
+    }
+    .did-you-mean {
+      margin-top: 0.5rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: #634637;
+    }
+    .suggest-link {
+      border: none;
+      background: none;
+      padding: 0;
+      margin-right: 0.45rem;
+      color: var(--accent);
+      border-bottom: 1px dotted var(--accent);
+      cursor: pointer;
+      font-family: "EB Garamond", serif;
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+    .suggest-link:hover {
+      color: #692910;
+      border-bottom-style: solid;
+    }
+    #graphSection {
+      margin: 0 1.6rem 1.6rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--line);
+    }
+    .graph-controls {
+      display: flex;
+      gap: 0.45rem;
+      margin-bottom: 0.6rem;
+      flex-wrap: wrap;
+      align-items: center;
+      font-family: "IBM Plex Sans", sans-serif;
+    }
+    .graph-mode-btn {
+      font-size: 0.74rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .graph-note {
+      font-size: 0.73rem;
+      color: #6f5f4f;
+    }
+    .graph-lang-input {
+      min-width: 220px;
+      border: 1px solid #c7b29a;
+      background: #fffef9;
+      color: #4a3a2a;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.78rem;
+      padding: 0.34rem 0.45rem;
+    }
+    .graph-language-panel {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 0.6rem;
+      margin: 0 0 0.7rem;
+      padding: 0.55rem 0.6rem;
+      border: 1px solid var(--line);
+      background: #fffaf1;
+      max-height: 144px;
+      overflow-y: auto;
+    }
+    .graph-lang-option {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.28rem;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.76rem;
+      color: #5a4a39;
+      white-space: nowrap;
+    }
+    .graph-lang-option input {
+      margin: 0;
+      accent-color: #8a4f28;
+    }
+    .graph-selected {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.73rem;
+      color: #6b5a48;
+      margin: 0 0 0.55rem;
+    }
+    .graph-presets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.38rem;
+      margin: 0 0 0.55rem;
+    }
+    .graph-preset-btn {
+      font-size: 0.7rem;
+      padding: 0.26rem 0.44rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .graph-mini-btn {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      padding: 0.3rem 0.48rem;
+    }
+    .graph-help {
+      margin: 0 0 0.55rem;
+      padding: 0.48rem 0.58rem;
+      border: 1px solid #d9c8b1;
+      background: #fff9ef;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.74rem;
+      color: #5f4f3f;
+      line-height: 1.45;
+    }
+    .graph-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.42rem 0.8rem;
+      margin: 0 0 0.55rem;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.73rem;
+      color: #6a5a49;
+    }
+    .graph-legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.32rem;
+    }
+    .graph-legend-swatch {
+      width: 14px;
+      height: 10px;
+      border: 1px solid #a88b6d;
+      background: #f6e8d2;
+      display: inline-block;
+    }
+    .graph-legend-swatch.word {
+      background: #fcf4e5;
+      border-color: #b79b7e;
+    }
+    .graph-legend-swatch.seed {
+      background: #c97d46;
+      border-color: #8a4f28;
+    }
+    .graph-legend-swatch.link {
+      background: linear-gradient(90deg, #d3b796 0%, #bea487 100%);
+      border-color: #bea487;
+    }
+    #graphContainer { height: 460px; border: 1px solid var(--line); background: #fffef9; }
+        .pronunciation {
+          font-family: "IBM Plex Sans", sans-serif;
+          font-size: 0.88rem;
+          color: #5a4a39;
+          margin: 0.1rem 0 0.3rem;
+          letter-spacing: 0.02em;
+        }
+        .pron-label {
+          font-size: 0.68rem;
+          text-transform: uppercase;
+          letter-spacing: 0.07em;
+          color: #8a7a68;
+          margin-right: 0.35rem;
+        }
+        .word-links {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.28rem 0.42rem;
+          margin-top: 0.2rem;
+        }
+        .word-link {
+          font-family: "EB Garamond", serif;
+          font-size: 0.96rem;
+          color: var(--accent);
+          border-bottom: 1px dotted var(--accent);
+          cursor: pointer;
+          background: none;
+          border-top: none;
+          border-left: none;
+          border-right: none;
+          padding: 0;
+          line-height: 1.4;
+          transition: color 0.12s;
+        }
+        .word-link:hover { color: #692910; border-bottom-style: solid; }
+    #randomWordBtn {
+      background: transparent;
+      border: 1px dashed var(--accent);
+      color: var(--accent);
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.76rem;
+      letter-spacing: 0.04em;
+      padding: 0.34rem 0.7rem;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background 0.15s, color 0.15s;
+    }
+    #randomWordBtn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+    @keyframes entry-fade {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 760px) {
+      .container { width: 100%; margin: 0; border: none; box-shadow: none; }
+      .topbar,
+      .controls,
+      #result,
+      #graphSection { padding-left: 0.95rem; padding-right: 0.95rem; }
+      .entry-content { font-size: 1.04rem; }
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Western Armenian Etymology Dictionary</h1>
-    <div id="count"></div>
-    <div class="search-wrap">
-      <input id="search" type="text" placeholder="Search for a word..." autocomplete="off" />
-      <div id="suggestions"></div>
+    <header class="topbar">
+      <h1>Western Armenian Etymology Dictionary</h1>
+      <div class="subtitle">Արեւմտահայերէն Ստուգաբանական Բառարան</div>
+    </header>
+    <section class="controls">
+      <div id="count"></div>
+      <div id="searchWrap" class="search-wrap side-suggestions">
+        <input id="search" type="text" placeholder="Search for a word..." autocomplete="off" />
+        <div id="suggestions"></div>
+      </div>
+      <div class="button-row">
+        <button id="wordSearchBtn" class="active">Word Search</button>
+        <button id="langSearchBtn">Language Search</button>
+        <button id="showGraphBtn" style="display:none">Open Etymology Tree</button>
+        <button id="randomWordBtn" title="Load a random entry">Random</button>
+      </div>
+    </section>
+    <main id="result"></main>
+    <div class="keyboard-wrap">
+      <button id="toggleKeyboardBtn" type="button" aria-expanded="false">Show Armenian Keyboard</button>
+      <div id="armenianKeyboard" class="keyboard-panel" aria-hidden="true"></div>
     </div>
-    <button id="wordSearchBtn" class="active">Word Search</button>
-    <button id="langSearchBtn">Language Search</button>
-    <button id="showGraphBtn" style="display:none">Show Etymology Graph</button>
-    <div id="result"></div>
     <section id="graphSection" style="display:none">
       <h2>Etymology Graph</h2>
-      <div id="graphContainer" style="height:400px;"></div>
+      <div class="graph-controls">
+        <button id="graphModeLanguageBtn" class="graph-mode-btn active">Language Clusters</button>
+        <button id="graphModeLineageBtn" class="graph-mode-btn">Word Lineage</button>
+        <button id="graphModeTreeBtn" class="graph-mode-btn">Strict Tree</button>
+        <button id="graphResetBtn" class="graph-mini-btn">Reset View</button>
+        <input id="graphLangSearch" class="graph-lang-input" type="text" placeholder="Search languages..." />
+        <button id="graphLangApplyBtn" class="graph-mini-btn">Apply</button>
+        <button id="graphLangClearBtn" class="graph-mini-btn">All Languages</button>
+        <span id="graphNote" class="graph-note"></span>
+      </div>
+      <div id="graphHelp" class="graph-help">Pick a mode, then either search a word first or use a preset language filter. Drag nodes to inspect, scroll to zoom, and click Reset View to recenter.</div>
+      <div class="graph-legend">
+        <span class="graph-legend-item"><span class="graph-legend-swatch seed"></span> Focus word</span>
+        <span class="graph-legend-item"><span class="graph-legend-swatch word"></span> Related word</span>
+        <span class="graph-legend-item"><span class="graph-legend-swatch"></span> Source language</span>
+        <span class="graph-legend-item"><span class="graph-legend-swatch link"></span> Etymology link</span>
+      </div>
+      <div class="graph-presets">
+        <button class="graph-preset-btn" data-graph-preset="Armenian|Classical Armenian">Armenian Layers</button>
+        <button class="graph-preset-btn" data-graph-preset="Turkish|Ottoman Turkish">Turkic</button>
+        <button class="graph-preset-btn" data-graph-preset="Persian">Persian</button>
+        <button class="graph-preset-btn" data-graph-preset="Russian">Russian</button>
+        <button class="graph-preset-btn" data-graph-preset="Arabic">Arabic</button>
+        <button class="graph-preset-btn" data-graph-preset="French">French</button>
+      </div>
+      <div id="graphSelectedSummary" class="graph-selected">Showing all source languages</div>
+      <div id="graphLanguagePanel" class="graph-language-panel"></div>
+      <div id="graphContainer"></div>
     </section>
   </div>
+  <script src="https://unpkg.com/vis-network@9.1.9/dist/vis-network.min.js"></script>
   <script>
   document.addEventListener('DOMContentLoaded', function() {
     let dictionary = [];
@@ -47,109 +774,1048 @@
     let graphData = null;
     let network = null;
     let etyCache = {};
+    let sourceLanguageList = [];
+    let graphMode = "language";
+    let currentWord = "";
+    let graphIndex = null;
+    let graphLanguageSearchTerm = "";
+    let graphAvailableLanguages = [];
+    let graphSelectedLanguages = new Set();
+    let graphVisible = false;
+    let pendingRandomRequest = false;
+    let graphRenderSnapshot = null;
+    let graphFocusedNodeId = "";
+    let collapsedTreeNodes = new Set();
+    let strictTreeRootWord = "";
+    let strictTreeFocusNode = "";
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
     function cleanEtymology(text) {
       if (!text) return "";
-      let out = text;
-
-      // Expand common templates before generic cleanup.
+      let out = String(text);
       out = out.replace(/\{\{affix\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, "From $1 + $2.");
       out = out.replace(/\{\{compound\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, "From $1 + $2.");
       out = out.replace(/\{\{(?:bor|learned borrowing)\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, "Borrowed from $2 ($1).");
       out = out.replace(/\{\{(?:inh|inh\+)\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, "Inherited from $2 ($1).");
       out = out.replace(/\{\{(?:uder|der)\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, "Derived from $2 ($1).");
-
-      out = out
+      return out
         .replace(/\{\{[^}]+\}\}/g, "")
         .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, "$2")
         .replace(/\[\[([^\]]+)\]\]/g, "$1")
         .replace(/\s+/g, " ")
         .trim();
-
-      return out;
+    }
+    function cleanWikiDef(text) {
+      return text
+        .replace(/\{\{non-gloss definition\|([^}]+)\}\}/g, '$1')
+        .replace(/\{\{non-gloss\|([^}]+)\}\}/g, '$1')
+        .replace(/\{\{gloss\|([^}]+)\}\}/g, '($1)')
+        .replace(/\{\{t\+?\|[a-z-]+\|([^|}\s]+)[^}]*\}\}/g, '$1')
+        .replace(/\{\{m\|[a-z-]+\|([^|}\s]+)[^}]*\}\}/g, '$1')
+        .replace(/\{\{[lt]lb\|[^}]*\}\}/g, '')
+        .replace(/\{\{lb\|[^}]*\}\}/g, '')
+        .replace(/\{\{[^}]+\}\}/g, '')
+        .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, '$2')
+        .replace(/\[\[([^\]]+)\]\]/g, '$1')
+        .replace(/'{2,}([^']+)'{2,}/g, '$1')
+        .replace(/\s+/g, ' ')
+        .trim();
     }
     function parseDefinitions(entry) {
-      const stored = Array.isArray(entry.definition)
+      const explicitDefs = Array.isArray(entry.definition)
         ? entry.definition.filter(d => typeof d === "string" && d.trim())
-        : (typeof entry.definition === "string" && entry.definition.trim() ? [entry.definition] : []);
-      if (stored.length) return stored;
-
+        : [];
+      if (explicitDefs.length) return explicitDefs;
       const wikitext = entry.wikitext || "";
       const m = wikitext.match(/==Armenian==\s*\n([\s\S]*?)(?=\n==[^=]|$)/);
       if (!m) return [];
-      // Extract definition lines
-      const defs = m[1]
+      return m[1]
         .split("\n")
         .map(l => l.trim())
-        .filter(l => l.startsWith("#"))
-        .map(l => l.replace(/^#+/, "").trim());
-
-      // Try to extract English glosses from [[...]]
-      // e.g. # [[time]] or # [[period]] {{gloss|of time}}
-      const glosses = defs.map(def => {
-        // Try to extract the first [[...]] as the English gloss
-        const m = def.match(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/);
-        if (m) {
-          // If there's a pipe, use the right side, else use the left
-          return m[2] ? m[2] : m[1];
-        }
-        return null;
-      }).filter(Boolean);
-
-      // If we have glosses, add them as English definitions
-      if (glosses.length) {
-        // Prepend a label for English definitions
-        return [
-          '<span style="color:#006;">English:</span> ' + glosses.join(', '),
-          ...defs
-        ];
-      }
-      return defs;
+        .filter(l => /^#[^#:]/.test(l))
+        .map(l => cleanWikiDef(l.replace(/^#+/, "").trim()))
+        .filter(l => l.length > 1);
     }
     function parsePOS(wikitext) {
-      const m = wikitext.match(/==Armenian==\n([\s\S]*?)(?=\n==[^=]|$)/);
+      const m = wikitext.match(/==Armenian==\s*\n([\s\S]*?)(?=\n==[^=]|$)/);
       if (!m) return "";
-      if (m[1].includes("Noun")) return "noun";
-      if (m[1].includes("Verb")) return "verb";
-      if (m[1].includes("Adjective")) return "adjective";
-      if (m[1].includes("Proper noun")) return "proper noun";
-      if (m[1].includes("Conjunction")) return "conjunction";
-      if (m[1].includes("Suffix")) return "suffix";
+      const sec = m[1];
+      const posTypes = [
+        ["Proper noun", "proper noun"], ["Noun", "noun"], ["Verb", "verb"],
+        ["Adjective", "adjective"], ["Adverb", "adverb"], ["Suffix", "suffix"],
+        ["Prefix", "prefix"], ["Pronoun", "pronoun"], ["Numeral", "numeral"],
+        ["Particle", "particle"], ["Interjection", "interjection"],
+        ["Conjunction", "conjunction"], ["Preposition", "preposition"],
+        ["Postposition", "postposition"], ["Phrase", "phrase"], ["Proverb", "proverb"]
+      ];
+      for (const [match, label] of posTypes) {
+        if (sec.includes(match)) return label;
+      }
       return "";
+    }
+    function parsePronunciation(wikitext) {
+      const m = wikitext.match(/\{\{hy-IPA\|?([^}]*)\}\}/);
+      if (!m) return null;
+      const arg = m[1].replace(/\|.*/, "").trim();
+      return arg || null;
+    }
+    function parseWikiLinks(text) {
+      const words = new Set();
+      for (const m of text.matchAll(/\[\[([^\]|#:]+?)(?:\|[^\]]+)?\]\]/g)) {
+        const w = m[1].trim();
+        if (w && !w.startsWith("Category") && !w.startsWith("File")) words.add(w);
+      }
+      for (const m of text.matchAll(/\{\{col\d+\|hy\|([^}]+)\}\}/g)) {
+        for (const w of m[1].split("|")) {
+          const clean = w.trim();
+          if (clean && !clean.startsWith("title=") && !clean.startsWith("sc=")) words.add(clean);
+        }
+      }
+      return [...words];
+    }
+    function parseWikitextSection(wikitext, sectionName) {
+      const re = new RegExp(`={3,}\\s*${sectionName}\\s*={3,}\\s*\\n([\\s\\S]*?)(?=\\n={2,}|$)`);
+      const m = wikitext.match(re);
+      if (!m) return [];
+      const sec = m[1];
+      const words = parseWikiLinks(sec);
+      for (const tm of sec.matchAll(/\{\{alter\|hy\|([^}]+)\}\}/g)) {
+        for (const w of tm[1].split("|")) {
+          const clean = w.trim();
+          if (clean && !clean.startsWith("t=") && !clean.startsWith("sc=") && !clean.startsWith("tr=")) words.push(clean);
+        }
+      }
+      return [...new Set(words)];
     }
     function parseEtymology(entry) {
       if (etyCache[entry.title]) return etyCache[entry.title];
-      let t = entry.etymology?.[0]?.text || "";
-      t = cleanEtymology(t);
+      let t = "";
+      if (Array.isArray(entry.etymology)) {
+        for (const et of entry.etymology) {
+          const candidate = cleanEtymology(et && et.text ? et.text : "");
+          if (candidate) {
+            t = candidate;
+            break;
+          }
+        }
+      }
+      if (!t) t = cleanEtymology(entry.etymology?.[0]?.text || "");
       etyCache[entry.title] = t;
       return t;
     }
-    function lookup(word) {
+    function getEtymologySourceList(entry) {
+      const sources = new Set();
+      if (Array.isArray(entry.etymology)) {
+        for (const e of entry.etymology) {
+          if (e && typeof e.source === "string" && e.source.trim()) {
+            sources.add(e.source.trim());
+          }
+        }
+      }
+      if (!sources.size) sources.add("Wiktionary Armenian section");
+      return [...sources];
+    }
+    function inferEtymologyConfidence(entry, etyText) {
+      const raw = String(entry?.etymology?.[0]?.text || "").toLowerCase();
+      const clean = String(etyText || "").trim();
+      if (!clean) {
+        return { label: "missing", className: "low" };
+      }
+      if (/(perhaps|possibly|probably|maybe|uncertain|disputed|unknown|compare also|according to)/.test(raw)) {
+        return { label: "probable", className: "medium" };
+      }
+      if (/(from|borrowed from|inherited from|derived from)/.test(raw)) {
+        return { label: "strong", className: "high" };
+      }
+      return { label: "review", className: "medium" };
+    }
+    function inferAttestation(entry, etyText) {
+      const raw = `${entry?.wikitext || ""}\n${entry?.etymology?.[0]?.text || ""}\n${etyText || ""}`;
+      const century = raw.match(/\b(\d{1,2})(?:st|nd|rd|th)?\s+century\b/i);
+      if (century) return `${century[1]}th century`;
+      const year = raw.match(/\b(1[0-9]{3}|20[0-9]{2})\b/);
+      if (year) return year[1];
+      if (/\bOld Armenian\b|\bClassical Armenian\b/i.test(raw)) return "Classical Armenian era";
+      if (/\bMiddle Armenian\b/i.test(raw)) return "Middle Armenian era";
+      if (/\bOttoman Turkish\b/i.test(raw)) return "Ottoman period contact";
+      return "";
+    }
+    function cleanLanguageToken(raw) {
+      const v = String(raw || "").trim().replace(/\s+/g, " ");
+      if (!v) return "";
+      if (/\{\{|\}\}|\[\[|\]\]|===|\|/.test(v)) return "";
+      if (/[<>]/.test(v)) return "";
+      if (/\b(compare|borrowing|borrowed|ultimately|descendant|pronunciation|noun|affix|doublet|see\b|from\b|language\b)\b/i.test(v)) return "";
+      if (v.length > 42) return "";
+      return v;
+    }
+    function getSourceLanguages(entry) {
+      const langs = new Set();
+      if (Array.isArray(entry.etymology)) {
+        for (const e of entry.etymology) {
+          if (e && typeof e.source_language === "string" && e.source_language.trim()) {
+            const clean = normalizeLanguageName(e.source_language);
+            if (clean) langs.add(clean);
+          }
+          if (e && typeof e.text === "string") {
+            const m = e.text.match(/(?:From|Inherited from|Borrowed from)\s+([A-Z][A-Za-z-]*(?:\s+[A-Z][A-Za-z-]*){0,2})/);
+            if (m && m[1]) {
+              const clean = normalizeLanguageName(m[1]);
+              if (clean) langs.add(clean);
+            }
+          }
+        }
+      }
+      return [...langs];
+    }
+    function getEtymologyLineage(entry) {
+      const lineage = [];
+      const found = new Set();
+      const langs = getSourceLanguages(entry);
+      for (const lang of langs) {
+        const v = lang.trim();
+        if (v && !found.has(v.toLowerCase())) {
+          lineage.push(v);
+          found.add(v.toLowerCase());
+        }
+      }
+      const target = "Western Armenian";
+      if (!found.has(target.toLowerCase())) lineage.push(target);
+      return lineage;
+    }
+    function renderLineage(lineage) {
+      if (!lineage.length) return "";
+      let html = `<div class="etymology-lineage">`;
+      lineage.forEach((node, idx) => {
+        if (idx > 0) html += `<span class="lineage-arrow">&#8594;</span>`;
+        html += `<span class="lineage-node">${escapeHtml(node)}</span>`;
+      });
+      html += `</div>`;
+      return html;
+    }
+    function normalizeLookupText(value) {
+      return String(value || "").toLowerCase().trim();
+    }
+    function boundedLevenshtein(a, b, maxDist = 4) {
+      if (a === b) return 0;
+      const al = a.length;
+      const bl = b.length;
+      if (Math.abs(al - bl) > maxDist) return maxDist + 1;
+      const prev = new Array(bl + 1);
+      const curr = new Array(bl + 1);
+      for (let j = 0; j <= bl; j += 1) prev[j] = j;
+      for (let i = 1; i <= al; i += 1) {
+        curr[0] = i;
+        let rowMin = curr[0];
+        for (let j = 1; j <= bl; j += 1) {
+          const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+          curr[j] = Math.min(
+            prev[j] + 1,
+            curr[j - 1] + 1,
+            prev[j - 1] + cost
+          );
+          if (curr[j] < rowMin) rowMin = curr[j];
+        }
+        if (rowMin > maxDist) return maxDist + 1;
+        for (let j = 0; j <= bl; j += 1) prev[j] = curr[j];
+      }
+      return prev[bl];
+    }
+    function getDidYouMeanWords(query, limit = 3) {
+      const q = normalizeLookupText(query);
+      if (!q || q.length < 2 || !allTitles.length) return [];
+      const first = q[0];
+      const candidates = allTitles.filter(t => {
+        const n = normalizeLookupText(t);
+        return n && Math.abs(n.length - q.length) <= 3 && (n[0] === first || n.includes(q));
+      });
+      const scored = [];
+      for (const word of candidates) {
+        const n = normalizeLookupText(word);
+        const dist = boundedLevenshtein(q, n, 3);
+        if (dist <= 3 || n.startsWith(q) || q.startsWith(n)) {
+          const bonus = n.startsWith(q) || q.startsWith(n) ? -0.5 : 0;
+          scored.push({ word, score: dist + bonus });
+        }
+      }
+      scored.sort((a, b) => a.score - b.score || a.word.localeCompare(b.word));
+      return [...new Set(scored.slice(0, limit).map(s => s.word))];
+    }
+    function setMode(mode) {
+      searchMode = mode === "language" ? "language" : "word";
+      const isLanguage = searchMode === "language";
+      document.getElementById("langSearchBtn").classList.toggle("active", isLanguage);
+      document.getElementById("wordSearchBtn").classList.toggle("active", !isLanguage);
+      document.getElementById("search").placeholder = isLanguage
+        ? "Search by source language..."
+        : "Search for a word...";
+    }
+    function setGraphMode(mode) {
+      graphMode = mode === "lineage" || mode === "tree" ? mode : "language";
+      document.getElementById("graphModeLanguageBtn").classList.toggle("active", graphMode === "language");
+      document.getElementById("graphModeLineageBtn").classList.toggle("active", graphMode === "lineage");
+      document.getElementById("graphModeTreeBtn").classList.toggle("active", graphMode === "tree");
+      const help = document.getElementById("graphHelp");
+      if (help) {
+        help.textContent = graphMode === "language"
+          ? "Language Clusters: languages point to words, then words point to descendants. Start with a word search for the cleanest map."
+          : graphMode === "lineage"
+            ? "Word Lineage: direct word-to-word borrowing paths. Best for tracing one term after searching it first."
+            : "Strict Tree: etytree-style top-down family layout. Click nodes to collapse or expand branches.";
+      }
+    }
+    function updateUrlState(mode, query) {
+      const url = new URL(window.location.href);
+      const cleanMode = mode === "language" ? "language" : "word";
+      const cleanQuery = (query || "").trim();
+      url.searchParams.set("mode", cleanMode);
+      if (cleanQuery) {
+        url.searchParams.set("q", cleanQuery);
+      } else {
+        url.searchParams.delete("q");
+      }
+      if (graphVisible) {
+        url.searchParams.set("graph", "1");
+        url.searchParams.set("gmode", graphMode);
+      } else {
+        url.searchParams.delete("graph");
+        url.searchParams.delete("gmode");
+      }
+      if (graphSelectedLanguages.size) {
+        url.searchParams.set("glang", [...graphSelectedLanguages].join(","));
+      } else {
+        url.searchParams.delete("glang");
+      }
+      history.replaceState({
+        mode: cleanMode,
+        q: cleanQuery,
+        graph: graphVisible,
+        gmode: graphMode,
+        glang: [...graphSelectedLanguages]
+      }, "", url);
+    }
+    async function copyToClipboard(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.left = "-9999px";
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+    }
+    function normalizeLanguageName(raw) {
+      const v = cleanLanguageToken(raw);
+      if (!v) return "";
+      const map = {
+        akk: "Akkadian",
+        ar: "Arabic",
+        az: "Azerbaijani",
+        bg: "Bulgarian",
+        ccs: "South Caucasian",
+        de: "German",
+        el: "Greek",
+        en: "English",
+        es: "Spanish",
+        ru: "Russian",
+        fa: "Persian",
+        "fa-cls": "Classical Persian",
+        fr: "French",
+        gkm: "Medieval Greek",
+        hy: "Armenian",
+        "hyx-pro": "Proto-Armenian",
+        "ine-pro": "Proto-Indo-European",
+        ira: "Iranian",
+        it: "Italian",
+        ka: "Georgian",
+        kmr: "Northern Kurdish",
+        la: "Latin",
+        "la-new": "New Latin",
+        ms: "Malay",
+        nl: "Dutch",
+        tr: "Turkish",
+        ota: "Ottoman Turkish",
+        peo: "Old Persian",
+        pnt: "Pontic Greek",
+        qwm: "Kumanovo",
+        ro: "Romanian",
+        sla: "Slavic",
+        trk: "Turkic",
+        "trk-kip": "Kipchak",
+        uk: "Ukrainian",
+        urj: "Uralic",
+        xcl: "Classical Armenian"
+      };
+      const lc = v.toLowerCase();
+      if (map[lc]) return map[lc];
+      if (/^[a-z]{2,3}(?:-[a-z]{2,4})?$/i.test(v)) return "";
+      const cleaned = v.replace(/\s*\([^)]*\)/g, "").trim();
+      return cleanLanguageToken(cleaned);
+    }
+    function getGraphLinkLanguage(link) {
+      const fromName = normalizeLanguageName(link?.source_language || "");
+      if (fromName) return fromName;
+      const fromCode = normalizeLanguageName(link?.source_lang_code || "");
+      return fromCode || "";
+    }
+    function matchesGraphLanguage(link) {
+      if (!graphSelectedLanguages.size) return true;
+      const lang = getGraphLinkLanguage(link);
+      return graphSelectedLanguages.has(lang);
+    }
+    function getGraphLanguageSuffix() {
+      if (!graphSelectedLanguages.size) return "";
+      const preview = [...graphSelectedLanguages].slice(0, 4).join(", ");
+      const extra = graphSelectedLanguages.size > 4 ? ` +${graphSelectedLanguages.size - 4}` : "";
+      return ` | languages: ${preview}${extra}`;
+    }
+    function cloneGraphNode(n) {
+      return {
+        ...n,
+        color: n.color ? { ...n.color } : n.color,
+        font: n.font ? { ...n.font } : n.font
+      };
+    }
+    function cloneGraphEdge(e) {
+      return {
+        ...e,
+        color: e.color ? { ...e.color } : e.color,
+        font: e.font ? { ...e.font } : e.font,
+        smooth: e.smooth && typeof e.smooth === "object" ? { ...e.smooth } : e.smooth
+      };
+    }
+    function restoreGraphSpotlight() {
+      if (!network || !graphRenderSnapshot) return;
+      graphFocusedNodeId = "";
+      network.setData({
+        nodes: graphRenderSnapshot.nodes.map(cloneGraphNode),
+        edges: graphRenderSnapshot.edges.map(cloneGraphEdge)
+      });
+    }
+    function applyGraphSpotlight(nodeId) {
+      if (!network || !graphRenderSnapshot) return;
+      if (!nodeId || graphFocusedNodeId === nodeId) {
+        restoreGraphSpotlight();
+        return;
+      }
+      graphFocusedNodeId = nodeId;
+      const connectedNodes = new Set([nodeId]);
+      for (const e of graphRenderSnapshot.edges) {
+        if (e.from === nodeId || e.to === nodeId) {
+          connectedNodes.add(e.from);
+          connectedNodes.add(e.to);
+        }
+      }
+      const spotlightNodes = graphRenderSnapshot.nodes.map(n => {
+        if (connectedNodes.has(n.id)) return cloneGraphNode(n);
+        return {
+          ...cloneGraphNode(n),
+          color: { background: "#f3ece0", border: "#d6c7b4" },
+          font: { ...(n.font || {}), color: "#b8aa99" }
+        };
+      });
+      const spotlightEdges = graphRenderSnapshot.edges.map(e => {
+        if (e.from === nodeId || e.to === nodeId) {
+          return {
+            ...cloneGraphEdge(e),
+            width: 2,
+            color: { color: "#8a4f28", highlight: "#8a4f28" },
+            font: { ...(e.font || {}), color: "#4f3925", strokeWidth: 3, strokeColor: "#fffef9" }
+          };
+        }
+        return {
+          ...cloneGraphEdge(e),
+          color: { color: "#e2d8ca", highlight: "#e2d8ca" },
+          font: { ...(e.font || {}), color: "#c2b5a4", strokeWidth: 0 }
+        };
+      });
+      network.setData({ nodes: spotlightNodes, edges: spotlightEdges });
+      network.focus(nodeId, { scale: 1.14, animation: { duration: 220, easingFunction: "easeInOutQuad" } });
+    }
+    function renderGraphLanguagePanel() {
+      const panel = document.getElementById("graphLanguagePanel");
+      const q = graphLanguageSearchTerm.toLowerCase();
+      const visibleLanguages = graphAvailableLanguages.filter(lang => lang.toLowerCase().includes(q));
+      panel.innerHTML = "";
+      if (!visibleLanguages.length) {
+        panel.innerHTML = '<span class="graph-selected">No languages match that search.</span>';
+        return;
+      }
+      for (const lang of visibleLanguages) {
+        const label = document.createElement("label");
+        label.className = "graph-lang-option";
+        const input = document.createElement("input");
+        input.type = "checkbox";
+        input.value = lang;
+        input.checked = graphSelectedLanguages.has(lang);
+        input.className = "graph-lang-checkbox";
+        const text = document.createElement("span");
+        text.textContent = lang;
+        label.appendChild(input);
+        label.appendChild(text);
+        panel.appendChild(label);
+      }
+    }
+    function updateGraphSelectedSummary() {
+      const summary = document.getElementById("graphSelectedSummary");
+      if (!graphSelectedLanguages.size) {
+        summary.textContent = "Showing all source languages";
+        return;
+      }
+      summary.textContent = `Showing ${graphSelectedLanguages.size} selected source languages: ${[...graphSelectedLanguages].slice(0, 8).join(", ")}${graphSelectedLanguages.size > 8 ? " ..." : ""}`;
+    }
+    function syncGraphLanguagePanelSelections() {
+      const inputs = document.querySelectorAll(".graph-lang-checkbox");
+      inputs.forEach(input => {
+        input.checked = graphSelectedLanguages.has(input.value);
+      });
+    }
+    function applyGraphLanguageSelection(selection) {
+      graphSelectedLanguages = new Set(selection);
+      syncGraphLanguagePanelSelections();
+      updateGraphSelectedSummary();
+      updateUrlState(searchMode, document.getElementById("search").value.trim());
+      if (graphData) renderGraph(graphMode);
+    }
+    function applyGraphLanguagePreset(presetLanguages) {
+      const allowed = new Set(graphAvailableLanguages);
+      const selected = presetLanguages.filter(lang => allowed.has(lang));
+      applyGraphLanguageSelection(selected);
+    }
+    function populateGraphLanguageOptions() {
+      if (!graphData || !Array.isArray(graphData.links)) return;
+      graphAvailableLanguages = [...new Set(
+        graphData.links.map(l => getGraphLinkLanguage(l)).filter(Boolean)
+      )].sort((a, b) => a.localeCompare(b));
+      renderGraphLanguagePanel();
+      updateGraphSelectedSummary();
+    }
+    function buildGraphIndex() {
+      if (!graphData || !Array.isArray(graphData.links)) return null;
+      const adjacency = new Map();
+      for (const l of graphData.links) {
+        if (!l || !l.source || !l.target) continue;
+        const a = String(l.source);
+        const b = String(l.target);
+        if (!adjacency.has(a)) adjacency.set(a, []);
+        if (!adjacency.has(b)) adjacency.set(b, []);
+        adjacency.get(a).push(l);
+        adjacency.get(b).push(l);
+      }
+      return { adjacency };
+    }
+    function getGraphSeedWord() {
+      const searchVal = document.getElementById("search").value.trim();
+      if (titleIndex[currentWord]) return currentWord;
+      if (titleIndex[searchVal]) return searchVal;
+      return "";
+    }
+    function extractNeighborhood(word, depth = 2, maxEdges = 220) {
+      if (!graphIndex || !graphIndex.adjacency) return [];
+      const out = [];
+      const visitedNodes = new Set([word]);
+      const visitedEdges = new Set();
+      let frontier = [word];
+      for (let d = 0; d < depth; d++) {
+        const next = [];
+        for (const node of frontier) {
+          const links = graphIndex.adjacency.get(node) || [];
+          for (const l of links) {
+            if (!matchesGraphLanguage(l)) continue;
+            const key = `${l.source}|${l.target}|${l.relation || ""}`;
+            if (visitedEdges.has(key)) continue;
+            visitedEdges.add(key);
+            out.push(l);
+            if (out.length >= maxEdges) return out;
+            const a = String(l.source);
+            const b = String(l.target);
+            if (!visitedNodes.has(a)) {
+              visitedNodes.add(a);
+              next.push(a);
+            }
+            if (!visitedNodes.has(b)) {
+              visitedNodes.add(b);
+              next.push(b);
+            }
+          }
+        }
+        frontier = next;
+        if (!frontier.length) break;
+      }
+      return out;
+    }
+    function buildStrictTreeLinks(seedWord, depth = 3, maxNodes = 160) {
+      if (!graphIndex || !graphIndex.adjacency || !seedWord) return [];
+      const visited = new Set([seedWord]);
+      const tree = [];
+      let frontier = [seedWord];
+
+      for (let d = 0; d < depth; d++) {
+        const next = [];
+        for (const parent of frontier) {
+          if (collapsedTreeNodes.has(parent)) continue;
+          const links = graphIndex.adjacency.get(parent) || [];
+          for (const l of links) {
+            if (!matchesGraphLanguage(l)) continue;
+            const src = String(l.source);
+            const tgt = String(l.target);
+            const neighbor = src === parent ? tgt : src;
+            if (visited.has(neighbor)) continue;
+            visited.add(neighbor);
+            tree.push({
+              parent,
+              child: neighbor,
+              relation: l.relation || "",
+              source_language: l.source_language || null
+            });
+            next.push(neighbor);
+            if (visited.size >= maxNodes) return tree;
+          }
+        }
+        frontier = next;
+        if (!frontier.length) break;
+      }
+      return tree;
+    }
+    function renderGraphForLinks(links, mode, seedWord) {
+      const container = document.getElementById("graphContainer");
+      const note = document.getElementById("graphNote");
+      if (!links.length) {
+        container.innerHTML = "<p style=\"padding:0.8rem\">No graph data for this selection.</p>";
+        note.textContent = "";
+        return;
+      }
+      const nodeMap = new Map();
+      const edges = [];
+      const addWordNode = (id, group = "unknown") => {
+        if (!nodeMap.has(id)) {
+          nodeMap.set(id, {
+            id,
+            label: id,
+            group,
+            shape: "dot",
+            size: id === seedWord ? 18 : 11,
+            font: { face: "EB Garamond", size: id === seedWord ? 22 : 16 },
+            color: id === seedWord ? { background: "#c97d46", border: "#8a4f28" } : undefined
+          });
+        }
+      };
+
+      if (mode === "tree") {
+        const treeLinks = buildStrictTreeLinks(seedWord, 3, 160);
+        if (!treeLinks.length) {
+          container.innerHTML = "<p style=\"padding:0.8rem\">No tree data for this selection and language filter. Pick another word or clear filter.</p>";
+          note.textContent = "";
+          return;
+        }
+        const parentNodes = new Set(treeLinks.map(l => l.parent));
+        const levelByNode = new Map([[seedWord, 0]]);
+        addWordNode(seedWord, "word");
+        nodeMap.set(seedWord, {
+          ...nodeMap.get(seedWord),
+          shape: "box",
+          level: 0,
+          margin: { top: 6, right: 8, bottom: 6, left: 8 },
+          font: { face: "EB Garamond", size: 19, color: "#2f1b0d" },
+          color: { background: "#e8c7a0", border: "#8a4f28" },
+          borderWidth: 2
+        });
+        for (const l of treeLinks) {
+          const parentLevel = levelByNode.get(l.parent) ?? 0;
+          const childLevel = parentLevel + 1;
+          levelByNode.set(l.child, childLevel);
+          addWordNode(l.parent, "word");
+          addWordNode(l.child, "word");
+          nodeMap.set(l.parent, {
+            ...nodeMap.get(l.parent),
+            shape: "box",
+            level: levelByNode.get(l.parent) ?? parentLevel,
+            margin: { top: 5, right: 7, bottom: 5, left: 7 },
+            font: { face: "EB Garamond", size: l.parent === seedWord ? 19 : 16, color: "#2f2922" },
+            color: l.parent === seedWord
+              ? { background: "#e8c7a0", border: "#8a4f28" }
+              : { background: "#fff7ea", border: "#b89b7d" },
+            borderWidth: l.parent === seedWord ? 2 : 1
+          });
+          nodeMap.set(l.child, {
+            ...nodeMap.get(l.child),
+            shape: "box",
+            level: childLevel,
+            margin: { top: 5, right: 7, bottom: 5, left: 7 },
+            font: { face: "EB Garamond", size: 16, color: "#2f2922" },
+            color: { background: "#fff7ea", border: "#b89b7d" },
+            borderWidth: 1
+          });
+          const rel = String(l.relation || "").trim() || "etymological link";
+          edges.push({
+            from: l.parent,
+            to: l.child,
+            arrows: "to",
+            title: rel,
+            label: "",
+            color: { color: "#b69b7f", highlight: "#8a4f28", hover: "#8a4f28" },
+            width: 1.2,
+            smooth: { type: "cubicBezier", forceDirection: "vertical", roundness: 0.26 }
+          });
+        }
+        for (const [nodeId, node] of nodeMap.entries()) {
+          if (!parentNodes.has(nodeId)) continue;
+          const collapsed = collapsedTreeNodes.has(nodeId);
+          nodeMap.set(nodeId, {
+            ...node,
+            label: `${nodeId}${collapsed ? " ▸" : " ▾"}`,
+            title: collapsed ? "Click to expand this branch" : "Click to collapse this branch"
+          });
+        }
+        note.textContent = `Strict tree view rooted at ${seedWord}${getGraphLanguageSuffix()}`;
+      } else if (mode === "lineage") {
+        for (const l of links) {
+          const src = String(l.source);
+          const tgt = String(l.target);
+          const rel = String(l.relation || "").trim();
+          addWordNode(src, "word");
+          addWordNode(tgt, "word");
+          edges.push({
+            from: src,
+            to: tgt,
+            arrows: "to",
+            label: rel.length <= 22 ? rel : "",
+            font: { size: 10, align: "middle" },
+            color: { color: "#b69b7f", highlight: "#8a4f28" }
+          });
+        }
+        note.textContent = `Word lineage view${seedWord ? ` for ${seedWord}` : ""}${getGraphLanguageSuffix()}`;
+      } else {
+        const langNodes = new Set();
+        for (const l of links) {
+          const src = String(l.source);
+          const tgt = String(l.target);
+          const lang = getGraphLinkLanguage(l);
+          if (!lang) continue;
+          addWordNode(src, "word");
+          addWordNode(tgt, "word");
+          const langId = `lang:${lang}`;
+          if (!langNodes.has(langId)) {
+            langNodes.add(langId);
+            nodeMap.set(langId, {
+              id: langId,
+              label: lang,
+              shape: "box",
+              group: "language",
+              font: { face: "IBM Plex Sans", size: 12 },
+              color: { background: "#f6e8d2", border: "#b89674" }
+            });
+          }
+          edges.push({
+            from: langId,
+            to: src,
+            arrows: "to",
+            dashes: true,
+            color: { color: "#d3b796" },
+            width: 1
+          });
+          edges.push({
+            from: src,
+            to: tgt,
+            arrows: "to",
+            color: { color: "#bea487" },
+            width: 1
+          });
+        }
+        note.textContent = `Language-clustered view${seedWord ? ` around ${seedWord}` : ""}${getGraphLanguageSuffix()}`;
+      }
+
+      const nodes = [...nodeMap.values()];
+      graphRenderSnapshot = {
+        nodes: nodes.map(cloneGraphNode),
+        edges: edges.map(cloneGraphEdge)
+      };
+      graphFocusedNodeId = "";
+      if (network) network.destroy();
+      network = new vis.Network(container, { nodes, edges }, {
+        interaction: { hover: true, navigationButtons: true, keyboard: true },
+        nodes: {
+          borderWidth: 1,
+          color: { background: "#fcf4e5", border: "#b79b7e" },
+          shapeProperties: { borderDashes: false }
+        },
+        edges: {
+          smooth: { type: "continuous", roundness: 0.16 },
+          font: { size: 11, color: "#5f4f3f", strokeWidth: 3, strokeColor: "#fffef9" },
+          selectionWidth: 1.5
+        },
+        layout: mode === "tree"
+          ? {
+              hierarchical: {
+                enabled: true,
+                direction: "UD",
+                sortMethod: "directed",
+                levelSeparation: 140,
+                nodeSpacing: 180,
+                treeSpacing: 220,
+                edgeMinimization: true,
+                parentCentralization: true,
+                blockShifting: true
+              }
+            }
+          : mode === "language"
+            ? { hierarchical: { enabled: true, direction: "LR", sortMethod: "directed", levelSeparation: 130 } }
+            : {},
+        physics: mode === "lineage"
+      });
+      network.once("stabilized", () => {
+        if (mode === "tree" && strictTreeFocusNode) {
+          network.focus(strictTreeFocusNode, {
+            scale: 1.08,
+            animation: { duration: 260, easingFunction: "easeInOutQuad" }
+          });
+          strictTreeFocusNode = "";
+        } else if (seedWord) {
+          network.focus(seedWord, {
+            scale: 1.05,
+            animation: { duration: 350, easingFunction: "easeInOutQuad" }
+          });
+        } else {
+          network.fit({ animation: { duration: 350, easingFunction: "easeInOutQuad" } });
+          network.moveTo({ scale: 0.85 });
+        }
+      });
+      network.on("doubleClick", params => {
+        if (params.nodes && params.nodes.length) {
+          network.focus(params.nodes[0], {
+            scale: 1.12,
+            animation: { duration: 250, easingFunction: "easeInOutQuad" }
+          });
+        }
+      });
+      network.on("click", params => {
+        if (mode === "tree") {
+          if (params.nodes && params.nodes.length) {
+            const nodeId = params.nodes[0];
+            if (collapsedTreeNodes.has(nodeId)) collapsedTreeNodes.delete(nodeId);
+            else collapsedTreeNodes.add(nodeId);
+            strictTreeFocusNode = nodeId;
+            renderGraph("tree");
+          }
+          return;
+        }
+        if (params.nodes && params.nodes.length) {
+          applyGraphSpotlight(params.nodes[0]);
+          return;
+        }
+        restoreGraphSpotlight();
+      });
+    }
+    function renderGraph(mode) {
+      const seed = getGraphSeedWord();
+      if (mode === "tree") {
+        const root = seed || currentWord || "";
+        if (root && root !== strictTreeRootWord) {
+          strictTreeRootWord = root;
+          collapsedTreeNodes.clear();
+        }
+      }
+      let links = [];
+      const maxEdges = mode === "language" ? 90 : 140;
+      const depth = mode === "language" ? 1 : 2;
+      if (seed) {
+        links = extractNeighborhood(seed, depth, maxEdges);
+      } else if (mode === "tree" && allTitles.length) {
+        currentWord = allTitles[0];
+        links = extractNeighborhood(currentWord, 2, 140);
+      } else if (!graphSelectedLanguages.size) {
+        const container = document.getElementById("graphContainer");
+        const note = document.getElementById("graphNote");
+        container.innerHTML = "<p style=\"padding:0.8rem\">Search a word first, or choose a language preset, to get a focused graph.</p>";
+        note.textContent = "Tip: word-first gives the clearest graph.";
+        updateUrlState(searchMode, document.getElementById("search").value.trim());
+        return;
+      }
+      if (!links.length && graphData && Array.isArray(graphData.links)) {
+        const fallback = graphSelectedLanguages.size
+          ? graphData.links.filter(l => matchesGraphLanguage(l))
+          : graphData.links;
+        links = fallback.slice(0, mode === "language" ? 80 : 110);
+      }
+      renderGraphForLinks(links, mode, seed || currentWord || "");
+      updateUrlState(searchMode, document.getElementById("search").value.trim());
+    }
+    function applyStateFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      const mode = params.get("mode") === "language" ? "language" : "word";
+      const q = (params.get("q") || "").trim();
+      const graphParam = params.get("graph") === "1";
+      const urlGraphMode = params.get("gmode");
+      const graphLangs = (params.get("glang") || "")
+        .split(",")
+        .map(v => normalizeLanguageName(v.trim()))
+        .filter(Boolean);
+      setMode(mode);
+      setGraphMode(urlGraphMode);
+      graphSelectedLanguages = new Set(graphLangs);
+      updateGraphSelectedSummary();
+      graphVisible = graphParam;
+      document.getElementById("graphSection").style.display = graphVisible ? "block" : "none";
+      document.getElementById("search").value = q;
+      if (q) {
+        if (mode === "language") {
+          lookupLanguage(q, false);
+        } else {
+          lookup(q, false);
+        }
+      }
+    }
+    function lookupLanguage(query, syncUrl = true) {
+      const el = document.getElementById("result");
+      const cleanQuery = (query || "").trim();
+      const q = cleanQuery.toLowerCase();
+      if (!q) {
+        el.innerHTML = "";
+        if (syncUrl) updateUrlState("language", "");
+        return;
+      }
+      const matches = dictionary
+        .map(entry => ({ entry, langs: getSourceLanguages(entry) }))
+        .filter(item => item.langs.some(l => l.toLowerCase().includes(q)))
+        .slice(0, 150);
+      if (!matches.length) {
+        el.innerHTML = `<div class="not-found">No entries found for source language: ${escapeHtml(cleanQuery)}</div>`;
+        if (syncUrl) updateUrlState("language", cleanQuery);
+        return;
+      }
+      let html = `<div class="lang-results-title">${matches.length} entries with source language matching "${escapeHtml(cleanQuery)}"</div>`;
+      html += `<ul class="lang-result-list">`;
+      for (const m of matches) {
+        const langs = m.langs.length ? m.langs.join(", ") : "unspecified";
+        const encodedWord = encodeURIComponent(m.entry.title);
+        html += `<li class="lang-result-item"><span class="lang-result-word" data-word="${encodedWord}">${escapeHtml(m.entry.title)}</span><span class="lang-result-meta">${escapeHtml(langs)}</span></li>`;
+      }
+      html += `</ul>`;
+      el.innerHTML = html;
+      if (syncUrl) updateUrlState("language", cleanQuery);
+    }
+    function lookup(word, syncUrl = true) {
       const entry = titleIndex[word];
       const el = document.getElementById("result");
       document.getElementById("suggestions").style.display = "none";
       el.style.display = "block";
       if (!entry) {
-        el.innerHTML = `<div class="not-found">Not found: ${word}</div>`;
+        const suggestions = getDidYouMeanWords(word, 4);
+        let suggestionHtml = "";
+        if (suggestions.length) {
+          suggestionHtml = `<div class="did-you-mean">Did you mean: ${suggestions.map(w => `<button type="button" class="suggest-link" data-word="${encodeURIComponent(w)}">${escapeHtml(w)}</button>`).join("")}</div>`;
+        }
+        el.innerHTML = `<div class="not-found">Not found: ${escapeHtml(word)}${suggestionHtml}</div>`;
+        if (syncUrl) updateUrlState("word", word);
         return;
       }
       const defs = parseDefinitions(entry);
       const pos = parsePOS(entry.wikitext || "");
+      const pron = parsePronunciation(entry.wikitext || "");
+      const altForms = parseWikitextSection(entry.wikitext || "", "Alternative forms");
+      const derivedTerms = parseWikitextSection(entry.wikitext || "", "Derived terms");
+      const relatedTerms = parseWikitextSection(entry.wikitext || "", "Related terms");
+      const seeAlso = parseWikitextSection(entry.wikitext || "", "See also");
       const ety = parseEtymology(entry);
-      let html = `<div class="word-title">${entry.title}</div>`;
-      if (pos) html += `<div class="word-pos">${pos}</div>`;
-      if (defs.length) {
-        html += `<div class="section-label">Definition</div><ol>`;
+      const etyConfidence = inferEtymologyConfidence(entry, ety);
+      const attestation = inferAttestation(entry, ety);
+      const etySources = getEtymologySourceList(entry);
+      const srcLangs = getSourceLanguages(entry);
+      const lineage = getEtymologyLineage(entry);
+      currentWord = entry.title;
+      let html = `<article class="entry-card"><div class="entry-head"><div class="word-title">${escapeHtml(entry.title)}</div>`;
+      if (pos) html += `<div class="word-pos">${escapeHtml(pos)}</div>`;
+      if (pron) html += `<div class="pronunciation"><span class="pron-label">Pron.</span>${escapeHtml(pron)}</div>`;
+      const encodedTitle = encodeURIComponent(entry.title);
+      html += `<div class="entry-tools"><button type="button" class="permalink-btn" data-word="${encodedTitle}">Permalink</button><span class="permalink-status" id="permalinkStatus"></span></div>`;
+      html += `</div><div class="entry-content">`;
+      // Prefer explicit definition field if present
+      if (entry.definition && Array.isArray(entry.definition) && entry.definition.length) {
+        html += `<div class="section-label">Definition <span class="source-badge wiktionary">Wiktionary</span></div><ol>`;
+        for (const d of entry.definition) html += `<li>${d}</li>`;
+        html += `</ol>`;
+      } else if (defs.length) {
+        html += `<div class="section-label">Definition <span class="source-badge wiktionary">Wiktionary</span></div><ol>`;
         for (const d of defs) html += `<li>${d}</li>`;
         html += `</ol>`;
       }
-      html += `<div class="section-label">Etymology</div>\n           <div class="etymology-box">${ety || "—"}</div>`;
-      if (window.nayiriForms && window.nayiriForms[entry.title]) {
-        const forms = window.nayiriForms[entry.title];
-        html += `<div class="section-label">Nayiri Forms</div><ul class="nayiri-forms">`;
-        for (const f of forms) html += `<li>${f}</li>`;
-        html += `</ul>`;
+      html += `<div class="section-label">Etymology <span class="source-badge wiktionary">Wiktionary</span><span class="ety-confidence ${escapeHtml(etyConfidence.className)}">${escapeHtml(etyConfidence.label)}</span></div>`;
+      html += `<div class="etymology-box">${renderLineage(lineage)}${escapeHtml(ety || "—")}</div>`;
+      html += `<div class="ety-sources">Sources: ${etySources.map(s => escapeHtml(s)).join("; ")}</div>`;
+      if (attestation) html += `<div class="attestation-note">Timeline: ${escapeHtml(attestation)}</div>`;
+      // Nayiri panel
+      const nayiriEntry = window.nayiriIndex && window.nayiriIndex[entry.title];
+      if (nayiriEntry) {
+        html += `<div class="section-label">Nayiri <span class="source-badge nayiri">Nayiri</span></div>`;
+        html += `<div class="nayiri-panel">`;
+        if (nayiriEntry.description) {
+          // Extract just the parenthetical gloss if present
+          const glossMatch = nayiriEntry.description.match(/\((.+)\)/);
+          const gloss = glossMatch ? glossMatch[1] : nayiriEntry.description;
+          html += `<div class="nayiri-gloss">${escapeHtml(gloss)}</div>`;
+        }
+        if (nayiriEntry.partOfSpeech) {
+          html += `<div class="nayiri-pos">${escapeHtml(nayiriEntry.partOfSpeech.toLowerCase())}</div>`;
+        }
+        if (nayiriEntry.wordForms && nayiriEntry.wordForms.length) {
+          const forms = [...new Set(nayiriEntry.wordForms)].slice(0, 12);
+          html += `<div class="nayiri-forms-grid">`;
+          for (const f of forms) html += `<span class="nayiri-form-pill">${escapeHtml(f)}</span>`;
+          html += `</div>`;
+        }
+        html += `</div>`;
       }
+      if (altForms.length) {
+        html += `<div class="section-label">Alternative Forms</div>`;
+        html += `<div class="word-links">`;
+        for (const w of altForms) html += `<button type="button" class="word-link" data-word="${encodeURIComponent(w)}">${escapeHtml(w)}</button>`;
+        html += `</div>`;
+      }
+      if (derivedTerms.length) {
+        html += `<div class="section-label">Derived Terms</div>`;
+        html += `<div class="word-links">`;
+        for (const w of derivedTerms) html += `<button type="button" class="word-link" data-word="${encodeURIComponent(w)}">${escapeHtml(w)}</button>`;
+        html += `</div>`;
+      }
+      if (relatedTerms.length) {
+        html += `<div class="section-label">Related Terms</div>`;
+        html += `<div class="word-links">`;
+        for (const w of relatedTerms) html += `<button type="button" class="word-link" data-word="${encodeURIComponent(w)}">${escapeHtml(w)}</button>`;
+        html += `</div>`;
+      }
+      if (seeAlso.length) {
+        html += `<div class="section-label">See Also</div>`;
+        html += `<div class="word-links">`;
+        for (const w of seeAlso) html += `<button type="button" class="word-link" data-word="${encodeURIComponent(w)}">${escapeHtml(w)}</button>`;
+        html += `</div>`;
+      }
+      html += `<div class="entry-meta">`;
+      html += `<span class="meta-pill">${defs.length || (entry.definition?.length || 0)} defs</span>`;
+      html += `<span class="meta-pill">ety ${escapeHtml(etyConfidence.label)}</span>`;
+      if (attestation) html += `<span class="meta-pill">attestation ${escapeHtml(attestation)}</span>`;
+      if (srcLangs.length) {
+        for (const lang of srcLangs) {
+          const encodedLang = encodeURIComponent(lang);
+          html += `<button type="button" class="source-chip" data-lang="${encodedLang}">${escapeHtml(lang)}</button>`;
+        }
+      } else {
+        html += `<span class="meta-pill">${ety ? "Armenian formation" : "source unknown"}</span>`;
+      }
+      html += `</div>`;
+      html += `</div></article>`;
       el.innerHTML = html;
+      if (syncUrl) updateUrlState("word", entry.title);
     }
     window.lookup = lookup;
     function showSuggestions(q) {
@@ -158,9 +1824,14 @@
         box.style.display = "none";
         return;
       }
-      const matches = allTitles
+      const source = searchMode === "word" ? allTitles : sourceLanguageList;
+      const matches = source
         .filter(t => t.toLowerCase().includes(q.toLowerCase()))
-        .slice(0, 10);
+        .slice(0, 3);
+      if (!matches.length) {
+        box.style.display = "none";
+        return;
+      }
       box.innerHTML = "";
       matches.forEach(m => {
         const div = document.createElement("div");
@@ -168,12 +1839,78 @@
         div.textContent = m;
         div.addEventListener("mousedown", (e) => {
           e.preventDefault();
-          lookup(m);
+          if (searchMode === "word") {
+            lookup(m, true);
+          } else {
+            lookupLanguage(m, true);
+            document.getElementById("search").value = m;
+          }
           box.style.display = "none";
         });
         box.appendChild(div);
       });
       box.style.display = "block";
+    }
+    function triggerRandomWordLookup() {
+      const pool = allTitles.filter(Boolean);
+      if (!pool.length) return false;
+      let idx = Math.floor(Math.random() * pool.length);
+      if (pool.length > 1 && currentWord) {
+        const currentIdx = pool.indexOf(currentWord);
+        if (currentIdx !== -1 && idx === currentIdx) {
+          const step = 1 + Math.floor(Math.random() * (pool.length - 1));
+          idx = (idx + step) % pool.length;
+        }
+      }
+      const word = pool[idx];
+      setMode("word");
+      document.getElementById("search").value = word;
+      lookup(word, true);
+      return true;
+    }
+    function insertTextAtCursor(input, text) {
+      const start = input.selectionStart ?? input.value.length;
+      const end = input.selectionEnd ?? input.value.length;
+      input.value = input.value.slice(0, start) + text + input.value.slice(end);
+      const pos = start + text.length;
+      input.setSelectionRange(pos, pos);
+    }
+    function runSearchFromInput() {
+      const q = document.getElementById("search").value.trim();
+      if (searchMode === "word") lookup(q, true);
+      else lookupLanguage(q, true);
+    }
+    function setKeyboardOpen(open) {
+      const panel = document.getElementById("armenianKeyboard");
+      const btn = document.getElementById("toggleKeyboardBtn");
+      panel.style.display = open ? "block" : "none";
+      panel.setAttribute("aria-hidden", open ? "false" : "true");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      btn.textContent = open ? "Hide Armenian Keyboard" : "Show Armenian Keyboard";
+    }
+    function renderArmenianKeyboard() {
+      const panel = document.getElementById("armenianKeyboard");
+      const rows = [
+        ["է", "թ", "փ", "ձ", "ջ", "ր", "չ", "ճ", "ժ", "ծ", "ւ"],
+        ["ք", "ո", "ե", "ռ", "տ", "ը", "ւ", "ի", "օ", "պ", "խ"],
+        ["ա", "ս", "դ", "ֆ", "գ", "հ", "յ", "կ", "լ", ";", "՛"],
+        ["զ", "ղ", "ց", "վ", "բ", "ն", "մ", "շ", "՞", "։", "և"]
+      ];
+      let html = "";
+      rows.forEach(row => {
+        html += `<div class="keyboard-row">`;
+        row.forEach(ch => {
+          html += `<button type="button" class="kbd-key" data-kbd-key="${escapeHtml(ch)}">${escapeHtml(ch)}</button>`;
+        });
+        html += `</div>`;
+      });
+      html += `<div class="keyboard-row">`;
+      html += `<button type="button" class="kbd-key action" data-kbd-action="backspace">Back</button>`;
+      html += `<button type="button" class="kbd-key action wide" data-kbd-action="space">Space</button>`;
+      html += `<button type="button" class="kbd-key action" data-kbd-action="clear">Clear</button>`;
+      html += `<button type="button" class="kbd-key action" data-kbd-action="search">Search</button>`;
+      html += `</div>`;
+      panel.innerHTML = html;
     }
     function loadDictionary() {
       fetch("western_armenian_wiktionary.json")
@@ -184,9 +1921,18 @@
             titleIndex[e.title] = e;
           }
           allTitles = data.map(e => e.title);
+          sourceLanguageList = [...new Set(data.flatMap(e => getSourceLanguages(e)))].sort();
           document.getElementById("count").textContent =
             data.length.toLocaleString() + " entries";
           document.getElementById("showGraphBtn").style.display = "block";
+          applyStateFromUrl();
+          if (graphVisible) {
+            document.getElementById("showGraphBtn").click();
+          }
+          if (pendingRandomRequest) {
+            pendingRandomRequest = false;
+            triggerRandomWordLookup();
+          }
         });
     }
     let searchTimeout = null;
@@ -197,49 +1943,245 @@
       }, 120);
     });
     document.getElementById("search").addEventListener("keydown", e => {
-      if (e.key === "Enter") lookup(e.target.value.trim());
+      if (e.key === "Enter") {
+        const q = e.target.value.trim();
+        if (searchMode === "word") lookup(q, true);
+        else lookupLanguage(q, true);
+      }
     });
+    document.getElementById("toggleKeyboardBtn").onclick = () => {
+      const panel = document.getElementById("armenianKeyboard");
+      const open = panel.style.display === "block";
+      setKeyboardOpen(!open);
+      if (!open) document.getElementById("search").focus();
+    };
+    renderArmenianKeyboard();
+    setKeyboardOpen(false);
     document.getElementById("wordSearchBtn").onclick = () => {
-      searchMode = "word";
-      document.getElementById("wordSearchBtn").classList.add("active");
-      document.getElementById("langSearchBtn").classList.remove("active");
+      setMode("word");
+      updateUrlState("word", document.getElementById("search").value.trim());
     };
     document.getElementById("langSearchBtn").onclick = () => {
-      searchMode = "language";
-      document.getElementById("langSearchBtn").classList.add("active");
-      document.getElementById("wordSearchBtn").classList.remove("active");
+      setMode("language");
+      updateUrlState("language", document.getElementById("search").value.trim());
     };
-    document.getElementById("showGraphBtn").onclick = async () => {
+    document.getElementById("randomWordBtn").onclick = () => {
+      if (!triggerRandomWordLookup()) {
+        pendingRandomRequest = true;
+        const countEl = document.getElementById("count");
+        if (countEl && !countEl.textContent.trim()) {
+          countEl.textContent = "Loading entries...";
+        }
+      }
+    };
+    async function openGraphSection() {
       const sec = document.getElementById("graphSection");
       const container = document.getElementById("graphContainer");
       sec.style.display = "block";
+      graphVisible = true;
       if (!graphData) {
         try {
           graphData = await fetch("graph_web.json").then(r => r.json());
+          graphIndex = buildGraphIndex();
+          populateGraphLanguageOptions();
+          syncGraphLanguagePanelSelections();
         } catch (err) {
           console.error("Failed to load graph data:", err);
           container.innerHTML = "<p>Could not load graph data.</p>";
           return;
         }
       }
-      const nodes = graphData.nodes.map((n, i) => ({
-        id: i,
-        label: n.id
-      }));
-      new vis.Network(container, { nodes, edges: [] }, {
-        physics: true
-      });
+      renderGraph(graphMode);
+    }
+    document.getElementById("showGraphBtn").onclick = () => {
+      setGraphMode("tree");
+      openGraphSection();
+      updateUrlState(searchMode, document.getElementById("search").value.trim());
     };
+    document.getElementById("graphModeLanguageBtn").onclick = () => {
+      setGraphMode("language");
+      updateUrlState(searchMode, document.getElementById("search").value.trim());
+      if (graphData) renderGraph(graphMode);
+    };
+    document.getElementById("graphModeLineageBtn").onclick = () => {
+      setGraphMode("lineage");
+      updateUrlState(searchMode, document.getElementById("search").value.trim());
+      if (graphData) renderGraph(graphMode);
+    };
+    document.getElementById("graphModeTreeBtn").onclick = () => {
+      setGraphMode("tree");
+      updateUrlState(searchMode, document.getElementById("search").value.trim());
+      if (graphData) renderGraph(graphMode);
+    };
+    document.getElementById("graphResetBtn").onclick = () => {
+      restoreGraphSpotlight();
+      collapsedTreeNodes.clear();
+      strictTreeFocusNode = "";
+      if (graphData && graphMode === "tree") {
+        renderGraph("tree");
+        return;
+      }
+      if (network) {
+        network.fit({ animation: { duration: 300, easingFunction: "easeInOutQuad" } });
+      }
+    };
+    document.getElementById("graphLangApplyBtn").onclick = () => {
+      const checked = document.querySelectorAll(".graph-lang-checkbox:checked");
+      applyGraphLanguageSelection([...checked].map(input => input.value));
+    };
+    document.getElementById("graphLangClearBtn").onclick = () => {
+      graphSelectedLanguages = new Set();
+      graphLanguageSearchTerm = "";
+      document.getElementById("graphLangSearch").value = "";
+      renderGraphLanguagePanel();
+      updateGraphSelectedSummary();
+      updateUrlState(searchMode, document.getElementById("search").value.trim());
+      if (graphData) renderGraph(graphMode);
+    };
+    document.getElementById("graphLangSearch").addEventListener("input", e => {
+      graphLanguageSearchTerm = e.target.value.trim();
+      renderGraphLanguagePanel();
+    });
+    document.getElementById("graphLangSearch").addEventListener("keydown", e => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        const checked = document.querySelectorAll(".graph-lang-checkbox:checked");
+        applyGraphLanguageSelection([...checked].map(input => input.value));
+      }
+    });
+    document.querySelectorAll("[data-graph-preset]").forEach(button => {
+      button.addEventListener("click", () => {
+        const raw = button.getAttribute("data-graph-preset") || "";
+        const langs = raw.split("|").map(v => v.trim()).filter(Boolean);
+        applyGraphLanguagePreset(langs);
+      });
+    });
     document.addEventListener("click", e => {
       if (!e.target.closest("#suggestions") && !e.target.closest("#search")) {
         document.getElementById("suggestions").style.display = "none";
       }
+      if (e.target.classList.contains("kbd-key")) {
+        const input = document.getElementById("search");
+        const action = e.target.getAttribute("data-kbd-action");
+        const key = e.target.getAttribute("data-kbd-key");
+        if (action === "backspace") {
+          const start = input.selectionStart ?? input.value.length;
+          const end = input.selectionEnd ?? input.value.length;
+          if (start !== end) {
+            input.value = input.value.slice(0, start) + input.value.slice(end);
+            input.setSelectionRange(start, start);
+          } else if (start > 0) {
+            input.value = input.value.slice(0, start - 1) + input.value.slice(end);
+            input.setSelectionRange(start - 1, start - 1);
+          }
+          showSuggestions(input.value.trim());
+          input.focus();
+          return;
+        }
+        if (action === "space") {
+          insertTextAtCursor(input, " ");
+          showSuggestions(input.value.trim());
+          input.focus();
+          return;
+        }
+        if (action === "clear") {
+          input.value = "";
+          showSuggestions("");
+          input.focus();
+          return;
+        }
+        if (action === "search") {
+          runSearchFromInput();
+          input.focus();
+          return;
+        }
+        if (key) {
+          insertTextAtCursor(input, key);
+          showSuggestions(input.value.trim());
+          input.focus();
+          return;
+        }
+      }
+      if (e.target.classList.contains("source-chip")) {
+        const lang = e.target.dataset.lang ? decodeURIComponent(e.target.dataset.lang) : "";
+        if (!lang) return;
+        setMode("language");
+        document.getElementById("search").value = lang;
+        lookupLanguage(lang, true);
+      }
+      if (e.target.classList.contains("lang-result-word")) {
+        const w = e.target.dataset.word ? decodeURIComponent(e.target.dataset.word) : "";
+        if (w) {
+          setMode("word");
+          document.getElementById("search").value = w;
+          lookup(w, true);
+        }
+      }
+      if (e.target.classList.contains("word-link")) {
+        const w = e.target.dataset.word ? decodeURIComponent(e.target.dataset.word) : "";
+        if (w) {
+          setMode("word");
+          document.getElementById("search").value = w;
+          lookup(w, true);
+        }
+      }
+      if (e.target.classList.contains("suggest-link")) {
+        const w = e.target.dataset.word ? decodeURIComponent(e.target.dataset.word) : "";
+        if (w) {
+          setMode("word");
+          document.getElementById("search").value = w;
+          lookup(w, true);
+        }
+      }
+      if (e.target.classList.contains("permalink-btn")) {
+        const w = e.target.dataset.word ? decodeURIComponent(e.target.dataset.word) : "";
+        if (!w) return;
+        const url = new URL(window.location.href);
+        url.searchParams.set("mode", "word");
+        url.searchParams.set("q", w);
+        copyToClipboard(url.toString())
+          .then(() => {
+            const status = document.getElementById("permalinkStatus");
+            if (!status) return;
+            status.textContent = "Link copied";
+            setTimeout(() => {
+              if (status.textContent === "Link copied") status.textContent = "";
+            }, 1400);
+          })
+          .catch(() => {
+            const status = document.getElementById("permalinkStatus");
+            if (status) status.textContent = "Copy failed";
+          });
+      }
+    });
+    window.addEventListener("popstate", () => {
+      if (!dictionary.length) return;
+      applyStateFromUrl();
+      if (graphVisible && graphData) {
+        syncGraphLanguagePanelSelections();
+        renderGraph(graphMode);
+      }
     });
     loadDictionary();
-    fetch("nayiri_forms.json")
+    fetch("nayiri-armenian-lexicon-2026-02-15-v1%202.json")
       .then(r => r.json())
-      .then(d => window.nayiriForms = d)
-      .catch(err => console.error("Could not load nayiri_forms.json:", err));
+      .then(d => {
+        // Build index: lemmaString → { description, partOfSpeech, wordForms }
+        window.nayiriIndex = {};
+        for (const lex of (d.lexemes || [])) {
+          for (const lemma of (lex.lemmas || [])) {
+            const key = lemma.lemmaString;
+            if (key && !window.nayiriIndex[key]) {
+              window.nayiriIndex[key] = {
+                description: lex.description || "",
+                partOfSpeech: lemma.partOfSpeech || "",
+                wordForms: (lemma.wordForms || []).map(f => f.s)
+              };
+            }
+          }
+        }
+      })
+      .catch(err => console.error("Could not load Nayiri lexicon:", err));
   });
   </script>
 </body>
