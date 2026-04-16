@@ -39,15 +39,8 @@
     .topbar {
       border-top: 3px double #b69e7e;
       border-bottom: 3px double #b69e7e;
-      padding: 0.95rem 1.6rem 0.9rem;
-      background:
-        repeating-linear-gradient(
-          0deg,
-          #fffdf9 0,
-          #fffdf9 26px,
-          #f9f1e5 26px,
-          #f9f1e5 27px
-        );
+      padding: 1.05rem 1.6rem 0.95rem;
+      background: linear-gradient(180deg, #fffdf9 0%, #f8f0e2 100%);
       position: relative;
     }
     .topbar::after {
@@ -56,28 +49,20 @@
       margin-top: 0.62rem;
       border-bottom: 1px solid #d7c6af;
     }
-    .masthead-kicker {
-      font-family: "IBM Plex Sans", sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-size: 0.64rem;
-      color: #7d6244;
-      margin-bottom: 0.42rem;
-    }
     h1 {
       margin: 0;
-      font-size: clamp(1.85rem, 2.7vw, 2.45rem);
+      font-size: clamp(1.65rem, 2.35vw, 2.15rem);
       font-weight: 700;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
+      letter-spacing: 0.01em;
+      line-height: 1.12;
     }
     .subtitle {
-      margin-top: 0.3rem;
+      margin-top: 0.35rem;
       color: var(--ink-soft);
       font-family: "IBM Plex Sans", sans-serif;
-      font-size: 0.84rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      font-size: 0.82rem;
+      letter-spacing: 0.025em;
+      line-height: 1.35;
     }
     .controls {
       padding: 0.6rem 1.6rem 1rem;
@@ -683,7 +668,6 @@
 <body>
   <div class="container">
     <header class="topbar">
-      <div class="masthead-kicker">Printed Etymology Edition</div>
       <h1>Western Armenian Etymology Dictionary</h1>
       <div class="subtitle">Արեւմտահայերէն Ստուգաբանական Բառարան</div>
     </header>
