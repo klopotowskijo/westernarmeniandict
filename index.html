@@ -599,6 +599,49 @@
       letter-spacing: 0.03em;
       padding: 0.3rem 0.48rem;
     }
+    .graph-help {
+      margin: 0 0 0.55rem;
+      padding: 0.48rem 0.58rem;
+      border: 1px solid #d9c8b1;
+      background: #fff9ef;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.74rem;
+      color: #5f4f3f;
+      line-height: 1.45;
+    }
+    .graph-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.42rem 0.8rem;
+      margin: 0 0 0.55rem;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.73rem;
+      color: #6a5a49;
+    }
+    .graph-legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.32rem;
+    }
+    .graph-legend-swatch {
+      width: 14px;
+      height: 10px;
+      border: 1px solid #a88b6d;
+      background: #f6e8d2;
+      display: inline-block;
+    }
+    .graph-legend-swatch.word {
+      background: #fcf4e5;
+      border-color: #b79b7e;
+    }
+    .graph-legend-swatch.seed {
+      background: #c97d46;
+      border-color: #8a4f28;
+    }
+    .graph-legend-swatch.link {
+      background: linear-gradient(90deg, #d3b796 0%, #bea487 100%);
+      border-color: #bea487;
+    }
     #graphContainer { height: 460px; border: 1px solid var(--line); background: #fffef9; }
         .pronunciation {
           font-family: "IBM Plex Sans", sans-serif;
@@ -696,10 +739,18 @@
         <button id="graphModeLanguageBtn" class="graph-mode-btn active">Language Tree</button>
         <button id="graphModeLineageBtn" class="graph-mode-btn">Word Lineage</button>
         <button id="graphModeTreeBtn" class="graph-mode-btn">Strict Tree</button>
+        <button id="graphResetBtn" class="graph-mini-btn">Reset View</button>
         <input id="graphLangSearch" class="graph-lang-input" type="text" placeholder="Search languages..." />
         <button id="graphLangApplyBtn" class="graph-mini-btn">Apply</button>
         <button id="graphLangClearBtn" class="graph-mini-btn">All Languages</button>
         <span id="graphNote" class="graph-note"></span>
+      </div>
+      <div id="graphHelp" class="graph-help">Pick a mode, then either search a word first or use a preset language filter. Drag nodes to inspect, scroll to zoom, and click Reset View to recenter.</div>
+      <div class="graph-legend">
+        <span class="graph-legend-item"><span class="graph-legend-swatch seed"></span> Focus word</span>
+        <span class="graph-legend-item"><span class="graph-legend-swatch word"></span> Related word</span>
+        <span class="graph-legend-item"><span class="graph-legend-swatch"></span> Source language</span>
+        <span class="graph-legend-item"><span class="graph-legend-swatch link"></span> Etymology link</span>
       </div>
       <div class="graph-presets">
         <button class="graph-preset-btn" data-graph-preset="Armenian|Classical Armenian">Armenian Layers</button>
@@ -986,6 +1037,14 @@
       document.getElementById("graphModeLanguageBtn").classList.toggle("active", graphMode === "language");
       document.getElementById("graphModeLineageBtn").classList.toggle("active", graphMode === "lineage");
       document.getElementById("graphModeTreeBtn").classList.toggle("active", graphMode === "tree");
+      const help = document.getElementById("graphHelp");
+      if (help) {
+        help.textContent = graphMode === "language"
+          ? "Language Tree: languages point to words, then words point to descendants. Start with a word search for the cleanest map."
+          : graphMode === "lineage"
+            ? "Word Lineage: direct word-to-word borrowing paths. Best for tracing one term after searching it first."
+            : "Strict Tree: a layered root-to-branch expansion. Use this for the most legible family-style view.";
+      }
     }
     function updateUrlState(mode, query) {
       const url = new URL(window.location.href);
@@ -1346,18 +1405,22 @@
       const nodes = [...nodeMap.values()];
       if (network) network.destroy();
       network = new vis.Network(container, { nodes, edges }, {
-        interaction: { hover: true, navigationButtons: true },
+        interaction: { hover: true, navigationButtons: true, keyboard: true },
         nodes: {
           borderWidth: 1,
           color: { background: "#fcf4e5", border: "#b79b7e" }
         },
         edges: {
-          smooth: { type: "continuous" }
+          smooth: { type: "continuous", roundness: 0.18 },
+          font: { size: 11, color: "#5f4f3f", strokeWidth: 3, strokeColor: "#fffef9" }
         },
         layout: mode === "language" || mode === "tree"
           ? { hierarchical: { enabled: true, direction: "LR", sortMethod: "directed", levelSeparation: mode === "tree" ? 180 : 130 } }
           : {},
         physics: mode === "lineage"
+      });
+      network.once("stabilized", () => {
+        network.fit({ animation: { duration: 350, easingFunction: "easeInOutQuad" } });
       });
     }
     function renderGraph(mode) {
@@ -1743,6 +1806,11 @@
       setGraphMode("tree");
       updateUrlState(searchMode, document.getElementById("search").value.trim());
       if (graphData) renderGraph(graphMode);
+    };
+    document.getElementById("graphResetBtn").onclick = () => {
+      if (network) {
+        network.fit({ animation: { duration: 300, easingFunction: "easeInOutQuad" } });
+      }
     };
     document.getElementById("graphLangApplyBtn").onclick = () => {
       const checked = document.querySelectorAll(".graph-lang-checkbox:checked");
