@@ -103,6 +103,52 @@
       overflow-y: auto;
       box-shadow: 0 12px 28px rgba(56, 33, 14, 0.12);
     }
+    .keyboard-wrap {
+      margin-bottom: 0.75rem;
+    }
+    #toggleKeyboardBtn {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.76rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      padding: 0.28rem 0.48rem;
+    }
+    .keyboard-panel {
+      margin-top: 0.45rem;
+      border: 1px solid #cdbca6;
+      background: #fff9ef;
+      padding: 0.45rem;
+      display: none;
+    }
+    .keyboard-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.28rem;
+      margin-bottom: 0.28rem;
+    }
+    .keyboard-row:last-child {
+      margin-bottom: 0;
+    }
+    .kbd-key {
+      min-width: 2rem;
+      padding: 0.28rem 0.4rem;
+      font-size: 1rem;
+      font-family: "EB Garamond", serif;
+      background: #fffdf8;
+      border: 1px solid #cbb79b;
+      color: #3f2f1f;
+      line-height: 1;
+    }
+    .kbd-key.action {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.72rem;
+      min-width: 3.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .kbd-key.wide {
+      min-width: 5.2rem;
+    }
     .suggestion {
       padding: 0.45rem 0.62rem;
       cursor: pointer;
@@ -605,6 +651,10 @@
       <div class="search-wrap">
         <input id="search" type="text" placeholder="Search for a word..." autocomplete="off" />
         <div id="suggestions"></div>
+      </div>
+      <div class="keyboard-wrap">
+        <button id="toggleKeyboardBtn" type="button" aria-expanded="false">Armenian Keyboard</button>
+        <div id="armenianKeyboard" class="keyboard-panel" aria-hidden="true"></div>
       </div>
       <div class="button-row">
         <button id="wordSearchBtn" class="active">Word Search</button>
@@ -1466,6 +1516,42 @@
       lookup(word, true);
       return true;
     }
+    function insertTextAtCursor(input, text) {
+      const start = input.selectionStart ?? input.value.length;
+      const end = input.selectionEnd ?? input.value.length;
+      input.value = input.value.slice(0, start) + text + input.value.slice(end);
+      const pos = start + text.length;
+      input.setSelectionRange(pos, pos);
+    }
+    function runSearchFromInput() {
+      const q = document.getElementById("search").value.trim();
+      if (searchMode === "word") lookup(q, true);
+      else lookupLanguage(q, true);
+    }
+    function renderArmenianKeyboard() {
+      const panel = document.getElementById("armenianKeyboard");
+      const rows = [
+        ["է", "թ", "փ", "ձ", "ջ", "ր", "չ", "ճ", "ժ", "ծ", "ւ"],
+        ["ք", "ո", "ե", "ռ", "տ", "ը", "ւ", "ի", "օ", "պ", "խ"],
+        ["ա", "ս", "դ", "ֆ", "գ", "հ", "յ", "կ", "լ", ";", "՛"],
+        ["զ", "ղ", "ց", "վ", "բ", "ն", "մ", "շ", "՞", "։", "և"]
+      ];
+      let html = "";
+      rows.forEach(row => {
+        html += `<div class="keyboard-row">`;
+        row.forEach(ch => {
+          html += `<button type="button" class="kbd-key" data-kbd-key="${escapeHtml(ch)}">${escapeHtml(ch)}</button>`;
+        });
+        html += `</div>`;
+      });
+      html += `<div class="keyboard-row">`;
+      html += `<button type="button" class="kbd-key action" data-kbd-action="backspace">Back</button>`;
+      html += `<button type="button" class="kbd-key action wide" data-kbd-action="space">Space</button>`;
+      html += `<button type="button" class="kbd-key action" data-kbd-action="clear">Clear</button>`;
+      html += `<button type="button" class="kbd-key action" data-kbd-action="search">Search</button>`;
+      html += `</div>`;
+      panel.innerHTML = html;
+    }
     function loadDictionary() {
       fetch("western_armenian_wiktionary.json")
         .then(r => r.json())
@@ -1504,6 +1590,16 @@
         else lookupLanguage(q, true);
       }
     });
+    document.getElementById("toggleKeyboardBtn").onclick = () => {
+      const panel = document.getElementById("armenianKeyboard");
+      const btn = document.getElementById("toggleKeyboardBtn");
+      const open = panel.style.display === "block";
+      panel.style.display = open ? "none" : "block";
+      btn.setAttribute("aria-expanded", open ? "false" : "true");
+      panel.setAttribute("aria-hidden", open ? "true" : "false");
+      if (!open) document.getElementById("search").focus();
+    };
+    renderArmenianKeyboard();
     document.getElementById("wordSearchBtn").onclick = () => {
       setMode("word");
       updateUrlState("word", document.getElementById("search").value.trim());
@@ -1597,6 +1693,48 @@
     document.addEventListener("click", e => {
       if (!e.target.closest("#suggestions") && !e.target.closest("#search")) {
         document.getElementById("suggestions").style.display = "none";
+      }
+      if (e.target.classList.contains("kbd-key")) {
+        const input = document.getElementById("search");
+        const action = e.target.getAttribute("data-kbd-action");
+        const key = e.target.getAttribute("data-kbd-key");
+        if (action === "backspace") {
+          const start = input.selectionStart ?? input.value.length;
+          const end = input.selectionEnd ?? input.value.length;
+          if (start !== end) {
+            input.value = input.value.slice(0, start) + input.value.slice(end);
+            input.setSelectionRange(start, start);
+          } else if (start > 0) {
+            input.value = input.value.slice(0, start - 1) + input.value.slice(end);
+            input.setSelectionRange(start - 1, start - 1);
+          }
+          showSuggestions(input.value.trim());
+          input.focus();
+          return;
+        }
+        if (action === "space") {
+          insertTextAtCursor(input, " ");
+          showSuggestions(input.value.trim());
+          input.focus();
+          return;
+        }
+        if (action === "clear") {
+          input.value = "";
+          showSuggestions("");
+          input.focus();
+          return;
+        }
+        if (action === "search") {
+          runSearchFromInput();
+          input.focus();
+          return;
+        }
+        if (key) {
+          insertTextAtCursor(input, key);
+          showSuggestions(input.value.trim());
+          input.focus();
+          return;
+        }
       }
       if (e.target.classList.contains("source-chip")) {
         const lang = e.target.dataset.lang ? decodeURIComponent(e.target.dataset.lang) : "";
