@@ -786,6 +786,9 @@
     let pendingRandomRequest = false;
     let graphRenderSnapshot = null;
     let graphFocusedNodeId = "";
+    let collapsedTreeNodes = new Set();
+    let strictTreeRootWord = "";
+    let strictTreeFocusNode = "";
     function escapeHtml(value) {
       return String(value)
         .replace(/&/g, "&amp;")
@@ -1045,7 +1048,7 @@
           ? "Language Tree: languages point to words, then words point to descendants. Start with a word search for the cleanest map."
           : graphMode === "lineage"
             ? "Word Lineage: direct word-to-word borrowing paths. Best for tracing one term after searching it first."
-            : "Strict Tree: etytree-style top-down family layout. Hover branch lines to view relation notes.";
+            : "Strict Tree: etytree-style top-down family layout. Click nodes to collapse or expand branches.";
       }
     }
     function updateUrlState(mode, query) {
@@ -1342,6 +1345,7 @@
       for (let d = 0; d < depth; d++) {
         const next = [];
         for (const parent of frontier) {
+          if (collapsedTreeNodes.has(parent)) continue;
           const links = graphIndex.adjacency.get(parent) || [];
           for (const l of links) {
             if (!matchesGraphLanguage(l)) continue;
@@ -1396,6 +1400,7 @@
           note.textContent = "";
           return;
         }
+        const parentNodes = new Set(treeLinks.map(l => l.parent));
         const levelByNode = new Map([[seedWord, 0]]);
         addWordNode(seedWord, "word");
         nodeMap.set(seedWord, {
@@ -1443,6 +1448,15 @@
             color: { color: "#b69b7f", highlight: "#8a4f28", hover: "#8a4f28" },
             width: 1.2,
             smooth: { type: "cubicBezier", forceDirection: "vertical", roundness: 0.26 }
+          });
+        }
+        for (const [nodeId, node] of nodeMap.entries()) {
+          if (!parentNodes.has(nodeId)) continue;
+          const collapsed = collapsedTreeNodes.has(nodeId);
+          nodeMap.set(nodeId, {
+            ...node,
+            label: `${nodeId}${collapsed ? " ▸" : " ▾"}`,
+            title: collapsed ? "Click to expand this branch" : "Click to collapse this branch"
           });
         }
         note.textContent = `Strict tree view rooted at ${seedWord}${getGraphLanguageSuffix()}`;
@@ -1542,7 +1556,13 @@
         physics: mode === "lineage"
       });
       network.once("stabilized", () => {
-        if (seedWord) {
+        if (mode === "tree" && strictTreeFocusNode) {
+          network.focus(strictTreeFocusNode, {
+            scale: 1.08,
+            animation: { duration: 260, easingFunction: "easeInOutQuad" }
+          });
+          strictTreeFocusNode = "";
+        } else if (seedWord) {
           network.focus(seedWord, {
             scale: 1.05,
             animation: { duration: 350, easingFunction: "easeInOutQuad" }
@@ -1561,6 +1581,16 @@
         }
       });
       network.on("click", params => {
+        if (mode === "tree") {
+          if (params.nodes && params.nodes.length) {
+            const nodeId = params.nodes[0];
+            if (collapsedTreeNodes.has(nodeId)) collapsedTreeNodes.delete(nodeId);
+            else collapsedTreeNodes.add(nodeId);
+            strictTreeFocusNode = nodeId;
+            renderGraph("tree");
+          }
+          return;
+        }
         if (params.nodes && params.nodes.length) {
           applyGraphSpotlight(params.nodes[0]);
           return;
@@ -1570,6 +1600,13 @@
     }
     function renderGraph(mode) {
       const seed = getGraphSeedWord();
+      if (mode === "tree") {
+        const root = seed || currentWord || "";
+        if (root && root !== strictTreeRootWord) {
+          strictTreeRootWord = root;
+          collapsedTreeNodes.clear();
+        }
+      }
       let links = [];
       const maxEdges = mode === "language" ? 90 : 140;
       const depth = mode === "language" ? 1 : 2;
@@ -1963,6 +2000,12 @@
     };
     document.getElementById("graphResetBtn").onclick = () => {
       restoreGraphSpotlight();
+      collapsedTreeNodes.clear();
+      strictTreeFocusNode = "";
+      if (graphData && graphMode === "tree") {
+        renderGraph("tree");
+        return;
+      }
       if (network) {
         network.fit({ animation: { duration: 300, easingFunction: "easeInOutQuad" } });
       }
