@@ -1475,11 +1475,6 @@
     window.lookup = lookup;
     function showSuggestions(q) {
       const box = document.getElementById("suggestions");
-      const keyboardOpen = document.getElementById("armenianKeyboard").style.display === "block";
-      if (keyboardOpen) {
-        box.style.display = "none";
-        return;
-      }
       if (!q) {
         box.style.display = "none";
         return;
