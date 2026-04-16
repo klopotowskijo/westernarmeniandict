@@ -549,6 +549,7 @@
         <button id="wordSearchBtn" class="active">Word Search</button>
         <button id="langSearchBtn">Language Search</button>
         <button id="showGraphBtn" style="display:none">Show Etymology Graph</button>
+        <button id="openLanguageTreeBtn" style="display:none">Language Tree</button>
         <button id="randomWordBtn" title="Load a random entry">&#9684; Random</button>
       </div>
     </section>
@@ -556,7 +557,7 @@
     <section id="graphSection" style="display:none">
       <h2>Etymology Graph</h2>
       <div class="graph-controls">
-        <button id="graphModeLanguageBtn" class="graph-mode-btn active">Cluster by Language</button>
+        <button id="graphModeLanguageBtn" class="graph-mode-btn active">Language Tree</button>
         <button id="graphModeLineageBtn" class="graph-mode-btn">Word Lineage</button>
         <button id="graphModeTreeBtn" class="graph-mode-btn">Strict Tree</button>
         <input id="graphLangSearch" class="graph-lang-input" type="text" placeholder="Search languages..." />
@@ -1303,6 +1304,7 @@
           document.getElementById("count").textContent =
             data.length.toLocaleString() + " entries";
           document.getElementById("showGraphBtn").style.display = "block";
+          document.getElementById("openLanguageTreeBtn").style.display = "block";
           applyStateFromUrl();
           if (graphVisible) {
             document.getElementById("showGraphBtn").click();
@@ -1332,13 +1334,19 @@
       updateUrlState("language", document.getElementById("search").value.trim());
     };
     document.getElementById("randomWordBtn").onclick = () => {
-      if (!allTitles.length) return;
-      const word = allTitles[Math.floor(Math.random() * allTitles.length)];
+      const pool = allTitles.filter(Boolean);
+      if (!pool.length) return;
+      let word = pool[Math.floor(Math.random() * pool.length)];
+      if (pool.length > 1 && word === currentWord) {
+        for (let i = 0; i < 8 && word === currentWord; i += 1) {
+          word = pool[Math.floor(Math.random() * pool.length)];
+        }
+      }
       setMode("word");
       document.getElementById("search").value = word;
       lookup(word, true);
     };
-    document.getElementById("showGraphBtn").onclick = async () => {
+    async function openGraphSection() {
       const sec = document.getElementById("graphSection");
       const container = document.getElementById("graphContainer");
       sec.style.display = "block";
@@ -1356,6 +1364,14 @@
         }
       }
       renderGraph(graphMode);
+    }
+    document.getElementById("showGraphBtn").onclick = () => {
+      openGraphSection();
+    };
+    document.getElementById("openLanguageTreeBtn").onclick = () => {
+      setGraphMode("language");
+      openGraphSection();
+      updateUrlState(searchMode, document.getElementById("search").value.trim());
     };
     document.getElementById("graphModeLanguageBtn").onclick = () => {
       setGraphMode("language");
