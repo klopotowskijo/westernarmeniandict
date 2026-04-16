@@ -117,7 +117,12 @@
       const ety = parseEtymology(entry);
       let html = `<div class="word-title">${entry.title}</div>`;
       if (pos) html += `<div class="word-pos">${pos}</div>`;
-      if (defs.length) {
+      // Prefer explicit definition field if present
+      if (entry.definition && Array.isArray(entry.definition) && entry.definition.length) {
+        html += `<div class="section-label">Definition</div><ol>`;
+        for (const d of entry.definition) html += `<li>${d}</li>`;
+        html += `</ol>`;
+      } else if (defs.length) {
         html += `<div class="section-label">Definition</div><ol>`;
         for (const d of defs) html += `<li>${d}</li>`;
         html += `</ol>`;
