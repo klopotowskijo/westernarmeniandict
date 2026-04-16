@@ -103,6 +103,13 @@
       overflow-y: auto;
       box-shadow: 0 12px 28px rgba(56, 33, 14, 0.12);
     }
+    .search-wrap.keyboard-open #suggestions {
+      top: auto;
+      bottom: calc(100% + 2px);
+      border-top: 1px solid #cabba8;
+      border-bottom: none;
+      box-shadow: 0 -10px 24px rgba(56, 33, 14, 0.12);
+    }
     .keyboard-wrap {
       margin-bottom: 0.75rem;
     }
@@ -648,7 +655,7 @@
     </header>
     <section class="controls">
       <div id="count"></div>
-      <div class="search-wrap">
+      <div id="searchWrap" class="search-wrap keyboard-open">
         <input id="search" type="text" placeholder="Search for a word..." autocomplete="off" />
         <div id="suggestions"></div>
       </div>
@@ -1528,6 +1535,16 @@
       if (searchMode === "word") lookup(q, true);
       else lookupLanguage(q, true);
     }
+    function setKeyboardOpen(open) {
+      const panel = document.getElementById("armenianKeyboard");
+      const btn = document.getElementById("toggleKeyboardBtn");
+      const wrap = document.getElementById("searchWrap");
+      panel.style.display = open ? "block" : "none";
+      panel.setAttribute("aria-hidden", open ? "false" : "true");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      btn.textContent = open ? "Hide Armenian Keyboard" : "Show Armenian Keyboard";
+      if (wrap) wrap.classList.toggle("keyboard-open", open);
+    }
     function renderArmenianKeyboard() {
       const panel = document.getElementById("armenianKeyboard");
       const rows = [
@@ -1592,15 +1609,12 @@
     });
     document.getElementById("toggleKeyboardBtn").onclick = () => {
       const panel = document.getElementById("armenianKeyboard");
-      const btn = document.getElementById("toggleKeyboardBtn");
       const open = panel.style.display === "block";
-      panel.style.display = open ? "none" : "block";
-      btn.setAttribute("aria-expanded", open ? "false" : "true");
-      btn.textContent = open ? "Show Armenian Keyboard" : "Hide Armenian Keyboard";
-      panel.setAttribute("aria-hidden", open ? "true" : "false");
+      setKeyboardOpen(!open);
       if (!open) document.getElementById("search").focus();
     };
     renderArmenianKeyboard();
+    setKeyboardOpen(true);
     document.getElementById("wordSearchBtn").onclick = () => {
       setMode("word");
       updateUrlState("word", document.getElementById("search").value.trim());
