@@ -735,7 +735,7 @@
     <section id="graphSection" style="display:none">
       <h2>Etymology Graph</h2>
       <div class="graph-controls">
-        <button id="graphModeLanguageBtn" class="graph-mode-btn active">Language Tree</button>
+        <button id="graphModeLanguageBtn" class="graph-mode-btn active">Language Clusters</button>
         <button id="graphModeLineageBtn" class="graph-mode-btn">Word Lineage</button>
         <button id="graphModeTreeBtn" class="graph-mode-btn">Strict Tree</button>
         <button id="graphResetBtn" class="graph-mini-btn">Reset View</button>
@@ -1044,7 +1044,7 @@
       const help = document.getElementById("graphHelp");
       if (help) {
         help.textContent = graphMode === "language"
-          ? "Language Tree: languages point to words, then words point to descendants. Start with a word search for the cleanest map."
+          ? "Language Clusters: languages point to words, then words point to descendants. Start with a word search for the cleanest map."
           : graphMode === "lineage"
             ? "Word Lineage: direct word-to-word borrowing paths. Best for tracing one term after searching it first."
             : "Strict Tree: etytree-style top-down family layout. Click nodes to collapse or expand branches.";
