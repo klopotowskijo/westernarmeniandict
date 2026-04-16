@@ -468,6 +468,22 @@
       padding: 0.3rem 0.48rem;
     }
     #graphContainer { height: 460px; border: 1px solid var(--line); background: #fffef9; }
+    #randomWordBtn {
+      background: transparent;
+      border: 1px dashed var(--accent);
+      color: var(--accent);
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.76rem;
+      letter-spacing: 0.04em;
+      padding: 0.34rem 0.7rem;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background 0.15s, color 0.15s;
+    }
+    #randomWordBtn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
     @keyframes entry-fade {
       from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
@@ -498,6 +514,7 @@
         <button id="wordSearchBtn" class="active">Word Search</button>
         <button id="langSearchBtn">Language Search</button>
         <button id="showGraphBtn" style="display:none">Show Etymology Graph</button>
+        <button id="randomWordBtn" title="Load a random entry">&#9684; Random</button>
       </div>
     </section>
     <main id="result"></main>
@@ -1210,6 +1227,13 @@
     document.getElementById("langSearchBtn").onclick = () => {
       setMode("language");
       updateUrlState("language", document.getElementById("search").value.trim());
+    };
+    document.getElementById("randomWordBtn").onclick = () => {
+      if (!allTitles.length) return;
+      const word = allTitles[Math.floor(Math.random() * allTitles.length)];
+      setMode("word");
+      document.getElementById("search").value = word;
+      lookup(word, true);
     };
     document.getElementById("showGraphBtn").onclick = async () => {
       const sec = document.getElementById("graphSection");
