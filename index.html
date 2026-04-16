@@ -1080,9 +1080,15 @@
       const cleaned = v.replace(/\s*\([^)]*\)/g, "").trim();
       return cleanLanguageToken(cleaned);
     }
+    function getGraphLinkLanguage(link) {
+      const fromName = normalizeLanguageName(link?.source_language || "");
+      if (fromName) return fromName;
+      const fromCode = normalizeLanguageName(link?.source_lang_code || "");
+      return fromCode || "";
+    }
     function matchesGraphLanguage(link) {
       if (!graphSelectedLanguages.size) return true;
-      const lang = normalizeLanguageName(link?.source_language || "");
+      const lang = getGraphLinkLanguage(link);
       return graphSelectedLanguages.has(lang);
     }
     function getGraphLanguageSuffix() {
@@ -1144,7 +1150,7 @@
     function populateGraphLanguageOptions() {
       if (!graphData || !Array.isArray(graphData.links)) return;
       graphAvailableLanguages = [...new Set(
-        graphData.links.map(l => normalizeLanguageName(l?.source_language || "")).filter(Boolean)
+        graphData.links.map(l => getGraphLinkLanguage(l)).filter(Boolean)
       )].sort((a, b) => a.localeCompare(b));
       renderGraphLanguagePanel();
       updateGraphSelectedSummary();
@@ -1302,7 +1308,8 @@
         for (const l of links) {
           const src = String(l.source);
           const tgt = String(l.target);
-          const lang = normalizeLanguageName(l.source_language);
+          const lang = getGraphLinkLanguage(l);
+          if (!lang) continue;
           addWordNode(src, "word");
           addWordNode(tgt, "word");
           const langId = `lang:${lang}`;
@@ -1379,7 +1386,7 @@
       const urlGraphMode = params.get("gmode");
       const graphLangs = (params.get("glang") || "")
         .split(",")
-        .map(v => v.trim())
+        .map(v => normalizeLanguageName(v.trim()))
         .filter(Boolean);
       setMode(mode);
       setGraphMode(urlGraphMode);
