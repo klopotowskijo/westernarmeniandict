@@ -871,16 +871,29 @@
       if (/\bOttoman Turkish\b/i.test(raw)) return "Ottoman period contact";
       return "";
     }
+    function cleanLanguageToken(raw) {
+      const v = String(raw || "").trim().replace(/\s+/g, " ");
+      if (!v) return "";
+      if (/\{\{|\}\}|\[\[|\]\]|===|\|/.test(v)) return "";
+      if (/[<>]/.test(v)) return "";
+      if (/\b(compare|borrowing|borrowed|ultimately|descendant|pronunciation|noun|affix|doublet|see\b|from\b|language\b)\b/i.test(v)) return "";
+      if (v.length > 42) return "";
+      return v;
+    }
     function getSourceLanguages(entry) {
       const langs = new Set();
       if (Array.isArray(entry.etymology)) {
         for (const e of entry.etymology) {
           if (e && typeof e.source_language === "string" && e.source_language.trim()) {
-            langs.add(e.source_language.trim());
+            const clean = normalizeLanguageName(e.source_language);
+            if (clean) langs.add(clean);
           }
           if (e && typeof e.text === "string") {
             const m = e.text.match(/(?:From|Inherited from|Borrowed from)\s+([A-Z][A-Za-z-]*(?:\s+[A-Z][A-Za-z-]*){0,2})/);
-            if (m && m[1]) langs.add(m[1].trim());
+            if (m && m[1]) {
+              const clean = normalizeLanguageName(m[1]);
+              if (clean) langs.add(clean);
+            }
           }
         }
       }
@@ -1020,22 +1033,52 @@
       ta.remove();
     }
     function normalizeLanguageName(raw) {
-      const v = (raw || "").trim();
-      if (!v) return "Unknown";
+      const v = cleanLanguageToken(raw);
+      if (!v) return "";
       const map = {
-        ru: "Russian",
+        akk: "Akkadian",
         ar: "Arabic",
+        az: "Azerbaijani",
+        bg: "Bulgarian",
+        ccs: "South Caucasian",
+        de: "German",
+        el: "Greek",
+        en: "English",
+        es: "Spanish",
+        ru: "Russian",
         fa: "Persian",
+        "fa-cls": "Classical Persian",
+        fr: "French",
+        gkm: "Medieval Greek",
+        hy: "Armenian",
+        "hyx-pro": "Proto-Armenian",
+        "ine-pro": "Proto-Indo-European",
+        ira: "Iranian",
+        it: "Italian",
+        ka: "Georgian",
+        kmr: "Northern Kurdish",
+        la: "Latin",
+        "la-new": "New Latin",
+        ms: "Malay",
+        nl: "Dutch",
         tr: "Turkish",
         ota: "Ottoman Turkish",
-        fr: "French",
-        en: "English",
-        de: "German",
-        hy: "Armenian",
+        peo: "Old Persian",
+        pnt: "Pontic Greek",
+        qwm: "Kumanovo",
+        ro: "Romanian",
+        sla: "Slavic",
+        trk: "Turkic",
+        "trk-kip": "Kipchak",
+        uk: "Ukrainian",
+        urj: "Uralic",
         xcl: "Classical Armenian"
       };
       const lc = v.toLowerCase();
-      return map[lc] || v;
+      if (map[lc]) return map[lc];
+      if (/^[a-z]{2,3}(?:-[a-z]{2,4})?$/i.test(v)) return "";
+      const cleaned = v.replace(/\s*\([^)]*\)/g, "").trim();
+      return cleanLanguageToken(cleaned);
     }
     function matchesGraphLanguage(link) {
       if (!graphSelectedLanguages.size) return true;
