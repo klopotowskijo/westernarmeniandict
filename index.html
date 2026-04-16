@@ -784,6 +784,8 @@
     let graphSelectedLanguages = new Set();
     let graphVisible = false;
     let pendingRandomRequest = false;
+    let graphRenderSnapshot = null;
+    let graphFocusedNodeId = "";
     function escapeHtml(value) {
       return String(value)
         .replace(/&/g, "&amp;")
@@ -1156,6 +1158,69 @@
       const extra = graphSelectedLanguages.size > 4 ? ` +${graphSelectedLanguages.size - 4}` : "";
       return ` | languages: ${preview}${extra}`;
     }
+    function cloneGraphNode(n) {
+      return {
+        ...n,
+        color: n.color ? { ...n.color } : n.color,
+        font: n.font ? { ...n.font } : n.font
+      };
+    }
+    function cloneGraphEdge(e) {
+      return {
+        ...e,
+        color: e.color ? { ...e.color } : e.color,
+        font: e.font ? { ...e.font } : e.font,
+        smooth: e.smooth && typeof e.smooth === "object" ? { ...e.smooth } : e.smooth
+      };
+    }
+    function restoreGraphSpotlight() {
+      if (!network || !graphRenderSnapshot) return;
+      graphFocusedNodeId = "";
+      network.setData({
+        nodes: graphRenderSnapshot.nodes.map(cloneGraphNode),
+        edges: graphRenderSnapshot.edges.map(cloneGraphEdge)
+      });
+    }
+    function applyGraphSpotlight(nodeId) {
+      if (!network || !graphRenderSnapshot) return;
+      if (!nodeId || graphFocusedNodeId === nodeId) {
+        restoreGraphSpotlight();
+        return;
+      }
+      graphFocusedNodeId = nodeId;
+      const connectedNodes = new Set([nodeId]);
+      for (const e of graphRenderSnapshot.edges) {
+        if (e.from === nodeId || e.to === nodeId) {
+          connectedNodes.add(e.from);
+          connectedNodes.add(e.to);
+        }
+      }
+      const spotlightNodes = graphRenderSnapshot.nodes.map(n => {
+        if (connectedNodes.has(n.id)) return cloneGraphNode(n);
+        return {
+          ...cloneGraphNode(n),
+          color: { background: "#f3ece0", border: "#d6c7b4" },
+          font: { ...(n.font || {}), color: "#b8aa99" }
+        };
+      });
+      const spotlightEdges = graphRenderSnapshot.edges.map(e => {
+        if (e.from === nodeId || e.to === nodeId) {
+          return {
+            ...cloneGraphEdge(e),
+            width: 2,
+            color: { color: "#8a4f28", highlight: "#8a4f28" },
+            font: { ...(e.font || {}), color: "#4f3925", strokeWidth: 3, strokeColor: "#fffef9" }
+          };
+        }
+        return {
+          ...cloneGraphEdge(e),
+          color: { color: "#e2d8ca", highlight: "#e2d8ca" },
+          font: { ...(e.font || {}), color: "#c2b5a4", strokeWidth: 0 }
+        };
+      });
+      network.setData({ nodes: spotlightNodes, edges: spotlightEdges });
+      network.focus(nodeId, { scale: 1.14, animation: { duration: 220, easingFunction: "easeInOutQuad" } });
+    }
     function renderGraphLanguagePanel() {
       const panel = document.getElementById("graphLanguagePanel");
       const q = graphLanguageSearchTerm.toLowerCase();
@@ -1405,6 +1470,11 @@
       }
 
       const nodes = [...nodeMap.values()];
+      graphRenderSnapshot = {
+        nodes: nodes.map(cloneGraphNode),
+        edges: edges.map(cloneGraphEdge)
+      };
+      graphFocusedNodeId = "";
       if (network) network.destroy();
       network = new vis.Network(container, { nodes, edges }, {
         interaction: { hover: true, navigationButtons: true, keyboard: true },
@@ -1439,6 +1509,13 @@
             animation: { duration: 250, easingFunction: "easeInOutQuad" }
           });
         }
+      });
+      network.on("click", params => {
+        if (params.nodes && params.nodes.length) {
+          applyGraphSpotlight(params.nodes[0]);
+          return;
+        }
+        restoreGraphSpotlight();
       });
     }
     function renderGraph(mode) {
@@ -1835,6 +1912,7 @@
       if (graphData) renderGraph(graphMode);
     };
     document.getElementById("graphResetBtn").onclick = () => {
+      restoreGraphSpotlight();
       if (network) {
         network.fit({ animation: { duration: 300, easingFunction: "easeInOutQuad" } });
       }
