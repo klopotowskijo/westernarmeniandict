@@ -1828,16 +1828,22 @@
     function buildGraphIndex() {
       if (!graphData || !Array.isArray(graphData.links)) return null;
       const adjacency = new Map();
+      const outgoing = new Map();
+      const incoming = new Map();
       for (const l of graphData.links) {
         if (!l || !l.source || !l.target) continue;
         const a = String(l.source);
         const b = String(l.target);
         if (!adjacency.has(a)) adjacency.set(a, []);
         if (!adjacency.has(b)) adjacency.set(b, []);
+        if (!outgoing.has(a)) outgoing.set(a, []);
+        if (!incoming.has(b)) incoming.set(b, []);
         adjacency.get(a).push(l);
         adjacency.get(b).push(l);
+        outgoing.get(a).push(l);
+        incoming.get(b).push(l);
       }
-      return { adjacency };
+      return { adjacency, outgoing, incoming };
     }
     function getGraphSeedWord() {
       const searchVal = document.getElementById("search").value.trim();
@@ -1879,7 +1885,7 @@
       }
       return out;
     }
-    function buildStrictTreeLinks(seedWord, depth = 3, maxNodes = 160) {
+    function buildStrictTreeLinks(seedWord, depth = 3, maxNodes = 160, applyLanguageFilter = true) {
       if (!graphIndex || !graphIndex.adjacency || !seedWord) return [];
       const visited = new Set([seedWord]);
       const tree = [];
@@ -1889,12 +1895,15 @@
         const next = [];
         for (const parent of frontier) {
           if (collapsedTreeNodes.has(parent)) continue;
-          const links = graphIndex.adjacency.get(parent) || [];
+          const outward = (graphIndex.outgoing && graphIndex.outgoing.get(parent)) || [];
+          const inward = (graphIndex.incoming && graphIndex.incoming.get(parent)) || [];
+          const outgoingLinks = outward.filter(l => !applyLanguageFilter || matchesGraphLanguage(l));
+          const incomingLinks = inward.filter(l => !applyLanguageFilter || matchesGraphLanguage(l));
+          const links = outgoingLinks.length ? outgoingLinks : incomingLinks;
           for (const l of links) {
-            if (!matchesGraphLanguage(l)) continue;
-            const src = String(l.source);
-            const tgt = String(l.target);
-            const neighbor = src === parent ? tgt : src;
+            // Prefer source->target links (word -> etymon root). If no outward links,
+            // fall back to incoming links so isolated roots still render descendants.
+            const neighbor = outgoingLinks.length ? String(l.target) : String(l.source);
             if (visited.has(neighbor)) continue;
             visited.add(neighbor);
             tree.push({
@@ -1937,7 +1946,11 @@
       };
 
       if (mode === "tree") {
-        const treeLinks = buildStrictTreeLinks(seedWord, 3, 160);
+        let treeLinks = buildStrictTreeLinks(seedWord, 3, 160, true);
+        const usedLanguageFallback = !treeLinks.length && graphSelectedLanguages.size > 0;
+        if (usedLanguageFallback) {
+          treeLinks = buildStrictTreeLinks(seedWord, 3, 160, false);
+        }
         if (!treeLinks.length) {
           container.innerHTML = "<p style=\"padding:0.8rem\">No tree data for this selection and language filter. Pick another word or clear filter.</p>";
           note.textContent = "";
@@ -2003,7 +2016,9 @@
             title: collapsed ? "Click to expand this branch" : "Click to collapse this branch"
           });
         }
-        note.textContent = `Strict tree view rooted at ${normalizeGraphWordLabel(seedWord)}${getGraphLanguageSuffix()}`;
+        note.textContent = usedLanguageFallback
+          ? `Strict tree view rooted at ${normalizeGraphWordLabel(seedWord)} | no branches matched the active language filter, so showing all languages for this word.`
+          : `Strict tree view rooted at ${normalizeGraphWordLabel(seedWord)}${getGraphLanguageSuffix()}`;
       } else if (mode === "lineage") {
         for (const l of links) {
           const src = String(l.source);
@@ -2534,7 +2549,10 @@
       renderGraph(graphMode);
     }
     document.getElementById("showGraphBtn").onclick = () => {
-      setGraphMode("tree");
+      // Keep the selected mode. If no word is selected yet, default to language mode.
+      if (!currentWord && graphMode === "tree") {
+        setGraphMode("language");
+      }
       openGraphSection();
       updateUrlState(searchMode, document.getElementById("search").value.trim());
     };
