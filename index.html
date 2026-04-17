@@ -3129,6 +3129,23 @@
       html += `</div>`;
       return html;
     }
+    function renderDefinitionLine(definitionText) {
+      const text = String(definitionText || "");
+      const m = text.match(/^(Inflected form of|Inferential form of|Inferred form of|Inflection of)\s+(.+)$/i);
+      if (!m) return escapeHtml(text);
+
+      const label = m[1];
+      let base = (m[2] || "").trim();
+      let trailing = "";
+      const punct = base.match(/([.,;:!?]+)$/);
+      if (punct) {
+        trailing = punct[1];
+        base = base.slice(0, -trailing.length).trim();
+      }
+      if (!base) return escapeHtml(text);
+
+      return `${escapeHtml(label)} <button type="button" class="morphology-link" data-word="${encodeURIComponent(base)}">${escapeHtml(base)}</button>${escapeHtml(trailing)}`;
+    }
     function lookupLanguage(query, syncUrl = true) {
       const el = document.getElementById("result");
       const cleanQuery = (query || "").trim();
@@ -3219,7 +3236,7 @@
       // Prefer explicit definition field if present
       if (defsToShow.length) {
         html += `<div class="section-label">Definition <span class="source-badge ${escapeHtml(sourceBadge.className)}">${escapeHtml(sourceBadge.label)}</span></div><ol>`;
-        for (const d of defsToShow) html += `<li>${escapeHtml(d)}</li>`;
+        for (const d of defsToShow) html += `<li>${renderDefinitionLine(d)}</li>`;
         html += `</ol>`;
       }
       // Add morphology section if entry is an inflected form
