@@ -1675,6 +1675,10 @@
       return cleanLanguageToken(cleaned);
     }
     function getGraphLinkLanguage(link) {
+      // If the target is a synthetic language node, the language is the node label
+      if (link && isLangNode(String(link.target || ""))) {
+        return langNodeLabel(String(link.target));
+      }
       const fromName = normalizeLanguageName(link?.source_language || "");
       if (fromName) return fromName;
       const fromCode = normalizeLanguageName(link?.source_lang_code || "");
@@ -1691,9 +1695,16 @@
       const extra = graphSelectedLanguages.size > 4 ? ` +${graphSelectedLanguages.size - 4}` : "";
       return ` | languages: ${preview}${extra}`;
     }
+    function isLangNode(id) {
+      return String(id).startsWith("__lang__");
+    }
+    function langNodeLabel(id) {
+      return String(id).replace(/^__lang__/, "").trim();
+    }
     function normalizeGraphWordLabel(value) {
       const raw = String(value || "").trim();
       if (!raw) return "";
+      if (isLangNode(raw)) return langNodeLabel(raw);
       let label = raw;
       const pipeIndex = raw.indexOf("|");
       if (pipeIndex !== -1 && pipeIndex < raw.length - 1) {
@@ -1935,15 +1946,41 @@
       const edges = [];
       const addWordNode = (id, group = "unknown") => {
         if (!nodeMap.has(id)) {
-          nodeMap.set(id, {
-            id,
-            label: normalizeGraphWordLabel(id),
-            group,
-            shape: "dot",
-            size: id === seedWord ? 18 : 11,
-            font: { face: "EB Garamond", size: id === seedWord ? 22 : 16 },
-            color: id === seedWord ? { background: "#c97d46", border: "#8a4f28" } : undefined
-          });
+          if (isLangNode(id)) {
+            const langLabel = langNodeLabel(id);
+            const fam = getLangFamily(langLabel);
+            const famColors = {
+              "lf-armenian":  { bg: "#f2e5f2", border: "#9a6090" },
+              "lf-iranian":   { bg: "#fef0d4", border: "#c88a20" },
+              "lf-turkic":    { bg: "#d8f0ec", border: "#3d8a80" },
+              "lf-semitic":   { bg: "#fef5d8", border: "#c4a020" },
+              "lf-romance":   { bg: "#dce3f5", border: "#4a60aa" },
+              "lf-slavic":    { bg: "#eed8d8", border: "#9a3838" },
+              "lf-greek":     { bg: "#e4eedc", border: "#5a7a44" },
+              "lf-germanic":  { bg: "#dce8e0", border: "#4a7058" },
+            };
+            const col = famColors[fam] || { bg: "#f6e8d2", border: "#b89674" };
+            nodeMap.set(id, {
+              id,
+              label: langLabel,
+              group: "language",
+              shape: "box",
+              font: { face: "IBM Plex Sans", size: 12, color: "#2f1b0d" },
+              color: { background: col.bg, border: col.border },
+              borderWidth: 1,
+              margin: { top: 4, right: 6, bottom: 4, left: 6 },
+            });
+          } else {
+            nodeMap.set(id, {
+              id,
+              label: normalizeGraphWordLabel(id),
+              group,
+              shape: "dot",
+              size: id === seedWord ? 18 : 11,
+              font: { face: "EB Garamond", size: id === seedWord ? 22 : 16 },
+              color: id === seedWord ? { background: "#c97d46", border: "#8a4f28" } : undefined
+            });
+          }
         }
       };
 
@@ -1976,26 +2013,34 @@
           levelByNode.set(l.child, childLevel);
           addWordNode(l.parent, "word");
           addWordNode(l.child, "word");
-          nodeMap.set(l.parent, {
-            ...nodeMap.get(l.parent),
-            shape: "box",
-            level: levelByNode.get(l.parent) ?? parentLevel,
-            margin: { top: 5, right: 7, bottom: 5, left: 7 },
-            font: { face: "EB Garamond", size: l.parent === seedWord ? 19 : 16, color: "#2f2922" },
-            color: l.parent === seedWord
-              ? { background: "#e8c7a0", border: "#8a4f28" }
-              : { background: "#fff7ea", border: "#b89b7d" },
-            borderWidth: l.parent === seedWord ? 2 : 1
-          });
-          nodeMap.set(l.child, {
-            ...nodeMap.get(l.child),
-            shape: "box",
-            level: childLevel,
-            margin: { top: 5, right: 7, bottom: 5, left: 7 },
-            font: { face: "EB Garamond", size: 16, color: "#2f2922" },
-            color: { background: "#fff7ea", border: "#b89b7d" },
-            borderWidth: 1
-          });
+          if (!isLangNode(l.parent)) {
+            nodeMap.set(l.parent, {
+              ...nodeMap.get(l.parent),
+              shape: "box",
+              level: levelByNode.get(l.parent) ?? parentLevel,
+              margin: { top: 5, right: 7, bottom: 5, left: 7 },
+              font: { face: "EB Garamond", size: l.parent === seedWord ? 19 : 16, color: "#2f2922" },
+              color: l.parent === seedWord
+                ? { background: "#e8c7a0", border: "#8a4f28" }
+                : { background: "#fff7ea", border: "#b89b7d" },
+              borderWidth: l.parent === seedWord ? 2 : 1
+            });
+          } else {
+            nodeMap.set(l.parent, { ...nodeMap.get(l.parent), level: levelByNode.get(l.parent) ?? parentLevel });
+          }
+          if (!isLangNode(l.child)) {
+            nodeMap.set(l.child, {
+              ...nodeMap.get(l.child),
+              shape: "box",
+              level: childLevel,
+              margin: { top: 5, right: 7, bottom: 5, left: 7 },
+              font: { face: "EB Garamond", size: 16, color: "#2f2922" },
+              color: { background: "#fff7ea", border: "#b89b7d" },
+              borderWidth: 1
+            });
+          } else {
+            nodeMap.set(l.child, { ...nodeMap.get(l.child), level: childLevel });
+          }
           const rel = String(l.relation || "").trim() || "etymological link";
           edges.push({
             from: l.parent,
@@ -2010,6 +2055,7 @@
         }
         for (const [nodeId, node] of nodeMap.entries()) {
           if (!parentNodes.has(nodeId)) continue;
+          if (isLangNode(nodeId)) continue;
           const collapsed = collapsedTreeNodes.has(nodeId);
           const nodeLabel = normalizeGraphWordLabel(nodeId);
           nodeMap.set(nodeId, {
