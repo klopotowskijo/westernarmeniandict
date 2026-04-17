@@ -9,6 +9,7 @@ import json, re
 
 INPUT  = "western_armenian_merged.json"
 OUTPUT = "western_armenian_merged.json"
+WIKTIONARY_SOURCE = "western_armenian_wiktionary.json"
 
 # ── Language code map ────────────────────────────────────────────────────────
 LANG_NAMES = {
@@ -107,8 +108,28 @@ def is_weak_ety(ety_list, title):
             return True
         # Circular: "From Old Armenian SAME_TITLE"
         if re.match(r'^From (?:Old |Classical |Middle )?Armenian ' + re.escape(title) + r'\b', t):
-            return True
+            # Keep richer historical chains (e.g., with PIE/cognates) and only
+            # treat short self-loop lines as weak.
+            if ('PIE' not in t and 'Cognate' not in t and t.count('.') <= 1):
+                return True
     return False
+
+
+def load_wiktionary_etymology_map(path):
+    try:
+        with open(path, encoding='utf-8') as f:
+            data = json.load(f)
+    except Exception:
+        return {}
+    by_title = {}
+    for entry in data if isinstance(data, list) else data.get('entries', []):
+        if not isinstance(entry, dict):
+            continue
+        title = entry.get('title')
+        ety = entry.get('etymology')
+        if title and isinstance(ety, list) and ety:
+            by_title[title] = ety
+    return by_title
 
 # ── Definition deduplication ─────────────────────────────────────────────────
 
@@ -158,6 +179,8 @@ def main():
     with open(INPUT, encoding='utf-8') as f:
         data = json.load(f)
 
+    wiki_ety_map = load_wiktionary_etymology_map(WIKTIONARY_SOURCE)
+
     ety_fixed = 0
     def_deduped = 0
 
@@ -174,6 +197,15 @@ def main():
 
         # Fix etymology
         if is_weak_ety(entry.get('etymology'), title):
+            # Prefer richer Wiktionary etymology if available.
+            wiki_ety = wiki_ety_map.get(title)
+            if wiki_ety:
+                wiki_text = str(wiki_ety[0].get('text', '')).strip() if isinstance(wiki_ety[0], dict) else str(wiki_ety[0]).strip()
+                if len(wiki_text) > 20:
+                    entry['etymology'] = wiki_ety
+                    ety_fixed += 1
+                    continue
+
             wikitext = entry.get('wikitext', '')
             parsed = parse_wikitext_ety(wikitext)
             if parsed and len(parsed) > 5:
