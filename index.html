@@ -801,18 +801,28 @@
       let out = String(text);
       out = out.replace(/\{\{affix\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, "From $1 + $2.");
       out = out.replace(/\{\{compound\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, "From $1 + $2.");
-      out = out.replace(/\{\{(?:bor|learned borrowing)\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, "Borrowed from $2 ($1).");
+      out = out.replace(/\{\{(?:bor|bor\+|learned borrowing)\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, "Borrowed from $2 ($1).");
       out = out.replace(/\{\{(?:inh|inh\+)\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, "Inherited from $2 ($1).");
-      out = out.replace(/\{\{(?:uder|der)\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, "Derived from $2 ($1).");
-      return out
+      out = out.replace(/\{\{(?:uder|der|der\+)\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, "Derived from $2 ($1).");
+      out = out
         .replace(/\{\{[^}]+\}\}/g, "")
         .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, "$2")
         .replace(/\[\[([^\]]+)\]\]/g, "$1")
+        .replace(/\.{2,}/g, ".")
+        .replace(/\s+\./g, ".")
         .replace(/\s+/g, " ")
         .trim();
+
+      // Avoid rendering punctuation-only etymology such as ".".
+      if (!/[A-Za-z0-9\u0531-\u058F]/.test(out)) return "";
+      return out;
     }
     function cleanWikiDef(text) {
       return text
+        .replace(/\{\{surname\|[^}]*\}\}/g, 'surname')
+        .replace(/\{\{given name\|[^}]*\}\}/g, 'given name')
+        .replace(/\{\{diminutive of\|[a-z-]+\|([^|}]+)[^}]*\}\}/g, 'diminutive of $1')
+        .replace(/\{\{place\|[a-z-]+\|([^|}]+)[^}]*\}\}/g, '$1')
         .replace(/\{\{non-gloss definition\|([^}]+)\}\}/g, '$1')
         .replace(/\{\{non-gloss\|([^}]+)\}\}/g, '$1')
         .replace(/\{\{gloss\|([^}]+)\}\}/g, '($1)')
@@ -827,20 +837,32 @@
         .replace(/\s+/g, ' ')
         .trim();
     }
+    function isGenericDefinition(text) {
+      const t = String(text || "").trim();
+      if (!t) return true;
+      if (/^Armenian lexical entry:/i.test(t)) return true;
+      if (/^Armenian\s+(proper noun|noun|verb|adjective|adverb|suffix|prefix|interfix|affix|pronoun|numeral|particle|interjection|conjunction|preposition|postposition|phrase|proverb)\.$/i.test(t)) {
+        return true;
+      }
+      return false;
+    }
     function parseDefinitions(entry) {
       const explicitDefs = Array.isArray(entry.definition)
         ? entry.definition.filter(d => typeof d === "string" && d.trim())
         : [];
-      if (explicitDefs.length) return explicitDefs;
+      const explicitNonGeneric = explicitDefs.filter(d => !isGenericDefinition(d));
+      if (explicitNonGeneric.length) return explicitNonGeneric;
       const wikitext = entry.wikitext || "";
       const m = wikitext.match(/==Armenian==\s*\n([\s\S]*?)(?=\n==[^=]|$)/);
-      if (!m) return [];
-      return m[1]
+      if (!m) return explicitDefs;
+      const parsedDefs = m[1]
         .split("\n")
         .map(l => l.trim())
         .filter(l => /^#[^#:]/.test(l))
         .map(l => cleanWikiDef(l.replace(/^#+/, "").trim()))
         .filter(l => l.length > 1);
+      if (parsedDefs.length) return parsedDefs;
+      return explicitDefs;
     }
     function parseAlternativeTarget(definitionText) {
       const m = String(definitionText || "")
@@ -929,6 +951,13 @@
       }
       return [...new Set(words)];
     }
+    function extractWikitextEtymology(entry) {
+      const wikitext = entry && entry.wikitext ? entry.wikitext : "";
+      if (!wikitext) return "";
+      const m = wikitext.match(/===Etymology===\s*\n([\s\S]*?)(?=\n===|\n==[^=]|$)/);
+      if (!m) return "";
+      return cleanEtymology(m[1]);
+    }
     function parseEtymology(entry) {
       if (etyCache[entry.title]) return etyCache[entry.title];
       let t = "";
@@ -942,6 +971,7 @@
         }
       }
       if (!t) t = cleanEtymology(entry.etymology?.[0]?.text || "");
+      if (!t) t = extractWikitextEtymology(entry);
       etyCache[entry.title] = t;
       return t;
     }
@@ -960,13 +990,14 @@
     function inferEtymologyConfidence(entry, etyText) {
       const raw = String(entry?.etymology?.[0]?.text || "").toLowerCase();
       const clean = String(etyText || "").trim();
+      const signal = `${raw}\n${clean.toLowerCase()}`;
       if (!clean) {
         return { label: "missing", className: "low" };
       }
-      if (/(perhaps|possibly|probably|maybe|uncertain|disputed|unknown|compare also|according to)/.test(raw)) {
+      if (/(perhaps|possibly|probably|maybe|uncertain|disputed|unknown|compare also|according to)/.test(signal)) {
         return { label: "probable", className: "medium" };
       }
-      if (/(from|borrowed from|inherited from|derived from)/.test(raw)) {
+      if (/(from|borrowed from|inherited from|derived from)/.test(signal)) {
         return { label: "strong", className: "high" };
       }
       return { label: "review", className: "medium" };
