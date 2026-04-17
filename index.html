@@ -1295,6 +1295,26 @@
       if (/\bitself from\s*(?:,|\.|;|$)/.test(t)) return true;
       return false;
     }
+    function extractLanguageHintsFromText(text) {
+      const langs = new Set();
+      const raw = String(text || "");
+      for (const m of raw.matchAll(/\(([A-Z][A-Za-z-]*(?:\s+[A-Z][A-Za-z-]*){0,2})\)/g)) {
+        const clean = normalizeLanguageName(m[1]);
+        if (clean) langs.add(clean);
+      }
+      for (const m of raw.matchAll(/(?:From|Borrowed from|Inherited from|Derived from|Reborrowed from)\s+([A-Z][A-Za-z-]*(?:\s+[A-Z][A-Za-z-]*){0,2})/g)) {
+        const clean = normalizeLanguageName(m[1]);
+        if (clean) langs.add(clean);
+      }
+      return langs;
+    }
+    function areLanguageSetsDisjoint(a, b) {
+      if (!a.size || !b.size) return false;
+      for (const item of a) {
+        if (b.has(item)) return false;
+      }
+      return true;
+    }
     function parseEtymology(entry) {
       if (etyCache[entry.title]) return etyCache[entry.title];
       let t = "";
@@ -1313,6 +1333,13 @@
         t = wikiT;
       } else if (wikiT && isWeakEtymologyText(t)) {
         t = wikiT;
+      } else if (wikiT) {
+        const tLangs = extractLanguageHintsFromText(t);
+        const wikiLangs = extractLanguageHintsFromText(wikiT);
+        // Prefer wikitext when structured etymology contradicts language signals.
+        if (areLanguageSetsDisjoint(tLangs, wikiLangs)) {
+          t = wikiT;
+        }
       }
       etyCache[entry.title] = t;
       return t;
@@ -1366,13 +1393,17 @@
     }
     function getSourceLanguages(entry) {
       const langs = new Set();
+      const etyText = parseEtymology(entry);
+      for (const lang of extractLanguageHintsFromText(etyText)) {
+        langs.add(lang);
+      }
       if (Array.isArray(entry.etymology)) {
         for (const e of entry.etymology) {
-          if (e && typeof e.source_language === "string" && e.source_language.trim()) {
+          if (!langs.size && e && typeof e.source_language === "string" && e.source_language.trim()) {
             const clean = normalizeLanguageName(e.source_language);
             if (clean) langs.add(clean);
           }
-          if (e && typeof e.text === "string") {
+          if (!langs.size && e && typeof e.text === "string") {
             const m = e.text.match(/(?:From|Inherited from|Borrowed from)\s+([A-Z][A-Za-z-]*(?:\s+[A-Z][A-Za-z-]*){0,2})/);
             if (m && m[1]) {
               const clean = normalizeLanguageName(m[1]);
@@ -1604,6 +1635,21 @@
       const extra = graphSelectedLanguages.size > 4 ? ` +${graphSelectedLanguages.size - 4}` : "";
       return ` | languages: ${preview}${extra}`;
     }
+    function normalizeGraphWordLabel(value) {
+      const raw = String(value || "").trim();
+      if (!raw) return "";
+      let label = raw;
+      const pipeIndex = raw.indexOf("|");
+      if (pipeIndex !== -1 && pipeIndex < raw.length - 1) {
+        label = raw.slice(pipeIndex + 1);
+      }
+      label = label
+        .replace(/_/g, " ")
+        .replace(/[\[\]{}]/g, "")
+        .replace(/^[-~]+/, "")
+        .trim();
+      return label || raw;
+    }
     function cloneGraphNode(n) {
       return {
         ...n,
@@ -1826,7 +1872,7 @@
         if (!nodeMap.has(id)) {
           nodeMap.set(id, {
             id,
-            label: id,
+            label: normalizeGraphWordLabel(id),
             group,
             shape: "dot",
             size: id === seedWord ? 18 : 11,
@@ -1896,13 +1942,14 @@
         for (const [nodeId, node] of nodeMap.entries()) {
           if (!parentNodes.has(nodeId)) continue;
           const collapsed = collapsedTreeNodes.has(nodeId);
+          const nodeLabel = normalizeGraphWordLabel(nodeId);
           nodeMap.set(nodeId, {
             ...node,
-            label: `${nodeId}${collapsed ? " ▸" : " ▾"}`,
+            label: `${nodeLabel}${collapsed ? " ▸" : " ▾"}`,
             title: collapsed ? "Click to expand this branch" : "Click to collapse this branch"
           });
         }
-        note.textContent = `Strict tree view rooted at ${seedWord}${getGraphLanguageSuffix()}`;
+        note.textContent = `Strict tree view rooted at ${normalizeGraphWordLabel(seedWord)}${getGraphLanguageSuffix()}`;
       } else if (mode === "lineage") {
         for (const l of links) {
           const src = String(l.source);
@@ -2053,11 +2100,18 @@
       let links = [];
       const maxEdges = mode === "language" ? 90 : 140;
       const depth = mode === "language" ? 1 : 2;
+      if ((mode === "tree" || mode === "lineage") && !seed) {
+        const container = document.getElementById("graphContainer");
+        const note = document.getElementById("graphNote");
+        container.innerHTML = "<p style=\"padding:0.8rem\">Search and open a specific word first, then switch to this mode to see a reliable tree.</p>";
+        note.textContent = mode === "tree"
+          ? "Strict tree mode requires a selected headword."
+          : "Lineage mode requires a selected headword.";
+        updateUrlState(searchMode, document.getElementById("search").value.trim());
+        return;
+      }
       if (seed) {
         links = extractNeighborhood(seed, depth, maxEdges);
-      } else if (mode === "tree" && allTitles.length) {
-        currentWord = allTitles[0];
-        links = extractNeighborhood(currentWord, 2, 140);
       } else if (!graphSelectedLanguages.size) {
         const container = document.getElementById("graphContainer");
         const note = document.getElementById("graphNote");
