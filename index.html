@@ -949,6 +949,10 @@
         if (name === "m" || name === "l" || name === "term") {
           return tpl.positional[1] || tpl.named.t || tpl.named.gloss || "";
         }
+        if (name === "short for" || name === "short form of") {
+          const target = tpl.positional[1] || tpl.named.t || tpl.named.gloss || "";
+          return target ? `Short form of ${target}.` : "";
+        }
         if (name === "cog" || name === "ncog" || name === "noncog") {
           return tpl.positional[1] || tpl.named.t || "";
         }
@@ -959,6 +963,7 @@
       });
       out = out.replace(/\{\{affix\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, "From $1 + $2.");
       out = out.replace(/\{\{compound\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, "From $1 + $2.");
+      out = out.replace(/\{\{(?:short for|short form of)\|[^|}]+\|([^|}]+)(?:\|[^}]*)?\}\}/gi, "Short form of $1.");
       out = out.replace(/\{\{(?:bor|bor\+|learned borrowing)\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, (_, lang, term) => {
         const label = normalizeLanguageName(lang) || lang;
         return `Borrowed from ${term} (${label}).`;
@@ -1307,6 +1312,7 @@
       if (/\breborrowed from\s*(?:,|\.|;|$)/.test(t)) return true;
       if (/^from\.?\s*for the semantics see\.?$/.test(t)) return true;
       if (/^for the semantics see\.?$/.test(t)) return true;
+      if (/\bshort form of\s*(?:,|\.|;|$)/.test(t)) return true;
       if (/\bfrom\s*(?:,|\.|;|$)/.test(t)) return true;
       if (/\b(?:borrowed|derived|inherited) from\s*(?:,|\.|;|$)/.test(t)) return true;
       if (/\bitself from\s*(?:,|\.|;|$)/.test(t)) return true;
