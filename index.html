@@ -907,6 +907,66 @@
         return `${d} (${targetDef})`;
       });
     }
+    function extractSurnameRoots(entry, etyText) {
+      const roots = [];
+      const seen = new Set();
+      function addRoot(v) {
+        const root = String(v || "").trim();
+        if (!root || root === entry.title) return;
+        const key = root.toLowerCase();
+        if (seen.has(key)) return;
+        seen.add(key);
+        roots.push(root);
+      }
+
+      const title = String(entry && entry.title ? entry.title : "");
+      if (title.endsWith("յան") || title.endsWith("եան")) {
+        addRoot(title.slice(0, -3));
+      }
+
+      const clean = String(etyText || "");
+      for (const m of clean.matchAll(/From\s+([^+.,;]+?)\s*\+\s*-(?:յան|եան)\b/g)) {
+        addRoot(m[1]);
+      }
+
+      let raw = "";
+      if (Array.isArray(entry && entry.etymology)) {
+        raw += entry.etymology
+          .map(x => (x && typeof x.text === "string") ? x.text : "")
+          .join("\n");
+      }
+      raw += `\n${entry && entry.wikitext ? entry.wikitext : ""}`;
+
+      for (const m of raw.matchAll(/\{\{affix\|hy\|([^|}]+)\|-(?:յան|եան)/g)) {
+        addRoot(m[1]);
+      }
+      for (const m of raw.matchAll(/\|:af\|([^|}]+)\|-(?:յան|եան)/g)) {
+        addRoot(m[1]);
+      }
+
+      return roots;
+    }
+    function buildSurnameRootDefinition(entry, displayDefs, etyText) {
+      const isSurname = displayDefs.some(d => /\bsurname\b/i.test(String(d || "")))
+        || /\{\{surname\|/i.test(entry && entry.wikitext ? entry.wikitext : "");
+      if (!isSurname) return null;
+
+      const roots = extractSurnameRoots(entry, etyText);
+      if (!roots.length) return null;
+
+      for (const root of roots) {
+        const rootEntry = titleIndex[root];
+        if (!rootEntry) continue;
+        const resolved = resolveCanonicalDefinition(rootEntry);
+        const parsed = parseDefinitions(rootEntry).find(d => typeof d === "string" && d.trim());
+        const def = resolved || parsed || "";
+        if (def && !isGenericDefinition(def)) {
+          return `Root ${root}: ${def}`;
+        }
+      }
+
+      return `Root ${roots[0]}: definition not found in current dictionary.`;
+    }
     function parsePOS(wikitext) {
       const m = wikitext.match(/==Armenian==\s*\n([\s\S]*?)(?=\n==[^=]|$)/);
       if (!m) return "";
@@ -1825,6 +1885,8 @@
       const etySources = getEtymologySourceList(entry);
       const srcLangs = getSourceLanguages(entry);
       const lineage = getEtymologyLineage(entry);
+      const rootDefLine = buildSurnameRootDefinition(entry, displayDefs, ety);
+      const defsToShow = rootDefLine ? [...displayDefs, rootDefLine] : displayDefs;
       currentWord = entry.title;
       let html = `<article class="entry-card"><div class="entry-head"><div class="word-title">${escapeHtml(entry.title)}</div>`;
       if (pos) html += `<div class="word-pos">${escapeHtml(pos)}</div>`;
@@ -1833,9 +1895,9 @@
       html += `<div class="entry-tools"><button type="button" class="permalink-btn" data-word="${encodedTitle}">Permalink</button><span class="permalink-status" id="permalinkStatus"></span></div>`;
       html += `</div><div class="entry-content">`;
       // Prefer explicit definition field if present
-      if (displayDefs.length) {
+      if (defsToShow.length) {
         html += `<div class="section-label">Definition <span class="source-badge wiktionary">Wiktionary</span></div><ol>`;
-        for (const d of displayDefs) html += `<li>${escapeHtml(d)}</li>`;
+        for (const d of defsToShow) html += `<li>${escapeHtml(d)}</li>`;
         html += `</ol>`;
       }
       html += `<div class="section-label">Etymology <span class="source-badge wiktionary">Wiktionary</span><span class="ety-confidence ${escapeHtml(etyConfidence.className)}">${escapeHtml(etyConfidence.label)}</span></div>`;
@@ -1889,7 +1951,7 @@
         html += `</div>`;
       }
       html += `<div class="entry-meta">`;
-      html += `<span class="meta-pill">${displayDefs.length} defs</span>`;
+      html += `<span class="meta-pill">${defsToShow.length} defs</span>`;
       html += `<span class="meta-pill">ety ${escapeHtml(etyConfidence.label)}</span>`;
       if (attestation) html += `<span class="meta-pill">attestation ${escapeHtml(attestation)}</span>`;
       if (srcLangs.length) {
