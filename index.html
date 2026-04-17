@@ -1827,16 +1827,63 @@
         urj: "Uralic",
         xcl: "Classical Armenian"
       };
+      const labelMap = {
+        "akkadian": "Akkadian",
+        "ancient greek": "Ancient Greek",
+        "arabic": "Arabic",
+        "aramaic": "Aramaic",
+        "armenian": "Armenian",
+        "azerbaijani": "Azerbaijani",
+        "bulgarian": "Bulgarian",
+        "classical armenian": "Classical Armenian",
+        "classical persian": "Classical Persian",
+        "dutch": "Dutch",
+        "english": "English",
+        "french": "French",
+        "georgian": "Georgian",
+        "german": "German",
+        "greek": "Greek",
+        "hindi": "Hindi",
+        "iranian": "Iranian",
+        "italian": "Italian",
+        "kumanovo": "Kumanovo",
+        "kurdish": "Kurdish",
+        "latin": "Latin",
+        "malay": "Malay",
+        "medieval greek": "Medieval Greek",
+        "middle armenian": "Middle Armenian",
+        "middle iranian": "Middle Iranian",
+        "new latin": "New Latin",
+        "northern kurdish": "Northern Kurdish",
+        "old armenian": "Old Armenian",
+        "old persian": "Old Persian",
+        "ottoman turkish": "Ottoman Turkish",
+        "persian": "Persian",
+        "pontic greek": "Pontic Greek",
+        "proto-armenian": "Proto-Armenian",
+        "proto-indo-european": "Proto-Indo-European",
+        "romanian": "Romanian",
+        "russian": "Russian",
+        "slavic": "Slavic",
+        "spanish": "Spanish",
+        "turkic": "Turkic",
+        "turkish": "Turkish",
+        "ukrainian": "Ukrainian",
+        "uralic": "Uralic"
+      };
       const lc = v.toLowerCase();
       if (map[lc]) return map[lc];
+      if (labelMap[lc]) return labelMap[lc];
       if (/^[a-z]{2,3}(?:-[a-z]{2,4})?$/i.test(v)) return "";
       const cleaned = v.replace(/\s*\([^)]*\)/g, "").trim();
-      return cleanLanguageToken(cleaned);
+      const normalizedClean = cleaned.toLowerCase();
+      if (labelMap[normalizedClean]) return labelMap[normalizedClean];
+      return "";
     }
     function getGraphLinkLanguage(link) {
       // If the target is a synthetic language node, the language is the node label
       if (link && isLangNode(String(link.target || ""))) {
-        return langNodeLabel(String(link.target));
+        return normalizeLanguageName(langNodeLabel(String(link.target)));
       }
       const fromName = normalizeLanguageName(link?.source_language || "");
       if (fromName) return fromName;
