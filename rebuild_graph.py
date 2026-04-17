@@ -40,8 +40,61 @@ LANG_CODE_MAP = {
     "en":  "English",
 }
 
+LANG_ALIAS_MAP = {
+    "old armenian": "Old Armenian",
+    "middle armenian": "Middle Armenian",
+    "classical armenian": "Classical Armenian",
+    "western armenian": "Western Armenian",
+    "eastern armenian": "Armenian",
+    "armenian": "Armenian",
+    "proto-armenian": "Proto-Armenian",
+    "proto indo-european": "Proto-Indo-European",
+    "proto-indo-european": "Proto-Indo-European",
+    "ottoman turkish": "Ottoman Turkish",
+    "turkish": "Turkish",
+    "persian": "Persian",
+    "arabic": "Arabic",
+    "russian": "Russian",
+    "french": "French",
+    "english": "English",
+    "german": "German",
+    "italian": "Italian",
+    "greek": "Greek",
+    "ancient greek": "Ancient Greek",
+    "latin": "Latin",
+    "georgian": "Georgian",
+    "kurdish": "Kurdish",
+    "northern kurdish": "Northern Kurdish",
+    "azerbaijani": "Azerbaijani",
+    "aramaic": "Aramaic",
+    "akkadian": "Akkadian",
+    "iranian": "Iranian",
+    "turkic": "Turkic",
+    "romanian": "Romanian",
+    "coptic": "Coptic",
+    "hindi": "Hindi",
+}
+
+ALLOWED_LANGUAGE_NAMES = set(LANG_ALIAS_MAP.values())
+
+
+def normalize_language_label(raw):
+    text = str(raw or "").strip()
+    if not text:
+        return ""
+    # Remove trailing punctuation and parenthetical notes.
+    text = re.sub(r"\s*\([^)]*\)\s*$", "", text)
+    text = text.strip(" .,:;|/-")
+    # Normalize whitespace and case for lookup.
+    key = re.sub(r"\s+", " ", text).lower()
+    key = key.replace("–", "-")
+    if key in LANG_ALIAS_MAP:
+        return LANG_ALIAS_MAP[key]
+    return ""
+
 def lang_name(code):
-    return LANG_CODE_MAP.get(code, code)
+    value = LANG_CODE_MAP.get(code, "")
+    return normalize_language_label(value)
 
 seen_edges = set()
 edges = []
@@ -77,7 +130,7 @@ for e in d:
         relation = m.group(1).rstrip("+")
         lang_code = m.group(2)
         root = m.group(3).strip()
-        slang = lang_name(lang_code)
+        slang = lang_name(lang_code) or None
         if root and root != title:
             if root in title_set:
                 add_edge(title, root, relation, slang)
@@ -120,7 +173,7 @@ source_lang_edges = 0
 for e in d:
     title = e["title"]
     for et in (e.get("etymology") or []):
-        slang = (et.get("source_language") or "").strip()
+        slang = normalize_language_label(et.get("source_language") or "")
         if not slang:
             continue
         relation = (et.get("relation") or "borrowed").strip() or "borrowed"
@@ -138,11 +191,6 @@ text_lang_re = re.compile(
     r'[A-Z][A-Za-z-]+(?:\s+[A-Z][A-Za-z-]+){0,2})',
     re.IGNORECASE,
 )
-# Languages to skip (not real language names)
-SKIP_PHRASES = {
-    "old", "middle", "classical", "ancient", "modern", "proto",
-    "the", "a", "an", "this", "that",
-}
 text_lang_edges = 0
 for e in d:
     title = e["title"]
@@ -154,54 +202,25 @@ for e in d:
         relation = (et.get("relation") or "borrowed").strip() or "borrowed"
         for m in text_lang_re.finditer(text):
             raw_lang = m.group(1).strip()
-            # clean up trailing noise
-            raw_lang = re.sub(r'\s*\([^)]*\)$', '', raw_lang).strip()
-            if not raw_lang or raw_lang.lower() in SKIP_PHRASES:
+            slang = normalize_language_label(raw_lang)
+            if not slang:
                 continue
-            if len(raw_lang) < 3 or len(raw_lang) > 40:
-                continue
-            # skip if looks like an Armenian word
-            if re.search(r'[Ա-Ֆա-և]', raw_lang):
-                continue
-            synthetic_node = f"__lang__{raw_lang}"
-            add_edge(title, synthetic_node, relation, raw_lang)
+            synthetic_node = f"__lang__{slang}"
+            add_edge(title, synthetic_node, relation, slang)
             text_lang_edges += 1
             break  # one edge per etymology entry is enough
 
 print(f"Text-parsed language edges: {text_lang_edges}, total: {len(edges)}")
 
-# ── 3. keep all original graph_web.json edges ──────────────────────────────
-with open(GRAPH_FILE, encoding="utf-8") as f:
-    old_graph = json.load(f)
-
-orig_edges = 0
-for l in old_graph.get("links", []):
-    src = str(l.get("source", "")).strip()
-    tgt = str(l.get("target", "")).strip()
-    rel = str(l.get("relation", "")).strip()
-    slang = l.get("source_language") or None
-    if rel == "compound" and tgt and not tgt.startswith("-") and f"-{tgt}" in title_set:
-        # Prefer canonical suffix headwords when available (e.g. -ական over ական).
-        continue
-    if src and tgt:
-        add_edge(src, tgt, rel, slang)
-        orig_edges += 1
-
-print(f"Kept {orig_edges} original edges, total now: {len(edges)}")
-
-# ── 4. build node list ─────────────────────────────────────────────────────
+# ── 3. build node list ─────────────────────────────────────────────────────
 node_ids = set()
 for l in edges:
     node_ids.add(l["source"])
     node_ids.add(l["target"])
 
-old_nodes = {n["id"]: n for n in old_graph.get("nodes", [])}
-
 nodes_list = []
 for nid in node_ids:
-    if nid in old_nodes:
-        nodes_list.append(old_nodes[nid])
-    elif nid.startswith("__lang__"):
+    if nid.startswith("__lang__"):
         lang = nid[len("__lang__"):]
         nodes_list.append({
             "id": nid,
