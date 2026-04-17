@@ -879,12 +879,12 @@
       color: #692910;
       border-bottom-style: solid;
     }
-    #graphSection, #langGuideSection, #suffixSection {
+    #graphSection, #langGuideSection, #suffixSection, #prefixSection {
       margin: 0 1.6rem 1.6rem;
       padding-top: 0.85rem;
       border-top: 1px solid var(--line);
     }
-    #langGuideSection h2, #suffixSection h2 {
+    #langGuideSection h2, #suffixSection h2, #prefixSection h2 {
       font-size: 1.35rem;
       margin: 0 0 0.4rem;
       color: #2a1e14;
@@ -933,12 +933,14 @@
       margin-top: 0.2rem;
       font-style: italic;
     }
-    .suffix-grid {
+    .suffix-grid,
+    .prefix-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem 0.6rem;
     }
-    .suffix-btn {
+    .suffix-btn,
+    .prefix-btn {
       font-family: "EB Garamond", serif;
       font-size: 1.08rem;
       padding: 0.32rem 0.7rem;
@@ -949,7 +951,8 @@
       cursor: pointer;
       transition: background 0.14s, border-color 0.14s;
     }
-    .suffix-btn:hover {
+    .suffix-btn:hover,
+    .prefix-btn:hover {
       background: var(--accent-soft);
       border-color: var(--accent);
     }
@@ -1291,6 +1294,7 @@
         <span class="tab-separator" aria-hidden="true"></span>
         <button id="showLangGuideBtn" class="tab-btn">Language Guide</button>
         <button id="showSuffixBtn" class="tab-btn">Suffixes</button>
+        <button id="showPrefixBtn" class="tab-btn">Prefixes</button>
       </div>
       <div class="keyboard-wrap">
         <button id="toggleKeyboardBtn" type="button" aria-expanded="false">Show Armenian Keyboard</button>
@@ -1348,6 +1352,12 @@
       <h2>Armenian Suffixes &amp; Word-Forming Elements</h2>
       <p class="guide-intro">Click any suffix to look it up in the dictionary.</p>
       <div id="suffixGrid" class="suffix-grid"></div>
+    </section>
+
+    <section id="prefixSection" style="display:none">
+      <h2>Armenian Prefixes &amp; Word-Forming Elements</h2>
+      <p class="guide-intro">Click any prefix to look it up in the dictionary.</p>
+      <div id="prefixGrid" class="prefix-grid"></div>
     </section>
 
     <footer class="site-footer">
@@ -2080,11 +2090,13 @@
       const graphBtn = document.getElementById("showGraphBtn");
       const guideBtn = document.getElementById("showLangGuideBtn");
       const suffixBtn = document.getElementById("showSuffixBtn");
-      if (!resultBtn || !graphBtn || !guideBtn || !suffixBtn) return;
+      const prefixBtn = document.getElementById("showPrefixBtn");
+      if (!resultBtn || !graphBtn || !guideBtn || !suffixBtn || !prefixBtn) return;
       resultBtn.classList.toggle("section-active", section === "results");
       graphBtn.classList.toggle("section-active", section === "graph");
       guideBtn.classList.toggle("section-active", section === "guide");
       suffixBtn.classList.toggle("section-active", section === "suffix");
+      prefixBtn.classList.toggle("section-active", section === "prefix");
     }
     function setGraphMode(mode) {
       graphMode = mode === "language" || mode === "lineage" || mode === "tree" ? mode : "tree";
@@ -3684,6 +3696,9 @@
     const SUFFIX_LIST = [
       "-ա","-ա-","-աբար","-ագին","-ագույն","-ալ","-ած","-ածո","-ածու","-ակ","-ական","-ակերտ","-ային","-ան","-ան-","-անակ","-անի","-անոց","-անց","-անք","-ապան","-ապանակ","-ապատ","-ապես","-աստան","-ավետ","-ավոր","-ավուն","-ատ","-արան","-արար","-արեն","-արք","-ացի","-ացն-","-ացու","-բան","-բար","-գին","-գույն","-ե","-ել","-եղ","-ենի","-եղ","-ԷՐ","-ի","-իկ","-ին","-ինակ","-իչ","-իշ","-ներ","-ո","-ոն","-ոջ","-ող","-ոս","-ութ","-ութիւն","-ութ,","-ույն","-ուկ","-ուն","-ուս","-ուստ","-ց","-ցի","-փ","-ք"
     ];
+    const PREFIX_LIST = [
+      "ան-","ապա-","արտա-","գեր-","դեր-","դժ-","ենթա-","հակա-","համա-","հետ-","մակրո-","մեծ-","միկրո-","միջ-","նախա-","նեո-","պատ-","փոխ-","սուպեր-","վեր-"
+    ];
 
     function renderSuffixGrid() {
       const grid = document.getElementById("suffixGrid");
@@ -3697,12 +3712,25 @@
       ).join("");
     }
 
+    function renderPrefixGrid() {
+      const grid = document.getElementById("prefixGrid");
+      if (!grid) return;
+      // Use all prefix-like titles from the loaded dictionary if available, else fallback list
+      const prefixes = allTitles.length
+        ? allTitles.filter(t => t.endsWith("-")).sort()
+        : PREFIX_LIST;
+      grid.innerHTML = prefixes.map(p =>
+        `<button type="button" class="prefix-btn word-link" data-word="${encodeURIComponent(p)}">${escapeHtml(p)}</button>`
+      ).join("");
+    }
+
     function showSection(which) {
       const section = which || "results";
       document.getElementById("result").style.display = section === "results" ? "block" : "none";
       document.getElementById("graphSection").style.display = section === "graph" ? "block" : "none";
       document.getElementById("langGuideSection").style.display = section === "guide" ? "block" : "none";
       document.getElementById("suffixSection").style.display = section === "suffix" ? "block" : "none";
+      document.getElementById("prefixSection").style.display = section === "prefix" ? "block" : "none";
       setSectionTabs(section);
     }
 
@@ -3725,6 +3753,12 @@
     document.getElementById("showSuffixBtn").onclick = () => {
       showSection("suffix");
       renderSuffixGrid();
+      graphVisible = false;
+      updateUrlState(searchMode, document.getElementById("search").value.trim());
+    };
+    document.getElementById("showPrefixBtn").onclick = () => {
+      showSection("prefix");
+      renderPrefixGrid();
       graphVisible = false;
       updateUrlState(searchMode, document.getElementById("search").value.trim());
     };
