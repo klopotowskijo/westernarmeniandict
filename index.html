@@ -3344,6 +3344,44 @@
       html += `</div>`;
       panel.innerHTML = html;
     }
+    function parseJsonlEntries(text) {
+      const entries = [];
+      for (const line of String(text || "").trim().split("\n")) {
+        if (!line) continue;
+        try {
+          entries.push(JSON.parse(line));
+        } catch (e) {
+          console.error("Failed to parse JSONL line:", e);
+        }
+      }
+      return entries;
+    }
+    async function loadInflectedEntries() {
+      // Primary source (local/dev): uncompressed JSONL
+      try {
+        const direct = await fetch("inflected_entries.jsonl");
+        if (direct.ok) {
+          const text = await direct.text();
+          return parseJsonlEntries(text);
+        }
+      } catch (_) {}
+
+      // Fallback (GitHub-safe): compressed JSONL in repo
+      try {
+        const gz = await fetch("inflected_entries.jsonl.gz");
+        if (!gz.ok) return null;
+        if (typeof DecompressionStream === "undefined" || !gz.body) {
+          console.warn("inflected_entries.jsonl.gz found, but this browser cannot decompress gzip streams.");
+          return null;
+        }
+        const decompressed = gz.body.pipeThrough(new DecompressionStream("gzip"));
+        const text = await new Response(decompressed).text();
+        return parseJsonlEntries(text);
+      } catch (e) {
+        console.error("Failed to load inflected entries:", e);
+        return null;
+      }
+    }
     function loadDictionary() {
       Promise.all([
         fetch("western_armenian_merged.json")
@@ -3355,24 +3393,7 @@
         fetch("lemmatization_index.json")
           .then(r => r.json())
           .catch(() => ({})),
-        fetch("inflected_entries.jsonl")
-          .then(r => {
-            if (!r.ok) return null;
-            return r.text().then(text => {
-              const entries = [];
-              for (const line of text.trim().split("\n")) {
-                if (line) {
-                  try {
-                    entries.push(JSON.parse(line));
-                  } catch (e) {
-                    console.error("Failed to parse JSONL line:", e);
-                  }
-                }
-              }
-              return entries;
-            });
-          })
-          .catch(() => null)
+        loadInflectedEntries()
       ])
       .then(([data, lemmaIndex, inflectedEntries]) => {
         dictionary = data || [];
