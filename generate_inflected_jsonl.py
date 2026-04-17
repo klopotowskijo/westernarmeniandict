@@ -24,6 +24,7 @@ MORPHEME_GLOSSES = {
     'ով': 'INS (instrumental)',
     'ում': 'LOC (locative)',
     'ս': 'POSS.1SG',
+    'դ': 'POSS.2SG',
     'եր': 'PL (plural)',
     'ներ': 'PL (plural)',
     'ած': 'PAST.PART (past participle)',
@@ -33,6 +34,28 @@ MORPHEME_GLOSSES = {
 STACKABLE_SUFFIX_ENDINGS = [
     'ի', 'ին', 'ից', 'ով', 'ում', 'ը', 'ս', 'դ', 'ու', 'ուս', 'ուդ', 'ուց'
 ]
+
+COMPOSITE_TAIL_SPLITS = {
+    'ովս': ['ով', 'ս'],
+    'ովդ': ['ով', 'դ'],
+    'իցս': ['ից', 'ս'],
+    'իցդ': ['ից', 'դ'],
+    'ինս': ['ին', 'ս'],
+    'ինդ': ['ին', 'դ'],
+    'ումս': ['ում', 'ս'],
+    'ումդ': ['ում', 'դ'],
+    'իս': ['ի', 'ս'],
+    'իդ': ['ի', 'դ'],
+}
+
+def split_suffix_tail(tail: str) -> List[str]:
+    if not tail:
+        return []
+    if tail in COMPOSITE_TAIL_SPLITS:
+        return COMPOSITE_TAIL_SPLITS[tail]
+    if tail in STACKABLE_SUFFIX_ENDINGS:
+        return [tail]
+    return [tail]
 
 def split_inflected_form(inflected: str, lemma: str) -> Optional[Tuple]:
     """Split an inflected form into (prefix, root, suffix)."""
@@ -71,13 +94,11 @@ def split_stacked_suffixes(suffix: str) -> List[str]:
 
     if suffix.startswith('ներ') and len(suffix) > 3:
         tail = suffix[3:]
-        if tail in STACKABLE_SUFFIX_ENDINGS:
-            return ['ներ', tail]
+        return ['ներ', *split_suffix_tail(tail)]
 
     if suffix.startswith('եր') and len(suffix) > 2:
         tail = suffix[2:]
-        if tail in STACKABLE_SUFFIX_ENDINGS:
-            return ['եր', tail]
+        return ['եր', *split_suffix_tail(tail)]
 
     return [suffix]
 

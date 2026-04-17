@@ -3007,7 +3007,8 @@
         "ով": "INS (instrumental)",
         "ում": "LOC (locative)",
         "ը": "DEF.SG (definite singular)",
-        "ս": "POSS.1SG"
+        "ս": "POSS.1SG",
+        "դ": "POSS.2SG"
       };
       return meanings[form] || `[unknown: ${form}]`;
     }
@@ -3015,14 +3016,33 @@
       const suffix = String(suffixForm || "");
       if (!suffix) return [];
       const endings = new Set(["ի", "ին", "ից", "ով", "ում", "ը", "ս", "դ", "ու", "ուս", "ուդ", "ուց"]);
+      const compositeTailSplits = {
+        "ովս": ["ով", "ս"],
+        "ովդ": ["ով", "դ"],
+        "իցս": ["ից", "ս"],
+        "իցդ": ["ից", "դ"],
+        "ինս": ["ին", "ս"],
+        "ինդ": ["ին", "դ"],
+        "ումս": ["ում", "ս"],
+        "ումդ": ["ում", "դ"],
+        "իս": ["ի", "ս"],
+        "իդ": ["ի", "դ"]
+      };
+
+      const splitTail = (tail) => {
+        if (!tail) return [];
+        if (compositeTailSplits[tail]) return compositeTailSplits[tail];
+        if (endings.has(tail)) return [tail];
+        return [tail];
+      };
 
       if (suffix.startsWith("ներ") && suffix.length > 3) {
         const tail = suffix.slice(3);
-        if (endings.has(tail)) return ["ներ", tail];
+        return ["ներ", ...splitTail(tail)];
       }
       if (suffix.startsWith("եր") && suffix.length > 2) {
         const tail = suffix.slice(2);
-        if (endings.has(tail)) return ["եր", tail];
+        return ["եր", ...splitTail(tail)];
       }
       return [suffix];
     }
