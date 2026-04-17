@@ -549,6 +549,12 @@
       color: #5c4d3f;
       margin: -0.15rem 0 0.5rem;
     }
+    .ety-scope-note {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.72rem;
+      color: #5c4d3f;
+      margin: -0.15rem 0 0.45rem;
+    }
     /* Nayiri section panel */
     .nayiri-panel {
       margin-top: 0.3rem;
@@ -1613,6 +1619,17 @@
       if (!found.has(target.toLowerCase())) lineage.push(target);
       return lineage;
     }
+    function getEtymologyScopeNote(etyText) {
+      const t = String(etyText || "").toLowerCase();
+      if (!t) return "";
+      if (/ultimately from|ult\.? from|\bvia\b/.test(t)) {
+        return "Lineage includes deeper origin clues when explicitly stated (for example, via/ultimately from).";
+      }
+      if (/^borrowed from|^inherited from|^derived from|^reborrowed from/.test(t)) {
+        return "Lineage shows the immediate source path from this Armenian entry; earlier ultimate origins may exist but are not always listed here.";
+      }
+      return "Lineage is inferred from this entry and may omit deeper historical steps unless explicitly provided.";
+    }
     function getLangFamily(name) {
       const n = name.toLowerCase();
       if (/\bwestern armenian\b/.test(n)) return "lf-target";
@@ -2539,6 +2556,7 @@
       const sourceBadge = getEntrySourceBadge(entry, etySources);
       const srcLangs = getSourceLanguages(entry);
       const lineage = getEtymologyLineage(entry);
+      const etyScopeNote = getEtymologyScopeNote(ety);
       const rootDefLine = buildSurnameRootDefinition(entry, displayDefs, ety);
       const defsToShow = rootDefLine ? [...displayDefs, rootDefLine] : displayDefs;
       currentWord = entry.title;
@@ -2556,6 +2574,7 @@
       }
       html += `<div class="section-label">Etymology <span class="source-badge ${escapeHtml(sourceBadge.className)}">${escapeHtml(sourceBadge.label)}</span><span class="ety-confidence ${escapeHtml(etyConfidence.className)}">${escapeHtml(etyConfidence.label)}</span></div>`;
       html += `<div class="etymology-box">${renderLineage(lineage)}${renderEtymologyTextWithLinks(ety)}</div>`;
+      if (etyScopeNote) html += `<div class="ety-scope-note">${escapeHtml(etyScopeNote)}</div>`;
       html += `<div class="ety-sources">Sources: ${etySources.map(s => escapeHtml(s)).join("; ")}</div>`;
       if (attestation) html += `<div class="attestation-note">Timeline: ${escapeHtml(attestation)}</div>`;
       // Nayiri panel
