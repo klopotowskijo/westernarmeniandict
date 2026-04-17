@@ -2621,6 +2621,7 @@
             // fall back to incoming links so isolated roots still render descendants.
             const neighbor = outgoingLinks.length ? String(l.target) : String(l.source);
             if (visited.has(neighbor)) continue;
+            if (isLangNode(neighbor)) continue;  // skip language hub nodes in tree mode
             visited.add(neighbor);
             tree.push({
               parent,
@@ -2777,13 +2778,17 @@
           const tgt = String(l.target);
           if (isLangNode(src) || isLangNode(tgt)) continue;
           const rel = String(l.relation || "").trim();
+          // Only show edge label for specific/non-generic relations
+          const GENERIC_RELS = new Set(["derived", "related", "etymological link", "unknown", ""]);
+          const showLabel = rel && !GENERIC_RELS.has(rel.toLowerCase()) && rel.length <= 18;
           addWordNode(src, "word", true);
           addWordNode(tgt, "word", true);
           edges.push({
             from: src,
             to: tgt,
             arrows: "to",
-            label: rel.length <= 22 ? rel : "",
+            label: showLabel ? rel : "",
+            title: rel || undefined,
             font: { size: 10, align: "middle" },
             color: { color: "#b69b7f", highlight: "#8a4f28" }
           });
@@ -2865,18 +2870,31 @@
                 enabled: true,
                 direction: "UD",
                 sortMethod: "directed",
-                levelSeparation: 140,
-                nodeSpacing: 180,
-                treeSpacing: 220,
+                levelSeparation: 100,
+                nodeSpacing: 140,
+                treeSpacing: 180,
                 edgeMinimization: true,
                 parentCentralization: true,
                 blockShifting: true
               }
             }
           : mode === "language"
-            ? { hierarchical: { enabled: true, direction: "LR", sortMethod: "directed", levelSeparation: 130 } }
+            ? { hierarchical: { enabled: true, direction: "LR", sortMethod: "directed", levelSeparation: 160, nodeSpacing: 120 } }
             : {},
         physics: mode === "lineage"
+          ? {
+              enabled: true,
+              solver: "forceAtlas2Based",
+              forceAtlas2Based: {
+                gravitationalConstant: -60,
+                centralGravity: 0.01,
+                springLength: 120,
+                springConstant: 0.08,
+                damping: 0.5
+              },
+              stabilization: { iterations: 200 }
+            }
+          : false
       });
       network.once("stabilized", () => {
         if (mode === "tree" && strictTreeFocusNode) {
