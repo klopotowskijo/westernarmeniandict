@@ -842,6 +842,42 @@
         .map(l => cleanWikiDef(l.replace(/^#+/, "").trim()))
         .filter(l => l.length > 1);
     }
+    function parseAlternativeTarget(definitionText) {
+      const m = String(definitionText || "")
+        .trim()
+        .match(/^(alternative\s+(?:form|spelling|typography)\s+of)\s+(.+)$/i);
+      if (!m) return null;
+      const target = m[2].replace(/[.;:]+\s*$/, "").trim();
+      return target || null;
+    }
+    function resolveCanonicalDefinition(entry, depth = 0) {
+      if (!entry || depth > 4) return "";
+      const defs = parseDefinitions(entry)
+        .filter(d => typeof d === "string" && d.trim())
+        .map(d => d.trim());
+      if (!defs.length) return "";
+
+      for (const d of defs) {
+        if (!parseAlternativeTarget(d)) return d;
+      }
+
+      const targetWord = parseAlternativeTarget(defs[0]);
+      if (!targetWord) return "";
+      const targetEntry = titleIndex[targetWord];
+      if (!targetEntry) return "";
+      return resolveCanonicalDefinition(targetEntry, depth + 1);
+    }
+    function enrichDefinitions(entry, defs) {
+      return defs.map(d => {
+        const targetWord = parseAlternativeTarget(d);
+        if (!targetWord) return d;
+        const targetEntry = titleIndex[targetWord];
+        if (!targetEntry) return d;
+        const targetDef = resolveCanonicalDefinition(targetEntry);
+        if (!targetDef) return d;
+        return `${d} (${targetDef})`;
+      });
+    }
     function parsePOS(wikitext) {
       const m = wikitext.match(/==Armenian==\s*\n([\s\S]*?)(?=\n==[^=]|$)/);
       if (!m) return "";
@@ -1721,6 +1757,7 @@
         return;
       }
       const defs = parseDefinitions(entry);
+      const displayDefs = enrichDefinitions(entry, defs);
       const pos = parsePOS(entry.wikitext || "");
       const pron = parsePronunciation(entry.wikitext || "");
       const altForms = parseWikitextSection(entry.wikitext || "", "Alternative forms");
@@ -1741,13 +1778,9 @@
       html += `<div class="entry-tools"><button type="button" class="permalink-btn" data-word="${encodedTitle}">Permalink</button><span class="permalink-status" id="permalinkStatus"></span></div>`;
       html += `</div><div class="entry-content">`;
       // Prefer explicit definition field if present
-      if (entry.definition && Array.isArray(entry.definition) && entry.definition.length) {
+      if (displayDefs.length) {
         html += `<div class="section-label">Definition <span class="source-badge wiktionary">Wiktionary</span></div><ol>`;
-        for (const d of entry.definition) html += `<li>${d}</li>`;
-        html += `</ol>`;
-      } else if (defs.length) {
-        html += `<div class="section-label">Definition <span class="source-badge wiktionary">Wiktionary</span></div><ol>`;
-        for (const d of defs) html += `<li>${d}</li>`;
+        for (const d of displayDefs) html += `<li>${escapeHtml(d)}</li>`;
         html += `</ol>`;
       }
       html += `<div class="section-label">Etymology <span class="source-badge wiktionary">Wiktionary</span><span class="ety-confidence ${escapeHtml(etyConfidence.className)}">${escapeHtml(etyConfidence.label)}</span></div>`;
@@ -1801,7 +1834,7 @@
         html += `</div>`;
       }
       html += `<div class="entry-meta">`;
-      html += `<span class="meta-pill">${defs.length || (entry.definition?.length || 0)} defs</span>`;
+      html += `<span class="meta-pill">${displayDefs.length} defs</span>`;
       html += `<span class="meta-pill">ety ${escapeHtml(etyConfidence.label)}</span>`;
       if (attestation) html += `<span class="meta-pill">attestation ${escapeHtml(attestation)}</span>`;
       if (srcLangs.length) {
