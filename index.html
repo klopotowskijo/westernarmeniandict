@@ -1203,7 +1203,8 @@
 
       return `Root ${roots[0]}: definition not found in current dictionary.`;
     }
-    function parsePOS(wikitext) {
+    function parsePOS(wikitext, fallbackPos = "") {
+      if (fallbackPos) return String(fallbackPos).toLowerCase();
       const m = wikitext.match(/==Armenian==\s*\n([\s\S]*?)(?=\n==[^=]|$)/);
       if (!m) return "";
       const sec = m[1];
@@ -1220,11 +1221,27 @@
       }
       return "";
     }
-    function parsePronunciation(wikitext) {
+    function parsePronunciation(wikitext, fallbackPronunciation = "") {
+      if (fallbackPronunciation) return fallbackPronunciation;
       const m = wikitext.match(/\{\{hy-IPA\|?([^}]*)\}\}/);
       if (!m) return null;
       const arg = m[1].replace(/\|.*/, "").trim();
       return arg || null;
+    }
+    function getStructuredLinks(entry, key) {
+      if (!entry || !Array.isArray(entry[key])) return [];
+      return [...new Set(entry[key]
+        .filter(v => typeof v === "string" && v.trim())
+        .map(v => v.trim()))];
+    }
+    function getEntrySourceBadge(entry, etySources = []) {
+      if (entry && String(entry.definition_source || entry.data_source || "").toLowerCase().includes("nayiri")) {
+        return { label: "Nayiri", className: "nayiri" };
+      }
+      if (etySources.some(src => /nayiri/i.test(src))) {
+        return { label: "Nayiri", className: "nayiri" };
+      }
+      return { label: "Wiktionary", className: "wiktionary" };
     }
     function parseWikiLinks(text) {
       const words = new Set();
@@ -2129,9 +2146,12 @@
       }
       const defs = parseDefinitions(entry);
       const displayDefs = enrichDefinitions(entry, defs);
-      const pos = parsePOS(entry.wikitext || "");
-      const pron = parsePronunciation(entry.wikitext || "");
-      const altForms = parseWikitextSection(entry.wikitext || "", "Alternative forms");
+      const pos = parsePOS(entry.wikitext || "", entry.part_of_speech || "");
+      const pron = parsePronunciation(entry.wikitext || "", entry.pronunciation || "");
+      const altForms = [...new Set([
+        ...parseWikitextSection(entry.wikitext || "", "Alternative forms"),
+        ...getStructuredLinks(entry, "alternative_forms")
+      ])];
       const derivedTerms = parseWikitextSection(entry.wikitext || "", "Derived terms");
       const relatedTerms = parseWikitextSection(entry.wikitext || "", "Related terms");
       const seeAlso = parseWikitextSection(entry.wikitext || "", "See also");
@@ -2139,6 +2159,7 @@
       const etyConfidence = inferEtymologyConfidence(entry, ety);
       const attestation = inferAttestation(entry, ety);
       const etySources = getEtymologySourceList(entry);
+      const sourceBadge = getEntrySourceBadge(entry, etySources);
       const srcLangs = getSourceLanguages(entry);
       const lineage = getEtymologyLineage(entry);
       const rootDefLine = buildSurnameRootDefinition(entry, displayDefs, ety);
@@ -2152,16 +2173,16 @@
       html += `</div><div class="entry-content">`;
       // Prefer explicit definition field if present
       if (defsToShow.length) {
-        html += `<div class="section-label">Definition <span class="source-badge wiktionary">Wiktionary</span></div><ol>`;
+        html += `<div class="section-label">Definition <span class="source-badge ${escapeHtml(sourceBadge.className)}">${escapeHtml(sourceBadge.label)}</span></div><ol>`;
         for (const d of defsToShow) html += `<li>${escapeHtml(d)}</li>`;
         html += `</ol>`;
       }
-      html += `<div class="section-label">Etymology <span class="source-badge wiktionary">Wiktionary</span><span class="ety-confidence ${escapeHtml(etyConfidence.className)}">${escapeHtml(etyConfidence.label)}</span></div>`;
+      html += `<div class="section-label">Etymology <span class="source-badge ${escapeHtml(sourceBadge.className)}">${escapeHtml(sourceBadge.label)}</span><span class="ety-confidence ${escapeHtml(etyConfidence.className)}">${escapeHtml(etyConfidence.label)}</span></div>`;
       html += `<div class="etymology-box">${renderLineage(lineage)}${escapeHtml(ety || "—")}</div>`;
       html += `<div class="ety-sources">Sources: ${etySources.map(s => escapeHtml(s)).join("; ")}</div>`;
       if (attestation) html += `<div class="attestation-note">Timeline: ${escapeHtml(attestation)}</div>`;
       // Nayiri panel
-      const nayiriEntry = window.nayiriIndex && window.nayiriIndex[entry.title];
+      const nayiriEntry = (entry && entry.nayiri) || (window.nayiriIndex && window.nayiriIndex[entry.title]);
       if (nayiriEntry) {
         html += `<div class="section-label">Nayiri <span class="source-badge nayiri">Nayiri</span></div>`;
         html += `<div class="nayiri-panel">`;
@@ -2319,8 +2340,12 @@
       panel.innerHTML = html;
     }
     function loadDictionary() {
-      fetch("western_armenian_wiktionary.json")
-        .then(r => r.json())
+      fetch("western_armenian_merged.json")
+        .then(r => {
+          if (!r.ok) throw new Error("merged dictionary not found");
+          return r.json();
+        })
+        .catch(() => fetch("western_armenian_wiktionary.json").then(r => r.json()))
         .then(data => {
           dictionary = data;
           for (const e of data) {

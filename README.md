@@ -53,11 +53,15 @@ The dictionary covers borrowings from:
 
 - `index.html` - Main web interface
 - `western_armenian_wiktionary.json` - Dictionary data (15MB)
+- `western_armenian_merged.json` - Dictionary data plus Nayiri-only lemmas
 - `graph_web.json` - Graph visualization data (6.9MB)
 - `analyze_dict.py` - Dictionary analysis and statistics
 - `parser_fast.py` - Etymology parsing utilities
 - `auto_fill_all.py` - Automated etymology generation
 - `cleanup_dict.py` - Data cleaning and validation
+- `merge.py` - Merge Wiktionary and Nayiri into a single searchable dictionary
+- `review_merged_entries.py` - Review merged data for duplicates and weak entries
+- `ocr_etym_dict_to_json.py` - Convert OCR text from scanned dictionaries into staged JSON
 
 ## Development
 
@@ -75,7 +79,18 @@ The dictionary covers borrowings from:
 python3 analyze_dict.py  # Generate statistics
 python3 parser_fast.py   # Parse etymologies
 python3 cleanup_dict.py  # Clean data
+python3 merge.py         # Build merged Wiktionary + Nayiri dataset
+python3 review_merged_entries.py  # Review merged dataset quality
 ```
+
+### Adding More Sources
+```bash
+python3 ocr_etym_dict_to_json.py scans/my_ocr.txt staged_ocr_entries.json --source-name "Acharian Etymological Dictionary"
+python3 merge.py
+python3 review_merged_entries.py
+```
+
+The current site loads `western_armenian_merged.json` first when present, and falls back to `western_armenian_wiktionary.json` otherwise.
 
 ## Contributing
 
