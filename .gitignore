@@ -126,3 +126,5 @@ Thumbs.db
 # Analysis reports
 dictionary_analysis_report.json
 removed_entries.txt
+# Nayiri scan downloads (large binaries)
+scans/

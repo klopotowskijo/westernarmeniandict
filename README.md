@@ -62,6 +62,9 @@ The dictionary covers borrowings from:
 - `merge.py` - Merge Wiktionary and Nayiri into a single searchable dictionary
 - `review_merged_entries.py` - Review merged data for duplicates and weak entries
 - `ocr_etym_dict_to_json.py` - Convert OCR text from scanned dictionaries into staged JSON
+- `download_nayiri_imaged_dictionary.py` - Download Nayiri imaged-dictionary manifests, page HTML, and scan images
+- `ocr_images_with_vision.swift` - OCR helper using macOS Vision for scan images
+- `ingest_nayiri_scans.py` - OCR downloaded Nayiri scans and optionally stage/merge them
 
 ## Development
 
@@ -80,15 +83,25 @@ python3 analyze_dict.py  # Generate statistics
 python3 parser_fast.py   # Parse etymologies
 python3 cleanup_dict.py  # Clean data
 python3 merge.py         # Build merged Wiktionary + Nayiri dataset
+python3 merge.py --extra-json staged_ocr_entries.json  # Merge OCR-imported entries too
 python3 review_merged_entries.py  # Review merged dataset quality
 ```
 
 ### Adding More Sources
 ```bash
 python3 ocr_etym_dict_to_json.py scans/my_ocr.txt staged_ocr_entries.json --source-name "Acharian Etymological Dictionary"
-python3 merge.py
+python3 merge.py --extra-json staged_ocr_entries.json
 python3 review_merged_entries.py
 ```
+
+### Nayiri Scan Workflow
+```bash
+python3 download_nayiri_imaged_dictionary.py scans/nayiri_7 --dictionary-id 7 --start-page 78 --end-page 90
+python3 ingest_nayiri_scans.py scans/nayiri_7 scans/nayiri_7/ocr/all_pages.txt --staged-json scans/nayiri_7/staged_entries.json --merge-output western_armenian_merged.json --source-name "Acharian Etymological Dictionary"
+python3 review_merged_entries.py
+```
+
+`download_nayiri_imaged_dictionary.py` uses browser-style headers and referers so Nayiri scan PNGs can be fetched reliably. `ingest_nayiri_scans.py` depends on the macOS Swift toolchain and Vision framework.
 
 The current site loads `western_armenian_merged.json` first when present, and falls back to `western_armenian_wiktionary.json` otherwise.
 
