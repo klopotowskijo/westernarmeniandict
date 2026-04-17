@@ -1390,10 +1390,6 @@
     let graphSelectedLanguages = new Set();
     let graphVisible = false;
     let pendingRandomRequest = false;
-    let backgroundDataReady = false;
-    let backgroundDataPromise = null;
-    let _bgDataResolve = null;
-    backgroundDataPromise = new Promise(res => { _bgDataResolve = res; });
     let graphRenderSnapshot = null;
     let graphFocusedNodeId = "";
     let collapsedTreeNodes = new Set();
@@ -3318,14 +3314,6 @@
       html += `</div>`;
       html += `</div></article>`;
       el.innerHTML = html;
-      // If background data is still loading, add a notice and auto-refresh when ready
-      if (!backgroundDataReady && backgroundDataPromise) {
-        const notice = document.createElement("div");
-        notice.id = "bg-loading-notice";
-        notice.style.cssText = "margin:8px 16px 0;padding:6px 10px;background:#f5f0e8;border-left:3px solid #c8a96e;border-radius:4px;font-size:0.8rem;color:#7a6a54;";
-        notice.textContent = "Still loading additional data (word forms, morphology)…";
-        el.insertBefore(notice, el.firstChild);
-      }
       showSection("results");
       if (syncUrl) updateUrlState("word", entry.title);
     }
@@ -3488,23 +3476,33 @@
       }
     }
     function loadDictionary() {
-      // Phase 1: load only the main dictionary — makes the app immediately usable
-      fetch("western_armenian_merged.json")
-        .then(r => {
-          if (!r.ok) throw new Error("merged dictionary not found");
-          return r.json();
-        })
-        .catch(() => fetch("western_armenian_wiktionary.json").then(r => r.json()))
-        .then(data => {
-          dictionary = data || [];
-          for (const e of dictionary) {
-            titleIndex[e.title] = e;
-          }
-          allTitles = dictionary.map(e => e.title);
-          sourceLanguageList = [...new Set(dictionary.flatMap(e => getSourceLanguages(e)))].sort();
-          document.getElementById("count").textContent =
-            dictionary.length.toLocaleString() + " entries";
-          applyStateFromUrl();
+      Promise.all([
+        fetch("western_armenian_merged.json")
+          .then(r => {
+            if (!r.ok) throw new Error("merged dictionary not found");
+            return r.json();
+          })
+          .catch(() => fetch("western_armenian_wiktionary.json").then(r => r.json())),
+        fetch("lemmatization_index.json")
+          .then(r => r.json())
+          .catch(() => ({})),
+        loadInflectedEntries()
+      ])
+      .then(([data, lemmaIndex, inflectedEntries]) => {
+        dictionary = data || [];
+        // Merge inflected entries if available
+        if (inflectedEntries && Array.isArray(inflectedEntries)) {
+          dictionary = dictionary.concat(inflectedEntries);
+        }
+        lemmatizationIndex = lemmaIndex || {};
+        for (const e of dictionary) {
+          titleIndex[e.title] = e;
+        }
+        allTitles = dictionary.map(e => e.title);
+        sourceLanguageList = [...new Set(dictionary.flatMap(e => getSourceLanguages(e)))].sort();
+        document.getElementById("count").textContent =
+          dictionary.length.toLocaleString() + " entries";
+        applyStateFromUrl();
           if (graphVisible) {
             openGraphSection();
           }
@@ -3512,34 +3510,6 @@
             pendingRandomRequest = false;
             triggerRandomWordLookup();
           }
-
-          backgroundDataPromise
-            .then(() => {
-              backgroundDataReady = true;
-              // Re-render current entry now that all data is available
-              if (currentWord) lookup(currentWord, false);
-            });
-
-          // Phase 2 internal: lemma + inflected — resolve the outer promise after Nayiri joins too
-          const lemmaPromise = fetch("lemmatization_index.json")
-            .then(r => r.json())
-            .catch(() => ({}))
-            .then(lemmaIndex => { lemmatizationIndex = lemmaIndex || {}; });
-
-          const inflectedPromise = loadInflectedEntries().then(inflectedEntries => {
-            if (inflectedEntries && Array.isArray(inflectedEntries) && inflectedEntries.length) {
-              dictionary = dictionary.concat(inflectedEntries);
-              for (const e of inflectedEntries) {
-                titleIndex[e.title] = e;
-                allTitles.push(e.title);
-              }
-              document.getElementById("count").textContent =
-                dictionary.length.toLocaleString() + " entries";
-            }
-          });
-
-          // Store phase-2 promise so Nayiri can join it before resolving the outer promise
-          window._phase2Promise = Promise.all([lemmaPromise, inflectedPromise]);
         });
     }
     let searchTimeout = null;
@@ -3957,33 +3927,25 @@
       updateUrlState(searchMode, document.getElementById("search").value.trim());
     };
     loadDictionary();
-    // Defer Nayiri lexicon (65 MB) until after the main dictionary is ready
-    // so it doesn't compete for bandwidth on initial load.
-    setTimeout(() => {
-      const nayiriPromise = fetch("nayiri-armenian-lexicon-2026-02-15-v1%202.json")
-        .then(r => r.json())
-        .then(d => {
-          // Build index: lemmaString → { description, partOfSpeech, wordForms }
-          window.nayiriIndex = {};
-          for (const lex of (d.lexemes || [])) {
-            for (const lemma of (lex.lemmas || [])) {
-              const key = lemma.lemmaString;
-              if (key && !window.nayiriIndex[key]) {
-                window.nayiriIndex[key] = {
-                  description: lex.description || "",
-                  partOfSpeech: lemma.partOfSpeech || "",
-                  wordForms: (lemma.wordForms || []).map(f => f.s)
-                };
-              }
+    fetch("nayiri-armenian-lexicon-2026-02-15-v1%202.json")
+      .then(r => r.json())
+      .then(d => {
+        // Build index: lemmaString → { description, partOfSpeech, wordForms }
+        window.nayiriIndex = {};
+        for (const lex of (d.lexemes || [])) {
+          for (const lemma of (lex.lemmas || [])) {
+            const key = lemma.lemmaString;
+            if (key && !window.nayiriIndex[key]) {
+              window.nayiriIndex[key] = {
+                description: lex.description || "",
+                partOfSpeech: lemma.partOfSpeech || "",
+                wordForms: (lemma.wordForms || []).map(f => f.s)
+              };
             }
           }
-        })
-        .catch(err => console.error("Could not load Nayiri lexicon:", err));
-      // Chain Nayiri into the background data promise so re-render waits for it too
-      Promise.all([window._phase2Promise || Promise.resolve(), nayiriPromise])
-        .then(() => { if (_bgDataResolve) { _bgDataResolve(); _bgDataResolve = null; } })
-        .catch(() => { if (_bgDataResolve) { _bgDataResolve(); _bgDataResolve = null; } });
-    }, 5000);
+        }
+      })
+      .catch(err => console.error("Could not load Nayiri lexicon:", err));
   });
   </script>
 </body>
