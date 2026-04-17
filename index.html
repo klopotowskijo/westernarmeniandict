@@ -906,6 +906,31 @@
       padding: 0.7rem 0.9rem;
       background: #fffdf8;
     }
+    .guide-card-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      font: inherit;
+      transition: border-color 0.12s, background 0.12s, box-shadow 0.12s;
+    }
+    .guide-card-btn:hover {
+      background: #fdf3e3;
+      border-color: #c8a96e;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .guide-card-btn:hover .guide-card-name {
+      color: #7a3d10;
+    }
+    .guide-card-btn::after {
+      content: "Browse words →";
+      display: block;
+      font-size: 0.75rem;
+      color: #c8a96e;
+      margin-top: 0.35rem;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-weight: 500;
+    }
     .guide-card-name {
       font-family: "IBM Plex Sans", sans-serif;
       font-weight: 600;
@@ -3786,9 +3811,9 @@
     const LANG_GUIDE = [
       { name: "Proto-Indo-European", code: "PIE / ine-pro", desc: "The reconstructed ancestor of most European and Iranian languages, including Armenian. Words marked PIE go back ~5,000–6,000 years.", period: "c. 4000–2500 BCE" },
       { name: "Proto-Armenian", code: "hyx-pro", desc: "The unattested intermediate stage between PIE and Classical Armenian, reconstructed from comparative evidence.", period: "c. 1000–500 BCE" },
-      { name: "Classical Armenian (Grabar)", code: "xcl", desc: "The literary and liturgical language of Armenia from the 5th century AD onwards. Still used in the Armenian Apostolic Church.", period: "5th century AD–present" },
-      { name: "Middle Armenian", code: "axm", desc: "Transitional stage of Armenian used in the Cilician kingdom and medieval manuscripts.", period: "11th–17th century" },
-      { name: "Old Armenian", code: "xcl (early)", desc: "Early attestations of Classical Armenian, sometimes distinguished from later Grabar.", period: "5th–10th century" },
+      { name: "Classical Armenian (Grabar)", code: "xcl", desc: "The literary and liturgical language of Armenia from the 5th century AD onwards. Still used in the Armenian Apostolic Church.", period: "5th century AD–present", searchKey: "Classical Armenian" },
+      { name: "Middle Armenian", code: "axm", desc: "Transitional stage of Armenian used in the Cilician kingdom and medieval manuscripts.", period: "11th–17th century", searchKey: "Middle Armenian" },
+      { name: "Old Armenian", code: "xcl (early)", desc: "Early attestations of Classical Armenian, sometimes distinguished from later Grabar.", period: "5th–10th century", searchKey: "Old Armenian" },
       { name: "Western Armenian", code: "hyw", desc: "The dialect spoken by Armenians of Anatolia and the diaspora; the focus of this dictionary.", period: "19th century–present" },
       { name: "Eastern Armenian", code: "hy", desc: "The modern standard of Armenia and Iran, closely related to but distinct from Western Armenian.", period: "19th century–present" },
       { name: "Ottoman Turkish", code: "ota", desc: "The language of the Ottoman Empire. A major source of loanwords into Western Armenian, especially for everyday and administrative vocabulary.", period: "c. 1300–1928" },
@@ -3817,12 +3842,25 @@
     function renderLangGuide() {
       const grid = document.getElementById("langGuideGrid");
       if (!grid) return;
-      grid.innerHTML = LANG_GUIDE.map(({ name, code, desc, period }) => `
-        <div class="guide-card">
+      grid.innerHTML = LANG_GUIDE.map(({ name, code, desc, period, searchKey }) => {
+        const query = searchKey || name;
+        return `
+        <button type="button" class="guide-card guide-card-btn" data-lang="${escapeHtml(query)}" title="Click to browse words from ${escapeHtml(name)}">
           <div class="guide-card-name">${escapeHtml(name)}<span class="guide-card-code">${escapeHtml(code)}</span></div>
           <div class="guide-card-desc">${escapeHtml(desc)}</div>
           ${period ? `<div class="guide-card-period">${escapeHtml(period)}</div>` : ""}
-        </div>`).join("");
+        </button>`;
+      }).join("");
+      grid.addEventListener("click", e => {
+        const btn = e.target.closest(".guide-card-btn");
+        if (!btn) return;
+        const lang = btn.dataset.lang;
+        if (!lang) return;
+        setMode("language");
+        document.getElementById("search").value = lang;
+        lookupLanguage(lang, true);
+        showSection("results");
+      });
     }
 
     const SUFFIX_LIST = [
