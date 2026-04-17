@@ -701,6 +701,154 @@
       padding: 0.05rem 0.35rem;
       color: #2d4a20;
     }
+    /* Morphology section panel */
+    .morphology-panel {
+      margin-top: 0.3rem;
+      padding: 0.55rem 0.7rem;
+      background: #f8f4ff;
+      border-left: 3px solid #7b5fa8;
+      border-radius: 0 4px 4px 0;
+    }
+    .morphology-formula {
+      font-family: "EB Garamond", serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.6rem;
+      word-break: break-word;
+      color: #3a2a4a;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      align-items: baseline;
+    }
+    .morpheme-component {
+      background: #f0e8ff;
+      border: 1px solid #9d7fb5;
+      border-radius: 3px;
+      padding: 0.15rem 0.4rem;
+      font-weight: 500;
+      color: #4a2a6a;
+    }
+    .morpheme-component.root {
+      background: #e8f4ff;
+      border-color: #5d8fb5;
+      color: #1a4a6a;
+        /* Clickable root morpheme */
+        .morpheme-component.root.morphology-link {
+          cursor: pointer;
+          transition: background-color 0.15s ease, transform 0.1s ease;
+        }
+        .morpheme-component.root.morphology-link:hover {
+          background: #d4e8f8;
+          transform: scale(1.04);
+        }
+        .morpheme-component.root.morphology-link:active {
+          background: #c4ddf0;
+        }
+    }
+    .morpheme-component.prefix {
+      background: #ffe8e8;
+      border-color: #b55d5d;
+      color: #6a1a1a;
+    }
+    .morpheme-component.suffix {
+      background: #e8ffe8;
+      border-color: #5db55d;
+      color: #1a6a1a;
+    }
+    .morphology-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.4rem;
+      font-size: 0.84rem;
+      border: 1px solid #dcc8e8;
+      background: #fdfcfe;
+    }
+    .morphology-table th,
+    .morphology-table td {
+      padding: 0.35rem 0.5rem;
+      text-align: left;
+      border-bottom: 1px solid #ede0f5;
+    }
+    .morphology-table th {
+      background: #ede0f5;
+      color: #5a3a7a;
+      font-weight: 600;
+      font-family: "IBM Plex Sans", sans-serif;
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+    }
+    .morphology-table td:first-child {
+          /* Root form in morphology table */
+          .morphology-table .morphology-link {
+            background: #e8f4ff;
+            border: 1px solid #5d8fb5;
+            border-radius: 3px;
+            padding: 0.15rem 0.4rem;
+            color: #1a4a6a;
+            font-family: "EB Garamond", serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.15s ease;
+          }
+          .morphology-table .morphology-link:hover {
+            background: #d4e8f8;
+            border-color: #4d7fa5;
+          }
+      font-family: "EB Garamond", serif;
+      font-weight: 500;
+      color: #3a2a4a;
+    }
+    .morpheme-badge {
+      display: inline-block;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.65rem;
+      padding: 0.12rem 0.3rem;
+      border-radius: 2px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .morpheme-badge.inflectional {
+      background: #c8e6ff;
+      color: #0a4a8a;
+    }
+    .morpheme-badge.attested {
+      background: #d4f4dd;
+      color: #0a6a2a;
+    }
+    .morpheme-badge.derived {
+      background: #ffe8c8;
+      color: #8a4a0a;
+    }
+    .morphology-link {
+      border: none;
+      background: none;
+      padding: 0;
+      color: var(--accent);
+      border-bottom: 1px dotted var(--accent);
+      cursor: pointer;
+      font-family: "EB Garamond", serif;
+      font-size: 0.84rem;
+    }
+    .morphology-link:hover {
+      color: #692910;
+          .morphology-link.root {
+            color: inherit;
+            border: 1px solid;
+            border-color: inherit;
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            font-family: "EB Garamond", serif;
+            font-weight: 500;
+            font-size: 1.1rem;
+          }
+          .morphology-link.root:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+          }
+      border-bottom-style: solid;
+    }
     .not-found {
       color: var(--warning);
       font-family: "IBM Plex Sans", sans-serif;
@@ -2835,6 +2983,64 @@
         renderEmptyState();
       }
     }
+    function renderMorphology(entry) {
+      if (!entry.morphology || !entry.morphology.decomposed) return "";
+      const morph = entry.morphology;
+      let html = `<div class="section-label">Morphology</div>`;
+      html += `<div class="morphology-panel">`;
+      // Render formula
+      if (morph.formula) {
+        html += `<div class="morphology-formula">`;
+        // Parse formula string like " Արմ [ի]" into components
+        const formulaParts = morph.formula.trim().split(/\s*\[\s*|\s*\]\s*/);
+        for (let i = 0; i < formulaParts.length; i++) {
+          const part = formulaParts[i].trim();
+          if (!part) continue;
+          if (i % 2 === 0) {
+            // Root part (make clickable if it's the base form)
+            if (morph.base_form && part === morph.base_form) {
+              html += `<button type="button" class="morpheme-component root morphology-link" data-word="${encodeURIComponent(part)}">${escapeHtml(part)}</button>`;
+            } else {
+              html += `<span class="morpheme-component root">${escapeHtml(part)}</span>`;
+            }
+          } else {
+            // Morpheme in brackets
+            html += `<span class="morpheme-component suffix">[${escapeHtml(part)}]</span>`;
+          }
+        }
+        html += `</div>`;
+      }
+      // Render components table
+      if (morph.components && morph.components.length) {
+        html += `<table class="morphology-table">`;
+        html += `<thead><tr><th>Component</th><th>Form</th><th>Meaning</th><th>Type</th></tr></thead>`;
+        html += `<tbody>`;
+        for (const comp of morph.components) {
+          const compType = comp.component || "unknown";
+          const typeBadge = comp.type || "unknown";
+                    const isRoot = compType === "root" && morph.base_form === comp.form;
+          html += `<tr>`;
+          html += `<td>${escapeHtml(compType)}</td>`;
+          // Make root form clickable
+          if (isRoot) {
+            html += `<td><button type="button" class="morphology-link" data-word="${encodeURIComponent(comp.form)}">${escapeHtml(comp.form)}</button></td>`;
+          } else {
+            html += `<td>${escapeHtml(comp.form || "")}</td>`;
+          }
+          html += `<td>${escapeHtml(comp.meaning || "")}</td>`;
+          html += `<td><span class="morpheme-badge ${escapeHtml(typeBadge)}">${escapeHtml(typeBadge)}</span></td>`;
+          html += `</tr>`;
+        }
+        html += `</tbody>`;
+        html += `</table>`;
+      }
+      // Add link to base form
+      if (morph.base_form && morph.base_form !== entry.title) {
+        html += `<div style="margin-top: 0.45rem; font-size: 0.85rem; color: #665a4a;">Base form: <button type="button" class="morphology-link" data-word="${encodeURIComponent(morph.base_form)}">${escapeHtml(morph.base_form)}</button></div>`;
+      }
+      html += `</div>`;
+      return html;
+    }
     function lookupLanguage(query, syncUrl = true) {
       const el = document.getElementById("result");
       const cleanQuery = (query || "").trim();
@@ -2927,6 +3133,11 @@
         html += `<div class="section-label">Definition <span class="source-badge ${escapeHtml(sourceBadge.className)}">${escapeHtml(sourceBadge.label)}</span></div><ol>`;
         for (const d of defsToShow) html += `<li>${escapeHtml(d)}</li>`;
         html += `</ol>`;
+      }
+      // Add morphology section if entry is an inflected form
+      const morphologyHtml = renderMorphology(entry);
+      if (morphologyHtml) {
+        html += morphologyHtml;
       }
       html += `<div class="section-label">Etymology <span class="source-badge ${escapeHtml(sourceBadge.className)}">${escapeHtml(sourceBadge.label)}</span><span class="ety-confidence ${escapeHtml(etyConfidence.className)}">${escapeHtml(etyConfidence.label)}</span></div>`;
       html += `<div class="etymology-box">${renderLineage(lineage)}${renderEtymologyTextWithLinks(ety)}</div>`;
@@ -3131,18 +3342,40 @@
           .catch(() => fetch("western_armenian_wiktionary.json").then(r => r.json())),
         fetch("lemmatization_index.json")
           .then(r => r.json())
-          .catch(() => ({}))
+          .catch(() => ({})),
+        fetch("inflected_entries.jsonl")
+          .then(r => {
+            if (!r.ok) return null;
+            return r.text().then(text => {
+              const entries = [];
+              for (const line of text.trim().split("\n")) {
+                if (line) {
+                  try {
+                    entries.push(JSON.parse(line));
+                  } catch (e) {
+                    console.error("Failed to parse JSONL line:", e);
+                  }
+                }
+              }
+              return entries;
+            });
+          })
+          .catch(() => null)
       ])
-      .then(([data, lemmaIndex]) => {
-        dictionary = data;
-        lemmatizationIndex = lemmaIndex;
-        for (const e of data) {
+      .then(([data, lemmaIndex, inflectedEntries]) => {
+        dictionary = data || [];
+        // Merge inflected entries if available
+        if (inflectedEntries && Array.isArray(inflectedEntries)) {
+          dictionary = dictionary.concat(inflectedEntries);
+        }
+        lemmatizationIndex = lemmaIndex || {};
+        for (const e of dictionary) {
           titleIndex[e.title] = e;
         }
-        allTitles = data.map(e => e.title);
-        sourceLanguageList = [...new Set(data.flatMap(e => getSourceLanguages(e)))].sort();
+        allTitles = dictionary.map(e => e.title);
+        sourceLanguageList = [...new Set(dictionary.flatMap(e => getSourceLanguages(e)))].sort();
         document.getElementById("count").textContent =
-          data.length.toLocaleString() + " entries";
+          dictionary.length.toLocaleString() + " entries";
         applyStateFromUrl();
           if (graphVisible) {
             openGraphSection();
@@ -3342,6 +3575,14 @@
         }
       }
       if (e.target.classList.contains("word-link")) {
+        const w = e.target.dataset.word ? decodeURIComponent(e.target.dataset.word) : "";
+        if (w) {
+          setMode("word");
+          document.getElementById("search").value = w;
+          lookup(w, true);
+        }
+      }
+      if (e.target.classList.contains("morphology-link")) {
         const w = e.target.dataset.word ? decodeURIComponent(e.target.dataset.word) : "";
         if (w) {
           setMode("word");
