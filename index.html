@@ -308,6 +308,22 @@
       background: #f5dec0;
       outline: none;
     }
+    .entry-tree-btn {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.68rem;
+      border: 1px solid #8f5b2f;
+      background: #8a4f28;
+      color: #fff;
+      padding: 0.2rem 0.36rem;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .entry-tree-btn:hover,
+    .entry-tree-btn:focus-visible {
+      background: #9c6038;
+      outline: none;
+    }
     .permalink-status {
       font-family: "IBM Plex Sans", sans-serif;
       font-size: 0.69rem;
@@ -973,7 +989,6 @@
       <div class="button-row">
         <button id="wordSearchBtn" class="active">Word Search</button>
         <button id="langSearchBtn">Language Search</button>
-        <button id="showGraphBtn" style="display:none">Open Etymology Tree</button>
         <button id="showLangGuideBtn">Language Guide</button>
         <button id="showSuffixBtn">Suffixes</button>
       </div>
@@ -2484,7 +2499,7 @@
       if (pos) html += `<div class="word-pos">${escapeHtml(pos)}</div>`;
       if (pron) html += `<div class="pronunciation"><span class="pron-label">Pron.</span>${escapeHtml(pron)}</div>`;
       const encodedTitle = encodeURIComponent(entry.title);
-      html += `<div class="entry-tools"><button type="button" class="permalink-btn" data-word="${encodedTitle}">Permalink</button><span class="permalink-status" id="permalinkStatus"></span></div>`;
+      html += `<div class="entry-tools"><button type="button" class="entry-tree-btn" data-word="${encodedTitle}">Open Tree</button><button type="button" class="permalink-btn" data-word="${encodedTitle}">Permalink</button><span class="permalink-status" id="permalinkStatus"></span></div>`;
       html += `</div><div class="entry-content">`;
       // Prefer explicit definition field if present
       if (defsToShow.length) {
@@ -2681,10 +2696,9 @@
           sourceLanguageList = [...new Set(data.flatMap(e => getSourceLanguages(e)))].sort();
           document.getElementById("count").textContent =
             data.length.toLocaleString() + " entries";
-          document.getElementById("showGraphBtn").style.display = "block";
           applyStateFromUrl();
           if (graphVisible) {
-            document.getElementById("showGraphBtn").click();
+            openGraphSection();
           }
           if (pendingRandomRequest) {
             pendingRandomRequest = false;
@@ -2761,15 +2775,6 @@
       }
       renderGraph(graphMode);
     }
-    document.getElementById("showGraphBtn").onclick = () => {
-      showSection("graph");
-      // Keep the selected mode. If no word is selected yet, default to language mode.
-      if (!currentWord && graphMode === "tree") {
-        setGraphMode("language");
-      }
-      openGraphSection();
-      updateUrlState(searchMode, document.getElementById("search").value.trim());
-    };
     document.getElementById("graphModeLanguageBtn").onclick = () => {
       setGraphMode("language");
       updateUrlState(searchMode, document.getElementById("search").value.trim());
@@ -2904,6 +2909,16 @@
           document.getElementById("search").value = w;
           lookup(w, true);
         }
+      }
+      if (e.target.classList.contains("entry-tree-btn")) {
+        const w = e.target.dataset.word ? decodeURIComponent(e.target.dataset.word) : "";
+        if (!w) return;
+        setMode("word");
+        document.getElementById("search").value = w;
+        if (currentWord !== w) lookup(w, true);
+        setGraphMode("tree");
+        showSection("graph");
+        openGraphSection();
       }
       if (e.target.classList.contains("permalink-btn")) {
         const w = e.target.dataset.word ? decodeURIComponent(e.target.dataset.word) : "";
