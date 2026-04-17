@@ -555,6 +555,20 @@
       color: #5c4d3f;
       margin: -0.15rem 0 0.45rem;
     }
+    .ety-donor-note {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.72rem;
+      color: #5c4d3f;
+      margin: -0.15rem 0 0.45rem;
+    }
+    .ety-donor-note a {
+      color: #8a4f28;
+      text-decoration: none;
+      border-bottom: 1px dotted #b98f71;
+    }
+    .ety-donor-note a:hover {
+      border-bottom-style: solid;
+    }
     /* Nayiri section panel */
     .nayiri-panel {
       margin-top: 0.3rem;
@@ -1630,6 +1644,24 @@
       }
       return "Lineage is inferred from this entry and may omit deeper historical steps unless explicitly provided.";
     }
+    function extractImmediateDonor(entry) {
+      const wikitext = String(entry && entry.wikitext ? entry.wikitext : "");
+      if (!wikitext) return null;
+      const sec = wikitext.match(/===Etymology(?:\s+\d+)?===\s*\n([\s\S]*?)(?=\n===|\n==[^=]|$)/i);
+      const body = sec ? sec[1] : wikitext;
+      const m = body.match(/\{\{(?:bor\+?|lbor|learned borrowing|der\+?|inh\+?|reborrowing)\|hy\|([a-z-]+)\|([^|}]+)(?:\|[^}]*)?\}\}/i);
+      if (!m) return null;
+      const langCode = String(m[1] || "").trim();
+      const rawTerm = String(m[2] || "").trim();
+      const langName = normalizeLanguageName(langCode) || langCode;
+      const term = rawTerm.replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, "$2").replace(/\[\[([^\]]+)\]\]/g, "$1").trim();
+      if (!langName || !term) return null;
+      return { langName, term };
+    }
+    function getDonorWiktionaryUrl(term) {
+      if (!term) return "";
+      return `https://en.wiktionary.org/wiki/${encodeURIComponent(term)}`;
+    }
     function getLangFamily(name) {
       const n = name.toLowerCase();
       if (/\bwestern armenian\b/.test(n)) return "lf-target";
@@ -2557,6 +2589,7 @@
       const srcLangs = getSourceLanguages(entry);
       const lineage = getEtymologyLineage(entry);
       const etyScopeNote = getEtymologyScopeNote(ety);
+      const donor = extractImmediateDonor(entry);
       const rootDefLine = buildSurnameRootDefinition(entry, displayDefs, ety);
       const defsToShow = rootDefLine ? [...displayDefs, rootDefLine] : displayDefs;
       currentWord = entry.title;
@@ -2575,6 +2608,10 @@
       html += `<div class="section-label">Etymology <span class="source-badge ${escapeHtml(sourceBadge.className)}">${escapeHtml(sourceBadge.label)}</span><span class="ety-confidence ${escapeHtml(etyConfidence.className)}">${escapeHtml(etyConfidence.label)}</span></div>`;
       html += `<div class="etymology-box">${renderLineage(lineage)}${renderEtymologyTextWithLinks(ety)}</div>`;
       if (etyScopeNote) html += `<div class="ety-scope-note">${escapeHtml(etyScopeNote)}</div>`;
+      if (donor) {
+        const donorUrl = getDonorWiktionaryUrl(donor.term);
+        html += `<div class="ety-donor-note">Immediate donor: ${escapeHtml(donor.term)} (${escapeHtml(donor.langName)}). <a href="${escapeHtml(donorUrl)}" target="_blank" rel="noopener noreferrer">Trace donor etymology</a>.</div>`;
+      }
       html += `<div class="ety-sources">Sources: ${etySources.map(s => escapeHtml(s)).join("; ")}</div>`;
       if (attestation) html += `<div class="attestation-note">Timeline: ${escapeHtml(attestation)}</div>`;
       // Nayiri panel
