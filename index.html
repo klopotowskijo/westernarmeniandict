@@ -102,11 +102,20 @@
       position: relative;
       margin-bottom: 0.75rem;
     }
-    .search-actions {
-      margin-top: 0.45rem;
+    .search-row {
       display: flex;
-      justify-content: flex-end;
+      align-items: stretch;
+      gap: 0.45rem;
+    }
+    .search-input-wrap {
+      position: relative;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    .search-actions {
+      display: flex;
       gap: 0.5rem;
+      align-items: center;
     }
     .search-icon {
       position: absolute;
@@ -900,6 +909,19 @@
     .footer-sep { color: #c0b09a; }
     .site-footer a { color: var(--accent); text-decoration: none; }
     .site-footer a:hover { text-decoration: underline; }
+    .brand-home-btn {
+      border: none;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      margin: 0;
+      padding: 0;
+      cursor: pointer;
+      text-align: left;
+    }
+    .brand-home-btn:hover {
+      color: var(--accent);
+    }
     @media (max-width: 760px) {
       .container { width: 100%; margin: 0; border: none; box-shadow: none; }
       .topbar,
@@ -909,6 +931,13 @@
       .entry-content { font-size: 1.04rem; }
       .topbar-right { text-align: left; }
       h1 { font-size: 1.85rem; }
+      .search-row {
+        flex-wrap: wrap;
+      }
+      .search-actions {
+        width: 100%;
+        justify-content: flex-end;
+      }
     }
   </style>
 </head>
@@ -917,7 +946,7 @@
     <header class="topbar">
       <div class="topbar-inner">
         <div class="topbar-left">
-          <h1>Dictionary Ardemis</h1>
+          <h1><button id="homeBrandBtn" type="button" class="brand-home-btn">Dictionary Ardemis</button></h1>
           <div class="subtitle-en">Western Armenian Etymological Dictionary</div>
         </div>
         <div class="topbar-right">
@@ -929,12 +958,16 @@
     </header>
     <section class="controls">
       <div id="searchWrap" class="search-wrap side-suggestions">
-        <svg class="search-icon" aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input id="search" type="text" placeholder="Search for a word..." autocomplete="off" />
-        <div id="suggestions"></div>
-        <div class="search-actions">
-          <button id="searchSubmitBtn" type="button" title="Run search">Search</button>
-          <button id="randomWordBtn" type="button" title="Load a random entry">Random</button>
+        <div class="search-row">
+          <div class="search-input-wrap">
+            <svg class="search-icon" aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input id="search" type="text" placeholder="Search for a word..." autocomplete="off" />
+            <div id="suggestions"></div>
+          </div>
+          <div class="search-actions">
+            <button id="searchSubmitBtn" type="button" title="Run search">Search</button>
+            <button id="randomWordBtn" type="button" title="Load a random entry">Random</button>
+          </div>
         </div>
       </div>
       <div class="button-row">
@@ -998,7 +1031,7 @@
     </section>
 
     <footer class="site-footer">
-      <span>Dictionary Ardemis</span>
+      <button id="footerHomeBtn" type="button" class="brand-home-btn">Dictionary Ardemis</button>
       <span class="footer-sep">&middot;</span>
       <span>Western Armenian Etymological Dictionary</span>
       <span class="footer-sep">&middot;</span>
@@ -2589,6 +2622,17 @@
       if (searchMode === "word") lookup(q, true);
       else lookupLanguage(q, true);
     }
+    function goHome() {
+      document.getElementById("search").value = "";
+      document.getElementById("suggestions").style.display = "none";
+      document.getElementById("result").innerHTML = "";
+      currentWord = "";
+      graphVisible = false;
+      showSection("");
+      setMode("word");
+      updateUrlState("word", "");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
     function setKeyboardOpen(open) {
       const panel = document.getElementById("armenianKeyboard");
       const btn = document.getElementById("toggleKeyboardBtn");
@@ -2690,6 +2734,12 @@
     document.getElementById("searchSubmitBtn").onclick = () => {
       runSearchFromInput();
       document.getElementById("search").focus();
+    };
+    document.getElementById("homeBrandBtn").onclick = () => {
+      goHome();
+    };
+    document.getElementById("footerHomeBtn").onclick = () => {
+      goHome();
     };
     async function openGraphSection() {
       const sec = document.getElementById("graphSection");
