@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Western Armenian Etymology Dictionary</title>
+  <title>Dictionary Ardemis — Western Armenian Etymological Dictionary</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -39,30 +39,59 @@
     .topbar {
       border-top: 3px double #b69e7e;
       border-bottom: 3px double #b69e7e;
-      padding: 1.05rem 1.6rem 0.95rem;
+      padding: 1.15rem 1.6rem 0;
       background: linear-gradient(180deg, #fffdf9 0%, #f8f0e2 100%);
-      position: relative;
     }
-    .topbar::after {
-      content: "";
-      display: block;
-      margin-top: 0.62rem;
-      border-bottom: 1px solid #d7c6af;
+    .topbar-inner {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .topbar-ornament {
+      text-align: center;
+      color: #c0a882;
+      font-size: 0.82rem;
+      letter-spacing: 0.55em;
+      padding: 0.55rem 0 0.65rem;
+      border-top: 1px solid #d7c6af;
+      margin-top: 0.8rem;
+      user-select: none;
     }
     h1 {
-      margin: 0;
-      font-size: clamp(1.65rem, 2.35vw, 2.15rem);
+      margin: 0 0 0.15rem;
+      font-size: clamp(2rem, 3.2vw, 2.75rem);
       font-weight: 700;
-      letter-spacing: 0.01em;
-      line-height: 1.12;
+      letter-spacing: -0.01em;
+      line-height: 1.05;
+      color: #2a1e14;
     }
-    .subtitle {
-      margin-top: 0.35rem;
-      color: var(--ink-soft);
+    .subtitle-en {
       font-family: "IBM Plex Sans", sans-serif;
-      font-size: 0.82rem;
-      letter-spacing: 0.025em;
-      line-height: 1.35;
+      font-size: 0.77rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .topbar-right {
+      text-align: right;
+      flex-shrink: 0;
+      padding-bottom: 0.2rem;
+    }
+    .subtitle-hy {
+      font-family: "EB Garamond", serif;
+      font-size: 1.3rem;
+      color: #4a3826;
+      line-height: 1.2;
+    }
+    #count {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      color: var(--ink-soft);
+      margin-top: 0.2rem;
+      text-align: right;
     }
     .controls {
       padding: 0.6rem 1.6rem 1rem;
@@ -73,13 +102,21 @@
       position: relative;
       margin-bottom: 0.75rem;
     }
+    .search-icon {
+      position: absolute;
+      left: 0.62rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9a8a78;
+      pointer-events: none;
+    }
     #search {
       width: 100%;
       font-family: "EB Garamond", Georgia, serif;
       font-size: 1.15rem;
-      padding: 0.6rem 0.72rem;
+      padding: 0.6rem 0.72rem 0.6rem 2.15rem;
       border: 1px solid #c7b9a7;
-      border-radius: 0;
+      border-radius: 3px;
       background: #fffefb;
       color: var(--ink);
       transition: border-color 0.18s ease, box-shadow 0.18s ease;
@@ -104,8 +141,8 @@
       box-shadow: 0 12px 28px rgba(56, 33, 14, 0.12);
     }
     .keyboard-wrap {
-      margin-top: 1.2rem;
-      margin-bottom: 0;
+      margin-top: 0.7rem;
+      margin-bottom: 0.15rem;
       padding-top: 0.55rem;
       border-top: 1px dashed #d8c9b4;
     }
@@ -190,7 +227,7 @@
     }
     button {
       border: 1px solid #bda98e;
-      border-radius: 0;
+      border-radius: 3px;
       background: #fbf6ec;
       color: #4f3e2c;
       padding: 0.38rem 0.62rem;
@@ -205,12 +242,7 @@
       background: var(--accent-soft);
       color: #2f2010;
     }
-    #count {
-      font-family: "IBM Plex Sans", sans-serif;
-      color: var(--ink-soft);
-      font-size: 0.86rem;
-      margin-bottom: 0.45rem;
-    }
+
     #result {
       padding: 1.25rem 1.6rem 1.6rem;
       min-height: 130px;
@@ -270,7 +302,7 @@
     .entry-content {
       padding: 0.96rem 0.92rem 1rem;
       font-size: 1.08rem;
-      line-height: 1.44;
+      line-height: 1.65;
     }
     .etymology-lineage {
       display: flex;
@@ -287,8 +319,18 @@
       border: 1px solid #cdbba0;
       background: #f8eedf;
       color: #604a34;
-      padding: 0.19rem 0.36rem;
+      padding: 0.22rem 0.55rem;
+      border-radius: 10px;
     }
+    .lineage-node.lf-armenian { background: #f2e5f2; border-color: #9a6090; color: #5a2a6a; }
+    .lineage-node.lf-iranian  { background: #fef0d4; border-color: #c88a20; color: #6e4a08; }
+    .lineage-node.lf-turkic   { background: #d8f0ec; border-color: #3d8a80; color: #1a5048; }
+    .lineage-node.lf-semitic  { background: #fef5d8; border-color: #c4a020; color: #6a5208; }
+    .lineage-node.lf-romance  { background: #dce3f5; border-color: #4a60aa; color: #1a2a6a; }
+    .lineage-node.lf-slavic   { background: #eed8d8; border-color: #9a3838; color: #5a1818; }
+    .lineage-node.lf-greek    { background: #e4eedc; border-color: #5a7a44; color: #2a4a18; }
+    .lineage-node.lf-germanic { background: #dce8e0; border-color: #4a7058; color: #1a4028; }
+    .lineage-node.lf-target   { background: var(--accent); border-color: #6a3010; color: #fff; font-weight: 600; }
     .lineage-arrow {
       color: #806a53;
       font-size: 0.75rem;
@@ -379,12 +421,33 @@
       flex: 1;
       background: linear-gradient(90deg, #dac9b2 0%, transparent 100%);
     }
-    .entry-content ol,
     .entry-content ul {
       margin: 0;
       padding-left: 1.4rem;
     }
-    .entry-content li { margin: 0.22rem 0; }
+    .entry-content ol {
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+      counter-reset: def-counter;
+    }
+    .entry-content ol li {
+      counter-increment: def-counter;
+      margin: 0.28rem 0;
+      padding-left: 1.65rem;
+      position: relative;
+    }
+    .entry-content ol li::before {
+      content: counter(def-counter) ".";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 600;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.76rem;
+      top: 0.22em;
+    }
+    .entry-content ul li { margin: 0.22rem 0; }
     .etymology-box {
       background: #fff7ea;
       border-left: 3px solid var(--accent);
@@ -601,13 +664,38 @@
     }
     .graph-help {
       margin: 0 0 0.55rem;
-      padding: 0.48rem 0.58rem;
+      padding: 0;
       border: 1px solid #d9c8b1;
       background: #fff9ef;
+      border-radius: 3px;
       font-family: "IBM Plex Sans", sans-serif;
       font-size: 0.74rem;
       color: #5f4f3f;
       line-height: 1.45;
+    }
+    .graph-help summary {
+      padding: 0.32rem 0.6rem;
+      cursor: pointer;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      user-select: none;
+    }
+    .graph-help summary::before {
+      content: "\25B8";
+      font-size: 0.7rem;
+      color: #9a8a7a;
+      transition: transform 0.15s;
+      display: inline-block;
+    }
+    .graph-help[open] summary::before { transform: rotate(90deg); }
+    .graph-help > span {
+      display: block;
+      padding: 0 0.6rem 0.45rem;
+      border-top: 1px solid #e8d9c5;
     }
     .graph-legend {
       display: flex;
@@ -624,11 +712,13 @@
       gap: 0.32rem;
     }
     .graph-legend-swatch {
-      width: 14px;
-      height: 10px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
       border: 1px solid #a88b6d;
       background: #f6e8d2;
       display: inline-block;
+      flex-shrink: 0;
     }
     .graph-legend-swatch.word {
       background: #fcf4e5;
@@ -698,6 +788,22 @@
       from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--line);
+      padding: 0.7rem 1.6rem;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.72rem;
+      color: var(--ink-soft);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.55rem;
+      align-items: center;
+      background: linear-gradient(180deg, #f4ead8 0%, #ede1cc 100%);
+    }
+    .footer-sep { color: #c0b09a; }
+    .site-footer a { color: var(--accent); text-decoration: none; }
+    .site-footer a:hover { text-decoration: underline; }
     @media (max-width: 760px) {
       .container { width: 100%; margin: 0; border: none; box-shadow: none; }
       .topbar,
@@ -705,20 +811,35 @@
       #result,
       #graphSection { padding-left: 0.95rem; padding-right: 0.95rem; }
       .entry-content { font-size: 1.04rem; }
+      .topbar-right { text-align: left; }
+      h1 { font-size: 1.85rem; }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <header class="topbar">
-      <h1>Western Armenian Etymology Dictionary</h1>
-      <div class="subtitle">Արեւմտահայերէն Ստուգաբանական Բառարան</div>
+      <div class="topbar-inner">
+        <div class="topbar-left">
+          <h1>Dictionary Ardemis</h1>
+          <div class="subtitle-en">Western Armenian Etymological Dictionary</div>
+        </div>
+        <div class="topbar-right">
+          <div class="subtitle-hy">Արեւմտահայերէն Ստուգաբանական Բառարան</div>
+          <div id="count"></div>
+        </div>
+      </div>
+      <div class="topbar-ornament">&#10022; &#10022; &#10022;</div>
     </header>
     <section class="controls">
-      <div id="count"></div>
       <div id="searchWrap" class="search-wrap side-suggestions">
+        <svg class="search-icon" aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <input id="search" type="text" placeholder="Search for a word..." autocomplete="off" />
         <div id="suggestions"></div>
+      </div>
+      <div class="keyboard-wrap">
+        <button id="toggleKeyboardBtn" type="button" aria-expanded="false">Show Armenian Keyboard</button>
+        <div id="armenianKeyboard" class="keyboard-panel" aria-hidden="true"></div>
       </div>
       <div class="button-row">
         <button id="wordSearchBtn" class="active">Word Search</button>
@@ -728,10 +849,6 @@
       </div>
     </section>
     <main id="result"></main>
-    <div class="keyboard-wrap">
-      <button id="toggleKeyboardBtn" type="button" aria-expanded="false">Show Armenian Keyboard</button>
-      <div id="armenianKeyboard" class="keyboard-panel" aria-hidden="true"></div>
-    </div>
     <section id="graphSection" style="display:none">
       <h2>Etymology Graph</h2>
       <div class="graph-controls">
@@ -744,7 +861,10 @@
         <button id="graphLangClearBtn" class="graph-mini-btn">All Languages</button>
         <span id="graphNote" class="graph-note"></span>
       </div>
-      <div id="graphHelp" class="graph-help">Pick a mode, then either search a word first or use a preset language filter. Drag nodes to inspect, scroll to zoom, and click Reset View to recenter.</div>
+      <details class="graph-help">
+        <summary>Graph help &amp; instructions</summary>
+        <span id="graphHelp">Pick a mode, then either search a word first or use a preset language filter. Drag nodes to inspect, scroll to zoom, and click Reset View to recenter.</span>
+      </details>
       <div class="graph-legend">
         <span class="graph-legend-item"><span class="graph-legend-swatch seed"></span> Focus word</span>
         <span class="graph-legend-item"><span class="graph-legend-swatch word"></span> Related word</span>
@@ -763,6 +883,15 @@
       <div id="graphLanguagePanel" class="graph-language-panel"></div>
       <div id="graphContainer"></div>
     </section>
+    <footer class="site-footer">
+      <span>Dictionary Ardemis</span>
+      <span class="footer-sep">&middot;</span>
+      <span>Western Armenian Etymological Dictionary</span>
+      <span class="footer-sep">&middot;</span>
+      <span>Sources: Wiktionary, Nayiri</span>
+      <span class="footer-sep">&middot;</span>
+      <span><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></span>
+    </footer>
   </div>
   <script src="https://unpkg.com/vis-network@9.1.9/dist/vis-network.min.js"></script>
   <script>
@@ -799,11 +928,37 @@
     function cleanEtymology(text) {
       if (!text) return "";
       let out = String(text);
+      out = out.replace(/<ref[^>]*>[\s\S]*?<\/ref>/gi, "");
+      out = out.replace(/<ref[^/>]*\/\s*>/gi, "");
+      out = out.replace(/\{\{([^{}]+)\}\}/g, (match, body) => {
+        const tpl = parseTemplateMarkup(body);
+        const name = tpl.name.toLowerCase();
+        if (name === "unk" || name === "unc" || name === "uncertain") return "unknown";
+        if (name === "m" || name === "l" || name === "term") {
+          return tpl.positional[1] || tpl.named.t || tpl.named.gloss || "";
+        }
+        if (name === "cog" || name === "ncog" || name === "noncog") {
+          return tpl.positional[1] || tpl.named.t || "";
+        }
+        if ((name === "bor" || name === "bor+" || name === "learned borrowing" || name === "der" || name === "der+" || name === "uder" || name === "inh" || name === "inh+") && tpl.positional.length === 2) {
+          return normalizeLanguageName(tpl.positional[1]) || tpl.positional[1] || "";
+        }
+        return match;
+      });
       out = out.replace(/\{\{affix\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, "From $1 + $2.");
       out = out.replace(/\{\{compound\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, "From $1 + $2.");
-      out = out.replace(/\{\{(?:bor|bor\+|learned borrowing)\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, "Borrowed from $2 ($1).");
-      out = out.replace(/\{\{(?:inh|inh\+)\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, "Inherited from $2 ($1).");
-      out = out.replace(/\{\{(?:uder|der|der\+)\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, "Derived from $2 ($1).");
+      out = out.replace(/\{\{(?:bor|bor\+|learned borrowing)\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, (_, lang, term) => {
+        const label = normalizeLanguageName(lang) || lang;
+        return `Borrowed from ${term} (${label}).`;
+      });
+      out = out.replace(/\{\{(?:inh|inh\+)\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, (_, lang, term) => {
+        const label = normalizeLanguageName(lang) || lang;
+        return `Inherited from ${term} (${label}).`;
+      });
+      out = out.replace(/\{\{(?:uder|der|der\+)\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, (_, lang, term) => {
+        const label = normalizeLanguageName(lang) || lang;
+        return `Derived from ${term} (${label}).`;
+      });
       out = out.replace(/\{\{w\|[^|}]+\|([^}]+)\}\}/g, "$1");
       out = out
         .replace(/\{\{[^}]+\}\}/g, "")
@@ -815,6 +970,9 @@
         .replace(/^From\s+Borrowed from\s+/i, "Borrowed from ")
         .replace(/^From\s+Inherited from\s+/i, "Inherited from ")
         .replace(/^From\s+Derived from\s+/i, "Derived from ")
+        .replace(/\(\s*\)/g, "")
+        .replace(/\s+,/g, ",")
+        .replace(/\s+;/g, ";")
         .replace(/\.{2,}/g, ".")
         .replace(/\s+\./g, ".")
         .replace(/\s+/g, " ")
@@ -824,8 +982,69 @@
       if (!/[A-Za-z0-9\u0531-\u058F]/.test(out)) return "";
       return out;
     }
+    function parseTemplateMarkup(templateText) {
+      const parts = String(templateText || "").split("|");
+      const name = (parts.shift() || "").trim();
+      const positional = [];
+      const named = {};
+      for (const part of parts) {
+        const clean = String(part || "").trim();
+        if (!clean) continue;
+        const eqIndex = clean.indexOf("=");
+        if (eqIndex > 0) {
+          const key = clean.slice(0, eqIndex).trim();
+          const value = clean.slice(eqIndex + 1).trim();
+          named[key] = value;
+        } else {
+          positional.push(clean);
+        }
+      }
+      return { name, positional, named };
+    }
+    function cleanTemplateValue(value) {
+      return String(value || "")
+        .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, "$2")
+        .replace(/\[\[([^\]]+)\]\]/g, "$1")
+        .replace(/''([^']+)''/g, "$1")
+        .trim();
+    }
     function cleanWikiDef(text) {
       return text
+        .replace(/\{\{([^{}]+)\}\}/g, (match, body) => {
+          const tpl = parseTemplateMarkup(body);
+          const name = tpl.name.toLowerCase();
+          if (name === "tcl") {
+            return cleanTemplateValue(tpl.positional[1] || tpl.named.t || tpl.named.t1 || "");
+          }
+          if (name === "place") {
+            const gloss = cleanTemplateValue(tpl.named.t || tpl.named.t1 || tpl.named.t2 || "");
+            if (gloss) return gloss;
+            const kinds = tpl.positional
+              .slice(1)
+              .filter(v => v && v !== ";" && !/^(?:[a-z-]+:)?[a-z]{1,3}\//i.test(v));
+            const locations = tpl.positional
+              .slice(1)
+              .filter(v => /^(?:[a-z-]+:)?[a-z]{1,3}\//i.test(v))
+              .map(v => v.replace(/^(?:[a-z-]+:)?[a-z]{1,3}\//i, ""));
+            const kindText = kinds.join(", ");
+            const locationText = locations.join(", ");
+            if (kindText && locationText) return `${kindText} in ${locationText}`;
+            return kindText || locationText || "place name";
+          }
+          if (name === "given name") {
+            const gender = tpl.positional.slice(1).find(v => /^(male|female|unisex)$/i.test(v));
+            return `${gender ? `${gender} ` : ""}given name`;
+          }
+          if (name === "surname") {
+            return tpl.named.from ? `surname from ${tpl.named.from}` : "surname";
+          }
+          if (name === "name translit") {
+            const type = cleanTemplateValue(tpl.named.type || "name transliteration");
+            const gloss = cleanTemplateValue(tpl.named.t || tpl.named.t1 || tpl.positional[2] || "");
+            return gloss ? `${type}: ${gloss}` : type;
+          }
+          return match;
+        })
         .replace(/\{\{surname\|[^}]*\}\}/g, 'surname')
         .replace(/\{\{given name\|[^}]*\}\}/g, 'given name')
         .replace(/\{\{diminutive of\|[a-z-]+\|([^|}]+)[^}]*\}\}/g, 'diminutive of $1')
@@ -1031,6 +1250,11 @@
       if (/^etymology needs further research\.?$/.test(t)) return true;
       if (/etymology needs further research/.test(t)) return true;
       if (/^from old armenian\b/.test(t) && /further research/.test(t)) return true;
+      if (/^the origin is\.?($|\s)/.test(t)) return true;
+      if (/\bcompare also\s*[.,;]/.test(t)) return true;
+      if (/\ban language\b/.test(t)) return true;
+      if (/\bderivation from\s*\(/.test(t)) return true;
+      if (/\bno\s+→\s+sound change\b/.test(t)) return true;
       // Catch malformed placeholders like "Reborrowed from , itself from.".
       if (/\breborrowed from\s*(?:,|\.|;|$)/.test(t)) return true;
       if (/\b(?:borrowed|derived|inherited) from\s*(?:,|\.|;|$)/.test(t)) return true;
@@ -1140,12 +1364,26 @@
       if (!found.has(target.toLowerCase())) lineage.push(target);
       return lineage;
     }
+    function getLangFamily(name) {
+      const n = name.toLowerCase();
+      if (/\bwestern armenian\b/.test(n)) return "lf-target";
+      if (/armenian|classical armenian|old armenian|proto-armenian|grabar/.test(n)) return "lf-armenian";
+      if (/persian|iranian|kurdish|sogdian/.test(n)) return "lf-iranian";
+      if (/turkish|ottoman|azerbaijani|turkic|kipchak/.test(n)) return "lf-turkic";
+      if (/arabic|akkadian|semitic|hebrew|aramaic/.test(n)) return "lf-semitic";
+      if (/french|italian|spanish|latin|romanian|romance|portuguese/.test(n)) return "lf-romance";
+      if (/russian|ukrainian|bulgarian|slavic|polish/.test(n)) return "lf-slavic";
+      if (/greek/.test(n)) return "lf-greek";
+      if (/german|dutch|english|germanic|gothic/.test(n)) return "lf-germanic";
+      return "";
+    }
     function renderLineage(lineage) {
       if (!lineage.length) return "";
       let html = `<div class="etymology-lineage">`;
       lineage.forEach((node, idx) => {
         if (idx > 0) html += `<span class="lineage-arrow">&#8594;</span>`;
-        html += `<span class="lineage-node">${escapeHtml(node)}</span>`;
+        const fam = getLangFamily(node);
+        html += `<span class="lineage-node${fam ? ' ' + fam : ''}">${escapeHtml(node)}</span>`;
       });
       html += `</div>`;
       return html;
@@ -1284,6 +1522,7 @@
         "fa-cls": "Classical Persian",
         fr: "French",
         gkm: "Medieval Greek",
+        axm: "Middle Armenian",
         hy: "Armenian",
         "hyx-pro": "Proto-Armenian",
         "ine-pro": "Proto-Indo-European",
