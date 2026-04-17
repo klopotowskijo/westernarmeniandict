@@ -1008,6 +1008,17 @@
         .replace(/''([^']+)''/g, "$1")
         .trim();
     }
+    function extractAbbreviationMeaning(entry) {
+      const etymologies = Array.isArray(entry && entry.etymology) ? entry.etymology : [];
+      for (const et of etymologies) {
+        if (!et || et.source !== "abbreviation_proper_name_handler" || typeof et.text !== "string") continue;
+        const match = et.text.match(/^Abbreviation:\s*(.+?)(?:\.\s*No further etymology needed\.?|$)/i);
+        if (!match) continue;
+        const meaning = match[1].trim();
+        if (meaning) return meaning;
+      }
+      return "";
+    }
     function cleanWikiDef(text) {
       return text
         .replace(/\{\{([^{}]+)\}\}/g, (match, body) => {
@@ -1042,6 +1053,10 @@
             const type = cleanTemplateValue(tpl.named.type || "name transliteration");
             const gloss = cleanTemplateValue(tpl.named.t || tpl.named.t1 || tpl.positional[2] || "");
             return gloss ? `${type}: ${gloss}` : type;
+          }
+          if (name === "initialism of" || name === "abbreviation of" || name === "acronym of") {
+            const target = cleanTemplateValue(tpl.named.t || tpl.named.t1 || tpl.positional[1] || "");
+            return target ? `abbreviation of ${target}` : "abbreviation";
           }
           return match;
         })
@@ -1078,6 +1093,8 @@
         : [];
       const explicitNonGeneric = explicitDefs.filter(d => !isGenericDefinition(d));
       if (explicitNonGeneric.length) return explicitNonGeneric;
+      const abbreviationMeaning = extractAbbreviationMeaning(entry);
+      if (abbreviationMeaning) return [abbreviationMeaning];
       const wikitext = entry.wikitext || "";
       const m = wikitext.match(/==Armenian==\s*\n([\s\S]*?)(?=\n==[^=]|$)/);
       if (!m) return explicitDefs;
