@@ -1369,7 +1369,12 @@
       for (const tm of sec.matchAll(/\{\{alter\|hy\|([^}]+)\}\}/g)) {
         for (const w of tm[1].split("|")) {
           const clean = w.trim();
-          if (clean && !clean.startsWith("t=") && !clean.startsWith("sc=") && !clean.startsWith("tr=")) words.push(clean);
+          if (!clean) continue;
+          const lc = clean.toLowerCase();
+          // Ignore template metadata values that are not lexical alternatives.
+          if (lc === "tao" || lc === "from=tao") continue;
+          if (clean.startsWith("t=") || clean.startsWith("sc=") || clean.startsWith("tr=") || clean.startsWith("from=")) continue;
+          words.push(clean);
         }
       }
       return [...new Set(words)];
