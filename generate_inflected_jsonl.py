@@ -6,7 +6,7 @@ This writes one entry per line rather than as a single JSON array.
 
 import json
 from pathlib import Path
-from typing import Dict, Optional, Tuple
+from typing import List, Optional, Tuple
 
 ROOT = Path(__file__).resolve().parent
 
@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parent
 MORPHEME_GLOSSES = {
     'կ': 'FUT (future)',
     'չ': 'NEG (negation)',
-    'ի': '1SG.PST (first singular past)',
+    'ի': 'GEN/DAT (genitive-dative)',
     'եի': '1SG.PST',
     'ել': 'INF (infinitive)',
     'ե': 'IMP (imperative)',
@@ -25,9 +25,14 @@ MORPHEME_GLOSSES = {
     'ում': 'LOC (locative)',
     'ս': 'POSS.1SG',
     'եր': 'PL (plural)',
+    'ներ': 'PL (plural)',
     'ած': 'PAST.PART (past participle)',
     'ող': 'PRS.PART (present participle)',
 }
+
+STACKABLE_SUFFIX_ENDINGS = [
+    'ի', 'ին', 'ից', 'ով', 'ում', 'ը', 'ս', 'դ', 'ու', 'ուս', 'ուդ', 'ուց'
+]
 
 def split_inflected_form(inflected: str, lemma: str) -> Optional[Tuple]:
     """Split an inflected form into (prefix, root, suffix)."""
@@ -59,6 +64,23 @@ def get_morpheme_gloss(morpheme: str) -> str:
             return MORPHEME_GLOSSES[key]
     return f"[unknown: {morpheme}]"
 
+def split_stacked_suffixes(suffix: str) -> List[str]:
+    """Split suffix chains like 'ների' into ['ներ', 'ի'] when possible."""
+    if not suffix:
+        return []
+
+    if suffix.startswith('ներ') and len(suffix) > 3:
+        tail = suffix[3:]
+        if tail in STACKABLE_SUFFIX_ENDINGS:
+            return ['ներ', tail]
+
+    if suffix.startswith('եր') and len(suffix) > 2:
+        tail = suffix[2:]
+        if tail in STACKABLE_SUFFIX_ENDINGS:
+            return ['եր', tail]
+
+    return [suffix]
+
 def create_inflected_entry(inflected: str, lemma: str, lemma_entry: dict) -> Optional[dict]:
     """Create a morphological entry for an inflected form."""
     decomp = split_inflected_form(inflected, lemma)
@@ -88,13 +110,14 @@ def create_inflected_entry(inflected: str, lemma: str, lemma_entry: dict) -> Opt
         })
     
     if suffix:
-        formula += f" [{suffix}]"
-        components.append({
-            "component": "suffix",
-            "form": suffix,
-            "meaning": get_morpheme_gloss(suffix),
-            "type": "inflectional"
-        })
+        for suffix_part in split_stacked_suffixes(suffix):
+            formula += f" [{suffix_part}]"
+            components.append({
+                "component": "suffix",
+                "form": suffix_part,
+                "meaning": get_morpheme_gloss(suffix_part),
+                "type": "inflectional"
+            })
     
     return {
         "title": inflected,

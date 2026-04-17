@@ -2995,42 +2995,98 @@
         renderEmptyState();
       }
     }
+    function getMorphemeMeaning(form) {
+      const meanings = {
+        "կ": "FUT (future)",
+        "չ": "NEG (negation)",
+        "ներ": "PL (plural)",
+        "եր": "PL (plural)",
+        "ի": "GEN/DAT (genitive-dative)",
+        "ին": "DAT (dative)",
+        "ից": "ABL (ablative)",
+        "ով": "INS (instrumental)",
+        "ում": "LOC (locative)",
+        "ը": "DEF.SG (definite singular)",
+        "ս": "POSS.1SG"
+      };
+      return meanings[form] || `[unknown: ${form}]`;
+    }
+    function splitStackedSuffixes(suffixForm) {
+      const suffix = String(suffixForm || "");
+      if (!suffix) return [];
+      const endings = new Set(["ի", "ին", "ից", "ով", "ում", "ը", "ս", "դ", "ու", "ուս", "ուդ", "ուց"]);
+
+      if (suffix.startsWith("ներ") && suffix.length > 3) {
+        const tail = suffix.slice(3);
+        if (endings.has(tail)) return ["ներ", tail];
+      }
+      if (suffix.startsWith("եր") && suffix.length > 2) {
+        const tail = suffix.slice(2);
+        if (endings.has(tail)) return ["եր", tail];
+      }
+      return [suffix];
+    }
+    function normalizeMorphologyComponents(components) {
+      const normalized = [];
+      for (const comp of (components || [])) {
+        if ((comp.component || "") !== "suffix") {
+          normalized.push(comp);
+          continue;
+        }
+        const parts = splitStackedSuffixes(comp.form || "");
+        if (parts.length <= 1) {
+          normalized.push(comp);
+          continue;
+        }
+        for (const part of parts) {
+          normalized.push({
+            component: "suffix",
+            form: part,
+            meaning: getMorphemeMeaning(part),
+            type: comp.type || "inflectional"
+          });
+        }
+      }
+      return normalized;
+    }
     function renderMorphology(entry) {
       if (!entry.morphology || !entry.morphology.decomposed) return "";
       const morph = entry.morphology;
+      const components = normalizeMorphologyComponents(morph.components || []);
       let html = `<div class="section-label">Morphology</div>`;
       html += `<div class="morphology-panel">`;
-      // Render formula
-      if (morph.formula) {
+      // Render formula from normalized components so stacked suffixes are visible.
+      if (components.length) {
         html += `<div class="morphology-formula">`;
-        // Parse formula string like " Արմ [ի]" into components
-        const formulaParts = morph.formula.trim().split(/\s*\[\s*|\s*\]\s*/);
-        for (let i = 0; i < formulaParts.length; i++) {
-          const part = formulaParts[i].trim();
-          if (!part) continue;
-          if (i % 2 === 0) {
-            // Root part (make clickable if it's the base form)
-            if (morph.base_form && part === morph.base_form) {
-              html += `<button type="button" class="morpheme-component root morphology-link" data-word="${encodeURIComponent(part)}">${escapeHtml(part)}</button>`;
+        for (const comp of components) {
+          const kind = comp.component || "";
+          const form = String(comp.form || "").trim();
+          if (!form) continue;
+          if (kind === "root") {
+            if (morph.base_form && form === morph.base_form) {
+              html += `<button type="button" class="morpheme-component root morphology-link" data-word="${encodeURIComponent(form)}">${escapeHtml(form)}</button>`;
             } else {
-              html += `<span class="morpheme-component root">${escapeHtml(part)}</span>`;
+              html += `<span class="morpheme-component root">${escapeHtml(form)}</span>`;
             }
+          } else if (kind === "prefix") {
+            html += `<span class="morpheme-component prefix">[${escapeHtml(form)}]</span>`;
           } else {
-            // Morpheme in brackets
-            html += `<span class="morpheme-component suffix">[${escapeHtml(part)}]</span>`;
+            html += `<span class="morpheme-component suffix">[${escapeHtml(form)}]</span>`;
           }
         }
         html += `</div>`;
+      } else if (morph.formula) {
+        html += `<div class="morphology-formula">${escapeHtml(morph.formula)}</div>`;
       }
       // Render components table
-      if (morph.components && morph.components.length) {
+      if (components.length) {
         html += `<table class="morphology-table">`;
         html += `<thead><tr><th>Component</th><th>Form</th><th>Meaning</th><th>Type</th></tr></thead>`;
         html += `<tbody>`;
-        for (const comp of morph.components) {
+        for (const comp of components) {
           const compType = comp.component || "unknown";
           const typeBadge = comp.type || "unknown";
-                    const isRoot = compType === "root" && morph.base_form === comp.form;
+          const isRoot = compType === "root" && morph.base_form === comp.form;
           html += `<tr>`;
           html += `<td>${escapeHtml(compType)}</td>`;
           // Make root form clickable
