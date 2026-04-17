@@ -7,7 +7,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 WIKTIONARY_PATH = ROOT / "western_armenian_wiktionary.json"
-NAYIRI_PATH = ROOT / "nayiri-armenian-lexicon-2026-02-15-v1 2.json"
+NAYIRI_PATH_PRIMARY = ROOT / "nayiri-armenian-lexicon-2026-02-15-v1.json"
+NAYIRI_PATH_LEGACY = ROOT / "nayiri-armenian-lexicon-2026-02-15-v1 2.json"
+DICTIONARY_HY_PATH = ROOT / "dictionary-hy.json"
 OUTPUT_PATH = ROOT / "western_armenian_merged.json"
 
 GENERIC_DEFINITION_RE = re.compile(
@@ -22,6 +24,8 @@ POS_MAP = {
     "ADVERB": "adverb",
     "ADPOSITION": "adposition",
     "CONJUNCTION": "conjunction",
+    "NAME": "proper noun",
+    "NUM": "numeral",
 }
 
 
@@ -139,6 +143,83 @@ def load_json(path):
         return json.load(f)
 
 
+def default_nayiri_path():
+    if NAYIRI_PATH_PRIMARY.exists():
+        return NAYIRI_PATH_PRIMARY
+    return NAYIRI_PATH_LEGACY
+
+
+def load_json_lines(path):
+    items = []
+    with open(path, encoding="utf-8") as f:
+        for line_num, line in enumerate(f, start=1):
+            text = line.strip()
+            if not text:
+                continue
+            try:
+                obj = json.loads(text)
+            except json.JSONDecodeError as exc:
+                raise SystemExit(f"Invalid JSON on line {line_num} in {path}: {exc}")
+            if not isinstance(obj, dict):
+                continue
+            items.append(obj)
+    return items
+
+
+def to_string_list(values):
+    if not isinstance(values, list):
+        return []
+    out = []
+    for item in values:
+        text = clean_text(item)
+        if text:
+            out.append(text)
+    return out
+
+
+def build_dictionary_hy_entry(raw):
+    title = normalize_title(raw.get(""))
+    if not title:
+        return None
+
+    definitions = []
+    for item in to_string_list(raw.get("d")):
+        if item not in definitions:
+            definitions.append(item)
+
+    forms = []
+    seen_forms = set()
+    for item in to_string_list(raw.get("f")):
+        if item == title:
+            continue
+        key = item.casefold()
+        if key in seen_forms:
+            continue
+        seen_forms.add(key)
+        forms.append(item)
+
+    pos_values = to_string_list(raw.get("p"))
+    part_of_speech = normalize_pos(pos_values[0]) if pos_values else ""
+
+    entry = {
+        "title": title,
+        "definition": definitions,
+        "etymology": [],
+        "wikitext": "",
+        "data_source": "dictionary-hy",
+        "definition_source": "dictionary-hy",
+        "part_of_speech": part_of_speech,
+        "alternative_forms": forms,
+    }
+    pronunciation = clean_text(raw.get("i"))
+    if pronunciation:
+        entry["pronunciation"] = pronunciation
+    audio = clean_text(raw.get("a"))
+    if audio:
+        entry["audio"] = audio
+    return entry
+
+
 def parse_description(description, lemma):
     text = re.sub(r"\s+", " ", str(description or "")).strip()
     if not text:
@@ -205,7 +286,8 @@ def build_nayiri_entry(lexeme, lemma_obj):
 def parse_args():
     parser = argparse.ArgumentParser(description="Merge Wiktionary, Nayiri, and optional OCR-imported entries into a single searchable dictionary.")
     parser.add_argument("--wiktionary-path", default=str(WIKTIONARY_PATH), help="Path to the Wiktionary JSON file")
-    parser.add_argument("--nayiri-path", default=str(NAYIRI_PATH), help="Path to the Nayiri lexicon JSON file")
+    parser.add_argument("--nayiri-path", default=str(default_nayiri_path()), help="Path to the Nayiri lexicon JSON file")
+    parser.add_argument("--dictionary-hy-path", default=str(DICTIONARY_HY_PATH), help="Path to dictionary-hy NDJSON file")
     parser.add_argument("--output", default=str(OUTPUT_PATH), help="Path to the merged output JSON file")
     parser.add_argument("--extra-json", nargs="*", default=[], help="Additional staged JSON files, such as OCR imports, to merge in")
     return parser.parse_args()
@@ -215,6 +297,7 @@ def main():
     args = parse_args()
     wiktionary_path = Path(args.wiktionary_path)
     nayiri_path = Path(args.nayiri_path)
+    dictionary_hy_path = Path(args.dictionary_hy_path)
     output_path = Path(args.output)
 
     print("Loading Wiktionary entries...")
@@ -244,6 +327,29 @@ def main():
     merged.extend(nayiri_only_entries)
     for entry in nayiri_only_entries:
         entry_map[normalize_title(entry.get("title"))] = entry
+
+    dictionary_hy_added = 0
+    dictionary_hy_enriched = 0
+    if dictionary_hy_path.exists():
+        print(f"Loading dictionary-hy: {dictionary_hy_path.name}")
+        dictionary_hy_rows = load_json_lines(dictionary_hy_path)
+        dictionary_hy_new_entries = []
+        for row in dictionary_hy_rows:
+            entry = build_dictionary_hy_entry(row)
+            if not entry:
+                continue
+            title = normalize_title(entry.get("title"))
+            if title in entry_map:
+                merge_entry(entry_map[title], entry)
+                dictionary_hy_enriched += 1
+                continue
+            dictionary_hy_new_entries.append(entry)
+            entry_map[title] = entry
+            dictionary_hy_added += 1
+        dictionary_hy_new_entries.sort(key=lambda item: normalize_title(item.get("title")))
+        merged.extend(dictionary_hy_new_entries)
+    else:
+        print(f"Dictionary-hy file not found, skipping: {dictionary_hy_path}")
 
     extra_added = 0
     extra_enriched = 0
@@ -277,6 +383,8 @@ def main():
     print(f"Added Nayiri-only entries: {len(nayiri_only_entries)}")
     print(f"Added entries from extra JSON: {extra_added}")
     print(f"Enriched existing entries from extra JSON: {extra_enriched}")
+    print(f"Added entries from dictionary-hy: {dictionary_hy_added}")
+    print(f"Enriched existing entries from dictionary-hy: {dictionary_hy_enriched}")
     print(f"Merged total: {len(merged)}")
     print(f"Saved: {output_path.name}")
 
