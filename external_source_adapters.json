@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "note": "Adapters are declarative placeholders for legal/public sources. Implement fetchers per adapter with robots.txt and terms compliance.",
+  "adapters": [
+    {
+      "id": "nisanyan_sozluk",
+      "name": "Nisanyan Sozluk",
+      "url": "https://www.nisanyansozluk.com/",
+      "scope": "Turkish and Ottoman etymologies useful for Western Armenian loanword chains",
+      "status": "template",
+      "enabled": false
+    },
+    {
+      "id": "nayiri_imaged_dictionary",
+      "name": "Nayiri Imaged Dictionary",
+      "url": "https://www.nayiri.com/imagedDictionaryBrowser.jsp",
+      "scope": "Armenian lexicographic and etymological scans",
+      "status": "existing-local-workflow",
+      "enabled": true
+    },
+    {
+      "id": "iranica",
+      "name": "Encyclopaedia Iranica",
+      "url": "https://iranicaonline.org/",
+      "scope": "Iranian and Persian etymological context",
+      "status": "template",
+      "enabled": false
+    },
+    {
+      "id": "etymonline",
+      "name": "Etymonline",
+      "url": "https://www.etymonline.com/",
+      "scope": "Indo-European / English bridge etymologies",
+      "status": "template",
+      "enabled": false
+    },
+    {
+      "id": "open_manual_curation",
+      "name": "Manual Scholarly Curation",
+      "url": "",
+      "scope": "Human-in-the-loop sourcing from print dictionaries and papers",
+      "status": "recommended",
+      "enabled": true
+    }
+  ]
+}

@@ -17,6 +17,8 @@
       --accent: #8a4f28;
       --accent-soft: #efe2cf;
       --warning: #8d2a1e;
+      --tab-bg: #f8f1e3;
+      --tab-border: #ccbca5;
     }
     * { box-sizing: border-box; }
     body {
@@ -37,8 +39,8 @@
       box-shadow: 0 12px 45px rgba(66, 40, 18, 0.12);
     }
     .topbar {
-      border-top: 3px double #b69e7e;
-      border-bottom: 3px double #b69e7e;
+      border-top: 1px solid #cdbca5;
+      border-bottom: 1px solid #cdbca5;
       padding: 1.15rem 1.6rem 0;
       background: linear-gradient(180deg, #fffdf9 0%, #f8f0e2 100%);
     }
@@ -52,12 +54,13 @@
     .topbar-ornament {
       text-align: center;
       color: #c0a882;
-      font-size: 0.82rem;
-      letter-spacing: 0.55em;
-      padding: 0.55rem 0 0.65rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.35em;
+      padding: 0.45rem 0 0.55rem;
       border-top: 1px solid #d7c6af;
       margin-top: 0.8rem;
       user-select: none;
+      opacity: 0.8;
     }
     h1 {
       margin: 0 0 0.15rem;
@@ -101,6 +104,27 @@
     .search-wrap {
       position: relative;
       margin-bottom: 0.75rem;
+    }
+    .search-label-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.38rem;
+    }
+    .search-label {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #5f4f3f;
+      font-weight: 600;
+    }
+    .search-hint {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.72rem;
+      color: #7f705f;
+      letter-spacing: 0.01em;
     }
     .search-row {
       display: flex;
@@ -233,12 +257,22 @@
       font-size: 1.02rem;
     }
     .suggestion:hover { background: #f2e8da; }
-    .button-row {
+    .search-mode-row,
+    .section-tabs {
       display: flex;
       flex-wrap: wrap;
       gap: 0.48rem;
       align-items: center;
       font-family: "IBM Plex Sans", sans-serif;
+    }
+    .search-mode-row {
+      margin-bottom: 0.55rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px dashed #d8c9b4;
+    }
+    .section-tabs {
+      gap: 0.35rem;
+      margin-bottom: 0.35rem;
     }
     button {
       border: 1px solid #bda98e;
@@ -257,10 +291,73 @@
       background: var(--accent-soft);
       color: #2f2010;
     }
+    .tab-btn {
+      border-color: var(--tab-border);
+      background: var(--tab-bg);
+      color: #5a4836;
+      font-size: 0.78rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      padding: 0.32rem 0.56rem;
+    }
+    .tab-btn.active {
+      background: #f0dfc5;
+      border-color: #9e7a56;
+      color: #3f2a16;
+    }
+    .tab-btn.section-active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .tab-separator {
+      width: 1px;
+      height: 1.2rem;
+      background: #d8c9b4;
+      margin: 0 0.05rem;
+    }
 
     #result {
       padding: 1.25rem 1.6rem 1.6rem;
       min-height: 130px;
+    }
+    .empty-state {
+      border: 1px solid var(--line);
+      background: #fffdf8;
+      padding: 1rem 1.05rem;
+    }
+    .empty-title {
+      font-size: 1.42rem;
+      margin: 0 0 0.35rem;
+      color: #2d2117;
+    }
+    .empty-copy {
+      margin: 0;
+      color: #6c5d4b;
+      font-size: 1rem;
+      line-height: 1.5;
+      max-width: 64ch;
+    }
+    .empty-samples {
+      margin-top: 0.7rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .empty-sample {
+      font-family: "EB Garamond", serif;
+      font-size: 1rem;
+      color: var(--accent);
+      border: 1px dotted #be9f80;
+      background: #fff7ea;
+      padding: 0.16rem 0.44rem;
+      cursor: pointer;
+    }
+    .empty-sample:hover,
+    .empty-sample:focus-visible {
+      border-style: solid;
+      background: #f4e2ca;
+      outline: none;
     }
     .entry-card {
       border: 1px solid var(--line);
@@ -725,6 +822,27 @@
       font-size: 0.73rem;
       color: #6f5f4f;
     }
+    .graph-filters {
+      border: 1px solid #d9c8b1;
+      background: #fff9ef;
+      margin: 0 0 0.55rem;
+      border-radius: 3px;
+      padding: 0;
+    }
+    .graph-filters summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 0.34rem 0.55rem;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.73rem;
+      color: #5f4f3f;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .graph-filters > div {
+      border-top: 1px solid #e7d7c2;
+      padding: 0.45rem 0.55rem 0.5rem;
+    }
     .graph-lang-input {
       min-width: 220px;
       border: 1px solid #c7b29a;
@@ -963,7 +1081,9 @@
       .topbar,
       .controls,
       #result,
-      #graphSection { padding-left: 0.95rem; padding-right: 0.95rem; }
+      #graphSection,
+      #langGuideSection,
+      #suffixSection { padding-left: 0.95rem; padding-right: 0.95rem; }
       .entry-content { font-size: 1.04rem; }
       .topbar-right { text-align: left; }
       h1 { font-size: 1.85rem; }
@@ -973,6 +1093,9 @@
       .search-actions {
         width: 100%;
         justify-content: flex-end;
+      }
+      .search-label-row {
+        display: block;
       }
     }
   </style>
@@ -994,6 +1117,10 @@
     </header>
     <section class="controls">
       <div id="searchWrap" class="search-wrap side-suggestions">
+        <div class="search-label-row">
+          <label class="search-label" for="search">Lookup</label>
+          <span id="searchHelper" class="search-hint">Search by headword (Armenian or Latin transliteration).</span>
+        </div>
         <div class="search-row">
           <div class="search-input-wrap">
             <svg class="search-icon" aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -1006,30 +1133,42 @@
           </div>
         </div>
       </div>
-      <div class="button-row">
-        <button id="wordSearchBtn" class="active">Word Search</button>
-        <button id="langSearchBtn">Language Search</button>
-        <button id="showLangGuideBtn">Language Guide</button>
-        <button id="showSuffixBtn">Suffixes</button>
+      <div class="search-mode-row" role="tablist" aria-label="Search mode">
+        <button id="wordSearchBtn" class="tab-btn active" aria-pressed="true">Word Search</button>
+        <button id="langSearchBtn" class="tab-btn" aria-pressed="false">Language Search</button>
+      </div>
+      <div class="section-tabs" role="tablist" aria-label="Sections">
+        <button id="showResultsBtn" class="tab-btn section-active">Results</button>
+        <button id="showGraphBtn" class="tab-btn">Graph</button>
+        <span class="tab-separator" aria-hidden="true"></span>
+        <button id="showLangGuideBtn" class="tab-btn">Language Guide</button>
+        <button id="showSuffixBtn" class="tab-btn">Suffixes</button>
       </div>
       <div class="keyboard-wrap">
         <button id="toggleKeyboardBtn" type="button" aria-expanded="false">Show Armenian Keyboard</button>
         <div id="armenianKeyboard" class="keyboard-panel" aria-hidden="true"></div>
       </div>
     </section>
-    <main id="result"></main>
+    <main id="result"><div class="empty-state"><h2 class="empty-title">Start With A Word</h2><p class="empty-copy">Type a Western Armenian word to view definition, etymology, and source lineage. You can also switch to language search if you want all words borrowed from a source language.</p></div></main>
     <section id="graphSection" style="display:none">
       <h2>Etymology Graph</h2>
       <div class="graph-controls">
-        <button id="graphModeLanguageBtn" class="graph-mode-btn active">Language Clusters</button>
-        <button id="graphModeLineageBtn" class="graph-mode-btn">Word Lineage</button>
-        <button id="graphModeTreeBtn" class="graph-mode-btn">Strict Tree</button>
+        <button id="graphModeTreeBtn" class="graph-mode-btn active">Focused Tree</button>
+        <button id="graphModeLineageBtn" class="graph-mode-btn">Lineage</button>
+        <button id="graphModeLanguageBtn" class="graph-mode-btn">Language Clusters</button>
         <button id="graphResetBtn" class="graph-mini-btn">Reset View</button>
-        <input id="graphLangSearch" class="graph-lang-input" type="text" placeholder="Search languages..." />
-        <button id="graphLangApplyBtn" class="graph-mini-btn">Apply</button>
-        <button id="graphLangClearBtn" class="graph-mini-btn">All Languages</button>
         <span id="graphNote" class="graph-note"></span>
       </div>
+      <details class="graph-filters">
+        <summary>Advanced Language Filters</summary>
+        <div>
+          <input id="graphLangSearch" class="graph-lang-input" type="text" placeholder="Search languages..." />
+          <button id="graphLangApplyBtn" class="graph-mini-btn">Apply</button>
+          <button id="graphLangClearBtn" class="graph-mini-btn">All Languages</button>
+          <div id="graphSelectedSummary" class="graph-selected">Showing all source languages</div>
+          <div id="graphLanguagePanel" class="graph-language-panel"></div>
+        </div>
+      </details>
       <details class="graph-help">
         <summary>Graph help &amp; instructions</summary>
         <span id="graphHelp">Pick a mode, then either search a word first or use a preset language filter. Drag nodes to inspect, scroll to zoom, and click Reset View to recenter.</span>
@@ -1048,8 +1187,6 @@
         <button class="graph-preset-btn" data-graph-preset="Arabic">Arabic</button>
         <button class="graph-preset-btn" data-graph-preset="French">French</button>
       </div>
-      <div id="graphSelectedSummary" class="graph-selected">Showing all source languages</div>
-      <div id="graphLanguagePanel" class="graph-language-panel"></div>
       <div id="graphContainer"></div>
     </section>
 
@@ -1080,13 +1217,14 @@
   document.addEventListener('DOMContentLoaded', function() {
     let dictionary = [];
     let titleIndex = {};
+    let lemmatizationIndex = {};  // Maps inflected forms to their lemma
     let allTitles = [];
     let searchMode = "word";
     let graphData = null;
     let network = null;
     let etyCache = {};
     let sourceLanguageList = [];
-    let graphMode = "language";
+    let graphMode = "tree";
     let currentWord = "";
     let graphIndex = null;
     let graphLanguageSearchTerm = "";
@@ -1106,6 +1244,12 @@
         .replace(/>/g, "&gt;")
         .replace(/\"/g, "&quot;")
         .replace(/'/g, "&#39;");
+    }
+    function cleanDisplayTitle(title) {
+      // Some source records include trailing parser artifacts like "W=0".
+      return String(title || "")
+        .replace(/\s*\bW\s*=\s*0\b\s*$/i, "")
+        .trim();
     }
     function cleanEtymology(text) {
       if (!text) return "";
@@ -1770,22 +1914,42 @@
       const isLanguage = searchMode === "language";
       document.getElementById("langSearchBtn").classList.toggle("active", isLanguage);
       document.getElementById("wordSearchBtn").classList.toggle("active", !isLanguage);
+      document.getElementById("langSearchBtn").setAttribute("aria-pressed", isLanguage ? "true" : "false");
+      document.getElementById("wordSearchBtn").setAttribute("aria-pressed", isLanguage ? "false" : "true");
       document.getElementById("search").placeholder = isLanguage
         ? "Search by source language..."
         : "Search for a word...";
+      const helper = document.getElementById("searchHelper");
+      if (helper) {
+        helper.textContent = isLanguage
+          ? "Find entries by donor/source language (for example: Persian, Ottoman Turkish)."
+          : "Search by headword (Armenian or Latin transliteration).";
+      }
+    }
+    function setSectionTabs(which) {
+      const section = which || "results";
+      const resultBtn = document.getElementById("showResultsBtn");
+      const graphBtn = document.getElementById("showGraphBtn");
+      const guideBtn = document.getElementById("showLangGuideBtn");
+      const suffixBtn = document.getElementById("showSuffixBtn");
+      if (!resultBtn || !graphBtn || !guideBtn || !suffixBtn) return;
+      resultBtn.classList.toggle("section-active", section === "results");
+      graphBtn.classList.toggle("section-active", section === "graph");
+      guideBtn.classList.toggle("section-active", section === "guide");
+      suffixBtn.classList.toggle("section-active", section === "suffix");
     }
     function setGraphMode(mode) {
-      graphMode = mode === "lineage" || mode === "tree" ? mode : "language";
+      graphMode = mode === "language" || mode === "lineage" || mode === "tree" ? mode : "tree";
       document.getElementById("graphModeLanguageBtn").classList.toggle("active", graphMode === "language");
       document.getElementById("graphModeLineageBtn").classList.toggle("active", graphMode === "lineage");
       document.getElementById("graphModeTreeBtn").classList.toggle("active", graphMode === "tree");
       const help = document.getElementById("graphHelp");
       if (help) {
-        help.textContent = graphMode === "language"
-          ? "Language Clusters: languages point to words, then words point to descendants. Start with a word search for the cleanest map."
+        help.textContent = graphMode === "tree"
+          ? "Focused Tree (recommended): start from one searched word and expand branches by clicking nodes."
           : graphMode === "lineage"
-            ? "Word Lineage: direct word-to-word borrowing paths. Best for tracing one term after searching it first."
-            : "Strict Tree: etytree-style top-down family layout. Click nodes to collapse or expand branches.";
+            ? "Word Lineage: direct word-to-word borrowing paths from a selected headword."
+            : "Language Clusters: broader overview by source language. Use filters to avoid clutter.";
       }
     }
     function updateUrlState(mode, query) {
@@ -1972,6 +2136,10 @@
         .trim();
       return label || raw;
     }
+    function normalizeGraphLookupKey(value) {
+      const label = cleanDisplayTitle(normalizeGraphWordLabel(value));
+      return String(label || "").toLowerCase().replace(/\s+/g, " ").trim();
+    }
     function cloneGraphNode(n) {
       return {
         ...n,
@@ -2098,10 +2266,21 @@
       const adjacency = new Map();
       const outgoing = new Map();
       const incoming = new Map();
+      const labelToNodes = new Map();
+      function registerNode(id) {
+        const nodeId = String(id || "");
+        if (!nodeId || isLangNode(nodeId)) return;
+        const key = normalizeGraphLookupKey(nodeId);
+        if (!key) return;
+        if (!labelToNodes.has(key)) labelToNodes.set(key, new Set());
+        labelToNodes.get(key).add(nodeId);
+      }
       for (const l of graphData.links) {
         if (!l || !l.source || !l.target) continue;
         const a = String(l.source);
         const b = String(l.target);
+        registerNode(a);
+        registerNode(b);
         if (!adjacency.has(a)) adjacency.set(a, []);
         if (!adjacency.has(b)) adjacency.set(b, []);
         if (!outgoing.has(a)) outgoing.set(a, []);
@@ -2111,12 +2290,50 @@
         outgoing.get(a).push(l);
         incoming.get(b).push(l);
       }
-      return { adjacency, outgoing, incoming };
+      return { adjacency, outgoing, incoming, labelToNodes };
+    }
+    function resolveGraphNodeId(word) {
+      if (!graphIndex || !graphIndex.adjacency) return "";
+      const raw = String(word || "").trim();
+      if (!raw) return "";
+      if (graphIndex.adjacency.has(raw)) return raw;
+
+      const candidates = [
+        raw,
+        cleanDisplayTitle(raw),
+        normalizeGraphWordLabel(raw)
+      ];
+      for (const c of candidates) {
+        if (!c) continue;
+        if (graphIndex.adjacency.has(c)) return c;
+      }
+
+      const tried = new Set();
+      for (const c of candidates) {
+        const key = normalizeGraphLookupKey(c);
+        if (!key || tried.has(key)) continue;
+        tried.add(key);
+        const ids = graphIndex.labelToNodes && graphIndex.labelToNodes.get(key);
+        if (!ids || !ids.size) continue;
+        const ranked = [...ids].sort((a, b) => {
+          const aa = normalizeGraphWordLabel(a);
+          const bb = normalizeGraphWordLabel(b);
+          const clean = cleanDisplayTitle(raw);
+          const aScore = aa === clean ? 0 : 1;
+          const bScore = bb === clean ? 0 : 1;
+          if (aScore !== bScore) return aScore - bScore;
+          return a.length - b.length;
+        });
+        if (ranked.length) return ranked[0];
+      }
+      return "";
     }
     function getGraphSeedWord() {
       const searchVal = document.getElementById("search").value.trim();
-      if (titleIndex[currentWord]) return currentWord;
-      if (titleIndex[searchVal]) return searchVal;
+      const currentResolved = resolveGraphNodeId(currentWord);
+      if (currentResolved) return currentResolved;
+      const searchResolved = resolveGraphNodeId(searchVal);
+      if (searchResolved) return searchResolved;
       return "";
     }
     function extractNeighborhood(word, depth = 2, maxEdges = 220) {
@@ -2152,6 +2369,77 @@
         if (!frontier.length) break;
       }
       return out;
+    }
+    function buildFocusedLineageLinks(seedWord, depth = 3, maxEdges = 60) {
+      if (!graphIndex || !graphIndex.adjacency || !seedWord) return [];
+      const out = [];
+      const visitedNodes = new Set([seedWord]);
+      const seen = new Set();
+      let frontier = [seedWord];
+      for (let d = 0; d < depth; d++) {
+        const next = [];
+        for (const parent of frontier) {
+          const outward = (graphIndex.outgoing && graphIndex.outgoing.get(parent)) || [];
+          const inward = (graphIndex.incoming && graphIndex.incoming.get(parent)) || [];
+          const candidates = (outward.length ? outward : inward)
+            .filter(l => matchesGraphLanguage(l))
+            .filter(l => !isLangNode(String(l.source)) && !isLangNode(String(l.target)))
+            .slice(0, 5);
+          for (const l of candidates) {
+            const src = String(l.source);
+            const tgt = String(l.target);
+            const key = `${src}|${tgt}|${l.relation || ""}`;
+            if (seen.has(key)) continue;
+            seen.add(key);
+            out.push(l);
+            if (out.length >= maxEdges) return out;
+            const neighbor = src === parent ? tgt : src;
+            if (!visitedNodes.has(neighbor)) {
+              visitedNodes.add(neighbor);
+              next.push(neighbor);
+            }
+          }
+        }
+        frontier = next;
+        if (!frontier.length) break;
+      }
+      return out;
+    }
+    function buildFocusedLanguageClusterLinks(seedWord, maxEdges = 44) {
+      if (!graphIndex || !graphIndex.adjacency || !seedWord) return [];
+      const primary = [];
+      const secondary = [];
+      const seen = new Set();
+      const neighbors = new Set([seedWord]);
+      const aroundSeed = graphIndex.adjacency.get(seedWord) || [];
+      for (const l of aroundSeed) {
+        if (!matchesGraphLanguage(l)) continue;
+        const src = String(l.source);
+        const tgt = String(l.target);
+        const key = `${src}|${tgt}|${l.relation || ""}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        primary.push(l);
+        if (!isLangNode(src)) neighbors.add(src);
+        if (!isLangNode(tgt)) neighbors.add(tgt);
+        if (primary.length >= Math.floor(maxEdges * 0.65)) break;
+      }
+      for (const node of neighbors) {
+        const links = graphIndex.adjacency.get(node) || [];
+        for (const l of links) {
+          if (!matchesGraphLanguage(l)) continue;
+          const src = String(l.source);
+          const tgt = String(l.target);
+          const key = `${src}|${tgt}|${l.relation || ""}`;
+          if (seen.has(key)) continue;
+          seen.add(key);
+          secondary.push(l);
+          if (primary.length + secondary.length >= maxEdges) {
+            return [...primary, ...secondary];
+          }
+        }
+      }
+      return [...primary, ...secondary];
     }
     function buildStrictTreeLinks(seedWord, depth = 3, maxNodes = 160, applyLanguageFilter = true) {
       if (!graphIndex || !graphIndex.adjacency || !seedWord) return [];
@@ -2199,7 +2487,7 @@
       }
       const nodeMap = new Map();
       const edges = [];
-      const addWordNode = (id, group = "unknown") => {
+      const addWordNode = (id, group = "unknown", forceBox = false) => {
         if (!nodeMap.has(id)) {
           if (isLangNode(id)) {
             const langLabel = langNodeLabel(id);
@@ -2230,9 +2518,10 @@
               id,
               label: normalizeGraphWordLabel(id),
               group,
-              shape: "dot",
-              size: id === seedWord ? 18 : 11,
-              font: { face: "EB Garamond", size: id === seedWord ? 22 : 16 },
+              shape: forceBox ? "box" : "dot",
+              size: forceBox ? undefined : (id === seedWord ? 18 : 11),
+              margin: forceBox ? { top: 5, right: 7, bottom: 5, left: 7 } : undefined,
+              font: { face: "EB Garamond", size: id === seedWord ? 20 : 15 },
               color: id === seedWord ? { background: "#c97d46", border: "#8a4f28" } : undefined
             });
           }
@@ -2326,9 +2615,10 @@
         for (const l of links) {
           const src = String(l.source);
           const tgt = String(l.target);
+          if (isLangNode(src) || isLangNode(tgt)) continue;
           const rel = String(l.relation || "").trim();
-          addWordNode(src, "word");
-          addWordNode(tgt, "word");
+          addWordNode(src, "word", true);
+          addWordNode(tgt, "word", true);
           edges.push({
             from: src,
             to: tgt,
@@ -2338,7 +2628,12 @@
             color: { color: "#b69b7f", highlight: "#8a4f28" }
           });
         }
-        note.textContent = `Word lineage view${seedWord ? ` for ${seedWord}` : ""}${getGraphLanguageSuffix()}`;
+        if (!edges.length) {
+          container.innerHTML = "<p style=\"padding:0.8rem\">No direct word-to-word lineage links were found for this entry.</p>";
+          note.textContent = "";
+          return;
+        }
+        note.textContent = `Word lineage view${seedWord ? ` for ${normalizeGraphWordLabel(seedWord)}` : ""}${getGraphLanguageSuffix()}`;
       } else {
         const langNodes = new Set();
         for (const l of links) {
@@ -2346,8 +2641,8 @@
           const tgt = String(l.target);
           const lang = getGraphLinkLanguage(l);
           if (!lang) continue;
-          addWordNode(src, "word");
-          addWordNode(tgt, "word");
+          addWordNode(src, "word", true);
+          addWordNode(tgt, "word", true);
           const langId = `lang:${lang}`;
           if (!langNodes.has(langId)) {
             langNodes.add(langId);
@@ -2376,7 +2671,12 @@
             width: 1
           });
         }
-        note.textContent = `Language-clustered view${seedWord ? ` around ${seedWord}` : ""}${getGraphLanguageSuffix()}`;
+        if (!edges.length) {
+          container.innerHTML = "<p style=\"padding:0.8rem\">No language-cluster links were found for this entry and filter.</p>";
+          note.textContent = "";
+          return;
+        }
+        note.textContent = `Language-clustered view${seedWord ? ` around ${normalizeGraphWordLabel(seedWord)}` : ""}${getGraphLanguageSuffix()}`;
       }
 
       const nodes = [...nodeMap.values()];
@@ -2384,6 +2684,7 @@
         nodes: nodes.map(cloneGraphNode),
         edges: edges.map(cloneGraphEdge)
       };
+
       graphFocusedNodeId = "";
       if (network) network.destroy();
       network = new vis.Network(container, { nodes, edges }, {
@@ -2470,7 +2771,7 @@
         }
       }
       let links = [];
-      const maxEdges = mode === "language" ? 90 : 140;
+      const maxEdges = mode === "language" ? 36 : mode === "lineage" ? 72 : 96;
       const depth = mode === "language" ? 1 : 2;
       if ((mode === "tree" || mode === "lineage") && !seed) {
         const container = document.getElementById("graphContainer");
@@ -2483,7 +2784,11 @@
         return;
       }
       if (seed) {
-        links = extractNeighborhood(seed, depth, maxEdges);
+        links = mode === "lineage"
+          ? buildFocusedLineageLinks(seed, 3, maxEdges)
+          : mode === "language"
+            ? buildFocusedLanguageClusterLinks(seed, maxEdges)
+            : extractNeighborhood(seed, depth, maxEdges);
       } else if (!graphSelectedLanguages.size) {
         const container = document.getElementById("graphContainer");
         const note = document.getElementById("graphNote");
@@ -2492,11 +2797,13 @@
         updateUrlState(searchMode, document.getElementById("search").value.trim());
         return;
       }
-      if (!links.length && graphData && Array.isArray(graphData.links)) {
-        const fallback = graphSelectedLanguages.size
-          ? graphData.links.filter(l => matchesGraphLanguage(l))
-          : graphData.links;
-        links = fallback.slice(0, mode === "language" ? 80 : 110);
+      if (!links.length) {
+        const container = document.getElementById("graphContainer");
+        const note = document.getElementById("graphNote");
+        container.innerHTML = "<p style=\"padding:0.8rem\">No clear graph for this selection. Try a different word or a narrower language filter.</p>";
+        note.textContent = "Tip: focused headword tree is usually the clearest view.";
+        updateUrlState(searchMode, document.getElementById("search").value.trim());
+        return;
       }
       renderGraphForLinks(links, mode, seed || currentWord || "");
       updateUrlState(searchMode, document.getElementById("search").value.trim());
@@ -2516,7 +2823,7 @@
       graphSelectedLanguages = new Set(graphLangs);
       updateGraphSelectedSummary();
       graphVisible = graphParam;
-      document.getElementById("graphSection").style.display = graphVisible ? "block" : "none";
+      showSection(graphVisible ? "graph" : "results");
       document.getElementById("search").value = q;
       if (q) {
         if (mode === "language") {
@@ -2524,6 +2831,8 @@
         } else {
           lookup(q, false);
         }
+      } else if (!graphVisible) {
+        renderEmptyState();
       }
     }
     function lookupLanguage(query, syncUrl = true) {
@@ -2531,7 +2840,7 @@
       const cleanQuery = (query || "").trim();
       const q = cleanQuery.toLowerCase();
       if (!q) {
-        el.innerHTML = "";
+        renderEmptyState();
         if (syncUrl) updateUrlState("language", "");
         return;
       }
@@ -2541,6 +2850,7 @@
         .slice(0, 150);
       if (!matches.length) {
         el.innerHTML = `<div class="not-found">No entries found for source language: ${escapeHtml(cleanQuery)}</div>`;
+        showSection("results");
         if (syncUrl) updateUrlState("language", cleanQuery);
         return;
       }
@@ -2549,17 +2859,28 @@
       for (const m of matches) {
         const langs = m.langs.length ? m.langs.join(", ") : "unspecified";
         const encodedWord = encodeURIComponent(m.entry.title);
-        html += `<li class="lang-result-item"><span class="lang-result-word" data-word="${encodedWord}">${escapeHtml(m.entry.title)}</span><span class="lang-result-meta">${escapeHtml(langs)}</span></li>`;
+        const displayTitle = cleanDisplayTitle(m.entry.title);
+        html += `<li class="lang-result-item"><span class="lang-result-word" data-word="${encodedWord}">${escapeHtml(displayTitle)}</span><span class="lang-result-meta">${escapeHtml(langs)}</span></li>`;
       }
       html += `</ul>`;
       el.innerHTML = html;
+      showSection("results");
       if (syncUrl) updateUrlState("language", cleanQuery);
     }
     function lookup(word, syncUrl = true) {
-      const entry = titleIndex[word];
+      let entry = titleIndex[word];
       const el = document.getElementById("result");
       document.getElementById("suggestions").style.display = "none";
       el.style.display = "block";
+      
+      // If word not found, check if it's an inflected form and redirect to lemma
+      if (!entry && lemmatizationIndex[word]) {
+        const lemma = lemmatizationIndex[word];
+        // Recursively lookup the lemma
+        lookup(lemma, syncUrl);
+        return;
+      }
+      
       if (!entry) {
         const suggestions = getDidYouMeanWords(word, 4);
         let suggestionHtml = "";
@@ -2567,6 +2888,7 @@
           suggestionHtml = `<div class="did-you-mean">Did you mean: ${suggestions.map(w => `<button type="button" class="suggest-link" data-word="${encodeURIComponent(w)}">${escapeHtml(w)}</button>`).join("")}</div>`;
         }
         el.innerHTML = `<div class="not-found">Not found: ${escapeHtml(word)}${suggestionHtml}</div>`;
+        showSection("results");
         if (syncUrl) updateUrlState("word", word);
         return;
       }
@@ -2593,7 +2915,8 @@
       const rootDefLine = buildSurnameRootDefinition(entry, displayDefs, ety);
       const defsToShow = rootDefLine ? [...displayDefs, rootDefLine] : displayDefs;
       currentWord = entry.title;
-      let html = `<article class="entry-card"><div class="entry-head"><div class="word-title">${escapeHtml(entry.title)}</div>`;
+      const displayTitle = cleanDisplayTitle(entry.title);
+      let html = `<article class="entry-card"><div class="entry-head"><div class="word-title">${escapeHtml(displayTitle)}</div>`;
       if (pos) html += `<div class="word-pos">${escapeHtml(pos)}</div>`;
       if (pron) html += `<div class="pronunciation"><span class="pron-label">Pron.</span>${escapeHtml(pron)}</div>`;
       const encodedTitle = encodeURIComponent(entry.title);
@@ -2675,6 +2998,7 @@
       html += `</div>`;
       html += `</div></article>`;
       el.innerHTML = html;
+      showSection("results");
       if (syncUrl) updateUrlState("word", entry.title);
     }
     window.lookup = lookup;
@@ -2696,14 +3020,16 @@
       matches.forEach(m => {
         const div = document.createElement("div");
         div.className = "suggestion";
-        div.textContent = m;
+        div.dataset.word = m;
+        div.textContent = cleanDisplayTitle(m);
         div.addEventListener("mousedown", (e) => {
           e.preventDefault();
+          const raw = div.dataset.word || m;
           if (searchMode === "word") {
-            lookup(m, true);
+            lookup(raw, true);
           } else {
-            lookupLanguage(m, true);
-            document.getElementById("search").value = m;
+            lookupLanguage(raw, true);
+            document.getElementById("search").value = raw;
           }
           box.style.display = "none";
         });
@@ -2743,13 +3069,25 @@
     function goHome() {
       document.getElementById("search").value = "";
       document.getElementById("suggestions").style.display = "none";
-      document.getElementById("result").innerHTML = "";
+      renderEmptyState();
       currentWord = "";
       graphVisible = false;
-      showSection("");
+      showSection("results");
       setMode("word");
       updateUrlState("word", "");
       window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    function renderEmptyState() {
+      const el = document.getElementById("result");
+      if (!el) return;
+      const samples = ["բարեւ", "ժամանակ", "աշխարհ"];
+      el.innerHTML = `<div class="empty-state"><h2 class="empty-title">Start With A Word</h2><p class="empty-copy">Type a Western Armenian word to view definition, etymology, and source lineage. You can also switch to language search if you want all words borrowed from a source language.</p><div class="empty-samples">${samples.map(w => `<button type="button" class="empty-sample suggest-link" data-word="${encodeURIComponent(w)}">${escapeHtml(w)}</button>`).join("")}<button type="button" class="empty-sample" id="emptyRandomBtn">Random entry</button></div></div>`;
+      const emptyRandomBtn = document.getElementById("emptyRandomBtn");
+      if (emptyRandomBtn) {
+        emptyRandomBtn.addEventListener("click", () => {
+          triggerRandomWordLookup();
+        });
+      }
     }
     function setKeyboardOpen(open) {
       const panel = document.getElementById("armenianKeyboard");
@@ -2784,22 +3122,28 @@
       panel.innerHTML = html;
     }
     function loadDictionary() {
-      fetch("western_armenian_merged.json")
-        .then(r => {
-          if (!r.ok) throw new Error("merged dictionary not found");
-          return r.json();
-        })
-        .catch(() => fetch("western_armenian_wiktionary.json").then(r => r.json()))
-        .then(data => {
-          dictionary = data;
-          for (const e of data) {
-            titleIndex[e.title] = e;
-          }
-          allTitles = data.map(e => e.title);
-          sourceLanguageList = [...new Set(data.flatMap(e => getSourceLanguages(e)))].sort();
-          document.getElementById("count").textContent =
-            data.length.toLocaleString() + " entries";
-          applyStateFromUrl();
+      Promise.all([
+        fetch("western_armenian_merged.json")
+          .then(r => {
+            if (!r.ok) throw new Error("merged dictionary not found");
+            return r.json();
+          })
+          .catch(() => fetch("western_armenian_wiktionary.json").then(r => r.json())),
+        fetch("lemmatization_index.json")
+          .then(r => r.json())
+          .catch(() => ({}))
+      ])
+      .then(([data, lemmaIndex]) => {
+        dictionary = data;
+        lemmatizationIndex = lemmaIndex;
+        for (const e of data) {
+          titleIndex[e.title] = e;
+        }
+        allTitles = data.map(e => e.title);
+        sourceLanguageList = [...new Set(data.flatMap(e => getSourceLanguages(e)))].sort();
+        document.getElementById("count").textContent =
+          data.length.toLocaleString() + " entries";
+        applyStateFromUrl();
           if (graphVisible) {
             openGraphSection();
           }
@@ -3113,10 +3457,23 @@
     }
 
     function showSection(which) {
-      document.getElementById("graphSection").style.display    = which === "graph"  ? "block" : "none";
-      document.getElementById("langGuideSection").style.display = which === "guide"  ? "block" : "none";
-      document.getElementById("suffixSection").style.display   = which === "suffix" ? "block" : "none";
+      const section = which || "results";
+      document.getElementById("result").style.display = section === "results" ? "block" : "none";
+      document.getElementById("graphSection").style.display = section === "graph" ? "block" : "none";
+      document.getElementById("langGuideSection").style.display = section === "guide" ? "block" : "none";
+      document.getElementById("suffixSection").style.display = section === "suffix" ? "block" : "none";
+      setSectionTabs(section);
     }
+
+    document.getElementById("showResultsBtn").onclick = () => {
+      graphVisible = false;
+      showSection("results");
+      updateUrlState(searchMode, document.getElementById("search").value.trim());
+    };
+    document.getElementById("showGraphBtn").onclick = () => {
+      showSection("graph");
+      openGraphSection();
+    };
 
     document.getElementById("showLangGuideBtn").onclick = () => {
       showSection("guide");

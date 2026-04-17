@@ -6,6 +6,7 @@ An interactive web-based dictionary of Western Armenian with detailed etymologic
 
 - **18,938+ entries** with complete etymological data
 - **Interactive search** with autocomplete suggestions
+- **Inflected form lemmatization** - click on any verb conjugation or noun declension to jump to the base entry
 - **Language-based search** - find all words borrowed from Turkish, Persian, Greek, etc.
 - **Etymological graph** showing language relationships and borrowing patterns
 - **Modern web interface** with clean, readable design
@@ -82,6 +83,9 @@ The dictionary covers borrowings from:
 python3 analyze_dict.py  # Generate statistics
 python3 parser_fast.py   # Parse etymologies
 python3 cleanup_dict.py  # Clean data
+python3 infer_morphological_etymology.py --dry-run  # Preview inferred prefix/root/suffix etymologies
+python3 infer_morphological_etymology.py --replace-weak  # Fill missing/weak etymologies with explicit inferred breakdowns
+python3 build_external_etymology_queue.py  # Build prioritized unresolved queue + external source adapter manifest
 python3 merge.py         # Build merged Wiktionary + Nayiri dataset
 python3 merge.py --extra-json staged_ocr_entries.json  # Merge OCR-imported entries too
 python3 review_merged_entries.py  # Review merged dataset quality
@@ -104,6 +108,16 @@ python3 review_merged_entries.py
 `download_nayiri_imaged_dictionary.py` uses browser-style headers and referers so Nayiri scan PNGs can be fetched reliably. `ingest_nayiri_scans.py` depends on the macOS Swift toolchain and Vision framework.
 
 The current site loads `western_armenian_merged.json` first when present, and falls back to `western_armenian_wiktionary.json` otherwise.
+
+The UI automatically lemmatizes all inflected forms (verb conjugations, noun declensions) using the `lemmatization_index.json` file. This maps ~80% of inflectional variants to their base form, so clicking on inflected forms (e.g., կսրբեի → սրբել) displays the main entry instead of "not found".
+
+### Lemmatization Index
+```bash
+# Rebuild the lemmatization index after updating alternative_forms
+python3 build_lemmatization_index.py
+```
+
+This creates `lemmatization_index.json` which maps inflected forms to their lemmas via an Armenian morphology heuristic.
 
 ## Contributing
 

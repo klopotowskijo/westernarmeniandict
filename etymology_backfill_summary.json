@@ -1,0 +1,985 @@
+{
+  "total_entries": 24670,
+  "queued_entries": 10694,
+  "skipped_inflected_variants": 587,
+  "top_priority_examples": [
+    {
+      "title": "b-քվարկ",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "b-քվարկ"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "c-քվարկ",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "c-քվարկ"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "d-քվարկ",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "d-քվարկ"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "s-քվարկ",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "s-քվարկ"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "t-քվարկ",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "t-քվարկ"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "u-քվարկ",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "u-քվարկ"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "աբխազերենի",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "աբխազերենի"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "աբխազի",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "աբխազի"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "ագրեսիայի",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "ագրեսիայի"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "ագրեսիայից",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "ագրեսիայից"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "ագրեսիայով",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "ագրեսիայով"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "ագրեսիայում",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "ագրեսիայում"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "ագրեսիաներում",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "ագրեսիաներում"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "ազգեր",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "ազգեր"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "ազգերի",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "ազգերի"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "ածը",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "ածը"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "աղեր",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "աղեր"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "ամբողջությամբ",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "ամբողջությամբ"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "ամպեր",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "ամպեր"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "ամպերի",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "ամպերի"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "ամպերում",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "ամպերում"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "ամպի",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "ամպի"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "ամպում",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "ամպում"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "ամսվա",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "ամսվա"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "ամրագրվել",
+      "inflected_base": null,
+      "part_of_speech": "verb",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "ամրագրվել"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "այծեր",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "այծեր"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "այրեր",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "այրեր"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "այցեր",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "այցեր"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "անձինք",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "անձինք"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "անձիք",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "անձիք"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "անցել",
+      "inflected_base": null,
+      "part_of_speech": "verb",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "անցել"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "անցող",
+      "inflected_base": null,
+      "part_of_speech": "verb",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "անցող"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "աչքեր",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "աչքեր"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "առա",
+      "inflected_base": null,
+      "part_of_speech": "verb",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "առա"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "առատության",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "առատության"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "առկախվել",
+      "inflected_base": null,
+      "part_of_speech": "verb",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "առկախվել"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "առևտրի",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "առևտրի"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "ասա",
+      "inflected_base": null,
+      "part_of_speech": "verb",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "ասա"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "ասած",
+      "inflected_base": null,
+      "part_of_speech": "verb",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "ասած"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "ասեց",
+      "inflected_base": null,
+      "part_of_speech": "verb",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "ասեց"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "աստղեր",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "աստղեր"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "ավագանու",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "ավագանու"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "ավելացված",
+      "inflected_base": null,
+      "part_of_speech": "verb",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "ավելացված"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "ավելացվել",
+      "inflected_base": null,
+      "part_of_speech": "verb",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "ավելացվել"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "ատամի",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "ատամի"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "արած",
+      "inflected_base": null,
+      "part_of_speech": "verb",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "արած"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "արգանդի",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "արգանդի"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "արեք",
+      "inflected_base": null,
+      "part_of_speech": "verb",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "արեք"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "արժեմ",
+      "inflected_base": null,
+      "part_of_speech": "verb",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "արժեմ"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    },
+    {
+      "title": "արժեքի",
+      "inflected_base": null,
+      "part_of_speech": "noun",
+      "priority": 110,
+      "reason": "missing-etymology",
+      "has_meaningful_etymology": false,
+      "has_weak_only_etymology": false,
+      "inferred_confidences": [],
+      "current_sources": [],
+      "query_terms": [
+        "արժեքի"
+      ],
+      "target_adapters": [
+        "nayiri_imaged_dictionary",
+        "nisanyan_sozluk",
+        "open_manual_curation"
+      ]
+    }
+  ],
+  "counts_by_reason": {
+    "missing-etymology": 628,
+    "weak-placeholder-etymology": 5249,
+    "inferred-medium-review": 1212,
+    "non-meaningful-etymology": 2573,
+    "inferred-high-review": 1032
+  },
+  "counts_by_pos": {
+    "noun": 5717,
+    "verb": 1426,
+    "pron": 29,
+    "adj": 1286,
+    "postp": 7,
+    "unknown": 138,
+    "intj": 16,
+    "adv": 133,
+    "det": 1,
+    "conj": 15,
+    "particle": 12,
+    "prep": 7,
+    "numeral": 11,
+    "proper noun": 815,
+    "adjective": 761,
+    "adverb": 298,
+    "conjunction": 9,
+    "adposition": 11,
+    "determiner": 2
+  }
+}
