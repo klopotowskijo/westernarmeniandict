@@ -804,10 +804,14 @@
       out = out.replace(/\{\{(?:bor|bor\+|learned borrowing)\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, "Borrowed from $2 ($1).");
       out = out.replace(/\{\{(?:inh|inh\+)\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, "Inherited from $2 ($1).");
       out = out.replace(/\{\{(?:uder|der|der\+)\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, "Derived from $2 ($1).");
+      out = out.replace(/\{\{w\|[^|}]+\|([^}]+)\}\}/g, "$1");
       out = out
         .replace(/\{\{[^}]+\}\}/g, "")
         .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, "$2")
         .replace(/\[\[([^\]]+)\]\]/g, "$1")
+        .replace(/\b(?:recent\s+)?reborrowing from\s+Borrowed from\s+/i, "Reborrowed from ")
+        .replace(/\bReborrowed\s+from\s+Borrowed from\s+/i, "Reborrowed from ")
+        .replace(/\bitself\s+from\s+Derived from\s+/i, "itself from ")
         .replace(/^From\s+Borrowed from\s+/i, "Borrowed from ")
         .replace(/^From\s+Inherited from\s+/i, "Inherited from ")
         .replace(/^From\s+Derived from\s+/i, "Derived from ")
@@ -967,6 +971,10 @@
       if (/^etymology needs further research\.?$/.test(t)) return true;
       if (/etymology needs further research/.test(t)) return true;
       if (/^from old armenian\b/.test(t) && /further research/.test(t)) return true;
+      // Catch malformed placeholders like "Reborrowed from , itself from.".
+      if (/\breborrowed from\s*(?:,|\.|;|$)/.test(t)) return true;
+      if (/\b(?:borrowed|derived|inherited) from\s*(?:,|\.|;|$)/.test(t)) return true;
+      if (/\bitself from\s*(?:,|\.|;|$)/.test(t)) return true;
       return false;
     }
     function parseEtymology(entry) {
