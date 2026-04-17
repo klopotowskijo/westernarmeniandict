@@ -585,10 +585,79 @@
       color: #692910;
       border-bottom-style: solid;
     }
-    #graphSection {
+    #graphSection, #langGuideSection, #suffixSection {
       margin: 0 1.6rem 1.6rem;
       padding-top: 0.85rem;
       border-top: 1px solid var(--line);
+    }
+    #langGuideSection h2, #suffixSection h2 {
+      font-size: 1.35rem;
+      margin: 0 0 0.4rem;
+      color: #2a1e14;
+    }
+    .guide-intro {
+      font-size: 0.97rem;
+      color: var(--ink-soft);
+      margin: 0 0 1.1rem;
+      max-width: 68ch;
+    }
+    .guide-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 0.75rem 1rem;
+    }
+    .guide-card {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 0.7rem 0.9rem;
+      background: #fffdf8;
+    }
+    .guide-card-name {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-weight: 600;
+      font-size: 0.93rem;
+      color: #2a1e14;
+      margin-bottom: 0.18rem;
+    }
+    .guide-card-code {
+      font-family: monospace;
+      font-size: 0.78rem;
+      background: #f0e8d8;
+      border-radius: 3px;
+      padding: 0.05em 0.32em;
+      margin-left: 0.3rem;
+      color: #6a4820;
+    }
+    .guide-card-desc {
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      line-height: 1.45;
+    }
+    .guide-card-period {
+      font-size: 0.78rem;
+      color: #9a8060;
+      margin-top: 0.2rem;
+      font-style: italic;
+    }
+    .suffix-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.6rem;
+    }
+    .suffix-btn {
+      font-family: "EB Garamond", serif;
+      font-size: 1.08rem;
+      padding: 0.32rem 0.7rem;
+      border: 1px solid #c4aa8a;
+      border-radius: 4px;
+      background: #fdf6eb;
+      color: #3a2410;
+      cursor: pointer;
+      transition: background 0.14s, border-color 0.14s;
+    }
+    .suffix-btn:hover {
+      background: var(--accent-soft);
+      border-color: var(--accent);
     }
     .graph-controls {
       display: flex;
@@ -854,6 +923,8 @@
         <button id="langSearchBtn">Language Search</button>
         <button id="showGraphBtn" style="display:none">Open Etymology Tree</button>
         <button id="randomWordBtn" title="Load a random entry">Random</button>
+        <button id="showLangGuideBtn">Language Guide</button>
+        <button id="showSuffixBtn">Suffixes</button>
       </div>
     </section>
     <main id="result"></main>
@@ -891,6 +962,19 @@
       <div id="graphLanguagePanel" class="graph-language-panel"></div>
       <div id="graphContainer"></div>
     </section>
+
+    <section id="langGuideSection" style="display:none">
+      <h2>Language Guide</h2>
+      <p class="guide-intro">This dictionary traces Western Armenian words back through many source languages. Below are all the language names and codes you'll encounter, with context about when Armenian borrowed from each.</p>
+      <div class="guide-grid" id="langGuideGrid"></div>
+    </section>
+
+    <section id="suffixSection" style="display:none">
+      <h2>Armenian Suffixes &amp; Word-Forming Elements</h2>
+      <p class="guide-intro">Click any suffix to look it up in the dictionary.</p>
+      <div id="suffixGrid" class="suffix-grid"></div>
+    </section>
+
     <footer class="site-footer">
       <span>Dictionary Ardemis</span>
       <span class="footer-sep">&middot;</span>
@@ -2598,6 +2682,7 @@
       renderGraph(graphMode);
     }
     document.getElementById("showGraphBtn").onclick = () => {
+      showSection("graph");
       // Keep the selected mode. If no word is selected yet, default to language mode.
       if (!currentWord && graphMode === "tree") {
         setGraphMode("language");
@@ -2769,6 +2854,84 @@
         renderGraph(graphMode);
       }
     });
+
+    // ── Language Guide ──────────────────────────────────────────────────────
+    const LANG_GUIDE = [
+      { name: "Proto-Indo-European", code: "PIE / ine-pro", desc: "The reconstructed ancestor of most European and Iranian languages, including Armenian. Words marked PIE go back ~5,000–6,000 years.", period: "c. 4000–2500 BCE" },
+      { name: "Proto-Armenian", code: "hyx-pro", desc: "The unattested intermediate stage between PIE and Classical Armenian, reconstructed from comparative evidence.", period: "c. 1000–500 BCE" },
+      { name: "Classical Armenian (Grabar)", code: "xcl", desc: "The literary and liturgical language of Armenia from the 5th century AD onwards. Still used in the Armenian Apostolic Church.", period: "5th century AD–present" },
+      { name: "Middle Armenian", code: "axm", desc: "Transitional stage of Armenian used in the Cilician kingdom and medieval manuscripts.", period: "11th–17th century" },
+      { name: "Old Armenian", code: "xcl (early)", desc: "Early attestations of Classical Armenian, sometimes distinguished from later Grabar.", period: "5th–10th century" },
+      { name: "Western Armenian", code: "hyw", desc: "The dialect spoken by Armenians of Anatolia and the diaspora; the focus of this dictionary.", period: "19th century–present" },
+      { name: "Eastern Armenian", code: "hy", desc: "The modern standard of Armenia and Iran, closely related to but distinct from Western Armenian.", period: "19th century–present" },
+      { name: "Ottoman Turkish", code: "ota", desc: "The language of the Ottoman Empire. A major source of loanwords into Western Armenian, especially for everyday and administrative vocabulary.", period: "c. 1300–1928" },
+      { name: "Turkish", code: "tr", desc: "Modern Turkish, successor to Ottoman Turkish. Some post-Ottoman loanwords entered Armenian through continued contact.", period: "1928–present" },
+      { name: "Persian (Farsi)", code: "fa", desc: "Iranian language with centuries of influence on Armenian through trade, administration, and the Safavid period.", period: "Ongoing from antiquity" },
+      { name: "Classical Persian", code: "fa-cls", desc: "The literary form of Persian used in poetry and administration across the Middle East.", period: "9th–15th century" },
+      { name: "Old Persian", code: "peo", desc: "The language of the Achaemenid Persian Empire. Source of some ancient loanwords in Armenian.", period: "c. 600–300 BCE" },
+      { name: "Arabic", code: "ar", desc: "Semitic language; loanwords entered Armenian through Islamic administration, trade, and the Abbasid cultural sphere.", period: "7th century–present" },
+      { name: "Akkadian", code: "akk", desc: "Ancient Semitic language of Mesopotamia. Traces in Armenian likely came via ancient trade routes.", period: "c. 3000–100 BCE" },
+      { name: "Greek", code: "el / grc", desc: "Loans from both Ancient and Medieval Greek, especially in early Christian literature, theology, and later under Byzantine influence.", period: "Antiquity–Medieval" },
+      { name: "Medieval Greek", code: "gkm", desc: "Greek of the Byzantine period, a significant influence on Armenian through religious and political contact.", period: "c. 400–1453" },
+      { name: "Pontic Greek", code: "pnt", desc: "Greek dialect of the Black Sea region, with localised influence on Armenian communities in the same area.", period: "Medieval–modern" },
+      { name: "Latin", code: "la", desc: "Loans entered mainly through the medieval Church and later through French and Italian intermediaries.", period: "Medieval–early modern" },
+      { name: "French", code: "fr", desc: "A major source of modern loanwords for Western Armenians, especially after the French-educated diaspora communities of Beirut, Paris, and Constantinople.", period: "18th century–present" },
+      { name: "Russian", code: "ru", desc: "Loanwords entered Eastern Armenian heavily under the Russian Empire and Soviet period; some spread to Western Armenian through diaspora contact.", period: "19th century–present" },
+      { name: "Georgian", code: "ka", desc: "Caucasian neighbour; some loanwords shared through proximity and trade.", period: "Medieval–modern" },
+      { name: "Kurdish / Northern Kurdish", code: "ku / kmr", desc: "Iranian language spoken in adjacent regions; localised loanwords particularly in rural vocabulary.", period: "Medieval–modern" },
+      { name: "Azerbaijani", code: "az", desc: "Turkic language closely related to Ottoman Turkish; contact loanwords especially in Eastern Armenian.", period: "Medieval–modern" },
+      { name: "Italian", code: "it", desc: "Venetian and Genoese traders brought Italian loanwords into Armenian through Mediterranean commerce.", period: "13th–17th century" },
+      { name: "German", code: "de", desc: "Some technical and modern loanwords, mainly through scientific and educational channels.", period: "19th–20th century" },
+      { name: "English", code: "en", desc: "Increasingly present in diaspora Western Armenian, especially in Anglophone communities (USA, Canada, Australia).", period: "20th century–present" },
+      { name: "Syriac / Aramaic", code: "syc / arc", desc: "Semitic languages of early Christianity; many early Christian and liturgical terms entered Armenian through Syriac translations.", period: "4th–7th century" },
+      { name: "Proto-Indo-European (Anatolian branch)", code: "Anatolian", desc: "Some very early strata of Armenian vocabulary may reflect Anatolian contact layers from languages like Hittite.", period: "c. 2000–1200 BCE" },
+    ];
+
+    function renderLangGuide() {
+      const grid = document.getElementById("langGuideGrid");
+      if (!grid) return;
+      grid.innerHTML = LANG_GUIDE.map(({ name, code, desc, period }) => `
+        <div class="guide-card">
+          <div class="guide-card-name">${escapeHtml(name)}<span class="guide-card-code">${escapeHtml(code)}</span></div>
+          <div class="guide-card-desc">${escapeHtml(desc)}</div>
+          ${period ? `<div class="guide-card-period">${escapeHtml(period)}</div>` : ""}
+        </div>`).join("");
+    }
+
+    const SUFFIX_LIST = [
+      "-ա","-ա-","-աբար","-ագին","-ագույն","-ալ","-ած","-ածո","-ածու","-ակ","-ական","-ակերտ","-ային","-ան","-ան-","-անակ","-անի","-անոց","-անց","-անք","-ապան","-ապանակ","-ապատ","-ապես","-աստան","-ավետ","-ավոր","-ավուն","-ատ","-արան","-արար","-արեն","-արք","-ացի","-ացն-","-ացու","-բան","-բար","-գին","-գույն","-ե","-ել","-եղ","-ենի","-եղ","-ԷՐ","-ի","-իկ","-ին","-ինակ","-իչ","-իշ","-ներ","-ո","-ոն","-ոջ","-ող","-ոս","-ութ","-ութիւն","-ութ,","-ույն","-ուկ","-ուն","-ուս","-ուստ","-ց","-ցի","-փ","-ք"
+    ];
+
+    function renderSuffixGrid() {
+      const grid = document.getElementById("suffixGrid");
+      if (!grid) return;
+      // Use all suffix-like titles from the loaded dictionary if available, else fallback list
+      const suffixes = allTitles.length
+        ? allTitles.filter(t => t.startsWith("-")).sort()
+        : SUFFIX_LIST;
+      grid.innerHTML = suffixes.map(s =>
+        `<button type="button" class="suffix-btn word-link" data-word="${encodeURIComponent(s)}">${escapeHtml(s)}</button>`
+      ).join("");
+    }
+
+    function showSection(which) {
+      document.getElementById("graphSection").style.display    = which === "graph"  ? "block" : "none";
+      document.getElementById("langGuideSection").style.display = which === "guide"  ? "block" : "none";
+      document.getElementById("suffixSection").style.display   = which === "suffix" ? "block" : "none";
+    }
+
+    document.getElementById("showLangGuideBtn").onclick = () => {
+      showSection("guide");
+      renderLangGuide();
+      graphVisible = false;
+      updateUrlState(searchMode, document.getElementById("search").value.trim());
+    };
+    document.getElementById("showSuffixBtn").onclick = () => {
+      showSection("suffix");
+      renderSuffixGrid();
+      graphVisible = false;
+      updateUrlState(searchMode, document.getElementById("search").value.trim());
+    };
     loadDictionary();
     fetch("nayiri-armenian-lexicon-2026-02-15-v1%202.json")
       .then(r => r.json())
