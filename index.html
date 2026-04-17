@@ -1301,7 +1301,7 @@
         <div id="armenianKeyboard" class="keyboard-panel" aria-hidden="true"></div>
       </div>
     </section>
-    <main id="result"><div class="empty-state"><h2 class="empty-title">Start With A Word</h2><p class="empty-copy">Type a Western Armenian word to view definition, etymology, and source lineage. You can also switch to language search if you want all words borrowed from a source language.</p></div></main>
+    <main id="result"><div class="empty-state"><h2 class="empty-title">Start With A Word</h2><p class="empty-copy">Type a word to view definition, etymology, and morphology. You can also switch to language search if you want all words borrowed from a source language.</p></div></main>
     <section id="graphSection" style="display:none">
       <h2>Etymology Graph</h2>
       <div class="graph-controls">
@@ -3304,7 +3304,7 @@
       const el = document.getElementById("result");
       if (!el) return;
       const samples = ["բարեւ", "ժամանակ", "աշխարհ"];
-      el.innerHTML = `<div class="empty-state"><h2 class="empty-title">Start With A Word</h2><p class="empty-copy">Type a Western Armenian word to view definition, etymology, and source lineage. You can also switch to language search if you want all words borrowed from a source language.</p><div class="empty-samples">${samples.map(w => `<button type="button" class="empty-sample suggest-link" data-word="${encodeURIComponent(w)}">${escapeHtml(w)}</button>`).join("")}<button type="button" class="empty-sample" id="emptyRandomBtn">Random entry</button></div></div>`;
+      el.innerHTML = `<div class="empty-state"><h2 class="empty-title">Start With A Word</h2><p class="empty-copy">Type a word to view definition, etymology, and morphology. You can also switch to language search if you want all words borrowed from a source language.</p><div class="empty-samples">${samples.map(w => `<button type="button" class="empty-sample suggest-link" data-word="${encodeURIComponent(w)}">${escapeHtml(w)}</button>`).join("")}<button type="button" class="empty-sample" id="emptyRandomBtn">Random entry</button></div></div>`;
       const emptyRandomBtn = document.getElementById("emptyRandomBtn");
       if (emptyRandomBtn) {
         emptyRandomBtn.addEventListener("click", () => {
