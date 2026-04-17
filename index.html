@@ -767,6 +767,12 @@
           line-height: 1.4;
           transition: color 0.12s;
         }
+        .ety-inline-link {
+          font-size: 0.95em;
+          line-height: 1.1;
+          margin: 0;
+          vertical-align: baseline;
+        }
         .word-link:hover { color: #692910; border-bottom-style: solid; }
     #randomWordBtn {
       background: transparent;
@@ -934,6 +940,12 @@
         const tpl = parseTemplateMarkup(body);
         const name = tpl.name.toLowerCase();
         if (name === "unk" || name === "unc" || name === "uncertain") return "unknown";
+        if (name === "affix" || name === "compound") {
+          const parts = tpl.positional.slice(1).filter(Boolean);
+          if (parts.length >= 2) {
+            return `From ${parts.join(" + ")}.`;
+          }
+        }
         if (name === "m" || name === "l" || name === "term") {
           return tpl.positional[1] || tpl.named.t || tpl.named.gloss || "";
         }
@@ -964,6 +976,8 @@
         .replace(/\{\{[^}]+\}\}/g, "")
         .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, "$2")
         .replace(/\[\[([^\]]+)\]\]/g, "$1")
+        .replace(/\bFor the semantics see\s+([^.;]+)\.?/i, "Semantically compare $1.")
+        .replace(/\bFor the semantics see\s*(?:[.;]|$)/i, "")
         .replace(/\b(?:recent\s+)?reborrowing from\s+Borrowed from\s+/i, "Reborrowed from ")
         .replace(/\bReborrowed\s+from\s+Borrowed from\s+/i, "Reborrowed from ")
         .replace(/\bitself\s+from\s+Derived from\s+/i, "itself from ")
@@ -1291,6 +1305,9 @@
       if (/\bno\s+→\s+sound change\b/.test(t)) return true;
       // Catch malformed placeholders like "Reborrowed from , itself from.".
       if (/\breborrowed from\s*(?:,|\.|;|$)/.test(t)) return true;
+      if (/^from\.?\s*for the semantics see\.?$/.test(t)) return true;
+      if (/^for the semantics see\.?$/.test(t)) return true;
+      if (/\bfrom\s*(?:,|\.|;|$)/.test(t)) return true;
       if (/\b(?:borrowed|derived|inherited) from\s*(?:,|\.|;|$)/.test(t)) return true;
       if (/\bitself from\s*(?:,|\.|;|$)/.test(t)) return true;
       return false;
@@ -1452,6 +1469,37 @@
       });
       html += `</div>`;
       return html;
+    }
+    function normalizeEtymologyLinkCandidate(token) {
+      const stripped = String(token || "")
+        .replace(/^[\-]+/, "")
+        .replace(/[\-]+$/, "")
+        .replace(/[՛՚՜՞՟]+$/g, "")
+        .trim();
+      return stripped;
+    }
+    function renderEtymologyTextWithLinks(text) {
+      const raw = String(text || "").trim();
+      if (!raw) return "—";
+
+      // Link Armenian-looking root tokens that exist as dictionary headwords.
+      const tokenRe = /[Ա-Ֆա-և][Ա-Ֆա-և՛՚՜՞՟-]*/g;
+      let out = "";
+      let lastIndex = 0;
+      for (const match of raw.matchAll(tokenRe)) {
+        const token = match[0];
+        const start = match.index || 0;
+        out += escapeHtml(raw.slice(lastIndex, start));
+        const candidate = normalizeEtymologyLinkCandidate(token);
+        if (candidate.length >= 2 && titleIndex[candidate]) {
+          out += `<button type="button" class="word-link ety-inline-link" data-word="${encodeURIComponent(candidate)}">${escapeHtml(token)}</button>`;
+        } else {
+          out += escapeHtml(token);
+        }
+        lastIndex = start + token.length;
+      }
+      out += escapeHtml(raw.slice(lastIndex));
+      return out;
     }
     function normalizeLookupText(value) {
       return String(value || "").toLowerCase().trim();
@@ -2232,7 +2280,7 @@
         html += `</ol>`;
       }
       html += `<div class="section-label">Etymology <span class="source-badge ${escapeHtml(sourceBadge.className)}">${escapeHtml(sourceBadge.label)}</span><span class="ety-confidence ${escapeHtml(etyConfidence.className)}">${escapeHtml(etyConfidence.label)}</span></div>`;
-      html += `<div class="etymology-box">${renderLineage(lineage)}${escapeHtml(ety || "—")}</div>`;
+      html += `<div class="etymology-box">${renderLineage(lineage)}${renderEtymologyTextWithLinks(ety)}</div>`;
       html += `<div class="ety-sources">Sources: ${etySources.map(s => escapeHtml(s)).join("; ")}</div>`;
       if (attestation) html += `<div class="attestation-note">Timeline: ${escapeHtml(attestation)}</div>`;
       // Nayiri panel
