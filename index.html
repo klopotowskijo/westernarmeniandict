@@ -3199,8 +3199,23 @@
         return;
       }
       const matches = dictionary
+        .filter(entry => {
+          // Check structured source languages first
+          const langs = getSourceLanguages(entry);
+          if (langs.some(l => l.toLowerCase().includes(q))) return true;
+          // Also search raw etymology text directly (catches "From French...", "Ottoman Turkish", etc.)
+          const etyText = parseEtymology(entry);
+          if (etyText && etyText.toLowerCase().includes(q)) return true;
+          // Also check raw etymology array text fields
+          if (Array.isArray(entry.etymology)) {
+            for (const e of entry.etymology) {
+              if (e && typeof e.text === "string" && e.text.toLowerCase().includes(q)) return true;
+              if (e && typeof e.source_language === "string" && e.source_language.toLowerCase().includes(q)) return true;
+            }
+          }
+          return false;
+        })
         .map(entry => ({ entry, langs: getSourceLanguages(entry) }))
-        .filter(item => item.langs.some(l => l.toLowerCase().includes(q)))
         .slice(0, 150);
       if (!matches.length) {
         el.innerHTML = `<div class="not-found">No entries found for source language: ${escapeHtml(cleanQuery)}</div>`;
