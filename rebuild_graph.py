@@ -85,7 +85,8 @@ for e in d:
                 # word not in dict – still record as synthetic target
                 add_edge(title, root, relation, slang)
             wikitext_edges += 1
-    # affix / compound – only link parts that exist in the dictionary
+    # affix / compound – link parts that exist in the dictionary.
+    # Keep canonical affix headwords (e.g. "-ական") when present.
     for m in affix_re.finditer(wikitext):
         raw_parts = m.group(1).split("|")
         parts = [p.strip() for p in raw_parts if p.strip()]
@@ -93,12 +94,22 @@ for e in d:
         for p in parts[1:]:
             if p.startswith("=") or "=" in p:
                 continue
-            # skip pure affixes like -ян
-            clean = p.lstrip("-").rstrip("-")
-            if not clean:
+            candidates = []
+            raw = p.strip()
+            if raw:
+                candidates.append(raw)
+            clean = raw.lstrip("-").rstrip("-")
+            if clean and clean != raw:
+                candidates.append(clean)
+            target = ""
+            for c in candidates:
+                if c in title_set:
+                    target = c
+                    break
+            if not target:
                 continue
-            if clean != title and clean in title_set:
-                add_edge(title, clean, "compound", "Armenian")
+            if target != title:
+                add_edge(title, target, "compound", "Armenian")
 
 print(f"Wikitext edges: {wikitext_edges}, total after wikitext: {len(edges)}")
 
@@ -169,6 +180,9 @@ for l in old_graph.get("links", []):
     tgt = str(l.get("target", "")).strip()
     rel = str(l.get("relation", "")).strip()
     slang = l.get("source_language") or None
+    if rel == "compound" and tgt and not tgt.startswith("-") and f"-{tgt}" in title_set:
+        # Prefer canonical suffix headwords when available (e.g. -ական over ական).
+        continue
     if src and tgt:
         add_edge(src, tgt, rel, slang)
         orig_edges += 1
