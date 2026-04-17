@@ -161,6 +161,8 @@
       padding: 0.9rem 0.75rem 0.75rem;
       display: none;
       box-shadow: 0 6px 24px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.06);
+      position: relative;
+      z-index: 20;
     }
     .keyboard-row {
       display: flex;
@@ -2437,6 +2439,7 @@
       panel.setAttribute("aria-hidden", open ? "false" : "true");
       btn.setAttribute("aria-expanded", open ? "true" : "false");
       btn.textContent = open ? "Hide Armenian Keyboard" : "Show Armenian Keyboard";
+      if (open) document.getElementById("suggestions").style.display = "none";
     }
     function renderArmenianKeyboard() {
       const panel = document.getElementById("armenianKeyboard");
