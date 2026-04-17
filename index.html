@@ -102,6 +102,12 @@
       position: relative;
       margin-bottom: 0.75rem;
     }
+    .search-actions {
+      margin-top: 0.45rem;
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+    }
     .search-icon {
       position: absolute;
       left: 0.62rem;
@@ -859,6 +865,21 @@
       background: var(--accent);
       color: #fff;
     }
+    #searchSubmitBtn {
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: #fff;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.76rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.34rem 0.74rem;
+      border-radius: 2px;
+    }
+    #searchSubmitBtn:hover {
+      background: #9a5a30;
+      border-color: #9a5a30;
+    }
     @keyframes entry-fade {
       from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
@@ -911,18 +932,21 @@
         <svg class="search-icon" aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <input id="search" type="text" placeholder="Search for a word..." autocomplete="off" />
         <div id="suggestions"></div>
-      </div>
-      <div class="keyboard-wrap">
-        <button id="toggleKeyboardBtn" type="button" aria-expanded="false">Show Armenian Keyboard</button>
-        <div id="armenianKeyboard" class="keyboard-panel" aria-hidden="true"></div>
+        <div class="search-actions">
+          <button id="searchSubmitBtn" type="button" title="Run search">Search</button>
+          <button id="randomWordBtn" type="button" title="Load a random entry">Random</button>
+        </div>
       </div>
       <div class="button-row">
         <button id="wordSearchBtn" class="active">Word Search</button>
         <button id="langSearchBtn">Language Search</button>
         <button id="showGraphBtn" style="display:none">Open Etymology Tree</button>
-        <button id="randomWordBtn" title="Load a random entry">Random</button>
         <button id="showLangGuideBtn">Language Guide</button>
         <button id="showSuffixBtn">Suffixes</button>
+      </div>
+      <div class="keyboard-wrap">
+        <button id="toggleKeyboardBtn" type="button" aria-expanded="false">Show Armenian Keyboard</button>
+        <div id="armenianKeyboard" class="keyboard-panel" aria-hidden="true"></div>
       </div>
     </section>
     <main id="result"></main>
@@ -2662,6 +2686,10 @@
           countEl.textContent = "Loading entries...";
         }
       }
+    };
+    document.getElementById("searchSubmitBtn").onclick = () => {
+      runSearchFromInput();
+      document.getElementById("search").focus();
     };
     async function openGraphSection() {
       const sec = document.getElementById("graphSection");
