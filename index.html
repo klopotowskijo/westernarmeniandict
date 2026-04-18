@@ -1527,13 +1527,19 @@
         .replace(/^From\s+Borrowed from\s+/i, "Borrowed from ")
         .replace(/^From\s+Inherited from\s+/i, "Inherited from ")
         .replace(/^From\s+Derived from\s+/i, "Derived from ")
+        .replace(/\.\s+(itself from\b)/gi, ", $1")
+        .replace(/\.\s+(ultimately from\b)/gi, ", $1")
+        .replace(/,\s*(,|;|:)/g, "$1")
+        .replace(/([,;:])\s*\./g, ".")
         .replace(/\(\s*\)/g, "")
+        .replace(/\(\s*([^)]+?)\s*\)/g, "($1)")
         .replace(/\s+,/g, ",")
         .replace(/\s+;/g, ";")
         .replace(/\s+:/g, ":")
         .replace(/\.{2,}/g, ".")
         .replace(/([,;:]){2,}/g, "$1")
         .replace(/\s+\./g, ".")
+        .replace(/([,;:])(?=[A-Za-z\u0531-\u058F])/g, "$1 ")
         .replace(/\s+/g, " ")
         .trim();
 
@@ -1652,24 +1658,31 @@
       }
       return false;
     }
+    function hasArmenianScript(text) {
+      return /[\u0531-\u058F]/.test(String(text || ""));
+    }
     function parseDefinitions(entry) {
       const explicitDefs = Array.isArray(entry.definition)
         ? entry.definition.filter(d => typeof d === "string" && d.trim())
         : [];
       const explicitNonGeneric = explicitDefs.filter(d => !isGenericDefinition(d));
-      if (explicitNonGeneric.length) return explicitNonGeneric;
+      const explicitArmenian = explicitNonGeneric.filter(hasArmenianScript);
+      if (explicitArmenian.length) return explicitArmenian;
       const abbreviationMeaning = extractAbbreviationMeaning(entry);
       if (abbreviationMeaning) return [abbreviationMeaning];
       const wikitext = entry.wikitext || "";
       const m = wikitext.match(/==Armenian==\s*\n([\s\S]*?)(?=\n==[^=]|$)/);
-      if (!m) return explicitDefs;
+      if (!m) return explicitNonGeneric.length ? explicitNonGeneric : explicitDefs;
       const parsedDefs = m[1]
         .split("\n")
         .map(l => l.trim())
         .filter(l => /^#[^#:]/.test(l))
         .map(l => cleanWikiDef(l.replace(/^#+/, "").trim()))
         .filter(l => l.length > 1);
+      const parsedArmenian = parsedDefs.filter(hasArmenianScript);
+      if (parsedArmenian.length) return parsedArmenian;
       if (parsedDefs.length) return parsedDefs;
+      if (explicitNonGeneric.length) return explicitNonGeneric;
       return explicitDefs;
     }
     function parseAlternativeTarget(definitionText) {
