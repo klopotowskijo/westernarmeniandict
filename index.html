@@ -2055,6 +2055,52 @@
       if (!langName || !term) return null;
       return { langName, term };
     }
+    function extractEtymologyTemplateChain(entry) {
+      const wikitext = String(entry && entry.wikitext ? entry.wikitext : "");
+      if (!wikitext) return [];
+      const sec = wikitext.match(/===Etymology(?:\s+\d+)?===\s*\n([\s\S]*?)(?=\n===|\n==[^=]|$)/i);
+      const body = sec ? sec[1] : wikitext;
+      const chain = [];
+      const re = /\{\{(?:bor\+?|lbor|learned borrowing|der\+?|inh\+?|uder|reborrowing)\|([a-z-]+)\|([a-z-]+)\|([^|}]+)(?:\|[^}]*)?\}\}/gi;
+      for (const m of body.matchAll(re)) {
+        const from = String(m[1] || "").trim();
+        const to = String(m[2] || "").trim();
+        const rawTerm = String(m[3] || "").trim();
+        const term = rawTerm
+          .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, "$2")
+          .replace(/\[\[([^\]]+)\]\]/g, "$1")
+          .trim();
+        if (!to || !term) continue;
+        chain.push({ from, to, term });
+      }
+      return chain;
+    }
+    function extractUltimateOrigin(entry, etyText) {
+      const t = String(etyText || "");
+      const explicit = t.match(/\bultimately from\s+([^.;]+)(?:[.;]|$)/i);
+      if (explicit && explicit[1]) {
+        const phrase = explicit[1].trim();
+        const langMatch = phrase.match(/\(([^)]+)\)\s*$/);
+        const langName = langMatch ? (normalizeLanguageName(langMatch[1]) || langMatch[1].trim()) : "";
+        const term = (langMatch ? phrase.replace(/\s*\([^)]+\)\s*$/, "") : phrase).trim();
+        if (term) return { langName: langName || "unspecified", term, explicit: true };
+      }
+
+      const chain = extractEtymologyTemplateChain(entry);
+      // A single donor hop (for example hy -> ru) is immediate donor info, not ultimate origin.
+      if (chain.length < 2) return null;
+
+      for (let i = chain.length - 1; i >= 0; i -= 1) {
+        const step = chain[i];
+        const langName = normalizeLanguageName(step.to) || step.to;
+        if (!langName) continue;
+        if (/^(?:Armenian|Western Armenian|Classical Armenian|Old Armenian|Middle Armenian)$/i.test(langName)) {
+          continue;
+        }
+        return { langName, term: step.term, explicit: false };
+      }
+      return null;
+    }
     function getDonorWiktionaryUrl(term) {
       if (!term) return "";
       return `https://en.wiktionary.org/wiki/${encodeURIComponent(term)}`;
@@ -3353,6 +3399,7 @@
       const lineage = getEtymologyLineage(entry);
       const etyScopeNote = getEtymologyScopeNote(ety);
       const donor = extractImmediateDonor(entry);
+      const ultimate = extractUltimateOrigin(entry, ety);
       const rootDefLine = buildSurnameRootDefinition(entry, displayDefs, ety);
       const defsToShow = rootDefLine ? [...displayDefs, rootDefLine] : displayDefs;
       currentWord = entry.title;
@@ -3380,6 +3427,14 @@
       if (donor) {
         const donorUrl = getDonorWiktionaryUrl(donor.term);
         html += `<div class="ety-donor-note">Immediate donor: ${escapeHtml(donor.term)} (${escapeHtml(donor.langName)}). <a href="${escapeHtml(donorUrl)}" target="_blank" rel="noopener noreferrer">Trace donor etymology</a>.</div>`;
+      }
+      if (ultimate) {
+        const ultimateLang = ultimate.langName && ultimate.langName !== "unspecified"
+          ? ` (${escapeHtml(ultimate.langName)})`
+          : "";
+        html += `<div class="ety-donor-note">Ultimate origin: ${escapeHtml(ultimate.term)}${ultimateLang}.</div>`;
+      } else if (donor) {
+        html += `<div class="ety-donor-note">Ultimate origin: not specified in this source entry.</div>`;
       }
       html += `<div class="ety-sources">Sources: ${etySources.map(s => escapeHtml(s)).join("; ")}</div>`;
       if (attestation) html += `<div class="attestation-note">Timeline: ${escapeHtml(attestation)}</div>`;
