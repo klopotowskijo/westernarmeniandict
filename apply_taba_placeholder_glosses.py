@@ -32,21 +32,6 @@ UPDATES = {
         "farsi": "Bakhsh / Bakhshidan",
         "note": "Taba glosses this row as 'portion, alms'."
     },
-    "անդարձ": {
-        "english": "irrevocable (as in անդարձ հրաման: irrevocable order)",
-        "farsi": "Farman",
-        "note": "From Taba command row: 'անդարձ հրաման — irrevocable order'."
-    },
-    "պատասխանւոյ": {
-        "english": "oracle (in the phrase հրաման պատասխանւոյ)",
-        "farsi": "Farman",
-        "note": "From Taba command row: 'հրաման պատասխանւոյ — oracle'."
-    },
-    "վասն": {
-        "english": "for; concerning (in command/will phrase)",
-        "farsi": "Farman",
-        "note": "From Taba phrase: 'հրաման տալ վասն տանն իւրոյ — to make one's will'."
-    },
     "արդարադատաւորութիւն": {
         "english": "justice/judicial state (Datavar-related form)",
         "farsi": "Davar / Datavar",
