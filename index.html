@@ -1497,6 +1497,9 @@
       out = out.replace(/\{\{(?:short for|short form of)\|[^|}]+\|([^|}]+)(?:\|[^}]*)?\}\}/gi, "Short form of $1.");
       out = out.replace(/\{\{(?:bor|bor\+|learned borrowing)\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, (_, lang, term) => {
         const label = normalizeLanguageName(lang) || lang;
+        if (String(label).toLowerCase() === "russian") {
+          return `Borrowed via ${label} ${term}.`;
+        }
         return `Borrowed from ${term} (${label}).`;
       });
       out = out.replace(/\{\{(?:inh|inh\+)\|[^|}]+\|([^|}]+)\|([^|}]+)(?:\|[^}]*)?\}\}/g, (_, lang, term) => {
