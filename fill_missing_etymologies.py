@@ -69,6 +69,21 @@ def clean_base(raw):
     base = base.rstrip('.,;:!?')
     return base
 
+
+def has_real_etymology(entry):
+    """Return True when etymology has non-placeholder text."""
+    ety = entry.get("etymology") or []
+    if not isinstance(ety, list) or not ety:
+        return False
+    for item in ety:
+        text = str((item or {}).get("text") or "").strip()
+        if not text:
+            continue
+        if re.fullmatch(r'[-\u2013\u2014\.\s]+', text):
+            continue
+        return True
+    return False
+
 # ── main ─────────────────────────────────────────────────────────────────────
 
 def main():
@@ -82,7 +97,7 @@ def main():
     placeholder = 0
 
     for entry in data:
-        if entry.get("etymology") and entry["etymology"] != []:
+        if has_real_etymology(entry):
             continue
 
         title = entry["title"]

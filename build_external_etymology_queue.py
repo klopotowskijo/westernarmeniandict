@@ -23,7 +23,7 @@ DEFAULT_SUMMARY = ROOT / "etymology_backfill_summary.json"
 DEFAULT_ADAPTERS = ROOT / "external_source_adapters.json"
 
 WEAK_ETYMOLOGY_RE = re.compile(
-    r"(needs further research|^unknown\.?$|^origin unknown\.?$|^from\.?$|^etymology\.?$|^uncertain\.?$)",
+    r"(needs further research|^unknown\.?$|^origin unknown\.?$|^from\.?$|^etymology\.?$|^uncertain\.?$|^[-\u2013\u2014\.\s]+$)",
     re.IGNORECASE,
 )
 

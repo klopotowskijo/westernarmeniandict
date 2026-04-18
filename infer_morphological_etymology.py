@@ -103,7 +103,7 @@ ALLOWED_POS: Set[str] = {
 }
 
 WEAK_ETYMOLOGY_RE = re.compile(
-    r"(needs further research|^unknown\.?$|^origin unknown\.?$|^from\.?$|^etymology\.?$|^uncertain\.?$)",
+    r"(needs further research|^unknown\.?$|^origin unknown\.?$|^from\.?$|^etymology\.?$|^uncertain\.?$|^[-\u2013\u2014\.\s]+$)",
     re.IGNORECASE,
 )
 
