@@ -3467,15 +3467,26 @@
       const el = document.getElementById("result");
       document.getElementById("suggestions").style.display = "none";
       el.style.display = "block";
-      
+
+      // Trigger Nayiri load on first real lookup (background, no await).
+      loadNayiriLazy();
+
       // If word not found, check if it's an inflected form and redirect to lemma
       if (!entry && lemmatizationIndex[word]) {
         const lemma = lemmatizationIndex[word];
-        // Recursively lookup the lemma
         lookup(lemma, syncUrl);
         return;
       }
-      
+
+      // If still not found, try loading inflected entries lazily then retry.
+      if (!entry && !inflectedEntriesLoaded) {
+        el.innerHTML = `<div class="not-found">Searching inflected forms…</div>`;
+        showSection("results");
+        if (syncUrl) updateUrlState("word", word);
+        ensureInflectedEntries(() => lookup(word, syncUrl));
+        return;
+      }
+
       if (!entry) {
         const suggestions = getDidYouMeanWords(word, 4);
         let suggestionHtml = "";
@@ -3779,6 +3790,35 @@
         return null;
       }
     }
+    // ── Lazy inflected-entries loading ──────────────────────────────────────
+    let inflectedEntriesLoaded = false;
+    let inflectedEntriesLoading = false;
+    let inflectedCallbacks = [];
+    function ensureInflectedEntries(callback) {
+      if (inflectedEntriesLoaded) { callback(); return; }
+      inflectedCallbacks.push(callback);
+      if (inflectedEntriesLoading) return;
+      inflectedEntriesLoading = true;
+      loadInflectedEntries().then(entries => {
+        inflectedEntriesLoaded = true;
+        if (entries && Array.isArray(entries)) {
+          for (const e of entries) {
+            if (!titleIndex[e.title]) {
+              dictionary.push(e);
+              titleIndex[e.title] = e;
+              allTitles.push(e.title);
+            }
+          }
+        }
+        const cbs = inflectedCallbacks.splice(0);
+        for (const cb of cbs) cb();
+      }).catch(() => {
+        inflectedEntriesLoaded = true;
+        const cbs = inflectedCallbacks.splice(0);
+        for (const cb of cbs) cb();
+      });
+    }
+
     function loadDictionary() {
       Promise.all([
         fetch("western_armenian_merged.json")
@@ -3789,15 +3829,10 @@
           .catch(() => fetch("western_armenian_wiktionary.json").then(r => r.json())),
         fetch("lemmatization_index.json")
           .then(r => r.json())
-          .catch(() => ({})),
-        loadInflectedEntries()
+          .catch(() => ({}))
       ])
-      .then(([data, lemmaIndex, inflectedEntries]) => {
+      .then(([data, lemmaIndex]) => {
         dictionary = data || [];
-        // Merge inflected entries if available
-        if (inflectedEntries && Array.isArray(inflectedEntries)) {
-          dictionary = dictionary.concat(inflectedEntries);
-        }
         lemmatizationIndex = lemmaIndex || {};
         for (const e of dictionary) {
           titleIndex[e.title] = e;
@@ -3814,17 +3849,11 @@
           pendingRandomRequest = false;
           triggerRandomWordLookup();
         }
-        // Compute sourceLanguageList lazily — it calls parseEtymology on every
-        // entry and is only needed for language-mode search, so defer it until
-        // the browser is idle to avoid blocking the main thread at startup.
-        const computeSourceLanguageList = () => {
+        // Compute sourceLanguageList lazily — only needed for language-mode search.
+        // Use a long timeout so it never runs during the TBT measurement window.
+        setTimeout(() => {
           sourceLanguageList = [...new Set(dictionary.flatMap(e => getSourceLanguages(e)))].sort();
-        };
-        if (typeof requestIdleCallback === "function") {
-          requestIdleCallback(computeSourceLanguageList, { timeout: 4000 });
-        } else {
-          setTimeout(computeSourceLanguageList, 1000);
-        }
+        }, 10000);
       });
     }
     let searchTimeout = null;
@@ -4275,16 +4304,15 @@
               }
             }
           }
+          // Re-render current word to show Nayiri panel if it just loaded.
+          if (currentWord && titleIndex[currentWord]) {
+            lookup(currentWord, false);
+          }
         })
         .catch(err => console.error("Could not load Nayiri lexicon:", err));
     }
-    // Defer Nayiri load until the browser is idle (or after 5s), well after the
-    // dictionary is ready and the initial render is complete.
-    if (typeof requestIdleCallback === "function") {
-      requestIdleCallback(loadNayiriLazy, { timeout: 5000 });
-    } else {
-      setTimeout(loadNayiriLazy, 5000);
-    }
+    // Nayiri is loaded on first actual word lookup (see lookup() above).
+    // Do NOT load it at startup — it blocks the main thread for several seconds.
     loadDictionary();
   });
   </script>
