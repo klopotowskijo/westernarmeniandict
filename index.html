@@ -383,6 +383,18 @@
       font-size: 0.72rem;
       color: var(--ink-soft);
     }
+    .word-meta-inline {
+      display: flex;
+      align-items: baseline;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+    }
+    .word-ipa-inline {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.78rem;
+      color: #655542;
+      letter-spacing: 0.01em;
+    }
     .entry-tools {
       margin-top: 0.45rem;
       display: flex;
@@ -1147,20 +1159,6 @@
       border-color: #bea487;
     }
     #graphContainer { height: 460px; border: 1px solid var(--line); background: #fffef9; }
-        .pronunciation {
-          font-family: "IBM Plex Sans", sans-serif;
-          font-size: 0.88rem;
-          color: #5a4a39;
-          margin: 0.1rem 0 0.3rem;
-          letter-spacing: 0.02em;
-        }
-        .pron-label {
-          font-size: 0.68rem;
-          text-transform: uppercase;
-          letter-spacing: 0.07em;
-          color: #8a7a68;
-          margin-right: 0.35rem;
-        }
         .word-links {
           display: flex;
           flex-wrap: wrap;
@@ -1788,12 +1786,59 @@
       }
       return "";
     }
-    function parsePronunciation(wikitext, fallbackPronunciation = "") {
-      if (fallbackPronunciation) return fallbackPronunciation;
-      const m = wikitext.match(/\{\{hy-IPA\|?([^}]*)\}\}/);
-      if (!m) return null;
-      const arg = m[1].replace(/\|.*/, "").trim();
-      return arg || null;
+    function isArmenianHeadword(text) {
+      return /[\u0531-\u058F]/.test(String(text || ""));
+    }
+    function toWesternArmenianIPA(rawWord) {
+      const source = String(rawWord || "").trim();
+      if (!source || !isArmenianHeadword(source)) return "";
+
+      const words = source.split(/\s+/).filter(Boolean);
+      const ipaWords = words.map((word) => {
+        let w = word.toLowerCase();
+        w = w.replace(/[\u055A-\u055F\u0589\-–—'’]+/g, "");
+        if (!w) return "";
+
+        const chunks = [];
+        for (let i = 0; i < w.length; ) {
+          const next2 = w.slice(i, i + 2);
+          const isInitial = i === 0;
+
+          // Western Armenian diphthongs and glide sequences.
+          if (next2 === "ու") { chunks.push("u"); i += 2; continue; }
+          if (next2 === "այ") { chunks.push("ɑj"); i += 2; continue; }
+          if (next2 === "ոյ") { chunks.push("ɔj"); i += 2; continue; }
+          if (next2 === "ույ") { chunks.push("uj"); i += 2; continue; }
+          if (next2 === "յա" || next2 === "իա") { chunks.push("jɑ"); i += 2; continue; }
+          if (next2 === "յե" || next2 === "յէ") { chunks.push("jɛ"); i += 2; continue; }
+          if (next2 === "յի") { chunks.push("ji"); i += 2; continue; }
+          if (next2 === "յո") { chunks.push("jɔ"); i += 2; continue; }
+          if (next2 === "յու") { chunks.push("ju"); i += 2; continue; }
+
+          const ch = w[i];
+          if (ch === "ե") { chunks.push(isInitial ? "jɛ" : "ɛ"); i += 1; continue; }
+          if (ch === "ո") { chunks.push(isInitial ? "vɔ" : "ɔ"); i += 1; continue; }
+
+          const consonantMap = {
+            "ա": "ɑ", "է": "ɛ", "ը": "ə", "ի": "i", "օ": "ɔ",
+            "բ": "p", "պ": "b", "փ": "pʰ",
+            "դ": "t", "տ": "d", "թ": "tʰ",
+            "գ": "k", "կ": "g", "ք": "kʰ",
+            "ձ": "ts", "ծ": "dz", "ց": "tsʰ",
+            "ջ": "tʃ", "ճ": "dʒ", "չ": "tʃʰ",
+            "ժ": "ʒ", "շ": "ʃ", "ս": "s", "զ": "z",
+            "խ": "χ", "ղ": "ʁ", "հ": "h",
+            "մ": "m", "ն": "n", "լ": "l",
+            "ր": "ɾ", "ռ": "r", "յ": "j",
+            "վ": "v", "ւ": "v", "ֆ": "f"
+          };
+          chunks.push(consonantMap[ch] || "");
+          i += 1;
+        }
+        return chunks.join("");
+      }).filter(Boolean);
+
+      return ipaWords.join(" ");
     }
     function getStructuredLinks(entry, key) {
       if (!entry || !Array.isArray(entry[key])) return [];
@@ -3382,7 +3427,7 @@
       const defs = parseDefinitions(entry);
       const displayDefs = enrichDefinitions(entry, defs);
       const pos = parsePOS(entry.wikitext || "", entry.part_of_speech || "");
-      const pron = parsePronunciation(entry.wikitext || "", entry.pronunciation || "");
+      const westernIpa = toWesternArmenianIPA(entry.title);
       const altForms = [...new Set([
         ...parseWikitextSection(entry.wikitext || "", "Alternative forms"),
         ...getStructuredLinks(entry, "alternative_forms")
@@ -3405,8 +3450,12 @@
       currentWord = entry.title;
       const displayTitle = cleanDisplayTitle(entry.title);
       let html = `<article class="entry-card"><div class="entry-head"><div class="word-title">${escapeHtml(displayTitle)}</div>`;
-      if (pos) html += `<div class="word-pos">${escapeHtml(pos)}</div>`;
-      if (pron) html += `<div class="pronunciation"><span class="pron-label">Pron.</span>${escapeHtml(pron)}</div>`;
+      if (pos || westernIpa) {
+        html += `<div class="word-meta-inline">`;
+        if (pos) html += `<div class="word-pos">${escapeHtml(pos)}</div>`;
+        if (westernIpa) html += `<div class="word-ipa-inline">IPA (WA) /${escapeHtml(westernIpa)}/</div>`;
+        html += `</div>`;
+      }
       const encodedTitle = encodeURIComponent(entry.title);
       html += `<div class="entry-tools"><button type="button" class="entry-tree-btn" data-word="${encodedTitle}">Open Tree</button><button type="button" class="permalink-btn" data-word="${encodedTitle}">Permalink</button><span class="permalink-status" id="permalinkStatus"></span></div>`;
       html += `</div><div class="entry-content">`;
