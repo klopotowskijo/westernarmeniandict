@@ -620,6 +620,11 @@
       color: #3d6b2f;
       border: 1px solid #b8d8a0;
     }
+    .source-badge.taba {
+      background: #f8ecd8;
+      color: #7a4b10;
+      border: 1px solid #d8b78a;
+    }
     .ety-confidence {
       display: inline-block;
       font-family: "IBM Plex Sans", sans-serif;
@@ -1900,6 +1905,20 @@
         .map(v => v.trim()))];
     }
     function getEntrySourceBadge(entry, etySources = []) {
+      const defSource = String(entry?.definition_source || entry?.data_source || "").toLowerCase();
+      const dataSource = String(entry?.data_source || "").toLowerCase();
+      const suppSources = Array.isArray(entry?.supplementary_sources)
+        ? entry.supplementary_sources.map(s => String(s || "").toLowerCase())
+        : [];
+
+      const isTaba = defSource.includes("iranian_character_pdf")
+        || dataSource.includes("iranian_character_pdf")
+        || suppSources.some(s => s.includes("iranian_character_pdf") || s.includes("taba"))
+        || etySources.some(src => /iranian character|david m\. taba|iranian_character_pdf/i.test(String(src || "")));
+      if (isTaba) {
+        return { label: "Taba", className: "taba" };
+      }
+
       if (entry && String(entry.definition_source || entry.data_source || "").toLowerCase().includes("nayiri")) {
         return { label: "Nayiri", className: "nayiri" };
       }
