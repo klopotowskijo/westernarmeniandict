@@ -1658,32 +1658,58 @@
       }
       return false;
     }
-    function hasArmenianScript(text) {
-      return /[\u0531-\u058F]/.test(String(text || ""));
+    function isMostlyArmenianText(text) {
+      const s = String(text || "");
+      const arm = (s.match(/[\u0531-\u058F]/g) || []).length;
+      const lat = (s.match(/[A-Za-z]/g) || []).length;
+      if (!arm) return false;
+      if (!lat) return true;
+      return arm / (arm + lat) >= 0.6;
+    }
+    function normalizeDefinitionForDedup(text) {
+      return String(text || "")
+        .replace(/^\s*\([A-Za-z\s,.;:'’ʻ\-]+\)\s*/g, "")
+        .replace(/\([A-Za-z\s,.;:'’ʻ\-]+\)/g, "")
+        .replace(/\s+/g, " ")
+        .trim()
+        .toLowerCase();
+    }
+    function dedupeDefinitions(defs) {
+      const out = [];
+      const seen = new Set();
+      for (const d of defs || []) {
+        const raw = String(d || "").trim();
+        if (!raw) continue;
+        const norm = normalizeDefinitionForDedup(raw) || raw.toLowerCase();
+        if (seen.has(norm)) continue;
+        seen.add(norm);
+        out.push(raw);
+      }
+      return out;
     }
     function parseDefinitions(entry) {
       const explicitDefs = Array.isArray(entry.definition)
         ? entry.definition.filter(d => typeof d === "string" && d.trim())
         : [];
       const explicitNonGeneric = explicitDefs.filter(d => !isGenericDefinition(d));
-      const explicitArmenian = explicitNonGeneric.filter(hasArmenianScript);
+      const explicitArmenian = dedupeDefinitions(explicitNonGeneric.filter(isMostlyArmenianText));
       if (explicitArmenian.length) return explicitArmenian;
       const abbreviationMeaning = extractAbbreviationMeaning(entry);
       if (abbreviationMeaning) return [abbreviationMeaning];
       const wikitext = entry.wikitext || "";
       const m = wikitext.match(/==Armenian==\s*\n([\s\S]*?)(?=\n==[^=]|$)/);
-      if (!m) return explicitNonGeneric.length ? explicitNonGeneric : explicitDefs;
-      const parsedDefs = m[1]
+      if (!m) return dedupeDefinitions(explicitNonGeneric.length ? explicitNonGeneric : explicitDefs);
+      const parsedDefs = dedupeDefinitions(m[1]
         .split("\n")
         .map(l => l.trim())
         .filter(l => /^#[^#:]/.test(l))
         .map(l => cleanWikiDef(l.replace(/^#+/, "").trim()))
-        .filter(l => l.length > 1);
-      const parsedArmenian = parsedDefs.filter(hasArmenianScript);
+        .filter(l => l.length > 1));
+      const parsedArmenian = dedupeDefinitions(parsedDefs.filter(isMostlyArmenianText));
       if (parsedArmenian.length) return parsedArmenian;
       if (parsedDefs.length) return parsedDefs;
-      if (explicitNonGeneric.length) return explicitNonGeneric;
-      return explicitDefs;
+      if (explicitNonGeneric.length) return dedupeDefinitions(explicitNonGeneric);
+      return dedupeDefinitions(explicitDefs);
     }
     function parseAlternativeTarget(definitionText) {
       const m = String(definitionText || "")
@@ -2008,11 +2034,21 @@
       return t;
     }
     function getEtymologySourceList(entry) {
+      function cleanEtymologySourceName(raw) {
+        const value = String(raw || "").trim();
+        if (!value) return "";
+        const lower = value.toLowerCase();
+        if (lower === "definition" || lower === "definitions") return "";
+        if (lower === "wikitext") return "Wiktionary wikitext";
+        if (lower === "abbreviation_proper_name_handler") return "Abbreviation handler";
+        return value;
+      }
       const sources = new Set();
       if (Array.isArray(entry.etymology)) {
         for (const e of entry.etymology) {
           if (e && typeof e.source === "string" && e.source.trim()) {
-            sources.add(e.source.trim());
+            const clean = cleanEtymologySourceName(e.source);
+            if (clean) sources.add(clean);
           }
         }
       }
