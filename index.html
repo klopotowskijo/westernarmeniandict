@@ -3897,7 +3897,7 @@
         }
         allTitles = dictionary.map(e => e.title);
         document.getElementById("count").textContent =
-          dictionary.length.toLocaleString() + " entries";
+          dictionary.length.toLocaleString() + " entries (loading inflections…)";
         // Apply URL state immediately so the page is usable right away.
         applyStateFromUrl();
         if (graphVisible) {
