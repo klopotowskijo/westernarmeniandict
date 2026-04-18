@@ -1188,6 +1188,31 @@
           vertical-align: baseline;
         }
         .word-link:hover { color: #692910; border-bottom-style: solid; }
+        .altforms-more {
+          margin-top: 0.28rem;
+          padding-top: 0.12rem;
+        }
+        .altforms-more > summary {
+          font-family: "IBM Plex Sans", sans-serif;
+          font-size: 0.74rem;
+          letter-spacing: 0.02em;
+          color: #745f49;
+          cursor: pointer;
+          user-select: none;
+          list-style: none;
+          display: inline-block;
+          border-bottom: 1px dashed #ad8f70;
+        }
+        .altforms-more > summary::-webkit-details-marker {
+          display: none;
+        }
+        .altforms-more > summary:hover {
+          color: #5a422d;
+          border-bottom-style: solid;
+        }
+        .altforms-more .word-links {
+          margin-top: 0.35rem;
+        }
     #randomWordBtn {
       background: transparent;
       border: 1px dashed var(--accent);
@@ -1422,6 +1447,7 @@
     let collapsedTreeNodes = new Set();
     let strictTreeRootWord = "";
     let strictTreeFocusNode = "";
+    const ALT_FORMS_VISIBLE_COUNT = 10;
     function escapeHtml(value) {
       return String(value)
         .replace(/&/g, "&amp;")
@@ -1486,6 +1512,12 @@
         .replace(/\{\{[^}]+\}\}/g, "")
         .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, "$2")
         .replace(/\[\[([^\]]+)\]\]/g, "$1")
+        .replace(/\bAlternatively\s+from\s+Derived\s+from\b/gi, "Alternatively derived from")
+        .replace(/\bAlternatively\s+from\s+Borrowed\s+from\b/gi, "Alternatively borrowed from")
+        .replace(/\bAlternatively\s+from\s+Inherited\s+from\b/gi, "Alternatively inherited from")
+        .replace(/\b(?:a|an)\s+sem\s+\*/gi, "a Semitic *")
+        .replace(/\bsem\s+\*/gi, "Semitic *")
+        .replace(/\.\s+and\s+related\s+to\b/gi, ", and related to")
         .replace(/\bFor the semantics see\s+([^.;]+)\.?/i, "Semantically compare $1.")
         .replace(/\bFor the semantics see\s*(?:[.;]|$)/i, "")
         .replace(/\b(?:recent\s+)?reborrowing from\s+Borrowed from\s+/i, "Reborrowed from ")
@@ -1497,7 +1529,9 @@
         .replace(/\(\s*\)/g, "")
         .replace(/\s+,/g, ",")
         .replace(/\s+;/g, ";")
+        .replace(/\s+:/g, ":")
         .replace(/\.{2,}/g, ".")
+        .replace(/([,;:]){2,}/g, "$1")
         .replace(/\s+\./g, ".")
         .replace(/\s+/g, " ")
         .trim();
@@ -1845,6 +1879,15 @@
         const clean = normalizeLanguageName(m[1]);
         if (clean) langs.add(clean);
       }
+      if (/\barabic\b/i.test(raw) || /[\u0600-\u06FF]/.test(raw)) {
+        langs.add("Arabic");
+      }
+      if (/\bsemitic\b/i.test(raw) || /\bsem\s+\*/i.test(raw)) {
+        langs.add("Semitic");
+      }
+      if (/\bproto-indo-european\b|\bpie\b/i.test(raw)) {
+        langs.add("Proto-Indo-European");
+      }
       return langs;
     }
     function areLanguageSetsDisjoint(a, b) {
@@ -1854,8 +1897,9 @@
       }
       return true;
     }
-    function parseEtymology(entry) {
-      if (etyCache[entry.title]) return etyCache[entry.title];
+    function parseEtymology(entry, seen = new Set()) {
+      if (!entry || !entry.title) return "";
+      if (Object.prototype.hasOwnProperty.call(etyCache, entry.title)) return etyCache[entry.title];
       let t = "";
       if (Array.isArray(entry.etymology)) {
         for (const et of entry.etymology) {
@@ -1880,6 +1924,21 @@
           t = wikiT;
         }
       }
+
+      // If this entry is an inflected form with missing/weak etymology,
+      // inherit the lemma etymology to avoid showing a blank dash.
+      if (!t) {
+        const lemmaTitle = String(lemmatizationIndex[entry.title] || "").trim();
+        if (lemmaTitle && lemmaTitle !== entry.title && titleIndex[lemmaTitle] && !seen.has(lemmaTitle)) {
+          const nextSeen = new Set(seen);
+          nextSeen.add(entry.title);
+          const lemmaEty = parseEtymology(titleIndex[lemmaTitle], nextSeen);
+          if (lemmaEty) {
+            t = `Inflected form of ${lemmaTitle}. ${lemmaEty}`;
+          }
+        }
+      }
+
       etyCache[entry.title] = t;
       return t;
     }
@@ -2226,6 +2285,7 @@
         pnt: "Pontic Greek",
         qwm: "Kumanovo",
         ro: "Romanian",
+        sem: "Semitic",
         sla: "Slavic",
         trk: "Turkic",
         "trk-kip": "Kipchak",
@@ -2270,6 +2330,7 @@
         "proto-indo-european": "Proto-Indo-European",
         "romanian": "Romanian",
         "russian": "Russian",
+        "semitic": "Semitic",
         "slavic": "Slavic",
         "spanish": "Spanish",
         "turkic": "Turkic",
@@ -3344,8 +3405,15 @@
       if (altForms.length) {
         html += `<div class="section-label">Alternative Forms</div>`;
         html += `<div class="word-links">`;
-        for (const w of altForms) html += `<button type="button" class="word-link" data-word="${encodeURIComponent(w)}">${escapeHtml(w)}</button>`;
+        const visibleAltForms = altForms.slice(0, ALT_FORMS_VISIBLE_COUNT);
+        const overflowAltForms = altForms.slice(ALT_FORMS_VISIBLE_COUNT);
+        for (const w of visibleAltForms) html += `<button type="button" class="word-link" data-word="${encodeURIComponent(w)}">${escapeHtml(w)}</button>`;
         html += `</div>`;
+        if (overflowAltForms.length) {
+          html += `<details class="altforms-more"><summary>Show ${overflowAltForms.length} more</summary><div class="word-links">`;
+          for (const w of overflowAltForms) html += `<button type="button" class="word-link" data-word="${encodeURIComponent(w)}">${escapeHtml(w)}</button>`;
+          html += `</div></details>`;
+        }
       }
       if (derivedTerms.length) {
         html += `<div class="section-label">Derived Terms</div>`;
