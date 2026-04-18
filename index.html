@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dictionary Ardemis — a free Western Armenian etymological dictionary with definitions, etymology, morphology, and word origin graphs for thousands of entries.">
   <title>Dictionary Ardemis — Western Armenian Etymological Dictionary</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1420,7 +1421,7 @@
       <span>Շնորհակալ եմ Տատիկ</span>
     </footer>
   </div>
-  <script src="https://unpkg.com/vis-network@9.1.9/dist/vis-network.min.js"></script>
+  <script src="https://unpkg.com/vis-network@9.1.9/dist/vis-network.min.js" defer></script>
   <script>
   document.addEventListener('DOMContentLoaded', function() {
     let dictionary = [];
@@ -3802,18 +3803,29 @@
           titleIndex[e.title] = e;
         }
         allTitles = dictionary.map(e => e.title);
-        sourceLanguageList = [...new Set(dictionary.flatMap(e => getSourceLanguages(e)))].sort();
         document.getElementById("count").textContent =
           dictionary.length.toLocaleString() + " entries";
+        // Apply URL state immediately so the page is usable right away.
         applyStateFromUrl();
-          if (graphVisible) {
-            openGraphSection();
-          }
-          if (pendingRandomRequest) {
-            pendingRandomRequest = false;
-            triggerRandomWordLookup();
-          }
-        });
+        if (graphVisible) {
+          openGraphSection();
+        }
+        if (pendingRandomRequest) {
+          pendingRandomRequest = false;
+          triggerRandomWordLookup();
+        }
+        // Compute sourceLanguageList lazily — it calls parseEtymology on every
+        // entry and is only needed for language-mode search, so defer it until
+        // the browser is idle to avoid blocking the main thread at startup.
+        const computeSourceLanguageList = () => {
+          sourceLanguageList = [...new Set(dictionary.flatMap(e => getSourceLanguages(e)))].sort();
+        };
+        if (typeof requestIdleCallback === "function") {
+          requestIdleCallback(computeSourceLanguageList, { timeout: 4000 });
+        } else {
+          setTimeout(computeSourceLanguageList, 1000);
+        }
+      });
     }
     let searchTimeout = null;
     document.getElementById("search").addEventListener("input", e => {
@@ -4242,26 +4254,38 @@
       graphVisible = false;
       updateUrlState(searchMode, document.getElementById("search").value.trim());
     };
-    loadDictionary();
-    fetch("nayiri-armenian-lexicon-2026-02-15-v1%202.json")
-      .then(r => r.json())
-      .then(d => {
-        // Build index: lemmaString → { description, partOfSpeech, wordForms }
-        window.nayiriIndex = {};
-        for (const lex of (d.lexemes || [])) {
-          for (const lemma of (lex.lemmas || [])) {
-            const key = lemma.lemmaString;
-            if (key && !window.nayiriIndex[key]) {
-              window.nayiriIndex[key] = {
-                description: lex.description || "",
-                partOfSpeech: lemma.partOfSpeech || "",
-                wordForms: (lemma.wordForms || []).map(f => f.s)
-              };
+    let nayiriLoaded = false;
+    function loadNayiriLazy() {
+      if (nayiriLoaded) return;
+      nayiriLoaded = true;
+      fetch("nayiri-armenian-lexicon-2026-02-15-v1%202.json")
+        .then(r => r.json())
+        .then(d => {
+          // Build index: lemmaString → { description, partOfSpeech, wordForms }
+          window.nayiriIndex = {};
+          for (const lex of (d.lexemes || [])) {
+            for (const lemma of (lex.lemmas || [])) {
+              const key = lemma.lemmaString;
+              if (key && !window.nayiriIndex[key]) {
+                window.nayiriIndex[key] = {
+                  description: lex.description || "",
+                  partOfSpeech: lemma.partOfSpeech || "",
+                  wordForms: (lemma.wordForms || []).map(f => f.s)
+                };
+              }
             }
           }
-        }
-      })
-      .catch(err => console.error("Could not load Nayiri lexicon:", err));
+        })
+        .catch(err => console.error("Could not load Nayiri lexicon:", err));
+    }
+    // Defer Nayiri load until the browser is idle (or after 5s), well after the
+    // dictionary is ready and the initial render is complete.
+    if (typeof requestIdleCallback === "function") {
+      requestIdleCallback(loadNayiriLazy, { timeout: 5000 });
+    } else {
+      setTimeout(loadNayiriLazy, 5000);
+    }
+    loadDictionary();
   });
   </script>
 </body>
