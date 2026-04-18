@@ -1591,8 +1591,14 @@
         .replace(/\{\{gloss\|([^}]+)\}\}/g, '($1)')
         .replace(/\{\{t\+?\|[a-z-]+\|([^|}\s]+)[^}]*\}\}/g, '$1')
         .replace(/\{\{m\|[a-z-]+\|([^|}\s]+)[^}]*\}\}/g, '$1')
-        .replace(/\{\{[lt]lb\|[^}]*\}\}/g, '')
-        .replace(/\{\{lb\|[^}]*\}\}/g, '')
+        .replace(/\{\{[lt]lb\|[a-z-]+\|([^}]+)\}\}/g, (_, args) => {
+          const labels = args.split('|').filter(a => a && !a.includes('=')).join(', ');
+          return labels ? `(${labels}) ` : '';
+        })
+        .replace(/\{\{lb\|[a-z-]+\|([^}]+)\}\}/g, (_, args) => {
+          const labels = args.split('|').filter(a => a && !a.includes('=')).join(', ');
+          return labels ? `(${labels}) ` : '';
+        })
         .replace(/\{\{[^}]+\}\}/g, '')
         .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, '$2')
         .replace(/\[\[([^\]]+)\]\]/g, '$1')
