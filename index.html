@@ -1431,6 +1431,7 @@
   document.addEventListener('DOMContentLoaded', function() {
     let dictionary = [];
     let titleIndex = {};
+    let alternativeFormIndex = {};
     let lemmatizationIndex = {};  // Maps inflected forms to their lemma
     let allTitles = [];
     let searchMode = "word";
@@ -1903,6 +1904,19 @@
       return [...new Set(entry[key]
         .filter(v => typeof v === "string" && v.trim())
         .map(v => v.trim()))];
+    }
+    function indexAlternativeFormsForEntry(entry) {
+      if (!entry || !entry.title) return;
+      const title = String(entry.title).trim();
+      if (!title) return;
+      const altForms = getStructuredLinks(entry, "alternative_forms");
+      for (const alt of altForms) {
+        const key = String(alt || "").trim();
+        if (!key || key === title) continue;
+        if (!alternativeFormIndex[key]) {
+          alternativeFormIndex[key] = title;
+        }
+      }
     }
     function getEntrySourceBadge(entry, etySources = []) {
       const defSource = String(entry?.definition_source || entry?.data_source || "").toLowerCase();
@@ -3518,6 +3532,15 @@
       loadNayiriLazy();
 
       // If word not found, check if it's an inflected form and redirect to lemma
+      if (!entry && alternativeFormIndex[word]) {
+        const canonical = alternativeFormIndex[word];
+        if (canonical && canonical !== word) {
+          lookup(canonical, syncUrl);
+          return;
+        }
+      }
+
+      // If word not found, check if it's an inflected form and redirect to lemma
       if (!entry && lemmatizationIndex[word]) {
         const lemma = lemmatizationIndex[word];
         lookup(lemma, syncUrl);
@@ -3911,6 +3934,7 @@
               dictionary.push(e);
               titleIndex[e.title] = e;
               allTitles.push(e.title);
+              indexAlternativeFormsForEntry(e);
             }
           }
         }
@@ -3938,8 +3962,10 @@
       .then(([data, lemmaIndex]) => {
         dictionary = data || [];
         lemmatizationIndex = lemmaIndex || {};
+        alternativeFormIndex = {};
         for (const e of dictionary) {
           titleIndex[e.title] = e;
+          indexAlternativeFormsForEntry(e);
         }
         allTitles = dictionary.map(e => e.title);
         document.getElementById("count").textContent =
@@ -3970,6 +3996,7 @@
               dictionary.push(e);
               titleIndex[e.title] = e;
               allTitles.push(e.title);
+              indexAlternativeFormsForEntry(e);
               added++;
             }
           }
