@@ -52,36 +52,45 @@ def pick_source_language(section):
     return ''
 
 
-with open('western_armenian_merged.json', encoding='utf-8') as f:
-    data = json.load(f)
+def apply_armenian_wikitext_etymology_fixes(data):
+    updated = 0
+    for entry in data:
+        ety = entry.get('etymology', [])
+        if ety and isinstance(ety[0], dict):
+            stored = (ety[0].get('text') or '').strip()
+        elif ety:
+            stored = str(ety[0]).strip()
+        else:
+            stored = ''
 
-updated = 0
-for entry in data:
-    ety = entry.get('etymology', [])
-    if ety and isinstance(ety[0], dict):
-        stored = (ety[0].get('text') or '').strip()
-    elif ety:
-        stored = str(ety[0]).strip()
-    else:
-        stored = ''
+        if stored and not WEAK_RE.match(stored):
+            continue
 
-    if stored and not WEAK_RE.match(stored):
-        continue
+        section = get_armenian_etymology_section(entry.get('wikitext', ''))
+        if not section or not RICH_RE.search(section):
+            continue
 
-    section = get_armenian_etymology_section(entry.get('wikitext', ''))
-    if not section or not RICH_RE.search(section):
-        continue
+        source_language = pick_source_language(section)
+        entry['etymology'] = [{
+            'text': section,
+            'relation': 'unknown',
+            'source': 'wikitext',
+            'source_language': source_language,
+        }]
+        updated += 1
+    return updated
 
-    source_language = pick_source_language(section)
-    entry['etymology'] = [{
-        'text': section,
-        'relation': 'unknown',
-        'source': 'wikitext',
-        'source_language': source_language,
-    }]
-    updated += 1
 
-print(f'Updated {updated} entries')
+def main():
+    with open('western_armenian_merged.json', encoding='utf-8') as f:
+        data = json.load(f)
 
-with open('western_armenian_merged.json', 'w', encoding='utf-8') as f:
-    json.dump(data, f, ensure_ascii=False, indent=2)
+    updated = apply_armenian_wikitext_etymology_fixes(data)
+    print(f'Updated {updated} entries')
+
+    with open('western_armenian_merged.json', 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+
+if __name__ == '__main__':
+    main()

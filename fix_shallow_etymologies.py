@@ -11,7 +11,7 @@ LANG_NAMES = {
     'en': 'English', 'fa': 'Persian', 'fa-cls': 'Classical Persian',
     'fr': 'French', 'gkm': 'Medieval Greek', 'grc': 'Ancient Greek',
     'hyw': 'Western Armenian', 'ine-pro': 'Proto-Indo-European',
-    'ira': 'Iranian', 'ira-pro': 'Proto-Iranian', 'it': 'Italian',
+    'ira': 'Iranian', 'ira-mid': 'Middle Iranian', 'ira-pro': 'Proto-Iranian', 'it': 'Italian',
     'ka': 'Georgian', 'kmr': 'Northern Kurdish', 'ku': 'Kurdish',
     'la': 'Latin', 'oge': 'Old Georgian', 'ota': 'Ottoman Turkish',
     'pal': 'Parthian', 'peo': 'Old Persian', 'qfa-hur': 'Hurrian',
@@ -40,6 +40,14 @@ gloss_re = re.compile(r'\|t=([^|}\n]+)')
 trans_re = re.compile(r'\|tr=([^|}\n]+)')
 # Ultimate origin
 ult_re = re.compile(r'\{\{der\|xcl\|([a-z-]+)\|([^|}]+)(?:\|[^}]*)?\}\}', re.I)
+split_template_re = re.compile(
+    r'\{\{(bor\+?|der\+?|uder|inh\+?)\|xcl\|([a-z-]+)\}\}\s*\{\{m\|([^}]*)\}\}',
+    re.I,
+)
+via_re = re.compile(
+    r'possibly via\s+\{\{bor\|xcl\|([a-z-]+)\|([^|}]+)(?:\|[^}]*)?\}\}',
+    re.I,
+)
 
 
 def get_old_armenian_section(wikitext):
@@ -64,6 +72,69 @@ def build_etymology_text(title, section):
     Build a human-readable etymology string from the Old Armenian section wikitext.
     Returns (text, relation, source_language) or None.
     """
+    split_match = split_template_re.search(section)
+    if split_match:
+        rel_key = split_match.group(1).lower()
+        lang_code = split_match.group(2)
+        m_args = [a.strip() for a in split_match.group(3).split('|') if a.strip()]
+        raw_term = ""
+        for arg in m_args:
+            if '=' in arg:
+                continue
+            if re.match(r'^[a-z-]{2,8}$', arg.lower()):
+                continue
+            raw_term = arg
+            break
+        if not raw_term:
+            return None
+
+        if lang_code not in SKIP_LANGS:
+            lang_name = LANG_NAMES.get(lang_code, lang_code)
+            relation = RELATION_MAP.get(rel_key, 'borrowed')
+            term = re.sub(r'\[\[([^\]|]+)\|([^\]]+)\]\]', r'\2', raw_term)
+            term = re.sub(r'\[\[([^\]]+)\]\]', r'\1', term).strip()
+
+            if relation == 'borrowed':
+                intro = f"Borrowed via Classical Armenian from {lang_name} {term}."
+            elif relation == 'inherited':
+                intro = f"Inherited from Classical Armenian, ultimately from {lang_name} {term}."
+            else:
+                intro = f"Derived via Classical Armenian from {lang_name} {term}."
+
+            via_match = via_re.search(section)
+            if via_match:
+                via_lang = LANG_NAMES.get(via_match.group(1), via_match.group(1))
+                via_term = via_match.group(2).strip()
+                via_tr = trans_re.search(via_match.group(0))
+                if via_tr and via_tr.group(1).strip() != via_term:
+                    via_term = f"{via_term} ({via_tr.group(1).strip()})"
+                intro = intro.rstrip('.') + f", possibly via {via_lang} {via_term}."
+
+            cog_re = re.compile(r'\{\{cog\|([a-z-]+)\|([^|}]+)(?:\|[^}]*)?\}\}')
+            cogs = []
+            for cm in cog_re.finditer(section):
+                cog_lang = LANG_NAMES.get(cm.group(1), cm.group(1))
+                cog_term = re.sub(r'\[\[([^\]|]+)\|([^\]]+)\]\]', r'\2', cm.group(2)).strip()
+                cog_gloss_m = re.search(r'\|t=([^|}\n]+)', cm.group(0))
+                cog_full = f"{cog_lang} {cog_term}"
+                if cog_gloss_m:
+                    cog_full += f" (\"{cog_gloss_m.group(1).strip()}\")"
+                cogs.append(cog_full)
+            if cogs:
+                intro += f" Compare {'; '.join(cogs[:4])}."
+
+            ult = ult_re.search(section)
+            if ult:
+                ult_lang = LANG_NAMES.get(ult.group(1), ult.group(1))
+                ult_term = re.sub(r'\[\[([^\]|]+)\|([^\]]+)\]\]', r'\2', ult.group(2)).strip()
+                ult_gloss_m = re.search(r'\|t=([^|}\n]+)', ult.group(0))
+                ult_str = f"{ult_lang} {ult_term}"
+                if ult_gloss_m:
+                    ult_str += f" (\"{ult_gloss_m.group(1).strip()}\")"
+                intro += f" Ultimately from {ult_str}."
+
+            return intro, relation, lang_name
+
     m = template_re.search(section)
     if not m:
         return None
@@ -133,42 +204,52 @@ def build_etymology_text(title, section):
     return intro, relation, lang_name
 
 
-with open('western_armenian_merged.json', encoding='utf-8') as f:
-    data = json.load(f)
+def apply_old_armenian_etymology_fixes(data, verbose=True):
+    fixed = 0
+    skipped = 0
+    for entry in data:
+        ety = entry.get('etymology', [])
+        if not ety:
+            continue
+        first = ety[0]
+        text = first.get('text', '') if isinstance(first, dict) else str(first)
+        if not shallow_re.match(text):
+            continue
 
-fixed = 0
-skipped = 0
-for entry in data:
-    ety = entry.get('etymology', [])
-    if not ety:
-        continue
-    first = ety[0]
-    text = first.get('text', '') if isinstance(first, dict) else str(first)
-    if not shallow_re.match(text):
-        continue
+        wikitext = entry.get('wikitext', '')
+        section = get_old_armenian_section(wikitext)
+        if not section:
+            skipped += 1
+            continue
 
-    wikitext = entry.get('wikitext', '')
-    section = get_old_armenian_section(wikitext)
-    if not section:
-        skipped += 1
-        continue
+        result = build_etymology_text(entry['title'], section)
+        if not result:
+            skipped += 1
+            continue
 
-    result = build_etymology_text(entry['title'], section)
-    if not result:
-        skipped += 1
-        continue
+        new_text, relation, lang_name = result
+        entry['etymology'] = [{
+            'text': new_text,
+            'relation': relation,
+            'source': 'wikitext',
+            'source_language': lang_name,
+        }]
+        if verbose:
+            print(f"  FIXED  {entry['title']:20s}  [{lang_name}]  {new_text[:80]}")
+        fixed += 1
+    return fixed, skipped
 
-    new_text, relation, lang_name = result
-    entry['etymology'] = [{
-        'text': new_text,
-        'relation': relation,
-        'source': 'wikitext',
-        'source_language': lang_name,
-    }]
-    print(f"  FIXED  {entry['title']:20s}  [{lang_name}]  {new_text[:80]}")
-    fixed += 1
 
-print(f"\nFixed {fixed}, skipped {skipped}")
+def main():
+    with open('western_armenian_merged.json', encoding='utf-8') as f:
+        data = json.load(f)
 
-with open('western_armenian_merged.json', 'w', encoding='utf-8') as f:
-    json.dump(data, f, ensure_ascii=False, indent=2)
+    fixed, skipped = apply_old_armenian_etymology_fixes(data, verbose=True)
+    print(f"\nFixed {fixed}, skipped {skipped}")
+
+    with open('western_armenian_merged.json', 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+
+if __name__ == '__main__':
+    main()

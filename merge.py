@@ -5,6 +5,9 @@ import json
 import re
 from pathlib import Path
 
+from fix_armenian_wikitext_etymologies import apply_armenian_wikitext_etymology_fixes
+from fix_shallow_etymologies import apply_old_armenian_etymology_fixes
+
 ROOT = Path(__file__).resolve().parent
 WIKTIONARY_PATH = ROOT / "western_armenian_wiktionary.json"
 NAYIRI_PATH_PRIMARY = ROOT / "nayiri-armenian-lexicon-2026-02-15-v1.json"
@@ -376,6 +379,12 @@ def main():
         new_entries.sort(key=lambda item: normalize_title(item.get("title")))
         merged.extend(new_entries)
 
+    print("Applying Old Armenian deep-etymology fixes...")
+    old_armenian_fixed, old_armenian_skipped = apply_old_armenian_etymology_fixes(merged, verbose=False)
+
+    print("Applying Armenian-section wikitext etymology fixes...")
+    armenian_wikitext_fixed = apply_armenian_wikitext_etymology_fixes(merged)
+
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(merged, f, ensure_ascii=False, indent=2)
 
@@ -385,6 +394,8 @@ def main():
     print(f"Enriched existing entries from extra JSON: {extra_enriched}")
     print(f"Added entries from dictionary-hy: {dictionary_hy_added}")
     print(f"Enriched existing entries from dictionary-hy: {dictionary_hy_enriched}")
+    print(f"Deep-etymology fixes from Old Armenian sections: {old_armenian_fixed} (skipped {old_armenian_skipped})")
+    print(f"Armenian-section wikitext etymology fixes: {armenian_wikitext_fixed}")
     print(f"Merged total: {len(merged)}")
     print(f"Saved: {output_path.name}")
 
