@@ -1789,6 +1789,10 @@
     function isArmenianHeadword(text) {
       return /[\u0531-\u058F]/.test(String(text || ""));
     }
+    function filterArmenianScriptTerms(terms) {
+      if (!Array.isArray(terms)) return [];
+      return terms.filter((term) => /[\u0531-\u058F]/.test(String(term || "")));
+    }
     function toWesternArmenianIPA(rawWord) {
       const source = String(rawWord || "").trim();
       if (!source || !isArmenianHeadword(source)) return "";
@@ -3428,10 +3432,10 @@
       const displayDefs = enrichDefinitions(entry, defs);
       const pos = parsePOS(entry.wikitext || "", entry.part_of_speech || "");
       const westernIpa = toWesternArmenianIPA(entry.title);
-      const altForms = [...new Set([
+      const altForms = [...new Set(filterArmenianScriptTerms([
         ...parseWikitextSection(entry.wikitext || "", "Alternative forms"),
         ...getStructuredLinks(entry, "alternative_forms")
-      ])];
+      ]))];
       const derivedTerms = parseWikitextSection(entry.wikitext || "", "Derived terms");
       const relatedTerms = parseWikitextSection(entry.wikitext || "", "Related terms");
       const seeAlso = parseWikitextSection(entry.wikitext || "", "See also");
