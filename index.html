@@ -4319,7 +4319,8 @@
     }
 
     const SUFFIX_LIST = [
-      "-ա","-ա-","-աբար","-ագին","-ագույն","-ալ","-ած","-ածո","-ածու","-ակ","-ական","-ակերտ","-ային","-ան","-ան-","-անակ","-անի","-անոց","-անց","-անք","-ապան","-ապանակ","-ապատ","-ապես","-աստան","-ավետ","-ավոր","-ավուն","-ատ","-արան","-արար","-արեն","-արք","-ացի","-ացն-","-ացու","-բան","-բար","-գին","-գույն","-ե","-ել","-եղ","-ենի","-եղ","-ԷՐ","-ի","-իկ","-ին","-ինակ","-իչ","-իշ","-ներ","-ո","-ոն","-ոջ","-ող","-ոս","-ութ","-ութիւն","-ութ,","-ույն","-ուկ","-ուն","-ուս","-ուստ","-ց","-ցի","-փ","-ք"
+      "-ա","-ա-","-աբար","-ագին","-ագույն","-ալ","-ած","-ածո","-ածու","-ակ","-ական","-ակերտ","-ային","-ան","-ան-","-անակ","-անի","-անոց","-անց","-անք","-ապան","-ապանակ","-ապատ","-ապես","-աստան","-ավետ","-ավոր","-ավուն","-ատ","-արան","-արար","-արեն","-արք","-ացի","-ացն-","-ացու","-բան","-բար","-գին","-գույն","-ե","-ել","-եղ","-ենի","-եղ","-ԷՐ","-ի","-իկ","-ին","-ինակ","-իչ","-իշ","-ներ","-ո","-ոն","-ոջ","-ող","-ոս","-ութ","-ութիւն","-ութ,","-ույն","-ուկ","-ուն","-ուս","-ուստ","-ց","-ցի","-փ","-ք",
+      "-ստան","-կար","-կերտ","-ուհի","-պան","-պետ","-յան","-եան","-իան"
     ];
     let wiktionarySuffixCache = null;
 
@@ -4369,7 +4370,7 @@
       // Start with dictionary/local fallback so the tab is always instantly usable.
       const fallback = allTitles.length
         ? allTitles.filter(t => t.startsWith("-")).sort((a, b) => a.localeCompare(b, "hy"))
-        : SUFFIX_LIST;
+        : [...new Set(SUFFIX_LIST)].sort((a, b) => a.localeCompare(b, "hy"));
       grid.innerHTML = fallback.map(s =>
         `<button type="button" class="suffix-btn word-link" data-word="${encodeURIComponent(s)}">${escapeHtml(s)}</button>`
       ).join("");
@@ -4378,7 +4379,9 @@
       try {
         const fromWiktionary = await fetchWiktionarySuffixes();
         if (fromWiktionary && fromWiktionary.length) {
-          grid.innerHTML = fromWiktionary.map(s =>
+          const merged = [...new Set([...fromWiktionary, ...SUFFIX_LIST])]
+            .sort((a, b) => a.localeCompare(b, "hy"));
+          grid.innerHTML = merged.map(s =>
             `<button type="button" class="suffix-btn word-link" data-word="${encodeURIComponent(s)}">${escapeHtml(s)}</button>`
           ).join("");
         }
