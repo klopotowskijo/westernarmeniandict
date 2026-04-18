@@ -2051,6 +2051,9 @@
         if (lower === "definition" || lower === "definitions") return "";
         if (lower === "wikitext") return "Wiktionary wikitext";
         if (lower === "abbreviation_proper_name_handler") return "Abbreviation handler";
+        if (lower === "iranian_character_pdf") {
+          return "Iranian Character of the Armenian Language (David M. Taba, 2011)";
+        }
         return value;
       }
       const sources = new Set();
@@ -2064,6 +2067,17 @@
       }
       if (!sources.size) sources.add("Wiktionary Armenian section");
       return [...sources];
+    }
+    function renderEtymologySources(sources) {
+      const citationUrl = "https://www.kavehfarrokh.com/wp-content/uploads/2009/07/index3.pdf";
+      return (sources || []).map((source) => {
+        const label = String(source || "").trim();
+        if (!label) return "";
+        if (label === "Iranian Character of the Armenian Language (David M. Taba, 2011)") {
+          return `<a href="${citationUrl}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`;
+        }
+        return escapeHtml(label);
+      }).filter(Boolean).join("; ");
     }
     function inferEtymologyConfidence(entry, etyText) {
       const raw = String(entry?.etymology?.[0]?.text || "").toLowerCase();
@@ -3559,7 +3573,7 @@
       } else if (donor) {
         html += `<div class="ety-donor-note">Ultimate origin: not specified in this source entry.</div>`;
       }
-      html += `<div class="ety-sources">Sources: ${etySources.map(s => escapeHtml(s)).join("; ")}</div>`;
+      html += `<div class="ety-sources">Sources: ${renderEtymologySources(etySources)}</div>`;
       if (attestation) html += `<div class="attestation-note">Timeline: ${escapeHtml(attestation)}</div>`;
       // Nayiri panel
       const nayiriEntry = (entry && entry.nayiri) || (window.nayiriIndex && window.nayiriIndex[entry.title]);
