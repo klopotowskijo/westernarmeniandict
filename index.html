@@ -1980,8 +1980,16 @@
         const clean = normalizeLanguageName(m[1]);
         if (clean) langs.add(clean);
       }
-      if (/\barabic\b/i.test(raw) || /[\u0600-\u06FF]/.test(raw)) {
+      if (/\bpersian\b|\bfarsi\b|\bdari\b/i.test(raw)) {
+        langs.add("Persian");
+      }
+      if (/\barabic\b/i.test(raw)) {
         langs.add("Arabic");
+      } else if (/[\u0600-\u06FF]/.test(raw)) {
+        // Arabic script alone is ambiguous (Arabic/Persian/etc). For our dataset,
+        // transliterated Farsi examples include Persian script; prefer Persian unless
+        // Arabic is explicitly named.
+        langs.add(/\bpersian\b|\bfarsi\b|\bdari\b/i.test(raw) ? "Persian" : "Arabic");
       }
       if (/\bsemitic\b/i.test(raw) || /\bsem\s+\*/i.test(raw)) {
         langs.add("Semitic");
