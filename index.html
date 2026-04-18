@@ -3764,31 +3764,89 @@
       }
       return entries;
     }
-    async function loadInflectedEntries() {
-      // Primary source (local/dev): uncompressed JSONL
-      try {
-        const direct = await fetch("inflected_entries.jsonl");
-        if (direct.ok) {
-          const text = await direct.text();
-          return parseJsonlEntries(text);
-        }
-      } catch (_) {}
 
-      // Fallback (GitHub-safe): compressed JSONL in repo
+    // ── IndexedDB helpers for inflected-entries cache ───────────────────────
+    const IDB_NAME = "dict-ardemis-v1";
+    const IDB_STORE = "blobs";
+    function idbOpen() {
+      return new Promise((resolve, reject) => {
+        const req = indexedDB.open(IDB_NAME, 1);
+        req.onupgradeneeded = e => e.target.result.createObjectStore(IDB_STORE);
+        req.onsuccess = e => resolve(e.target.result);
+        req.onerror = () => reject(req.error);
+      });
+    }
+    function idbGet(db, key) {
+      return new Promise((resolve, reject) => {
+        const req = db.transaction(IDB_STORE, "readonly").objectStore(IDB_STORE).get(key);
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+    }
+    function idbSet(db, key, value) {
+      return new Promise((resolve, reject) => {
+        const req = db.transaction(IDB_STORE, "readwrite").objectStore(IDB_STORE).put(value, key);
+        req.onsuccess = () => resolve();
+        req.onerror = () => reject(req.error);
+      });
+    }
+    async function decompressGzipBuf(buf) {
+      if (typeof DecompressionStream === "undefined") return null;
       try {
-        const gz = await fetch("inflected_entries.jsonl.gz");
-        if (!gz.ok) return null;
-        if (typeof DecompressionStream === "undefined" || !gz.body) {
-          console.warn("inflected_entries.jsonl.gz found, but this browser cannot decompress gzip streams.");
-          return null;
-        }
-        const decompressed = gz.body.pipeThrough(new DecompressionStream("gzip"));
-        const text = await new Response(decompressed).text();
-        return parseJsonlEntries(text);
+        const ds = new DecompressionStream("gzip");
+        const stream = new ReadableStream({ start(c) { c.enqueue(new Uint8Array(buf)); c.close(); } });
+        return await new Response(stream.pipeThrough(ds)).text();
       } catch (e) {
-        console.error("Failed to load inflected entries:", e);
+        console.error("Failed to decompress inflected entries:", e);
         return null;
       }
+    }
+
+    async function loadInflectedEntries() {
+      // ── Try IndexedDB cache first ──────────────────────────────────────
+      let db;
+      try { db = await idbOpen(); } catch (_) {}
+      let cached = null;
+      if (db) {
+        try { cached = await idbGet(db, "inflected"); } catch (_) {}
+      }
+      if (cached && cached.buf) {
+        // Validate with a cheap HEAD request; if ETag matches, decompress from cache.
+        try {
+          const head = await fetch("inflected_entries.jsonl.gz", { method: "HEAD", cache: "no-cache" });
+          const serverTag = head.headers.get("etag") || head.headers.get("last-modified") || "";
+          if (!serverTag || serverTag === cached.etag) {
+            const text = await decompressGzipBuf(cached.buf);
+            if (text) return parseJsonlEntries(text);
+          }
+        } catch (_) {
+          // Offline — use cache unconditionally.
+          const text = await decompressGzipBuf(cached.buf);
+          if (text) return parseJsonlEntries(text);
+        }
+      }
+
+      // ── Fetch fresh compressed file ─────────────────────────────────────
+      try {
+        const gz = await fetch("inflected_entries.jsonl.gz");
+        if (!gz.ok) throw new Error("gz not ok");
+        const etag = gz.headers.get("etag") || gz.headers.get("last-modified") || "";
+        const buf = await gz.arrayBuffer();
+        // Save to IndexedDB for next visit (don't await — don't block parsing).
+        if (db) idbSet(db, "inflected", { buf, etag }).catch(() => {});
+        const text = await decompressGzipBuf(buf);
+        if (text) return parseJsonlEntries(text);
+      } catch (e) {
+        console.error("Failed to load inflected_entries.jsonl.gz:", e);
+      }
+
+      // ── Last resort: uncompressed JSONL (local dev) ─────────────────────
+      try {
+        const direct = await fetch("inflected_entries.jsonl");
+        if (direct.ok) return parseJsonlEntries(await direct.text());
+      } catch (_) {}
+
+      return null;
     }
     // ── Lazy inflected-entries loading ──────────────────────────────────────
     let inflectedEntriesLoaded = false;
@@ -3854,6 +3912,29 @@
         setTimeout(() => {
           sourceLanguageList = [...new Set(dictionary.flatMap(e => getSourceLanguages(e)))].sort();
         }, 10000);
+
+        // Load inflected entries in the background immediately after the main
+        // dictionary is ready. This keeps startup fast (no blocking) while
+        // still adding all ~560k inflected forms for search.
+        loadInflectedEntries().then(entries => {
+          if (!entries || !Array.isArray(entries)) return;
+          let added = 0;
+          for (const e of entries) {
+            if (!titleIndex[e.title]) {
+              dictionary.push(e);
+              titleIndex[e.title] = e;
+              allTitles.push(e.title);
+              added++;
+            }
+          }
+          inflectedEntriesLoaded = true;
+          const cbs = inflectedCallbacks.splice(0);
+          for (const cb of cbs) cb();
+          if (added > 0) {
+            document.getElementById("count").textContent =
+              dictionary.length.toLocaleString() + " entries";
+          }
+        }).catch(() => { inflectedEntriesLoaded = true; });
       });
     }
     let searchTimeout = null;
