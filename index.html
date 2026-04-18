@@ -1910,11 +1910,16 @@
       const suppSources = Array.isArray(entry?.supplementary_sources)
         ? entry.supplementary_sources.map(s => String(s || "").toLowerCase())
         : [];
+      const etyText = Array.isArray(entry?.etymology)
+        ? entry.etymology.map(e => String((e && (e.text || e.source)) || "").toLowerCase()).join(" ")
+        : String(entry?.etymology || "").toLowerCase();
+      const hasTabaToken = (s) => /iranian[_\s-]?character[_\s-]?pdf|david\s+m\.?\s+taba|\btaba\b/i.test(String(s || ""));
 
-      const isTaba = defSource.includes("iranian_character_pdf")
-        || dataSource.includes("iranian_character_pdf")
-        || suppSources.some(s => s.includes("iranian_character_pdf") || s.includes("taba"))
-        || etySources.some(src => /iranian character|david m\. taba|iranian_character_pdf/i.test(String(src || "")));
+      const isTaba = hasTabaToken(defSource)
+        || hasTabaToken(dataSource)
+        || suppSources.some(hasTabaToken)
+        || etySources.some(hasTabaToken)
+        || hasTabaToken(etyText);
       if (isTaba) {
         return { label: "Taba", className: "taba" };
       }
