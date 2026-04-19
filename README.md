@@ -67,6 +67,9 @@ The dictionary covers borrowings from:
 - `ocr_images_with_vision.swift` - OCR helper using macOS Vision for scan images
 - `ingest_nayiri_scans.py` - OCR downloaded Nayiri scans and optionally stage/merge them
 - `ingest_martirosyan_etymologies_pdf.py` - Extract ETYM-focused snippets from Martirosyan (2011) PDF for manual etymology curation
+- `ingest_calfa_etymology_xml.py` - Parse Calfa's `etymology01.xml` into staged JSON and etymology-only review artifacts
+- `compare_calfa_etymology.py` - Compare staged Calfa entries against the current merged dictionary before any merge
+- `merge_calfa_etymology.py` - Stage and merge the conservative Calfa overlap subset into the current merged dictionary
 
 ## Development
 
@@ -123,6 +126,29 @@ python3 merge.py --extra-json sources/armenian-etymologies-2011/staged_martirosy
 ```
 
 The Martirosyan integration is designed for manual curation: it creates page-indexed snippet artifacts rather than auto-writing etymology entries.
+
+### Calfa etymology01.xml Workflow
+```bash
+# 1) Fetch and parse the XML into staged review artifacts
+python3 ingest_calfa_etymology_xml.py --fetch-missing
+
+# 2) Compare Calfa headwords against the current merged dictionary
+python3 compare_calfa_etymology.py
+
+# 3) Build merge-ready Calfa entries and apply the conservative overlap subset
+python3 merge_calfa_etymology.py
+
+# 4) Review outputs
+# - sources/calfa-etymology/staged_calfa_entries.json
+# - sources/calfa-etymology/calfa_etymology_only.jsonl
+# - sources/calfa-etymology/calfa_parse_report.json
+# - sources/calfa-etymology/calfa_comparison_rows.jsonl
+# - sources/calfa-etymology/calfa_comparison_report.json
+# - sources/calfa-etymology/staged_calfa_merge_entries.json
+# - sources/calfa-etymology/calfa_merge_report.json
+```
+
+The Calfa XML integration stays conservative: it only auto-merges unambiguous, non-proper-noun matches where the current entry lacks a meaningful etymology, and it records excluded homograph collisions in the merge report.
 
 ### Nayiri Scan Workflow
 ```bash

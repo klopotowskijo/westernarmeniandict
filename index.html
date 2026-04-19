@@ -1,3 +1,28 @@
+    .source-badge.achar {
+      background: #e8e0f7;
+      color: #5a3d99;
+      border: 1px solid #b8aee8;
+    }
+    .source-badge.bedrossian {
+      background: #e7f7e8;
+      color: #2f6b3d;
+      border: 1px solid #a0d8b8;
+    }
+    .source-badge.hubschmann {
+      background: #f7e8e8;
+      color: #993d3d;
+      border: 1px solid #e8b8b8;
+    }
+    .source-badge.bible {
+      background: #f7f3e8;
+      color: #7a6b3d;
+      border: 1px solid #e8dab8;
+    }
+    .source-badge.calfa {
+      background: #f5e6f7;
+      color: #7a3d99;
+      border: 1px solid #d1b8e8;
+    }
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -2225,16 +2250,30 @@
         ? entry.etymology.map(e => String((e && (e.text || e.source)) || "").toLowerCase()).join(" ")
         : String(entry?.etymology || "").toLowerCase();
       const hasTabaToken = (s) => /iranian[_\s-]?character[_\s-]?pdf|david\s+m\.?\s+taba|\btaba\b/i.test(String(s || ""));
+      const hasAcharToken = (s) => /ačaṙean|acharyan|acharian|ačaṙyan|ačaṙian|root dictionary|արմատական\s+բառարան|hracʿean/i.test(String(s || ""));
+      const hasBedrossianToken = (s) => /bedrossian|bedrosian|matthias|new dictionary armenian-english/i.test(String(s || ""));
+      const hasHubschmannToken = (s) => /hübschmann|armenische grammatik/i.test(String(s || ""));
+      const hasBibleToken = (s) => /zohrab|bible|venice 1805|old testament|new testament/i.test(String(s || ""));
+      const hasCalfaToken = (s) => /calfa|calfa\s+etymology|calfa:|calfa\b/i.test(String(s || ""));
 
-      const isTaba = hasTabaToken(defSource)
-        || hasTabaToken(dataSource)
-        || suppSources.some(hasTabaToken)
-        || etySources.some(hasTabaToken)
-        || hasTabaToken(etyText);
-      if (isTaba) {
+      if (hasAcharToken(defSource) || hasAcharToken(dataSource) || suppSources.some(hasAcharToken) || etySources.some(hasAcharToken) || hasAcharToken(etyText)) {
+        return { label: "Ačaṙean", className: "achar" };
+      }
+      if (hasBedrossianToken(defSource) || hasBedrossianToken(dataSource) || suppSources.some(hasBedrossianToken) || etySources.some(hasBedrossianToken) || hasBedrossianToken(etyText)) {
+        return { label: "Bedrossian", className: "bedrossian" };
+      }
+      if (hasHubschmannToken(defSource) || hasHubschmannToken(dataSource) || suppSources.some(hasHubschmannToken) || etySources.some(hasHubschmannToken) || hasHubschmannToken(etyText)) {
+        return { label: "Hübschmann", className: "hubschmann" };
+      }
+      if (hasBibleToken(defSource) || hasBibleToken(dataSource) || suppSources.some(hasBibleToken) || etySources.some(hasBibleToken) || hasBibleToken(etyText)) {
+        return { label: "Bible", className: "bible" };
+      }
+      if (hasCalfaToken(defSource) || hasCalfaToken(dataSource) || suppSources.some(hasCalfaToken) || etySources.some(hasCalfaToken) || hasCalfaToken(etyText)) {
+        return { label: "Calfa", className: "calfa" };
+      }
+      if (hasTabaToken(defSource) || hasTabaToken(dataSource) || suppSources.some(hasTabaToken) || etySources.some(hasTabaToken) || hasTabaToken(etyText)) {
         return { label: "Taba", className: "taba" };
       }
-
       if (entry && String(entry.definition_source || entry.data_source || "").toLowerCase().includes("nayiri")) {
         return { label: "Nayiri", className: "nayiri" };
       }
@@ -3922,6 +3961,15 @@
         html += `<div class="section-label">Definition <span class="source-badge ${escapeHtml(sourceBadge.className)}">${escapeHtml(sourceBadge.label)}</span></div><ol>`;
         for (const d of defsToShow) html += `<li>${renderDefinitionLine(d)}</li>`;
         html += `</ol>`;
+      }
+      // --- SYNONYMS SECTION ---
+      if (Array.isArray(entry.synonyms) && entry.synonyms.length) {
+        html += `<div class="section-label">Synonyms</div>`;
+        html += `<div class="word-links">`;
+        for (const syn of entry.synonyms) {
+          html += `<button type="button" class="word-link" data-word="${encodeURIComponent(syn)}">${escapeHtml(syn)}</button>`;
+        }
+        html += `</div>`;
       }
       // Add morphology section if entry is an inflected form
       const morphologyHtml = renderMorphology(entry);
