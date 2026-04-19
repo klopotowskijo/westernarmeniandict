@@ -1,0 +1,3436 @@
+Hrach Martirosyan
+Leiden University
+The place of Armenian in the Indo-European language family:
+the relationship with Greek and Indo-Iranian*
+The main purpose of this paper is to present lexical correspondences that unite Armenian
+with Greek and/or Indo-Iranian. They include shared innovations on the one hand, and iso-
+lated lexemes on the other. These two lexical corpora - lexical innovations on an inherited
+basis and isolated words - can be placed within the same temporal and spatial framework.
+After the Indo-European dispersal Proto-Armenian would have continued to come into
+contact with genetically related Indo-European dialects. Simultaneously, it would certainly
+also have been in contact with neighbouring non-Indo-European languages. A word can be
+of a substrate origin if it is characterized by: (1) limited geographical distribution; (2) un-
+usual phonology and word formation; (3) characteristic semantics. The material presented
+here, albeit not exhaustive, allows to preliminarily conclude that Armenian, Greek, (Phrygian)
+and Indo-Iranian were dialectally close to each other. Within this hypothetical dialect group,
+Proto-Armenian was situated between Proto-Greek (to the west) and Proto-Indo-Iranian
+(to the east). The Indo-Iranians then moved eastwards, while the Proto-Armenians and
+Proto-Greeks remained in a common geographical region for a long period and developed
+numerous shared innovations. At a later stage, together or independently, they borrowed a
+large number of words from the Mediterranean / Pontic substrate language(s), mostly cul-
+tural and agricultural words, as well as animal and plant designations. On the other hand,
+Armenian shows a considerable number of lexical correspondences with European branches
+of the Indo-European language family, a large portion of which too should be explained in
+terms of substrate rather than Indo-European heritage.
+Keywords: Armenian historical linguistics, Armenian etymology, Indo-European comparative
+linguistics, Indo-Iranian lexicology, Greek lexicology, Mediterranean substrate.
+Introduction
+1. Method
+2. Phonological isoglosses
+3. Morphological isoglosses
+4. Lexical isoglosses between Armenian, Greek and Indo-Iranian
+4.1 Material
+4.2 Pair isoglosses
+5. Lexical isoglosses between Armenian and Indo-Iranian
+5.1 Armenian and Indo-Iranian
+5.2 Armenian and Indo-Aryan
+5.3 Discussion
+5.3.1 Native or loan?
+5.3.2 Armeno-Indo-Iranian poetic or mythical lexicon
+5.3.3 Other issues
+Table set A (sections 4-5)
+6. Lexical isoglosses between Armenian, Greek and European dialects
+6.1 Armenian and Greek: innovations
+6.2 Armenian and Greek: isolated words
+* I am greatly indebted to Kate Bellamy for checking my English. I am also much obliged to James Clackson,
+Frederik Kortlandt, Alexander Lubotsky and the editorial staff of JLR for their thorough and helpful comments.
+Journal of Language Relationship • Вопросы языкового родства • 10 (2013) • Pp. 85-137 • © Martirosyan H., 2013
+---PAGE---
+Hrach Martirosyan
+6.3 Armenian, Greek and Albanian
+6.4 Armenian, Greek and Latin
+6.5 Armenian, Greek and Germanic and/or Celtic
+6.6 Armenian, Greek and Balto-Slavic
+6.7 Armenian and Greek in a broader European context
+7. Armenian, Greek and the Mediterranean/European substrate
+Table set B (sections 6-7)
+Preliminary conclusions
+Introduction
+The dialectal position of Armenian has attracted the attention of Armenologists ever since
+Heinrich Hübschmann (1875/1877) proved that Armenian does not belong to the Iranian
+group of Indo-European languages and should be treated as an independent branch of the
+Indo-European family. Mainly under the influence of the centum I satam division, Armenian
+was considered to be in close relationship with the Aryan and Balto-Slavic languages for a
+long period, until Pedersen (first in 1906: 442), Meillet and others noted that the number of
+Greek-Armenian agreements is greater than the number of agreements between Armenian
+and any other Indo-European language. The relations between Armenian and Greek are some-
+times regarded within a larger Balkan context including Phrygian, Thracian and Albanian.
+Some scholars argued that there are a large number of similarities between Greek and
+Armenian, which allow for the postulation of a common Graeco-Armenian language.' It is
+now clear, especially after Clackson's (1994) thorough, albeit somewhat hypercritical treat-
+ment, that this case is not as strong as it is for Indo-Iranian and Balto-Slavic. The contact rela-
+tions between Proto-Greek and Proto-Armenian may have been intense, but these similarities
+are considered insufficient to be viewed as evidence for discrete Proto-Graeco-Armenian.2
+There are also connections between Armenian and Indo-Iranian on the one hand, and
+between Armenian, Greek and Indo-Iranian on the other. Armenian is usually placed between
+Indo-Iranian to the east and Greek to the west, and on the northern side it might neighbour
+Balto-Slavic (and/or Germanic and others). The dialectal unity of Armenian, Greek, (Phrygian,)
+and Indo-Iranian is often discussed.3
+' Note the term Helleno-Armenian in Hamp 1979: 4-5; 1983: 6; 1992: 58.
+2 For such a moderate approach, see Meillet 1936: 9, 141-143. For more literature and different discussions of
+this and related issues, see Meillet 1922/1950; Pedersen 1924; Bonfante 1937, 1981; Adjarian 1937, AčarHLPatm 1,
+1940: 23-99; Makaev 1967; Schmitt 1972-74: 34-40, 64-67; 1975: 27; Sirokov 1977, 1980; de Lamberterie 1978-79;
+1992: 236-239; Jahukyan 1980; Wyatt 1982; Hamp 1983a; Beekes 2003: 152-153; Ringe / Warnow / Taylor 2002: 102-
+106. See especially the monographs: Arutjunjan 1983; Clackson 1994. For the relationship of Armenian with Balkan
+(and Asia Minor) languages, see Jahukyan 1970; 1987: 296-306; Diakonoff 1984: 103-104, 110-112, 120-121, 18417,
+188-190; Holst 2009: 49ff; Kortlandt 2010: 4-6, 31-32, 78; de Lamberterie 2012 and 2013; individually: Phrygian
+(Pedersen 1925: 44 49; Haas 1939; Bonfante 1946; Jahukyan 1968; Orel 1993; Clackson 2008: 124), Albanian (Peder-
+sen 1900; Kortlandt 1980, 1986; Rusakov 1984), Thracian (Kortlandt 2003: 83-87; Beekes 2003: 153). For Urartian
+names of Balkan origin, see Petrosyan 2002: 179-182 and 2005 (with literature).
+3 For various views and discussions, see Meillet 1896: 149-155; 1936: 142; Pedersen 1924: 224-225 = 1982: 307-
+308; Specht 1935: 29-30, 102-103; 1939: 8, 12-14; AčarHLPatm 1, 1940: 85-86; Thieme 1954: 582-590; Porzig 1954:
+162-164; Birwé 1956: 6; Solta 1960: 459ff; Schmitt 1967: 259-260; Makaev 1967: 453-455, 461; Xac aturova 1973, 1979;
+Pisani 1979: 210; Euler 1979: 18-23; Jahukyan 1980: 4; Wyatt 1982: 27; Gamkrelidze/ Ivanov 1984, 1: 417-418 = 1995:
+86
+---PAGE---
+The place of Armenian in the Indo-European language family
+After the well-known large-scale investigations of Porzig (1954) and Solta (1960), in the
+period between 1970's and 1990's there have been made a number of attempts to study the re-
+lations between Indo-European branches by means of statistics: Tischler 1973, Davies / Ross
+1977, Bird 1982 (updated 1993), Coleman 1992, etc. With respect to Armenian one has to men-
+tion especially the works of Jahukyan, 1980, 1983, and 1987: 86-222. For a critical account of
+these studies, see Clackson 1994: 7-8, 193-198. For a recent attempt to recover the first-order
+subgrouping of the Indo-European family using a new computational method, see Ringe /
+Warnow / Taylor 2002: 102-106.
+As far as the morphological and lexical isoglosses are concerned, in these statistical inves-
+tigations Greek and Indic mostly appear among the closest languages to Armenian. As an ex-
+ample, in the table below I present Jahukyan's data on the first five language branches dis-
+playing the highest number of common features taken from his lists of 27 phonetic, 35 mor-
+phological, and 1400 lexical isoglosses.
+Phonological
+1.
+Greek 14
+2.
+Phrygian 12,5/13,5
+3.
+Thracian 11/13
+4.
+Slavic 11
+5.
+Iranian 10,5
+6.
+Baltic 10
+7.
+Celtic 9,5/10,5
+Morphological
+Indic 20,5
+Greek 18
+Anatolian 17
+Tocharian 16,5
+Italic 16
+Iranian 13,5
+Slavic 13
+Lexical
+Greek 878
+Germanic 783,5
+Indic 661,5
+Italic 636
+Baltic 625,5
+Slavic 579,5
+Celtic 542,5
+Rather than discuss here the different theories of the relationships between Armenian and
+other language branches and tackle every individual isogloss, which would require a copious
+monograph, I shall limit myself to a general outline of the most relevant issues regarding Greek
+and Indo-Iranian. After a short methodological outline (§1) and sections on phonological and
+morphological agreements (§§2-3), I shall turn to the main goal of this paper, the lexical material.
+Applying the methodology outlined in §1, I shall select the most illustrative examples from the
+lists that have been used before and will add some new material that has not been discussed in
+this context before. Additionally I present a number of new etymologies which are marked as HM.
+In cases where I give no references, the relevant etymological material can be found in
+HAB and Martirosyan 2010 s.v.
+1. Method
+The methodological and thematic background of this paper largely coincides with that of
+Clackson 1994, so I simply omit these discussions and refer the reader to this exemplary
+monograph.
+A crucial methodological point of departure is that archaic features and independent de-
+velopments are not significant for determining a close genetic relationship between two lan-
+guages or dialects. Instead, one should rely on shared innovations from the outset. The draw-
+365; de Lamberterie 1986; Mańczak 1987; Pisowicz 1987; Schmidt 1987; Hamp 1992; Lehmann 1993: 19; Clackson
+1994: 201-202; 2008: 124; Mallory/Adams 1997: 29; 2006: 78-79, 109-110, 455; Stempel 2000; Ritter 2006; Schmitt
+2007: 22-23; Fortson 2010: 203, 383.
+87
+---PAGE---
+Hrach Martirosyan
+back with this method is that there is often (if not always) the possibility of independent inno-
+vations yielding similar results. Nevertheless, the cumulative evidence decreases the likeli-
+hood of chance in such cases.
+On the other hand, if a competing feature is present in a certain group of dialects that is
+otherwise confirmed by a number of isoglosses, it should be taken into account even if we
+cannot formally decide whether we are deling with an archaism or innovation. Thus Arme-
+nian, Greek, Phrygian and Indo-Iranian make use of the e-augment (§3.1) whereas other dia-
+lects do without it, and it is impossible to decide whether the presence or absence of an aug-
+ment is to be regarded as dialectal innovations made in late Proto-Indo-European. Neverthe-
+less, this is a significant isogloss, because a similar dialectal distribution is found, as we shall
+see, for a number of morphological and lexical variables.
+In the case of, e.g., the genitive ending *-osio-, however, some archaic traces are also found
+in other branches, for example Italic and Celtic (see §3.2). This is reminiscent of e.g. IE *haner,
+gen. *honr-ós 'man' that is basically represented by the dialect area under discussion (Arme-
+nian ayr, gen. arn, Skt. nár-, Greek åvńp, gen. åvopós, Phryg. avap, cf. also Alb. njeri 'human
+being, person') but has also left some traces in Italic (Osc. ner-) and Celtic (Mir. ner "boar",
+MWelsh ner 'chief, hero').4 A similar case is *hzerhs-uer/n- 'arable land'. Such cases cannot be
+regarded as significant for the purpose of subgroupping or establishing areal contacts.
+When an etymon is only found in two or three non-contiguous dialects, it may theoreti-
+cally represent an archaic PIE lexeme that has been lost elsewhere and is thus not significant
+for our purpose. But when an etymon appears in a few dialects that can be regarded as con-
+tiguous at a certain stage, we should take it seriously even if the etymon has no PIE origin and
+cannot be thus treated as a shared innovation in the genetic sense. Iwo Indo-European dialects
+that were spoken in the same geographical area at a period shortly before and/or after the
+Indo-European dispersal could both develop shared innovations as a result of their interaction
+with neighbouring non-Indo-European languages.
+After the Indo-European dispersal Proto-Armenian would have continued to come into
+contact with genetically related Indo-European dialects. Simultaneously, it would certainly
+also have been in contact with neighbouring non-Indo-European languages. A word can be of
+a substrate origin if it is characterized by: (1) limited geographical distribution; (2) unusual
+phonology and word formation; (3) characteristic semantics.
+Theoretically, these two lexical corpora - lexical innovations on an inherited basis and
+substrate words — can thus be placed within the same temporal and spatial framework. As
+far as the relationship between Armenian and Greek is concerned, matters are particularly
+complicated for two principle reasons: (1) it is often very difficult to know whether we are
+dealing with an innovation or a substrate / cultural word, and (2) aside to lexical correspon-
+dences confined to only Armenian and Greek, there are also a large number of lexical
+agreements between Armenian, Greek and a few other European dialects. Many of these
+words belong to the semantic fields of the physical world, fauna, flora, agriculture and
+crafts. They may, therefore, shed some light on cultural and geographical characteristics of
+the environment where Proto-Armenian might have contacted Proto-Greek and other dia-
+lects in a late period around the time of the Indo-European dispersal. For these reasons, in
+section six, following the subsection on Armenian and Greek only, I also provide a few char-
+acteristic examples reflecting the broader areal context. I then present a brief discussion on
+* On this etymon see de Vaan 2008: 406-407; Matasović 2009: 289; Martirosyan 2010: 61-62; Beekes 2010, 1:
+103-104.
+5 For the problem of determining a PIE word, see e.g. Mallory/Adams 2006: 107-110.
+88
+---PAGE---
+The place of Armenian in the Indo-European language family
+the substrate (section 7) and add a summarizing table divided into semantic fields. Wherever
+a lexical agreement is likely to be an innovation rather than an isolated etymon, I mark it by
+shading.
+2. Phonological isoglosses
+2.1. A major and very complicated issue is the centum / satam division which puts Greek
+and Armenian on different sides of the line. Together with Indo-Iranian, Balto-Slavic and Al-
+banian (the situation in Luwian is disputed), Armenian belongs to the satam group of lan-
+guages which show palatalisation of the palatovelars and absence of a labial element in their
+reflexes of the labiovelars.
+2.2. Another phonological feature that unifies Indo-Iranian, Balto-Slavic and partly Arme-
+nian is the ruki/iurk-rule, the special development of *s after r, k, i, and u? It is interesting that
+Armenian shows a twofold development of *-rs- as reflected in t'aršamim and t'aramim to
+wither'; the -rš- reflex is in line with the ruki-development, whereas - j- betrays an assimilation
+of *-rs- to *-rr-, also seen in Greek. This issue can be placed within the framework of the devel-
+opment *s > h in Armenian, Greek, Iranian, Phrygian and Lycian (and also Brythonic Celtic).
+Both developments may have resulted from a common change, although independent inno-
+vations are not unlikely either.
+2.3. The so-called "prothetic vowel", viz. Gr. a- (and -): Arm. a-, and Gr. E- : Arm. e- vs.
+zero in other languages, is now interpreted as a vocalized reflex of the PIE initial laryngeal
+followed by a consonant (see the table below). It is considered an important isogloss shared by
+Armenian and Greek, and possibly also Phrygian and Albanian.? Clackson (1994: 36) notes
+that this may represent an areal feature since initial laryngeals might also have left vocalic re-
+flexes in the Anatolian languages. However the latter statement seems to be uncertain.°
+PIE
+Gloss
+*h,reg"os-
+'darkness'
+*hineun
+'nine'
+*hzlelo(u)pek- fox'
+*haster-
+'star'
+'name'
+Greek
+övoua
+Armenian
+erek(-oy)
+inn
+atuês
+astt
+anun
+Other
+Goth. rigis
+Skt. náva
+Skt. lopaśá-
+Hitt. haster-
+Skt. naman-
+• See Pedersen 1925: 7, 44-47; Allen 1978; Shields 1981; Gamkrelidze/ Ivanov 1984, 1: 417 = 1995: 365; Clackson
+1994: 54-55. It is remarkable that Luwian preserves the original labialized reflexes of labiovelars (for relevant lit-
+erature, see Szemerényi 1996: 61,).
+7 See Martirosyan 2010: 709-710; Beekes 2011: 30, 126-127, 137. I do not share the view (see Olsen 2011: 26-27
+with lit.) on the final -r as a ruki-development in Armenian.
+8 For references and a discussion of these two issues see Clackson 1994: 54, 210g6; for *s > h, cf. Szemerényi
+1985; Schmidt 1988: 602. Note that the change s > h in Lycian and Brythonic Celtic is certainly not a common ar-
+chaism with Greek, Armenian, and Iranian according to received opinion on the matter (cf. already Millet 1896:
+151 on Celtic).
+9 For literature and a discussion, see Martirosyan 2010: 714-716; de Lamberterie 2013: 29-34. See also Schmidt
+1988: 602. For Phrygian, see Ligorio / Lubotsky forthc. (section 4.3); for Albanian, see Demiraj 1994.
+10 For a discussion, see Kloekhorst 2006 and his manuscript monograph on Hittite accentuation, notably the
+section "Words containing aC(-).
+89
+---PAGE---
+Hrach Martirosyan
+2.4. Vocative accent. Armenian manuscripts and dialects provide rich evidence for voca-
+tive forms accented on the first syllable: háyrik 'o father', máyrik 'o mother', Kárapet, etc.; dial:
+T'iflis áxper 'o brother', vúrt'i 'o son'; Lori órdi 'o son'; Hamšen háyr-i 'o father', máyri 'o
+mother; Akn hársnuk 'o sister-in-law', márik 'o mummy'; Moks xrótper 'o uncle', t'ágävur o
+king', Nor-Bayazet hárs-t 'o sister-in-law', Hóromsim, Máyran, Márgarit, tnákolner "you whose
+house may be destroyed!", even word combinations, such as túrban harse "you, dear sister-in-
+law (to whom I may be sacrificed)", Hróp'sama Xat'un 'o you, Lady Hrop' sim'.
+The vocative with initial accentuation may be considered an Indo-European inheritance.
+In Vedic Sanskrit, the vocative, when accented, has the acute on the first syllable, e.g., voc. pitar
+vs. nom. pitá. The same is found in Greek: беЛф& vs. deós brother'; бопота vs.
+Seonóins 'master (of the house), lord'; nátep vs. nańp 'father', etc.; in modern Iranian lan-
+guages: in Persian, the stress is on the initial syllable of the vocative noun or phrase. In Kurd-
+ish Awroman, when no vocative particle is present the stress is brought forward to the first
+syllable of a noun.!! This isogloss is highly hypothetical.
+3. Morphological isoglosses
+3.1. One of the most significant morphological isoglosses shared by Armenian, Greek,
+Phrygian and Indo-Iranian is the e-augment (cf. §1), e.g. Arm. 3sg aorist e-ber 'brought' from
+PIE *é-b"er-et: Skt. á-bhar-at, Gr. *-фЕр-е; Arm. 3sg aorist e-git 'found' from PIE *é-uid-et: Skt.
+á-vid-at, Gr. sie < *-Fl-E; Arm. 3sg aorist e-d 'put' from PIE *é-d'ehi-t: Skt. á-dhā-t, Gr. dial.
+É-On, cf. suffixed forms, Gr. E-On-ka, Phrygian e-daes.12
+3.2. The genitive ending *-osio- (Skt. -asya, Gr. -010, Arm. -oy, 13 etc.) of the nominal o-stems
+has been taken over from the pronominal declension. It is basically restricted to Indo-Iranian,
+Greek and Armenian and has been interpreted as either a dialectal Indo-European innovation
+or a morphological isogloss.14 Given the appearance of this genitive singular ending in Italic
+(-osio in early Faliscan inscriptions and in one early Latin inscription, the Lapis Satricanus, c.
+490 c, and in the name Mettoeo Fufetioeo) and Celtic (-oiso in three or four Lepontic inscrip-
+tions from before 400 c), it is now possible to argue that the spread of a genitive singular*-i
+took place relatively recently, not much earlier than the period of Italo-Celtic unity. It has been
+argued that the ending *-osio- was also present in Anatolian. As an archaism it cannot, there-
+fore, be used as an isogloss. Nevertheless, it is somehow significant that, as in case of the e-
+augment, Armenian sides with Greek and Indo-Iranian in having *-osio- as a specific genitive
+marker of o-stems.15
+" See Martirosyan 2010: 748-749 and Martirosyan forthc.
+12 For a discussion, see Meillet 1950: 97-101; Birwé 1956: 18-19; Meid 1975: 214-215; Schmidt 1980: 2-5; 1987:
+39; 1988: 601-602; Gamkrelidze/ Ivanov 1984, 1: 388-390 = 1995: 340-341; de Lamberterie 1986: 48-49; 1992: 237;
+Abağyan 1991; Clackson 1994: 9-10; Meier-Brügger 2003: 182; Mallory/Adams 2006: 75; Kocharov 2008: 32-33; Fort-
+son 2010: 92, 101, 392. For Phrygian, see also Ligorio / Lubotsky forthc. (section 5.3)
+13 Meillet 1900: 17.
+14 See e.g. Gamkrelidze/Ivanov 1984, 1: 375-379 = 1995: 329-332; Kortlandt 1984: 99-100 = 2003: 47.
+15 For some other possibly related forms and a general discussion, see Lehmann 1981; Gamkrelidze / Ivanov
+1984, 1: 377, = 1995: 3303; Schmidt 1987: 40-42; Beekes 1990-92; Morani 1992; Hamp 1992: 59; Clackson 1994: 8, 14;
+Szemerényi 1996: 184, 1876; Clackson/Horrocks 2001: 16-17, 32, 69; Eska/Wallace 2001; Fortson 2010: 127. On Ana-
+tolian, see Szemerenyi 1996: 184; Kloekhorst 2008: 216; and especially Yakubovich 2008.
+90
+---PAGE---
+The place of Armenian in the Indo-European language family
+3.3. A commonly cited morphological feature found in Armenian, Greek and Indo-Iranian
+(and perhaps also Celtic) is the instrumental marker *-b'i(s). Furthermore, Greek and Armenian
+share the use of *-b"i- as the instrumental singular marker, probably due to extension of the
+athematic instrumental plural marker *-b'is that is also shared by Indo-Iranian. After a lengthy
+discussion, however, Clackson (1994; 68-74, 87) concludes that the two languages are likely to
+have made independent developments and denies the significance of this isogloss. He does ad-
+mit the importance of this feature, however, for the dialect group Armeno-Graeco-Indo-Iranian.16
+3.4. *meh, prohibitive particle: Arm. mi, Skt. má, Av. mā, Gr. un, Alb. mo. 1 The Armenian
+prohibitive particle mi is probably reflected in Urartian me(i).1 The value of this isogloss is un-
+certain in view of Toch. AB mã 'not, no', which expresses both simple negation and prohibition
+(Adams 1999: 445-446).
+3.4. *hoiu-k"i(d): Arm. oč' 'not', Gr. ok, окі 'not'. However, an inner-Armenian devel-
+opment is not excluded. 19
+3.5. *-nu-presents are attested in Armenian, Greek and Indo-Iranian in a number of verbs that
+lack them outside this area: *hr-nu-: Arm. ainum 'to gain, obtain, take' (Armenian, Greek, and
+probably Iranian, see §4.1.9); *ues-nu-: Arm. z-genum 'to put on clothes' (Armenian and Greek, see
+§6.1.16); *gWher-nu-: Arm. jernum 'to be/become warm, burn' (Armenian and Indic, see §5.2.13).20
+As an example of the -nu-extension on Armenian grounds, note Arm. Inum, 3sg.aor. e-lic'
+'to fill, be filled' from QIE *pleh-: Gr. múunnu, -qual 'to fill, make full', nEws, Ion. ThEos
+'full', Lat. plēre "to fill', Skt. pari 'to fill', pres. *piprati, etc. (cf. Arm. li "full, abundant, whole'
+and lir, i-stem 'plenitude' vs. Gr. mńpns "full; in full'). The aorist e-li-c' derives from *e-ple-ske,
+with *-skelo-added to the old root aorist *ple-(s)-, cf. Ved. ápras, Gr. EnAnoE, etc.
+3.6. The *ni- preverb in Armenian and Indo-Iranian.
+*ni-si-sd-e/o-: Arm. nstim, 3sg.aor. nst-a-w, impv. nist "to sit' ‹ *nihist-e-; Skt. ní șidati, Av.
+nishidaiti, MPers. nisastan 'to sit. The form is based on the reduplicated present form *si-sd-
+from PIE *sed- 'to sit': Skt. sídati, Gr. iÇw, Lat. sidó, etc. The verbal form *ni-si-sd-elo- 'to sit' is a
+significant isogloss shared by Armenian and Indo-Iranian. Other languages only have the de-
+verbative noun *ni-sd-o-: Lat. nidus m. 'bird's nest, residence', OHG nest 'nest', cf. Arm. nist,
+o-stem 'seat, site, base; royal residence, capital', Skt. nidá- m.n. 'nest, lair, bird's nest', etc.21
+3.7. *-n-presents in Armenian (-anem) and Greek (-áva).
+*li(n)k"-"- to leave': Arm. Ik'anem, 3sg.aor. e-lik' to leave', Gr. Maínw, Auunáva to let,
+leave'; cf. Skt. rec-, pres. rinákti 'to leave, let, release', Iran. *raic 'to leave, let, abandon', Lat.
+linquõ, liqui 'to leave, quit, forsake; to abandon', OIr. Leicid leaves'. Arm. 3sg.aor. e-lik' is de-
+16 For references and a general discussion of the *-b"i- ending, see Meillet 1896: 153; Pedersen 1924: 223 = 1982:
+306; Gamkrelidze / Ivanov 1984, 1: 379-382 = 1995: 332-335; Kortlandt 1984: 101-102; 2010: 40, 44-45; Schmidt 1987:
+40; Martirosyan 2010: 751; Beekes 2011: 30-31, 187-189.
+17 Martirosyan 2010: 468-469. For Albanian mo, see Demiraj 1997: 275-276.
+18 Jahukyan 1963: 124; Arutjunjan 2001: 454b; Yakubovich 2010.
+19 For references and a critical discussion, see HAB 3: 561-562; Clackson 1994: 158; 2004-05: 155-156; Martiro-
+syan 2010: 531. The most recent treatment of this correspondence is found in de Lamberterie 2013: 21.
+20 See Clackson 1994: 83-84, 178-180 and Martirosyan 2010 s.vv., also Schmidt 1988: 601; Fortson 2010: 97,
+214. For an extensive discussion on nu-verbs I refer to Kocharov 2008: 39-40, 126-155, 182-185.
+21 See de Lamberterie 1986: 49-57 and Martirosyan 2010: 505-506 with lit.
+91
+---PAGE---
+Hrach Martirosyan
+rived from thematic aorist *é-lik"-e-t, cf. Gr. Eline, and the imperative lik' reflects IE *lík"e, cf.
+Gr. Mine. PIE nasal-infixed present *li-n-k"- was remodelled to *lin)k"-n: Gr. Muunávo and
+Arm. Ik'anem (cf. *b'eg- 'to break', nasal present *b"-n-eg-: Arm. bekanem, 3sg.aor. e-bek "to
+break', Skt. bhañj-, bhanákti "to break, shatter', OIr. bongid, -boing 'breaks', etc.). I agree with the
+view 2 that this is likely to be a shared innovation (pace Clackson 1994: 84-85).
+This type of presents became productive in Armenian, cf. e.g. *prk-ske/o- (sk-present): Arm.
+harc'anem, 3sg.aor. e-harc' 'to ask, question, inquire', Ved. prochámi, MPers, pursidan 'to ask',
+Lat. poscõ 'to ask, demand', etc. Arm. 3sg.aor. e-harc' derives from thematic imperfect *e-prk-sk-
+et, cf. Skt. áprcchat. Note also Arm. imper. harc' vs. Skt. prcchá.
+3.8. The *--presents (see the previous paragraph) and a few other Graeco-Armenian iso-
+glosses are treated by Clackson (1994: 74-87) as ambiguous with respect to the question of
+whether they represent shared innovations or independent developments: the suffix *-ola- in
+Greek -ódns (e.g. Marvódns 'raving, frenzied') vs. the Armenian quasi-participles in -ot, the usage
+of the PIE verbal suffix *-sk- (Greek -ok- in lonic iteratives and -c'- in the Armenian aorist) with
+restriction to past time, peculiar verbal reduplication seen eg. Gr. Saбá1Лa 'to embellish' and
+Arm. cicalim 'to laugh', etc. Naturally, one should welcome such a sound and cautious approach.
+However, the cumulative strength of these morphological (and a few phonological features and
+a great number of such lexical agreements gives additional weight to the evidence.
+4. Lexical isoglosses between Armenian, Greek and Indo-Iranian
+4.1. Material.
+4.1.1. *p!hiu- 'Pleiades': Arm. alaw(s)unk' 'Pleiades', YAv. acc.pl. f paoiriiaëiniias ‹ *paruiaini-,
+NPers. parvin 'Pleiades', Gr. aládes 'id?; cf. Arm. y-olov 'many' ‹ *polhius: Gr. nodús
+'many', Skt. purú- "much, abundant', etc. (Martirosyan 2010: 12-13).
+4.1.2. *polio-/*poliehz: PArm. *(p)olíya-> Arm. ali-k'1, obl. ale-a- 'wave'; ali-k'2 obl. ale-a- 'grey
+hair; old age'; Gr. nodiós, fem. nodiás 'whitish grey (of hair and of foaming seas)' (cf. espe-
+cially nolai 'grey hair' which stands for Arm. alik' e.g. in Proverbs 20.29); MPers. pir 'old,
+aged' < *parya-, Kurd. pēl 'wave, billow', etc. 2 In view of Mycenaean po-ri-wa, the Greek word
+has been reconstructed as *nodigo- and its close connection with Arm. ali-k' has been doubted
+(Clackson 1994: 163-164). Beekes (2010, 2: 1219), however, notes that the appurtenance of the
+Mycenaean word is quite uncertain and prefers to reconstruct *polio-.
+The Armenian, Greek and Iranian (if *parya- is reliable) words are particularly close to
+each other in having both meanings ("wave' and 'grey hair, old') and reflecting *polio. Perhaps
+we can also add Skt. palitá- grey, grey of old age, aged', though this is uncertain. 4 Other lan-
+guages have *poluo- 'pale, grey', which seems to be unrelated: Lat. pallidus 'pale' ‹ *palwo-,
+OHG falo 'faded' < PGerm. *falwa-, OCS plavo 'white', etc.25
+4.1.3. *hz(e)1h1-/*hz|-n(e)hı-: Arm. ałam "to grind' < *al-n-, Gr. åléw "to grind', MInd. ăță
+'flour', Av. aša- 'ground' ‹ *arta-, MPers. ārd 'flour' ‹ *ārta-, Khot. ārr- and Sogd. 'r 'to grind'
+from Iran. *arna-. See also §4.1.4.
+22 Hamp 1975; Wyatt 1982: 29; Stempel 2000: 517. For an extensive discussion I refer to Kocharov 2008: 34-39,
+73-101, 172-180.
+2 Martirosyan 2010: 14-15.
+24 See Mayrhofer EWAia 2, 1996: 103-104.
+25 See de Vaan 2008: 440-441; Derksen 2008: 412.
+92
+---PAGE---
+The place of Armenian in the Indo-European language family
+4.1.4. *hz(e)Ihi-tr-i-: Arm. aławri, ea-stem 'mill; female grinder (of corn)', Gr. aletpis
+'woman who grinds corn'. If Pers. ās, āsya 'mill', Sogd. 'ro 'mill' and other Iranian forms reflect
+*alārOra-"mill', a similar *-tr-formation of *hz(e)lhi- 'to grind' (see §4.1.3), then this is a lexical
+isogloss between Armenian, Greek and Indo-Iranian, as is the root *hz(e)Ihi-. Note also Arm.
+alewr 'flour' and Gr. aleupov 'flour' (§6.1.1).26
+4.1.5. *hzlopelek- / *hzleloupek-'fox': Arm. atues, gen. atues-u "fox', Gr. alúnns, -Eros 'fox',
+Skt. lopaśá- probably 'fox', Proto-Iranian * raupaśa- "fox' (Parth. rwb's [robās], MPers. röbah 'fox',
+Oss. rüvas/robas fox, Sogd. rups-, Khwar. rubs "fox', Khot. rruvasa-"jackal, etc.). Despite the
+vocalic problem, I agree with Mayrhofer EWAia 2, 1996: 482 in that Indo-Iran. *Raupaća- is
+"nicht zu trennen" from Arm. atues and Gr. dAwning. Further, note Av. urupi-'dog', raopi-'fox,
+jackal', Celtic *lop-erno- (Welsh Ilewyrn 'fox', Bret. louarn 'fox', etc.), Lat. volpes f. 'fox', Lith. lape,
+Latv. lapse "fox', etc.27
+4.1.6. *hz(e)iğ- 'goat': Arm. ayc, i-stem, 'goat', ayc-i, obl. aycea- (probably from fem. in
+*-ihz-), Gr. aïž, aiyós f. 'goat' (compositional aiyí-), YAv. izaēna-'leathern', perhaps also Skt.
+eda-m. 'a kind of sheep' and Alb. dhi f. "(she-)goat'; note also the i-less form: Skt. ajá- 'goat,
+YAv. aza-'goat', Lith. ožys 'goat', etc.28
+4.1.7. *Iner, gen. *hanr-ós 'man': Armenian ayr, gen. arn, Skt. nár-, Av. nar-, Greek avńp,
+gen. avopós, Phryg. avap, cf. also Alb. njeri 'human being, person'; note also traces in Italic
+(Osc. ner-) and Celtic (Mir. ner 'boar', MWelsh ner 'chief, hero'). For the areal distribution,
+compare, e.g., gen. *-osio- and *herh-uer/n- 'arable land'.
+4.1.8. PIE *hips-en-'male, male animal': Arm. ain 'wild ram' (acc.pl. z-arin-s), Gr. äpory,
+-Evoç, Att. äppy, Ion., Lesb., Cret. *pony, Lac. äpons adj. 'male', Av. aršan- m. 'man, male',
+OPers. aršan- 'male, hero, bull', cf. Skt. rsabhá- m. 'bull'.
+In view of the vocalic discrepancy in the Greek forms *pony and pony, two different
+roots may be posited: *hirs-en- (with Arm. arn and Indo-Iran. *Hrsan-) and "hzursen- (with Skt.
+ursan-'manly; male animal, bull, stallion, etc?, Lat. verrēs 'boar", Lith. veršis 'bull, ox, ox calf',
+etc.), respectively.? According to Pronk (2010), the second part of the Proto-Indo-European
+determinative compound *g"(e)hu-ursen 'bull', lit. 'cow-male' (Toc. A kayurs 'bull', B kaurşe
+'bull', Olc. kursi, later kussi bull calf, Skt. gó-orsa- and gó-vrsabha- bull', etc.), was reanalyzed
+in Greek, Indo-Iranian and Armenian as *-rsen and started to lead an independent life. 30
+Whether one accepts this attractive scenario or not, we are nonetheless dealing with a lexical
+isogloss between these three branches (pace Pronk 2010: 17614). Note the abundance of such
+isoglosses in the domain of animal husbandry (see Table set A).
+4.1.9. *hor-nu-: Arm. arnum 'to gain, obtain, win, take, grasp', Gr. ăpvoual, aor. apóuev 'to
+win, gain', probably also Av. aranauu- 'to grant, allot, provide' (see §3.5 on nu-verbs).
+4.1.10. *sru-ti/to-: Arm. aru, i-stem, o-stem, a-stem 'brook, tributary; channel, ditch, trench';
+the threefold declension of the Armenian word points to different derivatives: *sru-ti- (cf. Skt.
+sru-ti- f. 'way, path', Gr. pors f. 'flowing, flow, etc.), *sru-to- (cf. Gr. putós flowing) or
+*sroutos- n. (cf. Skt. srótas- n. 'stream, current', OPers. rautah- n., Pahl., NPers. rod "stream'),
+26 See Bailey 1979: 22a; Clackson 1994: 90-95; EtimSlovIranJaz 1, 2000: 200-204; Beekes 2010, 1: 65; Martiro-
+syan 2010: 13-14, 26-27, 31.
+27 Clackson 1994: 95-96; Martirosyan 2010: 42; Beekes 2010, 1: 78-79.
+28 Euler 1979: 167-168; Clackson 1994: 88-90; Martirosyan 2010: 58; Beekes 2010, 1: 40-41; cf. also Clackson
+1994: 182, 2376/4.
+29 For references and a discussion, see Martirosyan 2010: 112.
+30 Note that, in the Atharva-Veda, Skt. rsabhá- is usually a real male animal, whereas vrsabhá- is generally used
+symbolically, often referring to, e.g., Indra or Agni (Lubotsky apud Pronk 2010: 172, 175-176).
+93
+---PAGE---
+Hrach Martirosyan
+*sr (0)u-iehz (cf. Lith. sraujà, Latv. strauja 'stream', Russ. strujá 'stream', etc.). The forms derive
+from PIE *srelou- 'to stream, flow: Arm. a/orog(an)em 'to water, irrigate', Gr. péw to flow,
+stream', etc.
+4.1.11-12. *horgipió-: arcui 'eagle' and *kiH-(i)no-|*tkiH-eno-: c'in 'kite' (§4.2).
+4.1.13. *urhen, gen. *urhino: Arm. gain, inlan-stem: gen. garin, instr. garam-b, nom.pl.
+garin-k", gen.dat.pl. garan-c'lamb', Skt. úran-, nom. úră, acc. úranam m. 'lamb', NPers. barra
+'lamb' < PIr. *varn-aka-, Gr. apýy m., Fapńy 'lamb', nolú-ppyv-es 'possessing many lambs' <
+*-urhi-n-.
+4.1.14. *d'mb": Arm. damban, dambaran 'tomb, grave'; Gr. tań f. 'interment', áoç m.
+'funeral rites; grave, tomb', tápos f. 'ditch, trench', Dánta "to bury' from *d'mb"-iò. Probably
+here also belongs YAv. daxma-'grave' (dissimilated from *dafma- < *d"mb"-mo-). The appurte-
+nance of Old Pruss. dambo 'ground' is uncertain. PArm. *damba)r- 'tomb' (< *d"amb"-ro-l-rehz-,
+cf. Gr. tápos) may have been borrowed into Abkhaz a-damra 'tomb, grave, dolmen'. Note
+also Arm. t'umb 'mound; fence, wall around a house' and Gr. Túußos m. 'mound, burial
+mound, grave' (see §6.1.18). In view of the aberrant vocalism comparable to burgn and durgn,
+as well as Arm. t'- instead of d-, here we may be dealing with a substrate intermediation.31
+4.1.15. *heg™hi: Arm. iž, i-stem 'viper, Gr. EXIS, -EWS, gen. ExloS 'viper; name of a mon-
+ster', Skt. áhi- m. 'snake, adder', YAv. aži- m. 'snake, dragon'. The assibilation *-g™on;- > *-yžy-
+and the problem of the Armenian vocalism are due to a generalization of the genitive *ejyo-
+from gen. *h(e)gh-i-s (cf. Gr. gen. *xloS). If the Indo-Iranian forms belong rather to PIE
+*hz(e)ng™h_i- (Arm. awj, i-stem 'snake', Lat. anguis m.f. 'snake', Lith. angis f. 'snake'), then we
+are left with a correspondence between Armenian and Greek.
+4.1.16. *gerH-: Arm. cer, o-stem 'old man; old', cer-anam 'to become old', Skt. jari "to age,
+grow old', jarás- f. 'old age', YAv. zar- "to age, grow old', yépaç n. 'gift of honour' (originally
+'old age'); *gerH-ont: Arm. cer-un(-i) (ea-stem) 'old', Skt. járant- 'old', Oss. zærond 'old', Gr.
+y'épwv 'old man'. A different formation: Olc. karl 'old man', OHG karal 'old man', etc.32
+4.1.17. *g"ou-io- (or *g"hseu-io-): Arm. kogi, gen. kogw-o-y, ins. kogw-o-v 'butter', Skt. gávya-,
+gavyá-'consisting of cattle, coming from or belonging to a cow (as milk, curds, etc.)', YAv.
+gaoiia- 'coming from cattle, consisting of cattle', Gr. adj. -Bo(F)Los, e.g. Evveá-Bolos 'worth nine
+beeves'. This isogloss33 is based on the PIE word for 'cow' (Arm. koo; cf. nom. arew vs. oblique
+areg-'sun'). SEE AUTHOR'S ADDITION ON P. 137.
+4.1.18. *hzerhs-uer/n-: Arm. harawun-k' (acc.pl. harawun-s) 'sowing, seeds; sowing-field; ar-
+able land', Gr. ăpoupa f. 'tilled or arable land; pl. corn-lands, fields', Skt. urváră- f. 'arable land,
+field yielding crop', Av. uruuara- f. pl. 'food plant, plant, ground covered with plants, flora'. As
+in cases of e.g. gen. *osio- and *honer- 'man', Celtic and Italic are added: MIr. arbor, NPI
+arbanna, OIr. gen. arbe 'grain, corn', Lat. aroum 'ploughed land'. Armenian, Greek and Indo-
+Iranian are unified by the *-r/n- heteroclitic declination (seen also in Celtic) and the semantics.
+If the original meaning was 'grain, crop' (cf. Iranian and Celtic), we might treat the semantic
+shift as an innovation. However, the *-r/n-declension is rather archaic. The value of this iso-
+gloss is uncertain.
+4.1.19. * mrto-: Arm. mard, o-stem 'man, human being' (renders Gr. ăvOponos or Bpotós in
+the Bible), Gr. Bpotós m., f. '(mortal) man; mortal'; Skt. mrtá- 'died, dead' (verbal adj.), Av.
+marata- 'dead'; cf. privative *n-mrto-: Skt. amíta- "immortal, YAv. amaşa- 'immortal", Gr.
+äußpotos 'immortal, divine'; with different vocalism: Skt. márta- m., Av. marata-m. 'the mortal
+31 For a discussion, see Clackson 1994: 120-121; Martirosyan 2010: 232-233; Beekes 2010, 1: 534, 1517-1518.
+32 Mallory/Adams 1997: 409-410; Olsen 1999: 611; Martirosyan 2010: 339; Beekes 2010, 1: 268-269.
+33 See already Meillet 1896: 152.
+94
+---PAGE---
+The place of Armenian in the Indo-European language family
+one, man', Gr. Moptós avOpwros, Ovniós 'man' (Hesychius); the other cognates continue a
+form in *-tu-o-: Lat. mortuus, OCS mrotv 'dead', etc.34 Armenian, Greek and Indo-Iranian
+agree in *-to- as well as the semantic shift from 'dead' to 'mortal' and therefore represent a sig-
+nificant isogloss (ct. Meillet 1896: 151).
+4.1.20. *kielou: Arm. Č'uem 'to go, set forth, march off, break camp', č'og-, suppletive
+aorist of ert'am 'to go, set off'; Skt. cyav- (to start) to move, stir; to undertake'; OAv. šauuaitē to
+move', YAv. fra-šuiti- f. 'approach', OPers. šiyav- "to set forth, go, march'; Gr. ozvoual 'to be in
+violent motion, hurry; to walk, rush (to)'; participle *kiu-to- 'moved': Arm. Č'u, o-stem 'setting
+out, departure; campaign, expedition; journey', Skt. cyutá- 'moved (wankend, in Bewegung
+geraten)', YAv. mainiiu.šüta- 'vom Geist angetrieben', Gr. Éni-ooutos 'rushing, gushing'. This
+isogloss is based on PIE *kei(h2)-, cf. Gr. Kíw, Klvéw 'to set in movement, drive away, shake',
+Lat. ciēre "to move, stir up', citus "fast'.35
+4.1.21. *g"''er-os- "warmth', PIE s-stem neuter: Arm. jer, o-stem 'warmth; warm and bright
+weather; warm', Skt. háras- n. prob. 'flame, glow', Gr. Dépos n. 'summer; harvest' 36
+4.1.22. *(p)stelēn(-0)-: Arm. stin, gen. stean 'breast of a woman'; Skt. stána- m. 'breast of a
+woman, mother's breast, nipple'; YAv. fštăna- m 'breast of a woman', MPers., NPers. pestän
+'breast'; Gr. oývior. otilos (Hesychius); probably also Toch. A pässäm, B päścane dual
+'woman's breasts' ‹ PIE thematic dual *psteno. The other cognates have an initial sp-, cf. Lith.
+spenys 'nipple', Olc. speni teat, nipple', etc.37
+4.1.23 *k(e)rH- 'to tie, attach, bind': Arm. sarem 'to form, make; to equip, prepare; to
+stretch; to weave, etc? (Middle Armenian and a number of non-contiguous dialects); sard,
+i-stem 'spider' (Biblet; dial.) from *kr(H)-ti-; Iranian *sar- 'to tie, attach, link': OAv. săr- "to mix,
+unite with', Parth. sar 'community' (only in pd ... sr "together with'),38 Pashto sará adv. 'to-
+gether, etc.
+*k(e)r (H)-ieh2 'band': Arm. sari-k', ea-stem 'chain, fetters, bands' (5th century onwards); Gr.
+karpía 'tape or cord used for ligatures', kelpia f. 'girth of a bedstead; swathing-band, ban-
+dage', kaipodéwv (Homer) 'close-woven', karpów 'tie the kaipo onto the loom'.39
+The Iranian verb is usually derived from IE *kerhz- "to mix, tie': Skt. á-śirta- 'mixed (with
+milk)'; Gr. Kepávvou, aor. Kepáo(o)al 'to mix, mix up (especially of wine with water); to tem-
+per (of the climate)'. However, this is uncertain, as is the appurtenance of Skt. srikhala-,
+śrikhala-'chain, fetter'. 40
+4.1.24. *(s)peud- zeal, haste': Arm. p'oyt, o-stem (also i-stem) 'zeal, diligence; haste; zeal-
+ous, diligent; hastily', p'ut'am 'to hasten, hurry, strive'; Gr. nov&-ń f. 'haste, zeal', oneúsa 'to
+hasten, hurry, strive'; MPers., NPers. põy- to run', ManParth. prd- "to hasten'. The problem of
+Arm.-t' can be solved by positing *(s)peud-to- > *p"oy(t)t"o- 41 Beekes (2010, 2: 1381-1382) notes
+34 Clackson 1994: 2376/4; Mayrhofer EWAia 2, 1996: 318, 327; de Vaan 2008: 389-390; Derksen 2008: 342; Marti-
+rosyan 2010: 452-453; Beekes 2010, 1: 242-243. It has been assumed that Lat. (im)mortals might be based on earlier
+*morto-rather than mors 'death' (de Vaan 2008: 390; cf. Euler 1979: 125), but this is not compelling.
+35 Schrijver 1991: 237-238; Mayrhofer EWAia 1, 1992: 552-553; Olsen 1999: 41; de Vaan 2008: 113-114; Martiro-
+syan 2010: 547-548; Beekes 2010, 1: 700, 707; 2: 1321-1322. On the pure velar *k- in *kei-, see Beekes 2011: 126.
+36 On the isogloss, apart from the standard literature, see Euler 1979: 224; Wyatt 1982: 31-32; Schmidt 1987:
+37; de Lamberterie 2013: 19-20; cf. Hamp 1992: 57-58. For the Armenian etymon, see Martirosyan 2010: 556-557.
+37 See Euler 1979: 33-34; Stempel 1990: 52; Olsen 1999: 135-136; Martirosyan 2010: 584-585.
+38 Durkin-Meisterernst 2004: 308b.
+39 HAB 4: 183-184, 186, 187-188; Jahukyan 2010: 670-672 (mentioning only the Greek cognates).
+40 For the forms and a discussion, see Schwartz 1986: 359-360; Mayrhofer EWAia 1, 1992: 178; Clackson 1994:
+139-140; de Vaan 2003: 99-100; Cheung 2007: 337; Martirosyan 2010: 573-574; Beekes 2010, 1: 617, 664, 675.
+41 Klingenschmitt 1982: 167; Clackson 1994: 155; Martirosyan 2010: 652 (with more references).
+95
+---PAGE---
+Hrach Martirosyan
+Lith. spáusti "to press, squeeze; to push, drive on; (intr.) to hurry' as the only certain cognate
+for the Greek and does not mention the Armenian and Iranian forms. If the Baltic form is in-
+deed related, the isogloss becomes less significant, although the semantic identity of the Ar-
+menian, Greek and Iranian cognates is more impressive.
+4.2. Pair isoglosses. If two lexemes are contextually related with each other and both rep-
+resent the same dialect area, the significance of these isoglosses increases. In this section I pre-
+sent two such pairs.
+4.2.1. *hargipió-: Arm. arcui, ea-stem: gen.sg. arcu-o-y, gen.pl. arcue-a-c' 'eagle'; Skt. rjipyá-
+'epithet of an eagle', m. 'eagle', YAv. arazifiõ, parana- adj. 'having eagle-feathers', MPers. "luf
+'eagle' (= phonetically lāluf/), aluh 'eagle', etc.; Gr. aiyuruóç m. 'vulture', aiyinow datóç únò
+Makedóvov, cf. also apylónous datóç. Makedóves. The formal difficulties of Gr. aiyunuós (the
+expected form is *åpyl-nuós) may be due to folk-etymological association with aïf, 'goat',
+ainús 'high and steep, sheer' and yúu 'vulture'. 42
+4.2.2. *tkiH-(i)no- or *tkiH-eno- 'bird of prey': Arm. c'in, o-stem 'kite', Skt. śyená- m. 'bird of
+prey, falcon, eagle', Av. saēna-'a big bird of prey', Gr. iktivos m. 'kite'.43
+Discussion: *horgipió- and *tkiH-(i)no-/*tkiH-eno- (4.2.1+2). In RV 4.38.2, etc. the horse
+Dadhikrá- is compared with rjipyám śyenám. Vedic rjipyá- is an epithet of śyená- bird of prey,
+falcon, eagle'. It is remarkable that both *horgipio-'epithet of a bird of prey' and *tkiH-(i)no- or
+*tkiH-eno- 'bird of prey' belong to the Armeno-Graeco-Indo-Iranian dialect group. Within this
+group we can speak also of the Armeno-Aryan poetic language, notably arew 'sun', erg 'song',
+ji 'horse', perhaps also surb 'pure, holy' (see §$5.2-5.3).
+Arm. arcui (gen. arcu-oy) is the principal word for 'eagle', and its derivation from *horgipio-
+in native terms is secure both formally and semantically. The contextual relation with
+**kiH(i)no-/*łkiHeno- 'bird of prey' (from which Arm. c'in, o-stem 'kite' certainly derives as a
+native word) that belongs to the same isogloss area makes the native origin of arcui impecca-
+ble. I therefore see no reason for denying a direct derivation of arcui from late Indo-European
+*horgipio-and treating it as an Iranian or Urartian loanword. Urartian arsibi- that is found in a
+horse-name and has no Hurrian match should be regarded as an Armenian loanword.
+Armenian arcui largely functions in poetic association with a swift horse and in figures
+such as 'eagle-winged' and 'sharp-flying as an eagle'. In the epic fragment on the abduction of
+the Alan princess Sat'inik by King Artašēs (Movsēs Xorenac'i 2.50), the horse of Artašēs is
+compared with arcui srat'ew 'sharp-winged eagle'. In Aždahak's dream (Movsēs Xorenac'i
+1.26), the dragon-riding hero was dashing with eagle's wings: arcuoy imn ardarew slac'eal
+t'ewook". In a kafa-poem to the Alexander Romance we find srant'ac' arciw 'sharp-riding eagle'.
+These figures probably go back to the Armeno-Graeco-Indo-Aryan poetic language, cf.
+Skt. aśu-pátvă 'swift-flying' as epithet of śyená- 'eagle' (cognate with Arm. c'in 'kite'), Gr. ckv-
+nÉns 'swift-flying' (used of horses and hawks), ckú-tepos "swift-winged'; cf. also Av.
+arazifiiõ, parana-'eagle-feathered (arrow)', Lat. acci-piter 'hawk', etc.44
+4.2.3. *kelomiehz: Arm. pl. sami-k', gen. samea-c' 'the pair of yoke sticks; rudder'; Skt.
+śámā- 'pin of a yoke, peg, wedge', yuga-samyá- n. 'yoke and yoke-pin'; Av. simă- f. 'yoke-pin'
+(Yašt 10.125, perhaps for *samă-), dual yuii(uu)õ.sami- '(having) yoke and yoke-pin' (Videv-
+42 See Pedersen 1924: 224 = 1982: 307; Schmitt 1970: 66-67ı7; de Lamberterie 1978: 251-262; Euler 1979: 88-89;
+Meier-Brügger 1995; Watkins 1995: 170-172; Balles 1997: 148-150; Beekes 2010, 1: 33, 126; Martirosyan 2010: 139-141.
+43 Clackson 1994: 45-46, 143-144; Martirosyan 2010: 627.
+4 Watkins 1995: 170-172, 252-253. For references and a thorough etymological discussion of Arm. arcui, see
+Martirosyan 2010: 139-141.
+96
+---PAGE---
+The place of Armenian in the Indo-European language family
+dad 14.10) for *yuuõ.sami- from Indo-Iran. *iuga-ćam-i,45 Western Iranian: Takistani sāme, Aš-
+tiyani sama 'yoke-peg'; Šughni, Bajui sim-Sörg (with Sörg "wood, stick' < Iran. *dāruka-), Khufi
+sim 'peg for fastening yoke to bullock's neck'.4 Outside of Indo-Iranian, note Gr. káuaš,
+-akoç f. m. 'pole, shaft; pole to support the vine; shaft of a spear; tent pole', MHG hamel
+'shaft, pole', etc.
+4.2.4. * dehı- "to bind': Arm. *ti- 'tie, bond' in *sami-a-ti > sameti-k' and sametay(-k'/n) 'the
+tie of sami, yoke band', Gr. Sew 'to bind', Skt. dă-Idyáti 'to bind', Av. dā- 'to bind' .47 This etymon
+is restricted to Armenian, Greek, and Indo-Iranian, possibly also Hittite, tiela-zi 'to bind?' (cf.
+Skt. dyáti), tiamar / tiaman- n. 'cord, string'48 and Alb. dúaj 'sheaf".49
+To the best of my knowledge, the Armenian by-form *tay- 'bond' (sametay-k"; dial.
+*sametay-n, *samotay; other dial. compounds: *beran-tay, *bn-a-tay, *vz-tay, etc.) has not yet re-
+ceived an explanation. I propose to derive it from *dhi-ti-: Gr. Sois 'binding, joint', and Skt.
+-diti- 'Gebundenheit, Fesselung' (in á-ditih 'boundlessnes').
+Discussion: *kelomieh2 and *deh1- (4.2.3+4). Armenian sami-k', gen. samea-c' 'the pair of
+yoke sticks; rudder' (Severian of Gabala, John Chrysostom, Grigor Narekac'i, etc.; preserved in
+a number of dialects) is mostly attested in a compound with *ti/tay 'tie, band' which is repre-
+sented in several forms: sameti-k', ins.pl. sameteawk' (Sirach 28.23-24, 30.27);50 sametě-k', acc.
+sametē-s, ins. sametēiw-k' (Jeremiah 5.5, Severian of Gabala, John Chrysostom, etc.);51 samet,
+i-stem (ins. pl. samet-i-w-k' [var. lect. sameteawk", sameteiwk", etc.] in Job 39.10, see Cox 2006:
+251); sametay-k' (Commentary on Jeremiah by Mxit'ar Goš, 12th cent.); samotik' (Grigor
+Narekac'i, Oskip'orik); sametěn-k' (Grigor Tat'ewac'i), all meaning 'the tie of sami, yoke band'.
+The compound corresponds to Gr. Seouóç 'band, fetter' or luás 'leathern strap or thong' in the
+Bible translation.
+The component *tay in sametay, albeit attested in a Middle Armenian source only, seems
+to be reliable and old since it is confirmed by data from both western and eastern dialects. In a
+folk incantation against the Evil Eye from the Javak' region one finds samota < *sam(w)oy-tay
+(Lalayeanc' 1892: 13a). Identical to this are samoda and somat'a found in ritual songs of Palm
+Sunday in Basen and Javaxk' respectively (Grigoryan 1970: 323). In Xotorjur, a dialect that is
+both geographically and linguistically close to the Karin/Erzrum group, to which Basen and
+Javak' belong too, one finds samotek' (YušamXotor] 1964: 506b), obviously from *samotay-k'. In
+these forms the first component comes from sam(w)oy, the genitive singular of sami. It is also
+found in samotik" (Grigor Narekac"i and Middle Armenian). As for the eastern dialects, we find
+Larabał, Hadrut', etc. sambétan and Łazax sametan,52 which presuppose *sametay-n. The wide-
+spread form sameten may also be derived from *sametayn, with a common development ay > E.
+45 For the Indo-Iranian forms, see Mayrhofer EWAia 2, 1996: 412-413, 613; Skjærvø 1997: 119-121; de Vaan
+2003: 470.
+4 Morgensterne 1962: 207; 1974: 31b, 73b.
+47 Bugge 1893: 25; Hübschmann 1897: 488; HAB 4: 403-404; Mayrhofer EWAia 1, 63, 1992: 716-717; for the
+Indo-Iranian forms, see also Mayrhofer KEWA 1, 1956: 29, 547; 2, 1963: 69; EtimSlovIranJaz 2, 2003: 444-445;
+Cheung 2007: 47).
+* See Kimball 1998: 338; Melchert apud Kloekhorst 2008: 880-881; Beekes 2010, 1: 321-322.
+19 Frisk GEW 1, 1960: 374-375; Mayrhofer KEWA 2, 1963: 69; Demiraj 1997: 128, 149-150.
+50 In the Sebastaci Bible, we find st'ay 'chain' instead of sametik.
+51 The form sametē (ins. sametēw-k') vS. sameti is reminiscent of the puzzling auslaut of astē / astē (ins.pl.
+aštēiwk") 'spear' from Iran. *aršti- 'spear', cf. OPers. and Av. aršti-, etc. (HAB 1: 221a; Olsen 1999: 865). If the -ē
+proves to be original, one might think of a possibility that IE *dhi-ti- yielded *tey-> *té, with a development *-h->
+Arm. -e- between consonants. More probably, however, -ē was taken from obl. aštē- and sameté-.
+52 Davt'yan 1966: 467; HayLezBrbBai 5, 2008: 259b.
+97
+---PAGE---
+Hrach Martirosyan
+In dialects we also find compounds with beran 'mouth' (*beran-tay), bun "trunk, shaft'
+(*bn-a-tay), or 'buttocks' (*or-ti-k' and *or-tay-n), viz 'neck' (*uz-tay), etc.
+Since Bugge," Armenian sami-k' has been interpreted as an inherited word. Some scholars
+are inclined toward an Iranian origin of the Armenian word. However, there is no compelling
+reason for this. There are no Iranian forms that would be formally and semantically compati-
+ble with the Armenian word as a source of borrowing." Note that the second component of
+the compound sameti is not attested independently, and this is another (albeit not decisive) in-
+dication that sami is archaic.
+It is especially important that both sami and *tiltay belong to the same dialect area, namely
+Armeno-(Graeco-)Indo-Iranian. This situation is reminiscent of another case, PArm. *andi-
+'doorframe, threshold', that has been preserved only in the compound dr-and-i (ea-stem) and
+can be derived from *hz(e)nHt-iehz, which is also to be regarded in terms of an interchange
+between feminine suffixes, cf. YAv. aiDia- f.pl. 'door-post' vs. Av. adă- 'house', Skt. ată- f.pl.
+'door-frame, door-posts' and Lat. antae f.pl. 'square pilasters, wall posts of a temple'.
+Taking into account all that has been said above, I am inclined to treat Arm. sami-k* /
+samea- 'the pair of yoke sticks' as a native match of Skt. śámya- 'pin of a yoke'. Theoretically,
+the Armenian form may be derived from *samíya- < *komiehz.
+5. Lexical isoglosses between Armenian and Indo-Iranian
+5.1. Armenian and Indo-Iranian.
+5.1.1. *hzénHt-i(e)h2-: Arm. (dr-)and, i-stem, (dr-)and-i-, ea-stem 'door-frame, threshold,
+vestibule' (perhaps also 'house, estate', cf. dial. *andiwor 'family'), (h)and, i-stem and o-stem
+'cornfield, arable field, pastureland'; YAv. aidiia- f. pl. 'door-post', avahuua 'house' (loc.pl. of
+adà- 'house', with extension of 'doorposts' to 'house', cf. Arm. *and-i- 'house', 'cornfield');
+further: Skt. átă- f. pl. 'door-frame, door-posts', Lat. antae f. pl. 'square pilasters, wall posts of a
+temple', Olc. and f'front room, corridor. 56
+5.1.2. *n-b'ud"no-'bottomless': Arm. andund-k', o-stem, Skt. a-budhná-'bottomless', MPers.
+a-bun 'baseless, bottomless' (compare Skt. budhná- bottom, depth, the root of a tree', Gr.
+Tuduńy, -Évos 'bottom, depth, base', Lat. fundus 'bottom', OHG bodam, etc.).
+The close relationship between the Armenian and Aryan words is also seen in the mytho-
+logical context: Arm. Andndayin awj 'the Abyssal Serpent' (in an incantation against the
+snake and scorpion); a black serpent (sev j) at Andndayin car 'the Abyssal Tree' (in an incan-
+tation from the Akn area); Andndayin t'agavor "Abyssal King" in a New-Year's ritual formula
+related to a spring in Kamarkap, a village in the same area of Akn. Compare the Rigvedic
+primordial Serpent of the Depth, Áhi- Budhnyà-, whose origin and abode is the dark bottom of
+the waters, as well as the Cosmic tree in the bottomless (a-budhná-) abyss.58
+53 Bugge 1893: 24-25; Hübschmann 1897: 488; HAB 4: 167; Jahukyan 2010: 665b.
+54 Benveniste 1964: 2; Olsen 1999: 906; Mayrhofer KEWA 3: 302 (not mentioned in EWAia 2, 1996: 613); hesi-
+tantly: Pokorny 1959: 556. The etymon is absent in Gamkrelidze/Ivanov 1984 and Mallory/Adams 1997. Beekes
+(2010, 1: 629) is sceptical about the connection.
+55 Jahukyan 1987: 174-175, 551; Hovhannisyan 1990: 213-215; cf. also Schmitt 1983: 108; 1987: 446b. Jahukyan
+(2010: 665b) is quite positive about the native origin of the word.
+56 Martirosyan 2010: 72-77.
+57 Canikean 1895: 48-49, 167; K'eč'ean/ Parsamean 1952: 78; Lanalanyan 1969: 110N:304; S. Harut'yunyan 2006:
+91a, 152a.
+58 Martirosyan prepar 2.
+98
+---PAGE---
+The place of Armenian in the Indo-European language family
+5.1.3. *beh2g-: Arm. bak, a-stem 'courtyard; sheep pen; sun or moon halo' (this tentative
+etymology implies that the original meaning of the Armenian word was 'landed allotment, en-
+circled estate'); Indo-Iranian *b"àg-á-: Skt. bhagá- m. 'part, portion, share, lot, destiny' (RV+),
+OAv. baga- 'part', Aram.-Iranian *baga- landed property, estate, fief, Sogd. B'y 'garden',
+MPers. bāw from bāy 'garden, orchard', NPers. bāy 'garden, orchard', Tadj. boy, Baluchi bāg
+'garden', etc.; cf. Skt. bhága- m. 'prosperity, good fortune, property, personified distribution'
+(RV+), bhaj (pres. bhájati, aor. ábhakși, perf. babhája, etc.) 'to share, partake, divide, distribute,
+apportion; to receive, enjoy' (RV+), bhaktí- f. 'distribution, apportioning' (RV+), OAv. baxštă
+'genießt, hat Anteil', YAv. baya- m. 'god, distribution', basta-'allotted; allotment', OPers. baga-
+m. 'god', baji-m. 'tribute, tax', MPers. bay 'tribute, tax', bay [bg] 'god, lord', baxš 'allotment,
+grant', baxt 'luck, fate, fortune', Parth. baxš- 'to divide, distribute, bestow', baxtag 'divided'.
+Further: Gr. ayeiv 'to eat, consume, swallow' (‹*to enjoy, share'),59
+The etymon may broadly be ascribed to the Armeno-Graeco-Indo-Iranian dialectal area.
+Arm. bak 'courtyard, pen, circle, halo' matches the Indo-Iranian noun *b'agá- from *b'ehgo-
+both formally and semantically. The semantic specification 'portion, share, allotment' >
+'landed allotment' is also seen in Iranian languages (Aram.-Iranian *baga- landed property,
+estate, fief, Sogd. B'y 'garden', MPers. bāy 'garden', etc.) and may be due to independent de-
+velopments. Compare the case of haraw 'south'.
+However, the Armenian word has an a-stem instead of the expected o-stem. If the a-stem
+is old (note that we have no evidence for any declension class from the so-called Golden pe-
+riod), we can posit a feminine or collective *b'eh28-(e)h2. Alternatively, we might assume an old
+Aryan borrowing: *b'āgá- 'portion, share, allotment' > PArm. *b'ag-a- > *bak-a- 'landed allot-
+ment, encircled estate', with the consonant shift g > k (cf. the well-known case of partēz 'gar-
+den', which is usually treated as a very old Iranian loan reflecting the devoicing shift d> t).
+The basic meaning of the Armenian word thus is 'landed allotment, encircled estate',
+which easily developed to 'courtyard', 'sheep pen', 'circle', etc. For the semantic fluctuation
+between 'courtyard, pen' and 'garden, estate', note, e.g., Goth. garda 'Viehhürde', gards 'house,
+family; court', OHG garto 'garden', OEng). geard 'enclosure', Engl. yard 'yard', Lat. hortus 'gar-
+den; pleasure-grounds', etc. For the semantic shift 'courtyard, pen' > 'halo', cf. Turk. ayal and
+kutan, both displaying the meanings 'overnight sheep pen' and 'moon halo'. An older example
+is Hitt. Ehila- c. 'courtyard; halo (of the moon or the sun)'. We can see that this pattern is widely
+represented in Asia Minor and adjacent areas. 6° (HM)
+5.1.4. *heğ'-ihz-: Arm. ezn, gen.sg. ezin, nom.pl. ezin-k', ezan-c' 'bullock, ox'; Skt. ahí- f.
+(urki-inflection) 'cow, female of an animal' (RV), Av. azi- (devi-inflection) 'milking (of cows and
+mares)'; the appurtenance of OIr. ag n. 'cow, cattle' (< *ag"es-) is uncertain. Arm. ezn (gen. ezin)
+may be a frozen accusative in *-ihz-m. The gender change is somehow reminiscent of the other
+important designation of bovids, Arm. kov 'cow' from the PIE generic name for 'bovid'.
+5.1.5. *pro-hzenh‹-o- 'breath, air': Arm. eran 'gentle breeze; winnowing wind; a wind-spirit'
+(*pro-hán-o- > *e-ra(h)án-o- with a regular prothesis before #r-); Skt. prăná- m. 'breath, breathing
+out, air'; MidIran. *fräna- 'air' (cf. Sogd. Br'n, Br"n, etc.), *pati-frana- 'ouverture d'aération' >
+Arm. patuhan 'window'. The Indo-Iranian form is composed of PIE *pro- (cf. Skt. prá 'before,
+59 The Tocharian (A pāk, B pāke 'part, portion, share') and the Slavic (OCS bogato 'rich', u-bogo, ne-bogo poor,
+Russ. bogatyj rich, OCS bogo, Russ. bog 'god') cognates reflect loanwords from Iranian (see Adams 1999: 363-364
+and Derksen 2008: 50). [
+60 If this etymology of Arm. bak is accepted, we have to treat Georg. bak'i 'hedged pen for cattle; yard; moon
+halo' and the related forms as armenisms. Georgian-Zan *baga-'sheep-pen, goat-pen, crib', if related, can have
+been borrowed from Proto-Armenian *baga- prior to the devoicing consonant shift.
+99
+---PAGE---
+Hrach Martirosyan
+forward, forth, in front', Arm. era- "first', etc.) and *henhi- "to breathe': Skt. an' "to breathe',
+3sg.pres. ániti, cf. *henhi-mo: Gr. äveuos m. 'wind', Lat. animus m. 'mind, soul; the element of
+air (as the principle of life); spirit, anima f. 'breath; soul, life; disembodied spirit, soul, ghost;
+soul, spirit; air as the substance of wind, an air current, wind, breeze, etc. (HM)
+5.1.6. *loukeno-: Arm. lusin, o-stem 'moon', Skt. rocaná- n. 'light, luminous sphere, firma-
+ment, YAv. raocana- adj. 'shining, light' (see §5.3.2 for the discussion).
+5.1.7. *prHuo-: Arm. haraw, o-stem 'south; southern wind', Skt. púrva- being before, going
+in front, first, former; eastern', OAv. pouruuiia-'first, intial, former', YAv. pauruua-, paouruua-,
+pouruua-'being in front, first, former, southern'; OCS provo 'first', Toch. B parwe 'earlier; first',
+Alb. párë 'first', etc.; with a different suffix: Lith. pirmas "first', Lat. primus "first 6 This etymol-
+ogy has been proposed by Jahukyan 2 and, with few exceptions, 63 has largely remained outside
+the scope of Indo-European etymological studies. Armenian and Indo-Iranian are unified by
+*-o- (this is also found in Slavic and Tocharian, for example) and the meaning 'going in front'
+with a further shift to a compass direction. The direction ('south') is identical in Armenian and
+Iranian, but it is difficult to ascertain whether this is due to chance or not.
+5.1.8. *hsmeig"-o-: Arm. mēg, o-stem (also i- or a-stem) 'mist, fog, darkness', Skt. meghá- m.
+'cloud, gloomy weather', Av. maya- m. 'cloud', Parth. meg 'cloud, mist". The other cognates
+continue *hsmig"-lehz: Gr. duix An 'mist, fog', Lith. miglà, OCS mogla 'fog'. Arm. mēg may also be
+an Iranian loanword. However, this is not compelling. Note the o-stem of the word, as well as
+the dialectal *mg-l-im 'to cloud' comparable to Dutch dial. miggelen 'staubregnen', etc.64
+5.1.9. *pelork-u- 'rib, side': Arm. yorsays adv. 'supinely, lying on the back' (John Chrysos-
+tom, Philo, etc.), yorsayseal 'id' (Proverbs 6.9,65 yorsayseal ankeal in Canon Law, with ankanim 'to
+fall down'), yorsaysem 'to cause to lie down; to let fall, overthrow' (Paterica, Grigor Narekaci,
+etc.); without y-: orsays 'lying on the back' (Paterica), orsayseal 'supine' (Movses Xorenac'i
+1.12);6 Skt. párśu- f. 'rib', părśvá- n. 'the region of the ribs, side, flank', YAv. parasu-'rib', Khot.
+palsuă-'rib; spoke', MPers. pahlüg, NPers. pahlù 'side, rib', Oss. fars 'side', etc. The connection of
+this Indo-Iranian word with OCS prosi 'chest, bosom', Russ. pérsi 'breast, bosom', Lith. piršys
+'chest of a horse', etc. is considered uncertain.67 This attractive etymology has been proposed
+by Jahukyan (1991: 42; 2010: 556a)68 but has remained outside the scope of standard
+Indo-European etymological studies.
+The Armenian word is composed of the prefix y- 'at, in, on' and an otherwise unattested
+word for 'rib, side', *ors- ‹ *pork-u-. The semantic pattern is widespread in Armenian: t'ekn
+'shoulder, back' > t'ikn tal / t'iknel 'to recline', koł 'rib, side' and kołmn 'side' > an-kołnim and
+an-kołmanim 'to recline, lie down', kit'-un-k' 'back' > kit'n-il 'to lean, recline', parak 'rib, side' >
+parakim 'to lie down' 69
+61 For the forms, see Mayrhofer EWAia 2, 1996: 157; Demiraj 1997: 311; Adams 1999: 360; Derksen 2008: 430;
+de Vaan 2008: 488-489; Martirosyan 2010: 393-394.
+62 Jahukyan 1973: 20-21; 1986-87: 30; 1987: 143, 186; 2010: 450-451.
+63 Clackson 1994: 39; Olsen 1999: 26.
+6 Martirosyan 2010: 457-458, 466, 715 (with a hypothetical explanation for the loss of an initial *hs- before
+*-m- in Armenian); Beekes 2010, 2: 1077.
+65 In Proverbs 6.9 (Zöhrapean 1805, 3: 149): Minč'ew yerb yorsayseal kas v vat, kam erb i k'noy zart'ic'es "How
+long wilt thou lie (ỏkvnpÈ katákeloal), o sluggard, and when wilt thou awake out of sleep" (Brenton 1851: 793).
+6 In Movses Xorenac'i 1.12 (1913=1991: 38117; transl. Thomson 2006: 86): Ew zdaštn arewelic' gogc'es imn ibrew
+orsayseal "The eastern plain, you might say, was supine".
+67 Mayrhofer KEWA 2, 1963: 229, 261; EWAia 2, 1996: 100-101; Derksen 2008: 429.
+68 No acceptable etymology is recorded in HAB 3: 408-409.
+69 See HAB s.vv. and Martirosyan 2010: 368-369, 376.
+100
+---PAGE---
+The place of Armenian in the Indo-European language family
+Jahukyan does not specify the nature of -ays. I propose to explain -ay as a (collective) suffix
+seen in a few formations such as ap'-ap'-ay-k' "rocky and steep place', bał-ay-k" and batbat-ay-k'
+'pretext, ostensible reason or accusation'.7 It probably has an adverbial origin, cf. Arm. i ver-a-y
+'on, over', Gr. ünep 'over, plenty; beyond; above', únépa, pl. -al f. 'upper ropes on the sails',
+Lat. s-uper 'above, on, over', supră 'above, over, on the upper side of' (see Martirosyan 2010:
+592-593). We can posit an underlying *orsay(k) 'the region of the ribs / Rippengegend'.
+The "pure" form *(y)orsay has been preserved in the dialect of Nor-Jula: horsa angnel 'to lie
+down or recline like a superior' from *yorsay ankan- (cf. yorsayseal ankeal in Canon Law), and
+*yors-ank- > horsang tal 'id.?; the development y- > h- is exceptional in this dialect.71
+The o-vocalism is found in a number of words in the same semantic field, such as kot 'rib,
+side', on 'spine, back', or 'buttocks', p'or 'belly' and k'ou 'side'. An astonishing parallel for
+y-orsays-eal 'supinely, lying on the back' (from *orsay-"rib, side') is y-otn-eal 'id' (from otn
+'spine, back').
+The final -s points to a frozen accusative-locative plural *ors-ay-s. There are a number of
+similar frozen formations belonging to the same semantic sphere, such as *beran-s-i-vayr 'lying
+face downward' > Nor-Juta b'arazver (with beran 'mouth'), *p'or-s-i-vayr "(lying) belly down-
+ward' > Łarabał p'arsavaer (with p'or "belly').?
+5.1.10. *ke/omiehz: Arm. pl. sami-k', gen. samea-c" 'the pair of yoke sticks; rudder'; Skt.
+śámyà- 'pin of a yoke, peg, wedge', Av. simā-, - sami- f. 'yoke-pin'; further: Gr. áuaš, -aoç f. m.
+'pole, shaft", MHG hamel 'shaft, pole', etc. (for a thorough discussion, see §4.2.3-4).
+5.1.11. *Kub"-ro- or *(s)kub"-ró-: Arm. surb, o-stem 'pure, clean; holy', Skt. subhrá- 'shining,
+glimmering, beautiful', cf. śobh-lsubha-'to be beautiful; to shine', súbh- f. 'beauty, splendour,
+ornament', etc. Note also Khotanese suraa- 'clean, pure' (for a discussion, see §5.3.1).
+5.2. Armenian and Indo-Aryan.
+5.2.1. *sm(H)-ehz-'year': Arm. am, a-stem 'year, age', Skt. sámă-'year, season'; further: YAv.
+ham-, OIr. sam 'summer'; note also Arm. amarn and OHG sumar 'summer'. The original mean-
+ing was 'summer 73 Arm. am and Skt. sáma- agree both in *-a- and semantics.
+5.2.2. *hsneb"- 'nave, hub of wheel': Arm. aniw, o-stem (also a-stem) 'wheel; axle of a char-
+iot; wheel as a torture instrument'; Skt. nabhi- f. 'nave, hub of wheel; centre; navel (of the body
+or the world); origin, relationship, family', nábhya- n. 'nave, hub of wheel'; cf. also YAv. nafa-
+m. 'navel, origin, blood relationship' (for the semantic relationship cf. Arm. port 'navel", 'tribe,
+generation'), OPr. nabis 'hub, navel', OHG naba 'hub', nabalo 'navel', Lat. umbilicus m. 'navel;
+centre, middle' ‹ *h3nb"-, Gr. dupalós m. 'navel, umbilical cord'. This isogloss can be consid-
+ered valid only if Skt. nábhi- indeed reflects *hsneb'-i- (vrddhi-derivation) rather than *h3n0b"-i-74
+5.2.3 *s(e)Hd'-jo-'successful' and *s(e)Hd'-jelo- "to succeed, be successful': Arm. a), o-stem
+'right', aj-ot and y-aj-ot 'skilful, successful', (y-)aj-oł-em 'to have success'; Skt. sădhyá- m.
+"a class of divinities', sádhati 'to succeed, reach the goal", siddhá-, sidhrá- successful', sădhú-
+'straight, effective', sídhyati 'to succeed, be successful' 75
+° For more examples and a discussion, see Jahukyan 2010: 796.
+7 HAB 3: 408-409; Ačarean 1940: 21, 76, 127, 378a.
+72 Alternatively, one might treat the final -s as a relic of *si- from PIE *kei- "to lie' (cf. Gr. Kelual 'to lie', etc.),
+which is visible in Armenian hiwsis(i) 'north' if indeed from *seukoi-ki(y)o- (see Martirosyan 2010: 412 with ref.).
+This is less probable, however.
+73 The original paradigm has been interpreted as follows: *s(e)m-ehz-, genitive *smh2-ós.
+74 Ritter 1983; Martirosyan 2010: 89-90.
+75 Martirosyan 2010: 99-100.
+101
+---PAGE---
+Hrach Martirosyan
+5.2.4. *hareu-i-: Arm. arew, u-stem, old gen. areg 'sun; sunlight; life': Areg k'atak' 'the city of
+the Sun' (Gr. 'HAiov nóliç, e.g. Genesis 41.45, 50), areg, gen. aregi 'the 8th month', areg 'eastern',
+areg-akn 'sun', etc.); Skt. ravi- m. 'sun, sun-god' (Upanișad+), ravi-putra- m. 'son of the Sun'
+(Kathaka-Brähmana); probably derived from a PIE verb that is reflected in Hitt. haru(ua)nae-zi
+'to become bright, get light, dawn'. According to Demiraj (1994: 71), Alb. (vë) rē 'klar, deutlich
+machen, sehen' also belongs here.
+In view of the -i of Sanskrit ravi-, Arm. arew, u-stem 'sun' and gen. areg < *areg-i- may be
+interpreted as reflecting an old HD i-stem: nom. *hréu-õi > PArm. *arew-u(y), gen. *hzr (e)w-i-ós
+(rather than *hzreu-os, as is frequently assumed) > PArm. *areg-i-.
+5.2.5. *Hkek-ihz-: Arm. ak'is, i-stem 'weasel'; Skt. kaśiká- f. 'Ichneumonweibchen' or
+'weasel' (RV 1.126.6), and káśa- 'weasel'. Skt. kaśiká- f. is considered a derivation from *kaśi- f.
+The connection with MPers., NPers. xaz 'marten' and Lith. šēškas 'Iltis' is uncertain. The ab-
+sence of palatalization of *-k- before a front vowel in Armenian is perhaps due to dissimila-
+tive influence of the palatal *-k-: *k-k > k'-s. Possible reconstruction: nom. *Hkek-s, oblique
+*Hkek-. Compare the analyses of atuēs 'fox' (u-stem) and iž 'viper' (i-stem). We may be deal-
+ing with a common borrowing from an unknown source. (HM)
+5.2.6. *uehzg-nu-: Arm. gang 'sound', Skt. vagnú- m. 'sound, noise'; cf. Lat. vāgire 'to cry,
+wail', etc. For the metathesis (*wagn- > *wāng-> *gang-), cf. *b'ud"no-: Lat. fundus 'bottom' and
+Arm. andund-k'", o-stem 'abyss' vs. Skt. a-budhná-'bottomless'. (HM)
+5.2.7. *herk"' o-: Arm. erg, o-stem 'song; poem; 'playing (music)', ergem 'to sing; to play a
+musical instrument; to praise'; Skt. thematic noun arká- m. 'ray, light, shine; song, magic
+song', root noun rc- f. 'song of praise, poem, stanza, verse, arcati to sing; to praise; to shine";
+Hitt. ārku-zi, arku- "to chant, intone' (from *herk"-/*hırk"-), Toch. A yärk, B yarke 'worship, rever-
+ence', probably also OIr. erc 'sky'. Arm. erg, o-stem 'song' and Skt. arká- m. 'shine, song, magic
+song' represent a thematic noun and should be regarded as a shared innovation.
+5.2.8. *sing"o-: Arm. inj, u-stem 'panther, leopard' (renders Gr. nápalıs 'panther, leop-
+ard' in the Bible, e.g. nman anju : Öuolov napádel in Revelations 13.2; i leranc' anjuc' : ¿no
+ỏpéwv парбаЛ in Song of Songs 4.8); Skt. simhá- 'lion'. The connection with Toch. A sisäk,
+B șecake 'lion' is uncertain.7
+The assumption that the Armenian word has been borrowed from an unattested Iranian
+form is not compulsory. Nor is it plausible, since: (1) none of the Iranian languages have pre-
+served a trace of this etymon; (2) the loss of the PIE initial *s- is regular in native Armenian
+words, whereas in Iranian loanwords Armenian preserves the h-; and (3) the semantic differ-
+ence indicates that it is an old word. Note especially that Arm. inj and Skt. simhá- are found in
+a comparable mythical context. In Armenian incantations the Evil Eye often appears as an inj
+'panther', an ariwc 'lion', and a višap 'dragon' coming up out of the sea (compare inj etc. in the
+famous dream of Daniel 7," and in Azdahak's dream in Movsẽs Xorenac'i 1.26); he roars like a
+cloud (amp/b) or a lion (ariwc/aiuc) or a bull (c'ul).78 The animals inj 'panther' and ariwc 'lion'
+are also listed with gel 'wolf and j 'snake' in a Daralagyaz incantation (K'ajberuni 1902:
+76 Hübschmann 1877: 25; 1897: 450; Meillet 1936: 142; HAB 2: 243; Specht 1939: 14; Xačaturova 1973: 196; 1979:
+363; Gamkrelidze/Ivanov 1984, 2: 507 = 1995: 427; Clackson 1994: 13; Olsen 1999: 110. Müller (1870: 452-453) con-
+siders a loan from lost Iranian *hinza- beside Skt. simhá- lion'. Bailey (1979: 484a, cf. 421; 1987: 461a; see also May-
+rhofer EWAia 2, 1996: 727; EtimSlovIranJaz 3, 2007: 332) connects the Sanskrit word with Iran. *haiz-, *hiz- 'to
+mount' assuming a basic meaning 'pouncer' and considers Arm. inj as a loan from an Iranian unattested *hinzu-.
+Thieme's (1954: 54-56) sceptical approach is rightly criticized by Makaev 1967: 453-454.
+77 Cowe 1992: 195-199.
+78 Abeghian 1899: 124; Alisan 1910: 412; Odabasyan 1986: 141.
+102
+---PAGE---
+The place of Armenian in the Indo-European language family
+112aNr1), which starts with the name of Surb Daniel 'St. Daniel' (cf. the aforementioned vision
+of Daniel).79
+For the association of Arm. inj (*sing"o-: Skt. simhá-) with thunderous cloud note RV 5.83.3
+where the thunder of Parjanya is compared to the thunder roar of a simhá-lion' so
+In view of the absence of secure IE cognate forms, one may assume that the Aryan and
+Armenian (possibly also Tocharian) forms reflect a common borrowing from a North Pontic
+or Near-Eastern source. Possibly related forms in non-lE languages are: the old Central Asian
+word for lion', *senghalsingha, Tibetan senge, singe, Zhan Zhun sango, etc.; North Caucasian:
+PEC *çängV 'lynx, panther', Chechen çog 'snow leopard', Avar çirqå, Akhvakh ciggo 'lynx', Lak
+çinig 'tiger, leopard', Akusha çirg 'panther', etc.; Akkad. sin/mk/gurru 'a hunted mountain fe-
+line, gepard'; Chadic: Kwang sèmk-, sémgí 'lion', Chibak zing'é 'lion', etc.32
+5.2.9. *g"ou-d'eh-ehz- 'a lizard', lit. 'cow milker/sucker': Arm. kov-a-di-ac' (also kovideay,
+kov-di-c) 'a kind of lizard' (renders Gr. Kadaßwins 'spotted lizard, gecko' in Leviticus 11.30)
+reshaped from an older *koo-di-a-; Skt. godha- f. 'Iguana, a species of big lizard'. In later lit-
+erature (Nonnus, Galen) and dialects the Armenian word has been replaced by kov(a)cuc
+'a kind of lizard', composed of kov 'cow' and cuc 'sucking'. There are many semantic parallels
+in other languages: Xurasăni Pers. boččoš (preverb bi + čoš- 'Sauger') 'eine Art Eidechse, die
+nach dem Volksglauben nachts in die Hürden schleicht und den Ziegen am Euter saugt, Ukr.
+moloko-sis 'lizard', etc. 83
+5.2.10. *hseui-pehz- "shepherd': Arm. hoviw, a-stem 'shepherd', Skt. avi-pa-lá-'shepherd', cf.
+also go-pá- m. 'herdsman', lit. 'cowherd'.
+5.2.11. *g'ei-o-: Arm. ji, o-stem 'horse', Skt. háya- m. 'horse'. Skt. háya- is usually derived
+from hay- vs. hinóti 'to impel, set in motion; to hurl; to help' (presumably derived from PIE
+*g"ei- "to drive; to throw'). Arm. ji 'horse' and Skt. háya- m. 'horse' represent a poetic word,
+belonging to the "language of gods", as opposed to the PIE word for 'horse', viz. *hekuo->
+Arm. es 'donkey' s4
+Kurdish delazi 'horse' is only recorded by Chodzko in 1857 among the Kurds of the Rishvand
+tribe in Iran near Alamut, between Qazvin and Rudbar. It is composed of del 'female' (cf. delagur
+'female wolf) and the otherwise unknown zi, which was earlier considered to be a loan from Arm.
+ji (HAB 3: 152b). Garnik Asatrian (1997)85 rejects this view saying that this Kurdish dialect had no
+contact with Armenian during the whole period of its history. He therefore treats this word as the
+only remnant of Iranian *zaya-, the theoretical cognate to Skt. háya- 'horse'. If this interpretation is
+accepted, we are dealing with an isogloss between Armenian and Indo-Iranian.
+5.2.12. Arm. marmin, o-stem 'body; flesh'; Skt. márman- n. 'vulnerable point of the body',
+MInd. mamma- n. 'weiche Körperstelle'. There is no consensus about the origin of the Indo-
+Aryan word. If the Aryan word is related with Lith. mélmenys 'die um die Nieren liegenden
+79 For a discussion and parallels from other traditions, see Ivanov/Toporov 1974: 169-170; Watkins 1975: 20f;
+Gusejnov apud MiNarMir 2, 1982: 342; Mawet 1983: 182-183; Gamkrelidze/Ivanov 1984, 2: 500-503 = 1995: 420-
+423; Cowe 1992: 399-401; Petrosyan 2002: 16. For biblical parallels and an extensive discussion, see Xalat'janc 1896:
+172-200; see also Thomson 2006: 112230.
+s0 Cf. Gamkrelidze/Ivanov 1984, 2: 510, = 1995, 1: 43027.
+81 Cf. Blazek 2005: 67-68, 91-92.
+82 For the forms and a discussion, see Pinault 2002: 330-331; Witzel 2003: 14-15, 45, 47; Behr 2004-05; Blažek
+2005.
+8 Martirosyan 2010: 372-373; Olsen 2011: 25.|
+84 The vocalism is slightly problematic. Alternative: a substantivized *-to-participle *g'i-to- (de Lamberterie
+apud Olsen 1999: 40; see also Viredaz 2005-07: 7-9).
+85 I am indebted to Garnik Asatrian and Vardan Voskanian for this information and a copy of the paper.
+103
+---PAGE---
+Hrach Martirosyan
+Fleischteile' and others, Arm. marmin cannot be treated as a native word because of the vocal-
+ism and the -r-s Compare Arm. šalit 'raw flesh, body, corpse' vs. Skt. sárira-n. 'the body,
+bodily frame, solid parts of the body.
+5.2.13. *g'"(e)r-nu-"to be warm, burn': Arm. Jernum or jeranim (aor. jer-a- from sigm. aor.
+*groker-s-) to be/become warm, burn'; Skt. ghrnóti 'to glow, light' from *8"hr-n(e)u- (see §3.5 on
+nu-verbs).
+5.2.14. *kHI-ehz: Arm. sal, i-stem (prob. also a-stem, as reflected in a borrowing into Geor-
+gian sala 'a flat roundish stone to play with') 'a large flat block of stone; anvil'; Skt. silá-'stone,
+rock, crag'. The appurtenance of Goth. hallus 'rock' and others is uncertain.
+5.2.15. *kHs-ti-: Arm. sast, i-stem 'rebuke, scolding, censure, castigation, punishment,
+chastisement, threat; indignation, wrath', s sastem 'to rebuke, remark indignantly, reprimand
+angrily, threat', sastik 'intense, hard, violent, rigid'; Skt. sișți- 'punishment, command, in-
+struction'; from the root *k(e)Hs-: Skt. sásti 'to punish, control, command, instruct, Av. sah-
+'to teach', sästi 'lehrt', säxan- 'doctrine', săsnă- 'doctrine, command', săstar- 'commander',
+ManMPers. and Parth. sāstār 'commander, tyrants, probably also Alb. thom 'to say' and Toch.
+A kāș "to scold, reprimand' 89
+Since Hübschmann, ° Armenian sast has been interpreted as an inherited word although
+some scholars are inclined toward an Iranian origin instead.? However, there is no compelling
+reason for the latter, and I do not understand the extreme confidence of, e.g., Xacaturova
+(1979: 372), who claims that Arm. sast is indisputably ("бесспорно") an Iranian loanword.
+There are no Iranian forms that would be formally compatible with the Armenian word as a
+source of borrowing. Besides, the Armenian word is semantically closer to the Indic than the
+Iranian forms. I therefore follow Hübschmann, Ačaiyan and Jahukyan in directly deriving
+Arm. sast, i-stem 'rebuke, punishment, indignation' from *kHs-ti- and thus identifying it with
+śișți-'punishment, command, instruction' and positing an Armeno-(Indo-)Aryan isogloss.
+5.2.16. *ker-elos- n. 'cream of milk': Arm. ser 'cream of milk, skin on milk or sour clotted
+milk' (Zgön-Afrahat, Middle Armenian; widespread in the dialects); Skt. śáras n. 'cream, skin
+on milk'. 2 Mayrhofer (EWAia 2, 1996: 617-618) hesitantly derives the Sanskrit form from the
+root śar- (śrnati) 'to smash, crush, break' from *kerh-, cf. Gr. Kepaïw 'to destroy', etc. (HM)
+5.2.17. *skHel-: Arm. sxale/im 'to err, be mistaken; to stumble; to fail, miss'; Skt. skhálati
+'to stumble, stammer, fail'. Here belong also Arm. šet 'slanting, crooked, oblique', šil 'squint-
+eyed', dial. 'mistake; disorder'; Lat. scelus, gen. sceleris n. 'misdeed, crime, Gr. oKEdlós
+'crook-legged', okodiós 'wicked, crooked' (on the other hand, note Gr. oállouar 'to fall,
+stumble, be mistaken'). The twofold development of *skH- as Arm. š- and sx- is puzzling. Most
+probably, sxalelim is a loan from the Indo-Aryan language of the Near East,® while set/sil has
+been inherited from Indo-European.
+86 For a critical discussion of the etymology of marmin, see de Lamberterie 2013: 44-47.
+87 In the Bible translation, Arm. sast corresponds to, e.g., Gr. Enutiuno, 'castigation, censure, criticism' and
+àyavákinois 'vexation, wrath'.
+88 See Durkin-Meisterernst 2004: 306a.
+39 For the forms and a discussion, see Mayrhofer KEWA 3, 1976: 319-320, 330-331; EWAia 2, 1996: 632-633;
+Schrijver 1991: 101; Demiraj 1997: 399-400.
+9 Hübschmann 1897: 488-489; HAB 4: 178; Jahukyan 1987: 130, 173, 551 (hesitantly); 2010: 669a.
+91 Pokorny 1959: 533 (with a question-mark); Benveniste 1964: 2; Mayrhofer KEWA 3, 1976: 330 (not men-
+tioned in EWAia); Schmitt 1983: 108; 1987: 446b; Olsen 1999: 906.
+92 Martirosyan 2010: 574-575; welcomed in Olsen 2011: 26.
+93 Another possible case of such a borrowing is Arm. burn (i-stem, cf. adv. bin-i-w 'violently' in Eusebius of
+Caesarea) 'strong, violent, 'violently', 'violence, strength; tyrant', if indeed from Skt. bhurni-"zealous, wild'.
+104
+---PAGE---
+The place of Armenian in the Indo-European language family
+5.3. Discussion.
+5.3.1. Native or loan? The examination of Armenian-Indic correspondences is complicated
+in several respects. Firstly, scholars often state that Arm. arew, erg and others were borrowed
+from Aryan in the middle of the second millennium BC. This view is untenable since at that
+period the development PIE *e > Aryan a had already taken place, as is seen in Mitanni panza
+five'. Besides, these poetic words are culturally and/or semantically associated with each other
+and are all Armeno-Indo-Aryan (or Armeno-Graeco-Aryan) correspondences, and some of
+them clearly preclude the loan theory: arcui 'eagle', ji 'horse', c'in 'kite', etc. For the association
+between 'bird, eagle', 'horse' and 'sun' in poetic language, cf. e.g. Skt. patangá- adj. 'flying', m.
+'bird; flying horse; sun'.
+Secondly, there is always a possibility that the Indic might have had an Iranian cognate even
+if it is not attested in the Iranian languages themselves. This point is often illustrated using the
+Armenian word nirh 'dormancy, slumber'. On the basis of its appearance, the word is seen as a
+loan from an Iranian *nioră-. In Iranian such a word is not attested, but we do know that it exists
+in the Indo-Iranian subgroup at large because of Vedic Skt. nidrá- f. 'slumber, sleepiness'.
+Thirdly, in individual instances it is often very difficult to identify a word as an inherited
+word or an Iranian borrowing. Armenian and Iranian are independent branches of Indo-
+European but sometimes parallel phonetic developments complicate a judgement on the status
+of a lexeme. A frequently cited example is Arm. naw 'boat, ship': is it an Iranian loan (cf. Oss.
+naw/nawa 'boat', Khot. no 'boat', Parth. năwāz 'skipper' > Arm. nawaz 'boatman') or an inher-
+ited word next to Skt. náu-'boat', Gr. vaus 'ship', Lat. navis, is "ship', OIr. nau 'ship'?
+It is usually the cumulative evidence that tips the balance. Arm. surb, o-stem pure, clean;
+holy' (Bible+) has been taken as cognate to Skt. śubhrá- 'shining, glimmering, beautiful'. On the
+other hand, the Armenian word may have been borrowed from Middle Iranian *subra-, itself a
+lost cognate of Skt. śubhrá-. A number of circumstances point to the native origin of the Arme-
+nian form, though, individually taken, none of them is decisive: (1) the o-stem of the Arme-
+nian; (2) the metathesis *-by- > Arm. -rb-; (3) the semantic difference; (4) the absence of direct
+evidence for this lexeme in the Iranian language group. The last two arguments have become
+insignificant in view of Khotanese suraa- 'clean, pure', which has been regarded as reflecting
+the theoretical Iranian form *subra-ka-4 On the whole, it seems more likely that we are dealing
+with an Armeno-Indo-Iranian lexeme rather than an Iranian loanword in Armenian.
+See also the discussions on ji 'horse' (§5.2.11) and sami (§84.2.3-4).
+5.3.2. Armeno-Indo-Iranian poetic or mythical lexicon. We have discussed poetic words
+inherited from the Armenian-Greek-Indo-Iranian dialect union (see arcui 'eagle' and c'in
+'kite'). As for the Armeno-Aryan poetic words, we have already discussed ji 'horse' and arew
+"sun'. We have also discussed two Armeno-Aryan words in the mythological context: andund
+'abyss' and inj 'panther'. Here I shall elaborate on 'sun' and 'moon'.
+Arew, gen. Areg- 'Sun God' is attested in Movses Xorenac i 2.8 and in folkloric texts. Most
+explicit is the following folk prayer from Larabat: Astco c'ncutn toac arignak, im eress k'o otand taka,
+du im xoxek's pahes "O du göttlich strahlende Sonne! Dein Fuss ruhe auf meinem Antlitz! Bewahre
+meine Kinder" (transl. Abeghian 1899: 43). Note also that this word appears as an oath formula or
+as an interjection of astonishment. Arm. arewlg- 'sun, Sun God' and Skt. ravi- m. 'sun, Sun God'
+(Upanișad+) derive from a proto-form *horeu-i- and may be regarded as an Armeno-Aryan poeti-
+cally or sacredly marked designation of 'sun' replacing the PIE unmarked profane word for 'sun',
+*sehzul-s This is reminiscent of the case of Arm. ji vs. Skt. háya- which we have already discussed.
+94 Emmerick apud Schmitt 1987: 446b; Emmerick / Skjærvø 1997: 155; see also Lubotsky 2001: 5151-
+95 Martirosyan 2010: 135-138.
+105
+---PAGE---
+Hrach Martirosyan
+It is remarkable that the Armenian word for "moon', lusin, is also in a way related to the
+Armeno-Aryan unity. The word has an o-stem (abl. i lusn-o-y in Eznik Kołbac'i, ins. lusn-o-v in
+Jeremiah 8.2) and is usually derived from *loukeno-: Skt. rocaná- n. 'light, luminous sphere, fir-
+mament', YAv. raocana- adj. 'shining, light'. Next to this, however, there is also reliable evi-
+dence for gen. lusn-i (abundant in the Bible) which may point to both i- and a-stems; this can
+be confirmed by ins. lusn-i-w (Movses Xorenac'i 2.77, etc.) and ins. (z-)lusn-a-w (Anania Sira-
+kac'i, 7th cent., Abrahamyan 1940: 5812t) respectively.
+This leads us to the derivation% of lusin from *louksneh2-: Lat. luna (Praeneste losna) f.
+'moon, month' and OCS luna f. 'moon', cf. Av. raoxšna- adj. 'shining', OPr. lauxnos nom.pl.
+'luminary', as well as Arm. lusn 'white spot'. The internal -i- may be analogical (cf. kalin 'acorn'
+vs. Gr. Bálavos 'acorn'). In view of the o-declension of lusin, however, it is tempting to assume
+a blend with *loukeno- light, luminous (sphere)'.
+My working hypothesis can be formulated as follows: Armenian inherited PIE *louksnehz-
+f. 'moon', cf. Lat. luna (Praeneste losna) and OCS luna f. 'moon'. In a late period around the
+Indo-European dispersal, Proto-Armenian shared the thematic innovation *loukeno-'light, lu-
+minous (sphere)' with Indo-Iranian (cf. Skt. rocaná- and YAv. raocana-). Subsequently, PArm.
+*lúsna- f. 'moon' blended with *lowsino- 'luminous' and resulted in lusin 'moon', displaying o-,
+a-, and i-stem forms.
+5.3.3. Other issues. A lexical correspondence, albeit perfect both semantically and for-
+mally, cannot be considered as significant for the purpose of this paper unless we demonstrate
+that we are dealing with a shared innovation rather than an archaism. In some cases we are
+dealing with very interesting correspondences, the nature of which is quite hard to determine.
+Such ambiguous correspondences, even those which are more likely to be archaisms, should
+not be ignored if they display recurrent patterns. Future studies should gather all such corre-
+spondences and try to estimate their cumulative strength.
+Armenian y-arnem (aor. stem y-ari, imper. ari) 'to rise, arise, get up, stand up, wake, res-
+urrect' derives from PIE *har-i- 'to rise': Hit. arai-i / ari- 'to rise, arise, lift; to raise',
+', CLuw. ari(ia)-
+'to raise' ‹ *har-oi- / *har-i-; Lat. orior, -iri, ortus 'to appear above the horizon, rise; to rise from
+bed, get up; to begin, be born'; Skt. ar-, "to set in motion, move; to arouse, excite', rnváti 'to rise,
+move, Av. ar-, redupl. pres. ira-'to reach', ira-n. 'attack', YAv. aranao- to set in motion'; Gr.
+Öpvou or -úw, med. Öpvuuar 'to rise, rouse, stir (up), urge on, move'.
+3sg.pres.act. íyarti, med. írte < *Hi-H(a)r-. Armenian *y-ar-i- and impv. *ari derive from
+*har-i- (cf. Hit. arai-i / ari-"to rise', perhaps also Lat. orior, -iri 'to rise'). The initial y- in *y-ar- (vs.
+imperative *ar-) is puzzling. It is tempting to explain the problem by assuming a redupl. pres.
+*Hi-H(e)r- > PArm. *Hiyar- > *(i)yar-. This would match Skt. iyarti (next to ar-). One is tempted
+to treat this as an Armenian-Aryan isogloss; note especially *ni-si-sd-e/o-: Arm. *nihist-e-, Skt.
+nişidati and Av. nishidaiti 'to sit' (see §3.6). However, the reduplicated present seems to be an
+archaic feature in Indo-European and is not productive in Armenian. The reduplicated struc-
+ture of PArm. pres. *(h)ipe- (with suppletive aor. arb-) 'to drink' from PIE *pi-ph3-e-> *pibeti (Skt.
+pibati, Lat. bibö, OIr. ibid) ceased to be sensed at a very early stage, and a new present was
+made by a nasal affix: *(h)ipnem (i) > amm.
+Another complicated but intriguing example is Armenian targal 'spoon' (attested in Mov-
+sẽs Xorenac'i 2.47 and ubiquitous in the dialects) that seems to derive from *dru-, a zero-grade
+form of the PIE word for 'wood'. A perfect semantic match is Skt. dárvi f. / darví f. 'spoon',
+though this has a full grade in the root. But now we have a wonderful match that can solve
+even the problem of the suffix: Hitt. Gistaru-ali- n., which refers to an implement used for
+6 Meillet 1936: 21. For a full discussion of lusin and related words, see Martirosyan 2010: 320-322.
+106
+---PAGE---
+The place of Armenian in the Indo-European language family
+grinding or crushing, probably something like 'pestle'. For *-al(i) in designations for imple-
+ments or the like cf., e.g., Hitt. Gishulāli- n. 'distaff. I wonder, therefore, whether Arm. targal is
+an Anatolian loanword.
+There is a better Armenian match for Skt. dárvi f. and darví f. 'spoon', namely torg 'wooden
+framework, loom'. Here again we find an interesting Anatolian cognate: HLuw. tarw-i(ia)-
+prob. 'wooden beam'. Further, note Arm. torn 'pestle' and Skt. dróna- n. 'wooden vessel,
+trough, bucket'.?
+Onomatopoeia and nursery words are usually considered insignificant for the problems
+of reconstruction. However, identical onomatopoeia and nursery words are not necessarily in-
+dependent creations. Here again, cumulative strength can play a certain role in estimating a
+genetic relationship between two languages or dialects. Note correspondences such as Arm.
+ałałak, obl. atatak-a- 'shouting' vs. Skt. alala and Gr. ålalayń 'shouting'; Arm. atta 'mother'
+vs. Skt. attă 'mother, older sister' (other cognates differ in their semantics).
+Table set A (sections 4-5)
+Lexical isoglosses: Armenian, Greek and Indo-Iranian.
+Physical world, time, space.
+Proto-form
+*plh,u-
+*polio-/-iehz
+*sm(H)-ehz-
+*n-b"ud" no-
+A *sru-ti-
+B *sr(o)u-to-
+*hareu-i-
+*pro-henh,-
+*loukeno-
+*pr Huo-
+*hameig"-o-
+*kHI-ehz
+*kub"-ro-
+Gloss
+Pleiades
+wave; grey
+year
+bottomless
+stream, etc.
+stream, etc.
+sun
+air, breeze
+luminous
+east./south.
+cloud, mist
+stone, rock
+shiny, pure
+Human, age, kinship.
+Proto-form
+*honer
+A *gerH-
+B *gerHont-
+*mrto-
+Gloss
+man
+old
+old
+mortal
+Sanskrit
+(palitá-)
+sáma-
+a-budhná-
+sruti-
+srotas-
+prana-
+rocana-
+purva-
+meghá-
+śilá-
+śubhrá-
+Sanskrit
+nar-
+jarás-
+jarant-
+-mita-
+Iranian
+*parutaini-
+*parya-
+(ham-)
+MP a-bun
+OP rautah-
+*frana-
+raocana-
+pauruua-
+maěya-
+Khot. suraa-
+Iranian
+nar-
+zar-
+Oss. zærond
+-masa-
+* For a discussion of all these words, see Martirosyan 2010 s.vv.
+Armenian
+alawunk'
+ali-k*
+am, -a-
+anduna-, -o-
+anu, i-stem
+ani, -о-
+arero
+eran
+lusin, -o-
+haraw, -o-
+meg, -o-
+sal, -i- (-a-)
+surb, -o-
+Greek
+Плагабєс
+pUƠIC
+Armenian
+ayr, gen. arn
+cer
+cer-un (-1)
+mara, -o-
+Greek
+avnip
+Вротос
+107
+---PAGE---
+Hrach Martirosyan
+Body, perceptions, mentality, belief.
+Proto-form
+Gloss
+*uehzg-nu-
+sound
+*pr (elo)Hkt-
+buttocks
+*herk"o
+song
+*m(elo)rmen-
+body
+*skHel-
+to err
+*pelork-u-
+rib, side
+warmth
+B *go"(e)rnu-
+*(p)stelēn-
+to be warm
+wom. breast
+Movements, speech and other activities.
+Proto-form
+*s(e)Hd'-jo-
+*har-nu-
+A *kielou-
+B *kiu-to-
+*kHs-ti-
+*(s)peud-
+Gloss
+succeed
+gain; allot
+to go, move
+moved
+punish, etc.
+zeal, haste
+Fauna.
+Proto-form
+*hlV(и)pēk-
+*harğipió-
+*kiH-(e)no-
+*Hkek-ihz-
+*hegioh i-
+*sing"o-
+*g"ou-d'eh,-
+*g"ei-o-
+Gloss
+fox
+eagle, etc.
+bird of prey
+weasel
+snake, adder
+lion, panther
+lizard
+horse
+Animal husbandry.
+Proto-form
+*h2 (e)iệ-
+*hirs-en-
+*urh en
+*heğ'-ihz-
+*8"ou-io-
+*hseui-peh-
+*ker-elos-
+Gloss
+goat
+male anim.
+lamb
+cow, ox
+of cow
+shepherd
+cream
+108
+Sanskrit
+vagnu-
+(prsthá-)
+arká-
+márman-
+skhalati
+párśu-
+haras-
+ghrnoti
+stána-
+Sanskrit
+sídhyati
+cyao-
+cyutá-
+sisti-
+Sanskrit
+lopasa-
+rjipya-
+śyená-
+kaśiká-
+áhi-
+simhá-
+godha-
+haya-
+Sanskrit
+(eda-)
+(rsabhá-)
+úran-
+ahí-
+gavya-
+sáras
+Iranian
+(paršta-)
+parasu-
+fstana-
+Iranian
+aranauu-
+Sauuaite
+-suta-
+Parth. prd-
+Iranian
+*raupaśa-
+arazifito.
+saēna-
+aži-
+('zaya-)
+Iranian
+(izaěna-)
+arsan-
+*varn-
+azi-
+gaotia-
+avi-pa-lá-
+Armenian
+gang
+erastan-k'
+marmin
+sil / sxal
+(y-)ors-
+jer, -o-
+jernum
+stin
+Armenian
+arnum
+t'og-
+си, -о-
+sast, i-st.
+p'oyt
+Armenian
+atues
+arcui
+c'in, o-stem
+ak'is, i-stem
+iž, i-stem
+inj
+kov-a-di-ac'
+j, -о-
+Armenian
+аус
+arn
+garn
+ezn, g. ezin
+kogi
+hoor, -a-
+ser
+Greek
+практос
+офалЛораї
+дерос
+Greek
+äpvouar
+orvouai
+-GOUTOC
+Greek
+alyuruóc
+İKTivOG
+Greek
+apan
+Fapp
+-Bo(F) LOC
+---PAGE---
+The place of Armenian in the Indo-European language family
+Agriculture.
+Proto-form
+*holeh-ur
+*ha(e)Ih-
+*h,(e)Ih,-tr-
+*hzerhzuer/n-
+*ke/omiehz
+Gloss
+Sanskrit
+flour
+to grind
+grinder
+arable land
+yoke-pin
+(MInd. ața)
+urvara-
+samya-
+House, housekeeping, crafts, implements, building.
+Proto-form
+Gloss
+Sanskrit
+*h›énHt-iehz
+threshold
+(ấta-)
+*honebh.
+nave, hub
+nabhi-
+*b'ehz8-
+lot, estate
+(bhagá-)
+*d"mb"-
+tomb, grave
+*k(e)r(H)-
+to tie, form
+*k(e)r (H)ieh,
+band
+* deh-
+to bind
+*ah -ti-
+bond
+Iranian
+*arna-
+*alărOra-
+uruuara-
+sima-/sami-
+Armenian
+aleur
+atam
+atawri
+harawun-k'
+sami, ea-st.
+Greek
+ălevpov
+ảlÉw
+apoupa
+(каца2)
+Iranian
+дідий-
+*baga-
+*daf-ma-
+*sar-
+da-Idyáti
+-diti-
+dà-
+Armenian
+Greek
+*and-i-
+aniw 'wheel'
+bak
+damban
+sarem
+sari-k*, -ea-
+*ti-
+ke/arpía
+SEW
+*tay
+6. Lexical isoglosses
+between Armenian, Greek and European dialects
+6.1. Armenian and Greek: innovations.
+6.1.1. *hzlehi-ur: Arm. alewr, aliwr, gen. aler (later also o-stem) 'flour', Gr. äleupov, ăleupos
+'flour'. See also atam 'to grind' and aławri 'mill, female grinder' (§4.1.3-4).
+6.1.2. *ağu(s)iehz: Arm. acu 'garden-bed', Gr. äyula, pl. åyulai f. 'street, road'; probably a
+shared innovation based on PIE *heg-: Arm. acem 'to bring, lead', Skt. ájati, Gr. ayw 'lead',
+etc." For the semantic relationship between 'garden-bed' and 'street', compare Arm. marg
+'meadow' (dial. 'garden-bed'), which has been borrowed from Parth. mary 'wood, meadow'.
+Sanskrit has mrgá-m. 'wild animal' (cf. Wakhi merg f. "female ibex') and märga-"(wild) path,
+road'. The latter is comparable to the Armenian dialectal meaning 'garden-bed'."
+6.1.3. *hsk"k"on 'eye': Arm. akn gen. akan 'eye', Gr. Ökkov ỏф0aluóv 'eye' (Hesychius); de-
+rived from PIE *hs(o)k"- 'eye': Skt. ákși-, Gr. ooz, Arm. ač'-k', etc.
+6.1.4. *antér / *an(n)er 'cave': Arm. ayr, i-stem 'cave', Gr. ävipov n. 'cave'. 100 The development
+of *-nt- is problematic, however.!. Perhaps one can assume a substrate origin with a nasal vac-
+illation, *an(n)ēr vs. *antēr, somehow comparable to another substrate term, Arm. kamurj 'bridge'
+vs. Gr. yéüpa 'bridge'. The by-form *an(n)er could easily develop into ayr (cf. *honer > ayr 'man').
+98 On Gr. äyula, Arm. acu and various explanations of -u, see Clackson 1994: 117, 225124; Martirosyan 2010: 17-
+18; Beekes 2010, 1: 17 (not mentioning the Armenian word).
+99 For these Armenian and Indo-Iranian words, see HAB 3: 275-276; Mayrhofer KEWA 2, 1963: 626, 669;
+EWAia 2, 1996: 370-371; Dočkalová / Blazek 2011: 323, 327.
+100 De Lamberterie 1978: 243-245; 1992: 238; Olsen 1999: 92; Martirosyan 2010: 62-63 with lit.
+101 Clackson 1994: 98; Beekes 2010, 1: 110.
+109
+---PAGE---
+Hrach Martirosyan
+6.1.5. *h1os-r-(e)h2 'harvest, summer': Arm. *ar-a- 'harvest, harvest time', seen in ar-a-c'
+'harvest time, harvest of grape/fruit', the sixth month (17th August to 15th September); Gr.
+öt-wpa f., Lac. on-ápa 'end of the summer, beginning of autumn; harvest, fruit; cf. also CS
+jesenb, Russ. osen' f. 'autumn', Goth. asans f. 'harvest, summer', OHG aran, Germ. Ernte 'har-
+vest', etc. Arm. *ar-a- derives from PArm. *o(h)ár-a- < neuter plural or collective *hos-y-hz 'har-
+vest, summer' (or *hos-y >> fem. *hios-y-ehz). Note the remarkable contrast with the preceding
+month name, k'ał-o-c' 'mowing time', deriving from k'atem 'to pluck, weed, mow, harvest' <
+*(s)kI-nelo-, which is a Graeco-Armenian agreement too, cf. Gr. orádAw "to stir up, hoe' from
+*oál-vw (see § 6.1.30).
+For the typology of such a contrast between the fifth (reaping/mowing) and the sixth
+(harvest - grape/fruit) months, compare e.g. the contrast between the fifth month (July-
+August) as "reaping/mowing time" ("урожайная пора") vs. the sixth month (August-Sep-
+tember) as "beginning of the pressing of grape-juice" ("начало выжимания виноградного
+сока") in the Khwarezmian calendar. 102 (HM)
+6.1.6. *hzer-"to fix, put together': Arm. arnem, 1sg.aor ar-ar-i, 3sg.aor. ar-ar 'to make; to
+create': Gr. apapiora, aor. *papov 'to fit, equip', etc. The agreement is unobjectionable both
+formally and semantically, but it may be an archaism. 103
+6.1.7. *Héhzm-(ö)r, gen. *Hhom-(e)n-: Arm. awr, gen. awur, instr. awur-b 'day; time, age'; Gr.
+nap, Arc. änap, -atos n. 'day', nuépa, Dor. auépa 'id.. Arm. aw(u)r may be explained as
+follows: *alāmor > PArm. *amur > *a"mur > *awur > Arm. awr, gen. awur. 104
+6.1.8. *hzb"el: Arm. awel 'broom', later denominative awelem "to sweep, broom'; Gr.
+фЕЛЛ "to sweep, broom', фЕлиа, фЕЛтро 'broom'; Arm. *awel- increase' in aweli more',
+ai-awelum 'to increase', y-awelum 'to add to'; Gr. Oél/a "to increase, enlarge, augment, ad-
+vance' (cf. Myc. no-pe-re-az /nopheleha/ 'useless' < *n-h3b'el-es-hz: *vwdedńs). There is no cog-
+nate to this root in other Indo-European languages. 105
+Jahukyan (1970: 2139) admits the possibility that Arm. awel- 'to increase' has been bor-
+rowed from Urartian abili-d(u) 'to join, increase'. Arutjunjan (1983: 339195) notes that in this case
+the comparison between Arm. y-awelum and Gr. фéЛ1w would be impossible. However, the
+etymological connection between these Armenian and Greek words is unobjectionable, and
+the apparent contradiction can easily be removed if we assume the opposite direction of bor-
+rowing, namely from Armenian into Urartian. 106 Compare the cases of arcui 'eagle' and burgn
+'tower' (S84.2.1-2 and 6.1.10).
+The remarkable agreement between Armenian and Greek in both meanings, 'sweep' and
+"increase', makes this one of the most important isoglosses.
+6.1.9. *b"hz-ti-: Arm. bay, i-stem 'speech, word, verb', Gr. áols, dáris f. 'declaration,
+enunciation, rumour'; a zero-grade ti-derivative of PIE *b"ehz- "to speak': Arm. bam "to speak,
+say' vs. Onuí to say'.
+6.1.10. *b'urg" 'tower': Arm. burgn, gen. brgan 'tower; pyramid'; Gr. núpyoç m. (also
+фркос) "tower'. Notwithstanding the formal problems, which might suggest a substrate in-
+12 See Martirosyan prepar. 1.
+103 Clackson 1994: 101-102; Martirosyan 2010: 112; de Lamberterie 2013: 18.
+10% The appurtenance of OIr. amm 'time, season' (from *Hhom-n-?) and Arm. amanak 'time' is uncertain. For a
+discussion, see Clackson 1994: 96-97; Martirosyan 2010: 46, 156.
+105 HAB 1: 356-358 with lit.; de Lamberterie 1992: 238; 1992a; Clackson 1994: 33-35,156-158; Olsen 1999: 211,
+436; Beekes 2010, 2: 1133.
+106 Jahukyan 1987: 433; 2010: 100-101. For the Urartian word and its connecton to Armenian awel-, see
+N. Arutjunjan 2001: 431a.
+110
+---PAGE---
+The place of Armenian in the Indo-European language family
+termediation, this cultural term seems to be based on *bergh,*burg"-u, *burg"-(elo)nt: Arm.
+barjr, gen. barju, -berj 'high', barnam 'to lift, raise' ‹ *barj-nam; Hitt. parku- 'high', Skt. brhánt-
+'large, wide, abundant, lofty, high, strong, dense, loud', etc. Urart. burgana 'fortress' (if the
+meaning is reliable) may be an Armenian loanword. For another cultural term of a similar
+structure, cf. durgn, gen. drgan 'potter's wheel' vs. darnam 'to turn; to return' ‹ *darj-nam (see
+§6.5.2).
+6.1.11. *d'lhıro: Arm. dalar, o-stem 'green, fresh'; dalar-i, dalarw-o-y, -o-] 'greenery, grass,
+herb'; Gr. Jalapós blooming, fresh'. The root is visible in Gr. Dália 'to bloom, flourish,
+grow', dálos n. 'sprout', Dallóç m. 'green twig, esp. of the olive, sprout', MIr. duilne, duille
+'leaf, foliage', OEngl. dile 'dill', Alb. dal 'to sprout', etc., as well as Arm. det, o-stem 'herb;
+medicine; poison'. Notwithstanding the problems concerning the reconstruction of the root
+(*d"lhi- or *d'ehz-) and the suffix (*-ero- or *-ro-), 17 I see no solid reason for separating Arm.
+dalar (o-stem) from Gr. Dalepós.
+It is also worth considering whether Arm. det 'herb' and Gr. Jallós m. 'green twig,
+sprout' derive from an old n-stem: nom. *d'él(H)-n-, gen. *d"l-nós.
+6.1.12. *d"(e)his- 'god': Arm. di-k', gen.pl. di-c', instr.pl. di-a-w-k' (compositional diwc'-)
+'god", Gr. Deós 'god'. With a different meaning: Lat. fēriae ‹ OLat. fesiae "festival days', festus
+'festive', fänum < "fas-no-m 'hallowed place', Osc. fiisnú 'templum', etc.
+6.1.13. *pr(elo)Hkt-/*pro)kt-: Arm. erastan-k', a-stem 'buttocks', Gr. npwktós m. 'anus'.
+Clackson (1994: 166-167) takes this as an Armenian-Greek-Aryan correspondence, cf. Skt.
+prsthá- n. 'back, mountain-ridge, top', prstí- f. 'rib', cf. YAv. paršta- m. 'back, spine, support in
+the back', parsti back'. However, the Indo-Iranian words appear to be derived from *pr-sth2-0-
+and are thus unrelated.108 Even if they are related (which would create an isogloss between
+Armenian, Greek and Indo-Iranian), Armenian and Greek are certainly closer to each other
+since they agree in both vocalism and semantics.
+6.1.14. *pre(i)sg"'u: Arm. erec",
+', u-stem (adj.) 'elder; presbyter"; Gr. mpéoßus m. 'old man;
+the elder; ambassador; president; perhaps also Lat. priscus 'ancient". 109
+6.1.15. *duehz-ro-: Arm. erkar 'long' (in both temporal and spatial aspects), Gr. * gapós:
+inpós, Dor. Säpós 'lasting long'; with a different vocalism: Lat. dùro 'to endure, last out, sur-
+vive', Skt. durá-'far', 'far', * duehz-n-: Arm. erkayn 'long', Gr. Srv 'long, far' <*бFäv.110
+6.1.16. *ues-nu-: Arm. z-genum, 3sg.aor. zge-c'-a-w "to put on clothes', Gr. Evvour to clothe;
+to put on, clothe oneself'; cf. Hitt. ueš-"to be dressed', Skt. váste 'to be clothed, wear', etc. (see
+§3.5 on nu-verbs).
+6.1.17. *pter- 'feather, wing, blade': Arm. t'er (widespread in the dialects: Hamšen, Axalc'xa,
+Łarabat, Ararat, Juła, Sebastia, etc.) 'leaf; leaf of dough or paper; petal, *tel (dial.) "id.; t'er,
+abl. i t'erē 'side' (from earlier 'wing, feather');'"' t'ert', i-stem 'leaf of a flower, plant or paper;
+plate' (Philo, Paterica, etc., and dialects); Gr. tepóv n. "feather; bird's wing; wings of a bat and
+of insects; any winged creature, such as the Sphinx; anything resembling wings or feathers,
+such as oars and parasols; side-walls of Egyptian temples; drawbridge', ntépuĘ f. 'wing of a
+107 For a discussion, see Clackson 1994: 118-120; Matasović 2009: 88, 102-103; Martirosyan 2010: 231-232, 237-
+238; Beekes 2010, 1: 530-531.
+108 Mayrhofer EWAia 2, 1996: 165-166; Beekes 2010, 2: 1244. For a discussion of the Armenian word and lit-
+erature, see Martirosyan 2010: 258.
+109 Clackson 1994: 165; Martirosyan 2010: 262-263; Beekes 2010, 2: 1231-1232; de Lamberterie 2013: 15.
+110 Meillet 1924: 1-4; de Lamberterie 1992: 257; Clackson 1994: 114-115; Martirosyan 2010: 266-267.
+I"' For the semantic development, cf. the meanings 'side-walls of Egyptian temples' and 'drawbridge' of Gr.
+nepóv wing'. Note also Arm. kurn 'back, arm' and side'; Engl. wing 'wing' and 'side, flank'.
+111
+---PAGE---
+Hrach Martirosyan
+bird; winged creature, bird; blade'; the other cognates represent *pet-r-: Skt. pátra- n. 'wing,
+feather, leaf, OHG fedara 'feather', Hitt. pattar, obl. pattan- 'wing, feather', etc.; derives from
+*pet(H) - 'to fly': Skt. pátati 'to fly, rush, fall', Gr. Tét-o-uar, Tir-é-oDar 'to fly', etc.
+Arm. t'er and Gr. ntep- correspond to each other both semantically (pace Beekes 2010, 2:
+1248) and formally. Notwithstanding the formal problems, here may also belong Gr. ntílov n.
+'soft feathers, down; wing (properly of insects); the wing-like membrane on a kind of ser-
+pent', 112 Arm. t'el 'leaf, leaf of dough' and 'wing of a bat' (the latter meaning is seen in mašk-a-
+t'el 'bat', with mašk 'skin' as the first member) and redupl. t'it'ełn / t'it'ern 'butterfly' 113
+6.1.18. *tumbo- 'mound': Arm. t'umb 'mound; fence, wall around a house', Gr. Túußoç m.
+'mound, burial mound, grave' (see §4.1.14 on *d"mb" : Arm. damban 'tomb, grave').
+6.1.19. *gelh2-õs, gen. *§lhz-s-elos:114 Arm. catr, gen. cat-u 'laugh, laughter; joke, mockery';
+Gr. yéAwç, -wroç m. 'laughter', yélaoua 'laughing', yadńvn f. 'stillness of the sea', yeláw "to
+shine'. Note also Arm. calik 'flower' and the Hesychian gloss yelziv Máunewv, dvdzîv 'shine,
+bloom' 115
+6.1.20. *g"]hz-eno-: Arm. kałin, o-stem 'acorn', Gr. Bálavos f. 'acorn'; with a different suf-
+fix: Lat. gläns, glandis f. 'acorn', SCr. žèlüd 'acorn', Lith. gilé, etc.116 It is tempting to identify
+Arm. dial. Łarabał tkśten 'hazelnut' (< *tu-kúłin < *tu-kałin) with Gr. Sifóc Bá Javos 'chestnut'
+(cf. Lat. inglāns 'walnut') from *diuos-g"!hz-eno- 'divine acorn' (Martirosyan 2010: 348-349).
+6.1.21. *g"'nehzik- "woman': PArm. *kan-ay- (seen in pl. kanay-k" vs. sg. kin), Gr. yvvar-к-,
+voc. yúval, nom. yuvń f. 'wife, woman'. This is a remarkable agreement, though its nature is
+debated."
+6.1.22. *per-(i)on- 'piercing implement': Arm. heriwn, ins. hereamb 'aw]', Gr. nep-óvn f. 'pin
+or tongue of a brooch or buckle' from IE *per- 'to pierce': Gr. neípw "to perforate, pierce, per-
+vade', etc.11s The suffixes are different in the two languages. 119
+6.1.23. *mar-mar-: Arm. dial. *mar-m(a)r-il 'to shimmer, flicker, glimmer, extinguish gradu-
+ally (said of e.g. a candle)', Gr. uapuaipw "to flash, sparkle, gleam' (said of any darting, quiver-
+ing light), which is analyzed as a reduplicated intensive yod-present *mar-mar-je-. For the other
+Armenian and Greek forms, see HAB 3: 248-249, 262, 263, 365 and Beekes 2010, 2: 906-907. (HM)
+6.1.24. *mehztrui(e)hz 'stepmother': Arm. mawru, a-stem 'stepmother' (dial.: Hamšen moru
+'stepmother', Muš muri 'step', Satax muru mer 'stepmother', Muš / Bulanax xort'umuru ‹
+*xort'-u-möru); Gr. unipură 'stepmother; further: OEngl. mödrige (n-stem) "mother's sister".
+This is an innovation shared by Armenian and Greek (and, more distantly, Germanic). It is
+based on PIE *mehzter- f. 'mother'. 120
+6.1.25. *me-g'sr-i 'near', lit. 'in the hand': Arm. merj 'near', merjenam ‹ *merji-anam 'to
+approach, touch'; Gr. uéxpl 'as far as; up to, about, nearly; until; as long as, whilst.
+112 For various views and references, see Beekes 2010, 2: 1249.
+1 For a thorough discussion of all these Armenian words, see Martirosyan 2010: 286-294, 450-451.
+114 Alternative: an old u-stem with nom. *-õu(s).
+115 De Lamberterie 1978: 269-276; Klingenschmitt 1982: 147-148; Clackson 1994: 126-132; Kortlandt 2003: 117-
+119; Martirosyan 2010: 336-338, 340-341; Beekes 2003: 193-194; 2010, 1: 257-258, 264-265.
+116 Clackson (1994: 135-136) is positive about this isogloss.
+117 Clackson 1994: 136-137; Martirosyan 2010: 363-365; Beekes 2010, 1: 291-292.
+118 Hübschmann 1897: 467; Pedersen 1924: 225 = 1982: 308; HAB 3: 86; Meillet 1936: 142.
+119 De Lamberterie 1982: 66-67; Clackson 1994: 159; Olsen 1999: 492.
+120 For a discussion and literature, see HAB 3: 246b; Szemerényi 1977: 60; Beekes 1976: 55-58; Clackson 1994:
+145-147; Martirosyan 2010: 453-454; Beekes 2010, 2: 949. For the element *-u-, cf. Gr. uńtpwç m. 'male relative of
+the mother, maternal uncle, grandfather' from *mehztr-öu- 'relative of the mother', perhaps also Arm. mi-a-mawr,
+gen.pl.-u-c 'the only (offspring) of one mother'.
+112
+---PAGE---
+The place of Armenian in the Indo-European language family
+6.1.26. *mēd-es-(e)h2 'mind, counsel': Arm. mit, a-stem, mostly in pl. mit-k', gen. mt-ac'
+'mind, intelligence', Gr. undea 'counsels, plans, arts' (pl. of the unattested *uñdoç, -Eoç, s-stem
+neuter), unfoual to be minded, intend; to take care, keep watch', cf. uew to protect, rule
+over', Médouar 'to provide for, be mindful of; to plan, contrive, devise', Lat. medeor to heal,
+cure', Umbrian mers 'law, justice' ‹ *medos, etc. from PIE *med-. The Armenian and Greek
+forms agree in both vocalism and semantics.
+6.1.27. *hien-h3org"i- "testicled, uncastrated, male (ram or buck)': Arm. y-orj, i-stem 'male
+sheep, ram'; Gr. v-opxis 'provided with testicles, uncastrated', cf. ÉV-OPX-Oç, EV-ÓpX-75
+meaning also 'buck'; note also Arm. xol-orj(n) 'orchis' vs. Gr. ÖpxIs m. 'testicles', 'the plant or-
+chid (because of the shape of the root).!" (HM)
+6.1.28. *helog"in(i)o- 'hedgehog': Arm. ozni 'hedgehog', Gr. Exivos m. 'hedgehog, sea-
+urchin'; cf. OHG igil 'id.', Phryg. Elis 'hedgehog', Lith. ežys, Russ. ež 'id.', etc.; note also Oss.
+wyzyn/uzun hedgehog •
+6.1.29. *suekur-(e)hz: Arm. skesur, a-stem 'husband's mother', Gr. Ékvpá 'mother-in-law'.
+Other cognates continue *suekru-h2 f.: Skt. svaśrú-, NPers. xusru, Pashto xwaše, Lat. socrus, OHG
+swigar, OCS suekry, etc. Arm. skesur, -a- and Gr. Ékupá derive from QIE fem. in *-ur- which has
+been taken from the PIE form for 'father-in-law", *suekur-o-: Skt. śvásura-, YAv. x°asura-, Gr.
+Ekupós, Lat. socer, OLat. socerus, OHG swehur, CS svekro (*swesur- was replaced by *swer <
+*swekr- analogically after svekry 'mother-in-law'), Lith. šẽšuras, etc.
+6.1.30. *(s)k|-nelo: Arm. k'ałem 'to pluck, weed, mow, harvest', Gr. oálAw 'to stir up,
+hoe' prob. from *okád-vo; further: Lith. skeliù, skélti 'to split', etc.12 Note Arm. k'at-o-c'
+"mowing time', the 5th month (18 July-16 August). See ar-a-c' 'harvest time, harvest of
+grape/fruit, the sixth month (§6.1.5).
+6.2. Armenian and Greek: isolated words.
+These words have no Indo-European etymologies and may therefore be treated as words
+of substrate origin, that is to say, common borrowings from an unknown language (for a dis-
+cussion of the substrate, see section 7).
+6.2.1. *ant"(-r)- 'coal': Arm. ant'-et 'hot coal, ember' (Lazar P'arpec'i, Hexaemeron, etc.),
+dial. *ant"(e)-oc" 'metal rod for poking or stirring a fire, poker', dial. *ant'-(a)r- 'coal, ember' in
+*ant'-r-oc' and *ant'-ar-oc' 'poker' (note also ant'ayr 'spark' in Bargirk' hayoc' and NHB, proba-
+bly from *ant'-ar-iV-); Gr. äv•paž, m. 'charcoal'. 123
+6.2.2. *drepan-ehz: Arm. artewan-un-k', gen.pl. artewan-a-(n)c"'eyelashes; eyebrow' (Biblet),
+Gr. Spenavn, Spénavov 'sickle' (from Spénw 'to pluck, cut off'). According to this fascinating
+etymology suggested by de Lamberterie (1983; 1992: 239; 2013: 22), the human eyebrow
+(and/or eyelash, see below) is taken as sickle-shaped.124
+The basic meaning of artewanunk' is usually presented as 'eyelid' since it usually corre-
+sponds to Gr. Bléapov 'eyelid' in the Bible. NHB and HAB, however, describe the Armenian
+word as 'eyelashes', and so does de Lamberterie (1983: 21) in French, 'cils'. Indeed, in some
+12 Martirosyan 2010: 329-331, 538-540.
+122 Beekes 2010, 2: 1340-1341.
+123 HAB 1: 194; Martirosyan 2010: 85; Jahukyan 2010: 57a; Beekes 2010, 1: 105 (here the dialectal forms in -r-
+are not mentioned). For the dialectal forms, see NHB 2: 1060abc; Amatuni 1912: 4a; Ačarean 1913: 48b, 98-99
+HayLezBrbBar 1, 2001: 9a. The nasalless by-form at'ar-oc' may be due to folk-etymological association with at'ar
+'dry dung used as fuel'. For the suffix -oc', see Olsen 1999: 533-537.
+124 For a discussion, see Clackson 1994: 109-112; Olsen 1999: 296-297; Beekes 2010, 1: 353; cf. Jahukyan 2010:
+96b. Ałayan (1974: 34) derives the word from *drep-"to see'.
+113
+---PAGE---
+Hrach Martirosyan
+biblical passages 'eyelash' (or 'eyebrow') would make more sense than 'eyelid', e.g. Proverbs
+6.25 (mí yap'štakic'is artewanambk' nora "do not be captivated with her eyelashes/eyebrows") or
+Jeremiah 9.18 (ew artewanunk' jer błxesc'en jur "and let your eyelashes drop water"). Note also
+that the derivatives of Gr. Bléapov display a semantic vacillation between 'eyelid' and 'eye-
+lash'. And finally, a few passages from original (non-translated) literary sources make the
+meaning 'eyelash' quite clear (e.g. maz artewanac' "hair of eyelashes").
+In a remarkable passage from Movses Xorenac'i 2.42 we reed: "a multitude of vineyards
+resembled the beautiful crescent of thick lashes (zartewananc' xit ew gełec'ik cir); on the northern
+side its curved form truly imitated the arching brows of charming maidens (geławor kusic'
+yönic)" (transl. Thomson 2006: 180). We can see that artewanunk' cannot mean 'eyelid' here since
+it is compared to vineyards. Nor does it mean 'eyebrow' since the latter is present here by its
+main designation, yönk". There can be no doubt that Thomson's translation as 'eyelash' is correct.
+6.2.3. *sep"-s- or *seps-"to boil, cook': Arm. ep'em 'to cook, boil'; Gr. Eya 'to boil, seethe (of
+meat and the like); to smelt, refine (of metals). 125
+6.2.4. *t(a)rp-ehz: Arm. t'arp' / t'arb (abl. i t'arb-ē) 'large wicker fishing-basket, creel', Gr.
+tápun f., tapnós, teprós m., tapóvn f. 'large wicker basket'; probably a common borrowing
+from a lost source.126
+6.2.5. *ğiny|(u)m- 'hinge': Arm. cłxni, ea-stem (loc.sg. i cłxnw-o], gen.dat.pl. cłn-e-ac"), čxni,
+čx/tan, dial. člxan 'door hinge'; Gr. yi(y)y Jouos m. (dimin. y4(y)y dúpov n.) 'hinge, joint, pivot,
+gudgeon'. Mediterranean word (Martirosyan 2012). (HM)
+6.2.6. *kalam- 'aspen; plane': Arm. kałamax(i) 'white poplar, aspen'; Gr. kalauív-бар
+„átavos noovieis 'plane', obviously with *dar "tree' (Hesychius); in neighbouring non-Indo-
+European languages: Salmast Turk. k'äläm-bär 'aspen', T'avriz Turk. gälämä 'poplar; in Dagh-
+estan languages: Lak kalaxi, Rutul kalax 'aspen'. For the semantic relationship, cf. Arm. čandar
+'poplar' and 'plane'; op'i "poplar, aspen' and Larabat *hop'i 'plane'. The ending -ax in Armenian
+may be a suffix, possibly seen also in met-ex 'the handle of an axe' (if related with Gr. uElia
+'manna ash, ashen spear') and taws-ax 'box-tree'. The correspondence Arm. k vs. Gr. k here and
+in a few of the lexemes that follow points to a later stage of Mediterranean substrate vocabulary.
+6.2.7. *kast(an)- 'chestnut': Arm. kask-eni 'chestnut-tree' if from *kast-(u)k-eni (for the suf-
+fix, cf. hačar-uk and dial. hačar-k-i 'beech-tree'); Gr. káotavov n. 'chestnut', kaotavéa f. 'chest-
+nut-tree'.
+6.2.8. *karid- 'crayfish': Arm. karič, a-stem 'scorpion', dial. 'crayfish' < *karid-ia f.; Gr.
+âpis, -ios, -їбо (also koupis, wpis) f., probably a general term for small crustaceans, in-
+cluding shrimp and prawn. For the (old feminine) suffix *-ieh2, note Arm. dial. *mormon] 'ant' <
+*mormon-jehz (cf. morm 'tarantula' and Gr. Mopuór 'bogey, bugbear", see §6.4.8). Note also
+Arm. kor, gen. kor-i 'scorpion' (Dersim dial. gor-)), which is reminiscent of the Greek by-forms
+6.2.9. *gorio-'drain': Arm. kori 'drain, channel', Gr. yopyúplov n. 'subterranean channel'. (HM)
+6.2.10. *g"(e)m/b'urieh2 'bridge': Arm. kamurj, a-stem 'bridge', Gr. yéüpa f. (Boeot. Béu,
+Cret. бфора, Lac. біфоира) 'bridge'; in non-Indo-European languages: Hatt. hamuru(wa)
+'beam', Abkhaz *q" (m)bala-ra 'beam over the hearth, cross-beam', etc. The Proto-Armenian
+theoretical by-form *kabury- may have been reflected in Urart. gaburzani possibly meaning
+'bridge' in a recently discovered inscription.
+125 NHB 1: 705c; Hübschmann 1897: 446; HAB 2: 72-73; Arutjunjan 1983: 282-283; Clackson 1994: 172-173;
+Beekes 2010, 1: 492.
+126 Clackson 1994: 183. For an etymological discussion, see Martirosyan 2010: 281-283. The Armenian form is
+absent from Beekes 2010, 2: 1453.
+114
+---PAGE---
+The place of Armenian in the Indo-European language family
+6.2.11. *mosê"-o/io- 'young bovine': Arm. mozi 'young bovine, calf',127 dial. mozi or di-
+minutive mozik, mostly 'male or female calf", in some dialects: 'young ox', 'female foal, filly,
+'young buffalo'; Gr. Móo xos m.f. 'calf, young bull, any young animal", metaphorically 'boy' or
+'girl, maid', m. 'young shoot or twig', uooxás, -áoç f. 'shoot, slip; heifer', pooxias 'like a calf
+(used of any young animal); three-year-old ram'; diminutives: uoo xiov 'young calf, poo xiôo
+'small shoot', uoox-áptov n. 'young calf'.128
+Clackson (1994: 153-154) assumes that the word "is of later origin in Armenian, and it
+may even be a loan from Greek". This is not plausible, however. This Armenian word, albeit
+attested late, is reliably old since it is found in a great number of non-contiguous dialects, such
+as Hamsen, T'iflis, Ararat, Karin, Mus, Svedia and Łarabat. Besides, Arm. -z- can hardly be ex-
+plained from Gr. -ox-. In my opinion we are dealing with a Mediterranean word: *mosg"-o-
+'young bovine' (with Gr. uóo xos m.f. 'calf, young bull, any young animal') > Parm. *moz(o) + -i
+as in other animal designations, such as ayci 'goat', mari 'female bird', mak'i 'ewe' (Martirosyan
+2010 s.vv.), or directly *mosg"-io-/-iia- (cf. Gr. Mooxiov 'young calf, pooxia, 'like a calf; three-
+year-old ram', etc.) > Parm. *mozzíyola-129 > Arm. mozi 'young bovine, calf. For the semantic
+relationship between 'young shoot' and 'young animal', compare, e.g. ClArm. eriny 'heifer' >
+Ararat dial. arinj 'a three-year-old sprout of grapes' 130
+6.2.12. "notiiehz 'Wetness': Arm. nay, gen. nay-i 'humid, moist; wetness, moisture; (phonet.)
+liquid' (Dionysius Thrax, Book of Chries, Grigor Magistros, Esayi Ně'ec'i, etc.), nayac'uc'anem
+'to wet, moisten, water, irrigate' (Philo, Book of Chries), nayakan 'humid, moist' (John
+Chrysostom); Gr. votia, -in f. 'wetness'.
+The Armenian word is usually derived from PIE *snehz- to swim': Skt. snáti 'to bathe', Gr.
+vÉw, vúxa 'to swim', Lat. năre, natăre 'to float, swim', etc. 131 The Armenian word may be derived
+from *n(e)hz-ti-, cf. Avest. u-snaiti- f. 'Abwaschung. However, semantically more attractive is the
+comparison of Arm. nay with Gr. votia, -in f. 'wetness' (cf. Scheftelowitz 1904-05, 2: 24). According
+to Beekes (2010, 2: 1025), the latter should be separated from *(s)nehz- 'to swim' because of the vo-
+calism and may be Pre-Greek. Gr. votia f. 'wetness' and Arm. nay, i-stem 'humid, wetness' may
+have been borrowed from a (substrate) proto-form like *notiieh2 > PArm. *notíyā > *nayí(ya) > nay.
+6.2.13. *(H)olur-: Arm. oloin, an-stem 'pea, bean', dial. hüla(o)ina (Goris, Łarabat hülerna);
+Gr. ölupar f. pl. 'spelt; rice-wheat' (cf. Akkad. hallüru, hilullüru, etc.).
+6.2.14. *osp- 'pulse, legumen': Arm. ospn, an-stem 'lentil", Gr. Öơnplov n. 'pulse, legumen'. 132
+6.2.15. *p'ort"o- or *(t)ort"o- 'sprout, young twig': Arm. ort', o-stem 'vine', Gr. rtóp0os m.
+'sprout, shoot, young twig', nópPos ntópDos, Kládos, Bráotos (Hesychius). 133
+127 Attested in the 11th century commentary of Grigor Magistros on the Armenian translation of Dionysios
+Thrax (Adonc 1915: 240"7, 241 9):
+128 The appurtenance of Skt. mahișá- 'great, mighty; buffalo', Lith mãzgas 'bud' and others is uncertain. For an
+etymological discussion, see Hübschmann 1883: 43; 1897: 475; Meillet 1898: 282; Patrubány 1902-03: 124; Schefte-
+lowitz 1927: 226, 232; HAB 3: 338; Pisani 1950: 171; Jahukyan 1987: 139, 298-299, 302; Clackson 1994: 152-154; O1-
+sen 1999: 489; Beekes 2010, 2: 970-971.
+129 The pretonic *-o- has not yielded -a- because the syllable was closed due to the geminate -zz- (see Kortlandt
+2003: 40; Beekes 2003: 157).
+130 For more detail and other examples, see Clackson 1994: 230214; Martirosyan 2010: 264-265, 785-787.
+131 HAB 3: 426 -427; Pokorny 1959: 972; Frisk GEW 2, 1970: 310-311, 324-325; Schrijver 1991: 168-169; Mayr-
+hofer EWAia 2, 1996: 769-770; Beekes 2010, 2: 1012-1013.
+132 NHB 2: 522a (s.v. ospneay); Olsen 1999: 141; Holst 2009: 126, 143, 188, 231. According to Katz (2000: 84-85),
+Gr. Öonpiov derives from *uospr- 'having a shroud, covering'.
+133 Peterson 1916: 271-273; Pokorny 1959: 823; Furnée 1972: 317, cf. 261; Kortlandt 1986: 40 = 2003: 70; Olsen
+1999: 24; Beekes 2008: 52; 2010, 2: 1250; cf. Kloekhorst 2008: 645-646.
+115
+---PAGE---
+Hrach Martirosyan
+6.2.16. *k"san-t(e)r- 'wool-carder, comb': Arm. santr / sandr, ins.sg. santr-o-v (Lazar
+P'arpec'i 3.61), abl.sg. i sandr-ē (Ephrem) 'comb; weaver's comb', dial. sander-k' (Karin santr-¿-
+k) 'weaver's large comb',134 Gr. Laívw 'to card, comb wool, Sávens m. 'wool-carder Sávipial
+(title of a play by Aeschylus). 135 In view of the incompatibility of the Armenian initial s- with
+Greek *ks- in Indo-European terms, this comparison is considered to be uncertain. 136 I assume
+that we are dealing with a substrate word: *K'san-t(e)r- > Arm. sandr, pl. sander-k'.
+6.2.17. *silek"u- "melon, gourd': Arm. sex (gen. sexoy in Hexaemeron) 'melon', Gr. ova,
+Ion. -ún f. 'bottle-gourd, round gourd; gourd used as a calabash', oékova 'id (Hesychius),
+dÍKVOS, OIKUÓç m., OÍKUç f. 'cucumber', dikvoç nénwv 'a kind of gourd or melon, not eaten till
+quite ripe'. The relationship with Russ. týkva 'pumpkin' and Lat. cucumis 'cucumber' is unclear.
+6.2.18. *keno-/*ken(e)uo-: Arm. sin, o-stem 'empty', Gr. Att. Kevós and Ion. Kelvóç from
+*KEVFÓç, Epic KevE(F)ó, 'empty, idle'.
+6.2.19. *steloibo- or *stelibehz: Arm. stēp, o-stem, a-stem 'haste, alacrity; zeal, diligence; fre-
+quent, frequently; hastily, quickly, stipem 'to constrain, compel, force; to urge, hasten'; Gr.
+oTeißw 'to tread (on something), densify by treading, trod, trample, trend', otoßý f. 'stuffing,
+cushion, bulge', otißos m. 'trodden road, path, footstep, trail'. The appurtenance of OLith.
+staibus 'strong, brave' and other cognates is uncertain. 137
+6.2.20. *srung" 'snout, nostrils': Arm. jungn, mostly pl. ing-un-k', instr. ing-am-b-k",
+*rung-k', a-stem 'nostrils'; Gr. púyxos, púyxeoç n. 'snout (e.g. of a pig), muzzle, beak'.
+6.2.21. *ps(e)ud-e/os-: Arm. sut, o-stem 'false; falsehood, lie', Gr. ¿eudoç n. lie', also wúsos.
+6.2.22. *skórp-i-, gen. *(s)krp-i-ós: Arm. k'arb, i-stem 'basilisk, asp'; Gr. окорпіо, m. 'scor-
+pion; a sea-fish', oops, -ібо, f. 'a sea-fish'. These words have been claimed to be derived
+from IE *(s)ker(-P)- 'to cut': Arm. k'er-(t)-, k'er-b/p'- 'to scratch, chop, carve', Gr. keípa 'to cut
+(off), shave, mow off, ravage', OHG sceran 'to cut', OEngl. sceorfan 'to scratch', etc. However,
+scholars are now more inclined towards a substrate origin.
+6.3. Armenian, Greek and Albanian.
+6.3.1. *hzn(e/ör)jo- 'dream': Arm. anurj-k', i-stem, o-stem 'dream, day-dream, prophetic vi-
+sion, vision'; Gr. Överpos m. 'god of dreams, dream', Aeol. övolpos m., Cret. ävarpov ÖvELpov,
+cf. övap n. 'dream', especially 'fortune-telling dream, vision', ävap övap (Hesychius); Alb.
+âdërrë (Geg.), endërrë (Tosc.) 'dream' from *andërrë < *Hur-jola-. Probably derived from PIE
+*henh -'to breathe' > '(vital) breath, energy' (de Lamberterie 2012a).
+6.3.2. *b"elor-(e)n- load': Arm. bein, gen. berin, ins. beiam-b, vom.pl. berin-k' 'burden, load;
+bag, sack; freight, cargo',138 Gr. depń f., Aeol. dépavă 'dowry', Dor. depvá f. 'god's share at
+the sacrifice', Alb. bárrë burden, load; freight, load; foetus' < *b'or-nehz; with a different mean-
+ing: Lith. bérnas 'boy, (farmer's) servant, Latv. bèrns 'child, baby'; with o-grade: Goth. and OIc.
+barn n. 'child' ‹ "what was borne" 139 This word is a verbal noun from PIE *b"er- "to bring, bear".
+The Greek meaning 'dowry' probably derives from 'load, bag' (both nuances are at-
+tested in Armenian). Concerning the meaning of Dor. epvá, 'god's share at the sacrifice,
+134 See Acarean 1913: 954; HAB 4: 174-175; Hay LezBrbBar 5, 2008: 266.
+15 Liddell / Scott / Jones 1996: 1188a.
+136 Hübschmann 1897: 488; HAB 4: 174-175; Jahukyan 2010: 668a.
+137 HAB 4: 273-274; Olsen 1999: 196; Beekes 2010, 2: 1393-1394.
+138 In the Bible, bein corresponds to optiov 'burden' (Job 7.20), Báotayua load' (Jeremiah 17.21), uápolnoç
+'bag' (Genesis 44.11, 13), yóuoç 'freight, cargo' (Revelations 18.11), etc.
+139 Hübschmann 1897: 429; Pedersen 1905: 217 = 1982: 79; HAB 1: 440a, 441a; Pokorny 1959: 129; Chantraine
+1968-80: 1180; Stempel 1990: 51; Clackson 1994: 111, 135, 183; Demiraj 1997: 92-93; Olsen 1999: 120-124, 140, 833-
+834; Beekes 2010, 2: 1562. For Slavic *bèrmę 'load, burden', see Derksen 2008: 37.
+116
+---PAGE---
+The place of Armenian in the Indo-European language family
+compare the semantic shift 'share' > 'dowry' (cf. Arm. bažin 'share' > bažin-k' 'dowry', Marti-
+rosyan 2010: 803).
+We can postulate *b'er-(e)n- 'load' ('that is borne'), a verbal noun from PIE *b"er- 'to bring,
+bear' (cf. Arm. berem, Gr. dépw, etc.) shared by Armenian, Greek, Albanian, Baltic and Ger-
+manic. The Armenian is particularly close to the Greek (e-grade and semantics) and is seman-
+tically identical with the Albanian. They point to *b"elor-nehz load, freight', with a secondary
+transfer to the n-stems in Armenian (cf. eln 'deer cow', §6.7.3) or *b'elor-(e)n-.
+6.3.3. *g"ri(d") 'barley': Arm. gari, ea-stem, o-stem 'barley'; Gr. pro-ń f. 'barley-corns', usu-
+ally pl. 'barley', from an original root noun *крія > Ер. крі п.; Alb. drithë 'cereals, wheat, bar-
+ley'. A different formation: Lat. hordeum 'barley', OHG gersta 'barley', and Hitt. karaš n. 'wheat,
+emmer-wheat' 140
+6.3.4. *sklodoro- or *sk"orodo- 'garlic': Arm. xstor, i-stem and o-stem, sxtor 'garlic'; Gr.
+oóp(o)ov n. 'garlic, Alb. húrdhë, also húdhër (Schriftsprache) f. 'garlic'.
+6.4. Armenian, Greek and Latin.
+6.4.1. *b*rug/§- 'dewlap': Arm. erbuc, o-stem 'breast of animals, Gr. dápuys, gen. - vyos,
+-vyyos 'throat; dewlap of a bull', Lat. frümen 'throat' < *früg-smen.
+6.4.2. *el(ela)iw- vel sim. 'olive, oil": Arm. ewt, gen. iwt-oy, dial. *et 'oil"; Gr. Élaia, Att.
+¿láa, Ion. ¿lain f. 'olive-tree; olive', Maloç m. 'wild olive', /alov n. 'olive-oil; anointing-oil;
+any oily substance'; Lat. oleum n. 'olive-oil; oil'.
+6.4.3. *ptel- 'elm': Arm. t'eti 'elm"; Gr. rtENé-a, Ion. -n 'elm, Ulmus glabra'; cf. also Lat.
+tilia 'linden'.
+6.4.4. *'uõiko- or *tù(i)ko- 'fig': Arm. t'uz, o-stem 'fig', dial. (Aslanbek and Ozim) 'female
+genitals'; Gr. oükov, Boeotian tükov n. 'fig; pudenda muliebria, female genitals'; Lat. ficus, i and
+üs, f. 'fig; fig-tree'.
+6.4.5. *hul(e/o)hır-o-n.pl. *-hz 'rope, thong, rein': Arm. lar, o-, i- and a-stems 'rope, rein, ca-
+ble, cord, string; plumbline of stone-masons; snare; tendons of the neck; string of a musical in-
+strument; Gr. euAnpa, Dor. aülnpa, Hesychian aßAnpá n.pl. 'reins'; Lat. lörum, -i, n. 'thong,
+rawhide whip, rein'. We can reconstruct a Proto-Armenian paradigm *ulár-o-, pl. *ulár-a.
+6.4.6. *g|gt- "milk': Arm. kat'n, gen. kat'in, instr. kat'am-b 'milk', Gr. yáa, yálaktoç n.
+'milk', Lat. lac, lactis n. 'milk'. The *-I- has been preserved in the Armenian dialects of Agulis
+and Metri, where we find kaxc' pointing to *katc' (the development a > Agulis o has been
+blocked in position before t). Kak'avaberd has kaxc' in the village of Varhavar vs. kát'na in the
+other three villages of the region. The conditions responsible for the loss or preservation of the
+*-- are not clear.141 Nevertheless, I do not think that this comparison should be abandoned. 142
+We are probably dealing with a cultural word of Mediterranean origin.
+6.4.7. "mor-blackberry': Arm. mor, gen. mor-i blackberry (fruit of the bramble)', mor-(en)i
+'bramble, blackberry (plant, shrub)', dial. mor-m-eni 'blackberry', mo(r)š(-i) 'tamarisk; black-
+berry, bramble'; Gr. uópov n. 'black mulberry; blackberry', uopéa, -Én f. 'mulberry-tree, Morus
+nigra'; Lat. mõrum, i, n. 'fruit of the black mulberry', morus, i, f. 'black mulberry-tree' (some-
+times considered a Greek loanword). 143
+140 Demiraj 1997: 145-146; Orel 1998: 75; de Vaan 2008: 288-289; Kloekhorst 2008: 444-445; Martirosyan 2010:
+199; Beekes 2010, 1: 779.
+141 For references and a discussion, see Martirosyan 2010: 345-346.
+142 Pace Olsen 2011: 24. The etymology is accepted in de Vaan 2008: 320 and Beekes 2010, 1: 256.
+143 The Celtic forms (Welsh mer-wydden 'mulberry, blackberry', OIr. smer 'blackberry', etc.) point to a different
+proto-form, namely *smero- (Matasović 2009: 347).
+117
+---PAGE---
+Hrach Martirosyan
+6.4.8. *mor-m- 'she-monster, spinning demon/goddess': MidArm. and dial. mor-m and
+mor(i) 'spider, tarantula, phalangium'; Gr. Mopuá, -óoç -oüs, Mopuáo, -óvos f. 'she-monster,
+bogey' (also used by nurses to frighten children), generally 'bugbear', Lat. formido, inis f. 'fear,
+terror; a thing which frightens, bogey'. (HM)
+The Greek and Latin words are related, either etymologically or secondarily, with the
+word for 'ant', cf. Lat. formica f. 'ant', Gr. Múpuns, -nkos, Dor. Múpuas, -ăkoç m. 'ant; fabulous
+animal in India' (by-forms: uúpuos, Búpuač, Bópuaš, öpukas), etc. This connection or confla-
+tion becomes quite transparent in view of the following forms and meanings: Mvpunk-Elov n. a
+species of aláyylov, the latter being 'a kind of venomous spider, especially Lathrodectus or
+malmignatte', Mupuńk-lov n. 'a species of spider'. Note also Mópuopos and uúpuos 'panic fear'
+(glossed by dóßoç in Hesychius), the former of which strikingly resembles Armenian dialect of
+Polis/Stambul *mormoroz, Crimea and Nor Naxijewan *mimias "Easter bogey'.
+A similar kind of conflation is seen in some dialectal forms of mrjiwn, the Armenian word
+for 'ant: Lori mormony and Samaxi mormorin]. Since Gr. Mopuár is feminine, one may identify it
+with Lori mormon], which probably reflects fem. *mormon-jeh. Structurally, compare another in-
+sect-name of Mediterranean origin: karič, a-stem 'scorpion', dial. also 'crayfish' < *karid-jehz, cf. Gr.
+kapíç, -ilisos f. 'Crustacea' (§6.2.8). That 'ant' is associated with 'bogey, ghost' is not surprising.
+According to Armenian folk beliefs, the ant, sometimes called a 'devil", is an evil night animal.
+Like the snake, frog and other fauna, it causes the skin disease called mrym-uk little ant, cf. Gr.
+opunk-ia 'wart that spreads under the skin, also the irritation caused thereby, which was com-
+pared to the creeping of ants' (from uúpuns, noç 'ant') vs. Mupuńk-lov n. 'a species of spider'.
+It is remarkable that Armenian has both *mor- and *mor-m, whereas Greek and Latin only
+display forms going back to *mor-m-. The root *mor- is probably related with European forms re-
+flecting *moră-: OIc. mara, OHG mara 'nightmare', Germ. Mahr 'nightmare', Engl. (night)mare; OIr.
+mor-(r)igan 'lamia', lit. 'Alpkönigin'; Bulg. morá 'nightmare', dial. 'evil spirit, SCr. mòra 'night-
+mare, incubus', mora 'a kind of night butterfly', Czech dial. mora 'night butterfly; a mythical evil
+creature', Russ. dial. móra 'a female mythical being which in the night, under the moonlight, spins
+the yarn that has been left unfinished by a woman', Russ. kikí-mora 'a kind of brownie who spins
+in the night, etc.144 We may posit European substrate *mor-ā- 'nightmare; a mythical creature;
+an insect that is associated with mythical beings (butterfly, spider. etc.)' vs. Mediterranean sub-
+strate (probably a broken reduplication 45) *mor-m- 'she-monster, bogey; spider, tarantula'
+Armenian thus takes an intermediary position because it has both forms. We may tenta-
+tively assume a PArm. *mor(m) referring to Lady of the Beasts, an Athena/Artemis-like female
+mythical personage, a protector of weaving and spinning (cf. the semantics of Russian mora)
+and personified as a spider. Note also Armenian dialectal mamuk 'spider', literally 'grand-
+mother'. That this goddess is continued by a mythological figure of lower rank is not surpris-
+ing. A very clear case is that of the Armenian goddesses Astlik and Anahit, attested as being of
+the state pantheon in Classical Armenian sources, and as female spirits or nymphs in a few
+later sources. In some folk tales, Anahit is represented as a wise queen who makes wonderful
+rugs, or the daughter of a dragon. Compare also Russian Mokoši, a female divinity who spins
+wool and whose name comes to denote 'evil monster' 146
+144 For the forms reflecting *morā, see Pokorny 1959: 736; EtimSlovSlavJaz 19, 1992: 211-214, cf. 17, 1990: 204-
+207; HerkWört 1997: 434b; Derksen 2008: 324-325; Matasović 2009: 278. For the forms reflecting *mor-m-, see
+Pokorny 1959: 749; de Vaan 2008: 234-235; Beekes 2010, 2: 967. Both are discussed inNocentini 1994: 399-401. For
+an etymological discussion of the Armenian word, see Martirosyan 2010: 478-480, 787.
+145 Cf. Gamkrelidze/Ivanov 1984, 1: 222 = 1995, 1: 191.
+146 For more data on this and a thorough discussion, see Martirosyan prepar. 3.
+118
+---PAGE---
+The place of Armenian in the Indo-European language family
+6.4.9. *sp"ongos / *p"songos 'sponge, mushroom': Arm. sunk/gn '(tree-)mushroom', Gr.
+onóyyos, odóyyos m. 'sponge; any spongy substance, e.g. tonsils', Lat. fungus m. "fungus,
+mushroom'.
+6.5. Armenian, Greek and Germanic and/or Celtic.
+6.5.1. *b"rehi-ur (obl. *b"run-): Arm. ałbewr, ałbiwr, r-stem: gen. atber 'fountain, spring', Gr.
+фрйр, -atos 'an artificial well, spring'; cf. Goth. brunna, etc.
+6.5.2. *d'örg"-/*d'rog": Arm. durgn, gen. drgan "potter's wheel', Gr. tpoxós m. "wheel; pot-
+ter's wheel', OIr. droch 'wheel'. Notwithstanding the formal difficulties, this etymon may be
+derived from IE *d"yg"'to turn': Arm. darj-, darnam "to turn; to return' ‹ *darj-nam, cf. Gr. tpéx@
+'to run, hurry, etc. For another cultural term of a similar structure, cf. burgn, gen. brgan
+'tower; pyramis' vs. barnam 'to lift, raise' ‹ *barj-nam (see §6.1.10).
+6.5.3. *Irso-/*tors-ehz: Arm. t'ar 'perch, roost for birds' (MidArm.; ubiquitous in the dialects),
+'bar for drying grapes' (Mid Arm.) < *trsos: Gr. tapoós, Att. rappós m. 'frame of wicker-work,
+crate, flat basket for drying cheeses on', pariá, tapoiń, repoLá (-¿- after tépooual) f. 'hurdle for
+drying figs; dried figs; drying-place for corn, cheese or bricks'; Germ. *torsă: OHG darra f. 'appa-
+ratus for drying fruits, etc?, Swed. and Norw. tarre m. 'frame for drying malts, etc.?.147 This im-
+plement designation is usually derived from PIE *te)rs- (cf. Skt. tars- 'to be thirsty, crave', Gr.
+tépoqual 'to become dry', OHG derren 'to make dry', Hitt. tarš- 'to make or become dry', Arm.
+t'aramim / t'aršamim "to wither', etc.), 148 although there are phonological difficulties in Greek (Bee-
+kes 2010, 2: 1453-1454). We may posit an innovation shared by Armenian, Greek, and Germanic.
+6.5.4. *jork-o- 'deer, roe, game': Arm. ors, o-stem 'hunt, game'; Gr. Sopáç, -áoç f. (Hero-
+dotus 7.69), Sopkás (Herodotus 4.192), Sópš, ópos, Sópš, topkos, etc. 'a kind of deer, roe,
+antelope, gazelle'; Corn. yorch 'roe', MWelsh iwrch 'roe-deer (caprea mas)'. (HM)
+6.5.5. *ki(u)ön 'column, pillar: Arm. siwn, gen. sean 'column, pillar; Gr. Kíwv, -ovos 'col-
+umn, pillar; flogging post', Myc. ki-wo-ge 'and a pillar'. According to Clackson (1994: 141, 142-
+143), *kiuõn represents a borrowing into Greek and Armenian from a lost non-Indo-European
+source. Recently, 149 these words have been derived from PIE *(s)kiHu-'shin', which is attested
+in Balto-Slavic and Germanic languages, cf. Russ. cévka 'bobbin, hollow bone, shin-bone', OCS
+cěvonica 'flute', OEngl. scia 'shin, leg', MHG schie 'post', OHG skena, skina "post', etc. Lubotsky
+(2002) connected these words to Skt. așthivá(nt)- 'shin, shank' with Av. ascuua- (attested in ASg.
+ascum) 'shank', reconstructing an Indo-Iranian *HastčiHua-. He interprets this form as a com-
+pound of the word for 'bone', viz. Skt. ásthi- and Av. ast-, with a reflex of PIE *(s)kiHu-"shin'.
+The second member of the Indo-Iranian compound, viz. *čiHua, is not attested anywhere
+independently. However, the existence of Iranian *čiva- 'shank' can be proven by Arm. čiw
+'shank, leg'. This is attested in Classical Armenian only in the compounds men-a-čiw 'having
+one hoof (translating Gr. Movvoxos) and erk-a-ciw 'having two hoofs'. Further, cio is attested
+in Middle Armenian and in dialects, mostly meaning leg, 'shin, shank. 150
+As for the semantic development from 'shin, shank' to 'pillar, post', Lubotsky mentions a
+number of parallels: Engl. shank 'shank' and 'shaft of a column'; Latv. stulps 'shank' and 'post,
+pole; OEngl. scia 'shin, leg', scinu 'shin', MHG schie and OHG skena, skina 'post'. 151 The last set
+147 HAB 2: 154-155; Arutjunjan 1983: 284-285.
+148 Martirosyan 2010: 281. On Hittite, see Kloekhorst 2008: 848.
+149 Praust apud Lubotsky 2002: 323b.
+150 Martirosyan 2005; 2010: 579-580, 803-804.
+151 Note also Arm. dial. Moks srung" 'the stem ends of wheat remaining attached to the soil after mowing
+(stubble)' from srunk 'shin, shank'; Oss. zæng / zængæ 'shin' and 'stalk' (Martirosyan 2010: 585-586, 804).
+119
+---PAGE---
+Hrach Martirosyan
+of words is etymologically related to the etymon being discussed here. Note that Germanic
+*skinò 'post' is reminiscent of the n-stem in Armenian siwn and Greek kíwv 'column, pillar 152
+It is remarkable that we have yet another lexical correspondence with the same meaning and
+dialect distribution, namely *st|nehz 'post, pillar: PArm. *stał-a-, Gr. 0tńln, OHG stollo (see
+86.5.7).
+If this attractive explanation is accepted, then this is a shared innovation between Arme-
+nian, Greek, and, somewhat distantly, Germanic. Otherwise, it should be treated in the section
+on substrate.
+6.5.6. *keud"- 'to hide': Arm. soyz-: suzanem, 3sg.aor. e-soyz 'to plunge, sink; to hide, cover'
+(probably from sigmatic aorist *keud"-s-); 153 Gr. KEvOw, aor. Kevoal 'to cover, hide; to be con-
+cealed, lie hidden', kevOnves 'subterranean deities'; OEngl. hydan 'to hide' from *hüdjana-,
+Goth. huzd 'treasure' from *kud"-to- 154 Skt. kuhú- f. 'new moon' and others are hardly related. 155
+6.5.7. *st]nehz: PArm. *stalnă- > *stał-a- 'post, pillar' in ara-stat, a-stem 'ceiling, roof; Gr.
+omńin 'block or slab used as a memorial; monument, gravestone; post, pillar; boundary-post';
+OHG stollo, MG stolle 'support, post'. Probably derived from IE *stel-: Gr. oTélAw 'to put in
+order, equip, prepare', OHG stellen 'to array, establish, arrange', OCS stolati 'to spread', etc. 156
+Note the semantic closeness to another agreement between Armenian, Greek and Germanic:
+Arm. siwn, Gr. kíwv, and OHG skelina (see §6.5.5).
+6.5.8. *dig|g"- 'goat: Arm. tik, a-stem 'wineskin, a vessel made of an animal's skin (for
+wine, oil, water, etc.)' < 'goat, skin of goat', dial. Agulis tag'/tayg" pointing to an older *tig; Gr.
+Laconian Sia: aïž. Aákwves (Hesychius), unless a corruption for *aila; Germ. *tigo 'goat, he-
+goat: OHG ziga, Germ. Ziege, etc.). The vacillation *-g/g"- points to a non-Indo-European ori-
+gin; a well-known root structure constraint does not permit two unaspirated voiced stops
+within a root. Compare Arm. kacan 'path' vs. SCr. gàziti "to step, trample, wade', Arm. karkut
+'hail' vs. OCS grado and Lat. grando 'hail".
+6.5.9. *p(o)Hl- or *p(o)IH-: Arm. ul, o-stem (secondarily: u-stem) 'kid' (probably also amul
+'childless', as well as al-o] 'female kid' from a zero-grade form, with an ending comparable to
+oroj "lamb'); Gr. nü loç m. f. 'young horse, foal, filly', secondarily also of other young animals,
+metaph. 'young girl, youth'; Goth. fula, OHG folo 'id.?; Alb. pélë 'mare' ‹ *pol-n-. 157
+6.6. Armenian, Greek and Balto-Slavic.
+6.6.1. *h2(e)g"'- 'darkness, fog, mist': Arm. ały- 'darkness, fog, twilight' (at)-a-mut) 'darkness',
+at-ut'iwn-k" 'darkness', ati-aty 'fog'); Gr. axlús, -vos f. 'mist; darkness', OPr. aglo, u-stem n.
+'rain'. Arm. *at)- probably reflects a frozen locative *hz(e)g"'-i > PArm. *algi (regular metathesis).
+6.6.2 *hz(e)rti 'now, near' (probably a locative formation from the root *her- to fit together,
+join', with the original meaning 'fittingly, suitable, at hand'): Arm. ard(i) 'now, dial. ard-ak
+152 Beekes 2010, 1: 707.
+153 For literature and other examples of sigmatic aorist in Armenian, see Martirosyan 2010: 757 and s.vv.
+154 For the etymology and various explanations of Arm. -z, see Bugge 1893: 38-39; Pedersen 1906: 381-382, 425
+= 1982: 159-160, 203; de Lamberterie 1978: 281; Mallory/Adams 1997: 268b; Olsen 1999: 782; Kortlandt 2003: index;
+Kocharov 2008: 100; Beekes 2010, 1: 682. The solution with the sigmatic aorist (*-d'-s-> -z-) is advocated by Peder-
+sen, Kortlandt and Kocharov; Kocharov explicitly cites Gr. aor. kevoal in this context. Some scholars are sceptical
+about the etymology: Meillet 1925: 5; HAB 4: 241-242; Clackson 1994: 116; Jahukyan 2010: 687a. On Germanic, see
+also Mayrhofer 1986: 11678; Lehmann 1986: 196b.
+155 See Mayrhofer EWAia 1, 1992: 383; cf. Beekes 2010, 1: 682.
+156 Martirosyan 2010: 107-108; Beekes 2010, 2: 1397-1398, 1404; for Slavic, see Derksen 2008: 473.
+157 Lehmann 1986: 130b; Clackson 1994: 183; Demiraj 1997: 314; Martirosyan 2010: 15-16, 53, 631-632. Scepti-
+cal on the etymology: Olsen 1999: 185 and Beekes 2010, 2: 1266.
+120
+---PAGE---
+The place of Armenian in the Indo-European language family
+'immediately, on the spot'; Gr. äpt 'just now', äptios 'suitable; ready'; Lith. artì 'near' (refer-
+ring to proximity of space rather than time), 158
+6.6.3. *d§"uH- 'fish': Arm. jukn, gen. jkan, pl. jkun-k' 'fish'; Gr. ixoüç, -voç m. 'fish'; OPr.
+suckans, Lith. žuvis, Latv. zuvs "fish'.
+6.7. Armenian and Greek in a broader European context.
+6.7.1. *h1o(h1)i-uehz: Arm. aygi, ea-stem 'vineyard; vine', Gr. on f. 'service-tree', Lat. va
+'grapes', Russ. iva 'willow', Czech jiva 'willow', SCr. iva 'willow', Lith. ievà 'bird-cherry', OIr.
+eó m. 'yew', OHG iwa f. 'yew', OPr. iuwis 'yew'. The appurtenance of Hitt. Giseian- n. 'a tree (ev-
+ergreen)', perhaps 'yew' is uncertain (Kloekhorst 2008: 233-234).
+6.7.2. *urehzd- 'branch; root': MidArm. and dial. argat 'superfluous branches cut off from
+the vine and used for kindling', Gr. pádi, m. 'branch, twig', Lat. rădix f. 'root; radish', ramus m.
+'branch, twig' if from *wrãd-mo-, MWelsh gwreid < *urhzd-jo-"roots', Olc. rót, Goth. waurts 'root',
+Alb. rrenjlë, -a (Tosk), rrã(n)jë (Gheg) 'root'. The appurtenance of Toch. B witsako (from
+*urdi-k-ehz-?) is uncertain.
+6.7.3. *hıel-(h1)en- or *hel-no: Arm. eln, nom.pl. etin-k', gen.pl. etan-c" 'deer cow, hind'; Gr.
+Elós 'deer-calf, fawn' ‹ *hel-no-, Лафос m. f. 'deer; deer cow, hind' < *hiel-n-b"o-; cf. also
+*hel-hien-i- 'deer, hind': OCS jeleno 'deer', alonii 'doe', SCr. làne 'doe', Russ. lan' 'fallow deer,
+doe', olén' 'deer, stag-beetle', dial. elén' 'deer, stag-beetle', Lith. élnis 'deer'; further: MIr. ailit f.
+"doe, hind' < *hiel-(H)n-t-iH- or *hiel-en-t-iH-, etc.
+If Arm. eln derives from *hel-no- (with Gr. Elóç 'deer-calf, fawn') rather than *hiel-hen-
+(with Balto-Slavic), it parallels bern, pl. berin-k", gen. beran-c" 'burden, load' from *b"elor-nehz:
+Gr. depvn f. 'dowry' (see §6.3.2).
+6.7.4. *lu(n)k- 'lynx': Arm. *lusan-n (pl. lusanunk) 'lynx', dial. *lus(e)amn also meaning
+'hyena' and 'marten'; Gr. Múy, gen. Jvykós (-yyós) 'lynx'; Lith. lúšis, dial. (Zem.) lunšis, lunši,
+OPr. luysis, Russ. rýso; MIr. lug; OHG luhs 'id?'.
+6.7.5. *glieh2 / *glineh 'glutinous substance, clay': MidArm. and dial. kałjin 'mortar, clayey
+soil'; Gr. y dia f., y dolós m., y ivn 'any glutinous substance, gum'; Russ. glej (dial.) 'clay, loam',
+glína 'clay', Ukr. hlej 'moist clay', Lith. gléiné 'moist clay'; OEngl. clag, Engl. clay and MLG klei
+'clay' from Germ. *klaiia-, etc. (HM)
+6.7.6. *kiker- 'chick pea': Arm. sisern, gen. sis(e)ian 'chick pea', Gr. kikeppor 'bird's pease' (He-
+sychius: Maced.), Lat. cicer n. 'chick pea', OPr. keckers 'chick pea', Alb. thjer(r), thierr 'lentil, Er-
+vum lens'.
+7. Armenian, Greek and the Mediterranean/European substrate
+In recent years, the methodology of dealing with substrate words has been developed and ap-
+plied by several scholars. 159 It has been pointed out that an etymon is likely to be a loanword if
+it is characterized by some of the following features: (1) limited geographical distribution;
+(2) unusual phonology and word formation; and (3) specific semantics. 160
+The Armenian words that are frequently considered to be of Mediterranean origin are:
+gini "wine', ewt/iwt 'oil', t'uz 'fig', spung 'sponge', sring 'pipe, fife', sunk/g(n) 'mushroom' 161 The
+158 See Clackson 1994: 103-104; Martirosyan 2010: 135.
+159 Kuiper 1995; Beekes 1996, 1998, 2000, 2003; Schrijver 1997; Lubotsky 2001a.
+160 See Schrijver 1997: 293-297; Beekes 2000: 22-23; Lubotsky 2001a: 301-302.
+161 In fact, gini 'wine' and spung 'sponge' should be excluded from the list since the Indo-European origin of
+the former is more probable, and the latter is likely to be a Greek loan.
+121
+---PAGE---
+Hrach Martirosyan
+actual number is much higher. In Martirosyan 2007 and 2010, I have applied the aforemen-
+tioned methodology to a number of such words, mostly plant names, animal names and cul-
+tural words. In these cases, an etymon is attested in Armenian, Greek, Latin and/or another
+Indo-European language of south-east Europe (such as Albanian or Phrygian) or Anatolian,
+but the phonological or word-formative correspondences are irregular with respect to the
+Indo-European system, and they cannot be considered loanwords from one another.
+Bearing in mind that Greek and Latin on the one hand and Armenian on the other are
+historically located on the opposite sides of the Black Sea, as well as that in some cases Medi-
+terranean words have related forms in the Caucasus and Near East, I prefer not to confine my-
+self strictly to the notion of so-called Balkan Indo-European. I conventionally use a term
+Mediterranean-Pontic Substrate. In some cases (e.g. Arm. pal 'rock' vs. Gr. nélla 'rock', OIr.
+ail 'cliff' ‹ *pal-i-, MIr. all < *plso, OIc. fell 'mountain, rock', OHG felisa 'rock, cliff prob. from
+*palis-), an etymon is also present in other European branches, such as Celtic and Germanic, thus
+we are faced with the European Substrate in the terms of Beekes 2000. Whether the Mediterra-
+nean-Pontic and European substrata are identical or related is difficult to say with confidence.
+There are words belonging to the same semantic categories (plant names, animal names,
+cultural words) that may be treated as innovations shared by Armenian and Greek etc. For in-
+stance, the morphological agreement between Arm. katin, o-stem 'acorn' and Gr. Bálavos f.
+'acorn' (vs. Lat. glāns, glandis f. 'acorn, beech-nut', Russ. žëlud', SCr. žèlüd 'acorn', Lith. gile,
+dial. gylễ 'acorn', Latv. zile 'acorn', etc.) may reflect a common innovation undergone jointly by
+Greek and Armenian (Clackson 1994: 135-136, 200/2372). Such words do not belong with the
+substrate since they are of Indo-European origin and do not reflect any phonological or mor-
+phological deviation. Nevertheless, these innovations are relevant to our topic in that they may
+be ascribed to the same Mediterranean-Pontic area and period. In other words, after the Indo-
+European dispersal, Proto-Armenian, Proto-Greek and some other contiguous language-
+branches (e.g. Phrygian and Thracian162) may have remained in contact somewhere in the
+Mediterranean and/or Pontic areas, probably in the 3rd and 2nd millennia Bc and have shared
+both IE innovations and substrate words.
+The consonantal correspondences between substrate words in Armenian and other lan-
+guages are of two kinds:
+1) archaic, matching the correspondences of the native Indo-European heritage:
+*-ri- > Arm. -rj- and *g/g" > Arm. k, e.g. Arm. anury 'dream' vs. Gr. övelopos, Arm. kamury
+'bridge' vs. Gr. yéüpa;
+*k > Arm. s, e.g. Arn. sisern 'chick pea' vs. Lat. cicer 'chick pea', Arm. siwn 'column, pillar'
+vs. Gr. Kíwv;
+*g> Arm. c, e.g. Arm. erbuc breast of animals' vs. Gr. apuys, gen. -vyos, -vyyos 'throat,
+dewlap';
+*p- > Arm. h- or zero, e.g. Arm. atawni (*atawun), ea-stem 'pigeon, dove' vs. Lat. palumbes
+'wood-pigeon, ring-dove' (*plhz-b"-ön, gen. *-b"-n-os); Arm. hec", gen. hec'-i "felloe', if from
+*pelk-s, cf. OHG felga, OEngl. felg(e) "felloe', etc.; Arm. ort', o-stem 'vine' vs. (T)ópOos 'sprout'.
+2) relatively young:
+*K > Arm. k, e.g. Arm. katamaxi) 'white poplar, aspen' vs. Hesychian kalapívap 'plane';
+karič, a-stem 'scorpion', dial. 'crayfish' vs. Gr. kâpis, -ios, -ios 'crayfish';
+*p-> Arm. p, e.g. Arm. pal 'rock' vs. OIr. ail 'cliff' < *pal-i-, MIr. all < *plso-, Gr. néda 'rock';
+162 Cf. Kortlandt 2003: VIII, 83-87.
+122
+---PAGE---
+The place of Armenian in the Indo-European language family
+*s > Arm. s (unless these words have been borrowed from lost satam-forms in *k), e.g.
+Arm. sayl, i-stem and o-stem 'wagon; Ursa Major and Minor, Arcturus' vs. Gr. oativn f. 'char-
+iot' and Hesychian oatilla neias to dotpov, the constellation being regarded as a car (con-
+sidered to be of Phrygian or Thracian origin); Arm. sring "pipe, fife' vs. Gr. oüpiye, - Lyyos f.
+'shepherd's pipe, panpipe, which is considered to be of Phrygian or Mediterranean origin.
+This implies that we have to deal with at least two chronological layers, and that the
+Proto-Armenians must have remained in or close to the Mediterranean-Pontic areas for a long
+period of time.
+In Table set B, the lexical correspondences of section 6 are grouped according to semantic
+fields. As in the Table set for sections 4 and 5, here also the correspondences that are likely to
+be innovations are marked by shading. The others probably have a substrate origin. Needless
+to say, all the lists in this paper are provisionary and are subject to corrections and additions.
+If we collate the two sets of tables, we observe that both sets have a roughly equal number
+of lexical agreements in each semantic field, with a remarkable exception: in A, we find zero
+and five lexemes in the domains of flora and agriculture respectively, whereas B has 13 lexe-
+mes for each domain. Especially remarkable are sets of correspondences within a narrow se-
+mantic group, e.g. the three designations of plants of the legume family, all of Mediterranean
+origin: olorn 'pea, bean', ospn 'lentil", and sisern 'chick pea'. Interestingly, all three Armenian
+words display an additional -n and belong to the an-declension class.
+Another remarkable difference is that, in the domain of technical activities, set A has lex-
+emes with more general meanings, such as 'bond', 'grave' and 'threshold', whereas B displays
+a number of specific technical terms such as 'bridge', 'drying implement', 'hinge', 'pillar',
+'potter's wheel' and 'rein'.
+These sketchy conclusions probably indicate that, after the separation of the Indo-
+Iranians, Proto-Armenian remained close to Proto-Greek and some other dialects and, ap-
+proaching Mediterranean or Pontic regions, developed a high number of lexical agreements,
+both innovations and borrowings from neighbouring non-Indo-European languages, espe-
+cially in the domains of agriculture and technology.
+Table set B (sections 6-7)
+Lexical isoglosses: Armenian, Greek, etc.
+Physical world, time, space.
+Proto-form
+Gloss
+*ant"-r-
+*an(t)ếr
+*/(e)rti
+A "duens-ro-
+B "dueh,-n-
+*tumbo-
+*mar-mar-
+coal
+mist, fog
+cave
+now, (near)
+day
+long
+long
+mound
+to shimmer
+Armenian
+*ant'-(a)r-
+ati-
+ayr
+ard(i)
+awr, g. awur
+erkar
+erkayn
+l'umb
+*mar-m(a)r-
+Greek
+Other 1
+OPr. aglo
+(Lith. arti)
+Other 2
+ävrpor
+äpTi
+Tuap
+*брарос
+тонвос
+123
+---PAGE---
+Hrach Martirosyan
+Proto-form
+*me-g'sr-i
+*notiehz
+*Ken(e)uo-
+Gloss
+near
+wetness
+empty
+Human, age, kinship.
+Proto-form
+Gloss
+*g"nehzik-
+*mehztruiehz
+*suekur-ehz
+elder
+wife, woman
+stepmother
+moth.-in-law
+Body, perceptions, mentality, belief.
+Proto-form
+Gloss
+*hak "k"on
+*h2n(elör)10-
+*d"(e)his-
+*pr(e/o)Hkt-
+*ues-nu-
+*8(e)Ihz-s-
+*mēd-es-hz
+*mor-m-
+*srung"-
+*ps(e)ud-os-
+eye
+dream
+god
+buttocks
+put on cloth.
+laughter
+mind
+she-monster
+snout
+false, lie
+Movements, speech and other activities.
+Proto-form
+A "hab'el-
+B *hab"el-
+*b'er-(e)n-
+*b"h-ti-
+*K(e)r (H)iehz
+*keud"(-s)-
+Gloss
+to sweep
+to increase
+load
+word,rumour
+band
+to hide
+Fauna.
+Proto-form
+*h,el-(h.)n-
+*pter-
+*lu(n)k-
+A *karid(-ia)
+B *ko/or-i-
+Gloss
+deer
+feather, wing
+lynx
+crayfish
+crayf., scorp.
+124
+Armenian
+merj(-)
+nay, i-stem
+sin, -o-
+Armenian
+erec", u-st.
+*kanay-
+mauru, -a-
+skesur, -a-
+Armenian
+akn
+anurj, -i-1-o-
+di-k'
+erastan-k'
+z-genum
+cab, g. catu
+mit-k, mt-a-
+mor-m
+rung(n)
+sut, -o-
+Armenian
+awel(-)
+awel-
+bern
+bay, i-st.
+sari-k', -ca-
+Soyz
+Armenian
+etn
+t'er(t)
+lusa(m)n-
+karič, -a-
+kor, - i scorp.
+Greek
+нехрі
+*KEVFÓS
+Greek
+предвис
+YUVaL-K-
+untputa
+ікора
+Greek
+övelotpoc
+проктос
+Evvout
+Moppa(o)
+pÚyX (E)Oç
+Greek
+ферп
+panic, patic
+kelaipta
+KEÚOW
+Greek
+TtE pOv
+lúyE
+Other 1
+Other 1
+Other 1
+Alb*anderre
+(Lat. feriae)
+Lat. formido
+Other 1
+Alb. barre
+OEng. hydan
+Other 1
+Lith. élnis
+Lith. Lušis
+Other 2
+Other 2
+Other 2
+Other 2
+(child")
+Other 2
+MIr. ailit
+OHG luhs
+---PAGE---
+Proto-form
+*ağ"uH-
+*helog ino
+*jork-o-
+*sk(o)rp-i-
+Animal husbandry. J
+Proto-form
+*h2 (e)ig-
+*8l8t-
+*moss"-olio
+*henhorgh
+*digl8"-
+*poHI-/pol-
+Flora.
+Proto-form
+*hoi(hi)uehz
+*urehzd-
+A "d'Ih,ro-
+В "d'el(H)-n-
+*ptel-
+*8"!hz-eno-
+*kalam-
+*kast(an)-
+*mor-
+*p'ort"o
+*horghi-
+*spongos
+Agriculture.
+Proto-form
+A *holeh-ur
+B "hale)ih-tr-
+*h,os-y-(e)hz
+*drepan-ehz
+*el(ela)iwo-
+*ski"odoro-
+Gloss
+fish
+hedgehog
+deer, game
+asp, scorpion
+Gloss
+goat
+dewlap
+milk
+young bov.
+male anim.
+goat
+young anim.
+Gloss
+yew, vine
+branch, root
+green, fresh
+twig. herb
+elm, Ulmus
+fig, (vulva)
+acorn
+aspen, plane
+chestnut
+blackberry
+sprout, twig
+orchis
+mushroom
+Gloss
+flour
+grinder
+harvest
+*sickle
+barley
+olive, oil
+garlic
+Armenian
+jukn
+ozni
+ors, - o-
+k'arb, i-stem
+Armenian
+аус
+erbuc, -o-
+kat'n
+mozi
+y-ori
+tik, -а-
+ul, -о-
+Armenian
+ay8t-ea-
+argat
+dalar, -o-
+del, -o-
+t'ehi
+t'uz, -o-
+katin, -o-
+katam-ax (1)
+kas(t-)k-
+mor (5)
+ort', - o-
+(zol)ori
+sunk/gn
+Armenian
+alewr
+atawri
+*ar-a-
+artewan, -a-
+gart, -ea-
+ewt, it-o-
+xstor/sxtor
+The place of Armenian in the Indo-European language family
+Greek
+ExiVOS
+коркос Чорк-
+Other 1
+Lith. žuvis
+(OHG igil)
+Corn. yorch
+Other 2
+(Oss. wyzyn)
+Greek
+уалакт-
+н00x-
+Ev-opx-
+Siza
+Greek
+oin
+далерос
+SaMóc
+ПТЕЛЕС
+OUKOv, TUKOv
+каЛані-бар
+KáoTavov
+popov
+Greek
+ălEupov
+(от-)фра
+крі8-гі, крі
+Other 1
+(Skt. eda-)
+Lat. frumen
+Lat. lact-
+OHG ziga
+Goth. fula
+Other 1
+Lat. uva
+Lat. radix
+(MIr. duilne)
+(Lat. tilla)
+Lat. ficus
+(Lat. gland-)
+(Lat mõrum)
+Lat. fungus
+Other 1
+Iran*arOra-
+(Goth asans)
+Alb. drithe
+Lat. oleum
+Alb. hurdhë hudhër
+Other 2
+(Av.izaēna-)
+Other 2
+OHG iwa
+Goth. waurts
+(OEngl. dile)
+(SCr. Zelud)
+Other 2
+(CS jesens)
+OHG gersta
+125
+---PAGE---
+Hrach Martirosyan
+Proto-form
+*gorio-
+*(H)olur-
+*osp
+*silek'u-
+*kiker-
+Gloss
+Armenian
+drain
+pea; spelt
+legumen
+melon, gourd
+chick pea
+kori
+oloin, -ian
+ospn 'lentil
+sex
+sisern, -ran
+Greek
+yopyúplor
+ărupar
+čorpiov
+OLva
+Other 1
+Other 2
+*(s)k|-nelo-
+to hoe, weed
+Katem
+Lat. cicer
+(Lith. skelti)
+OPr. keckers
+Alb. thjer(r)
+House, housekeeping, crafts, implements, building.
+Proto-form
+Gloss
+Armenian
+*ağu(s)iehz-
+path, road
+acu
+*hzer-
+fix, put tog.
+arnem, ar-ar
+*b'urg"-
+tower
+burgh
+*d'rog"-
+wheel
+durga
+*sep"-s-
+to boil, cook
+* (a)rp-ehz
+basket
+*to)rs-
+drying impl.
+*h,ul(e/o)h,ro-
+thong, rein
+*ğinyl(и)m-
+hinge
+*gliehz/ glinehz
+clay
+*8"em/b'uriehz
+bridge
+*per-(i)on-
+awl, pin
+*k"san-t(e)r-
+comb
+*(s)k (u) on
+pillar
+*st|nehz
+post, pillar
+t'arp' I t'arb
+t'ar
+lar, -olila-
+cani, -ea-
+katjin
+kamuri, -a-
+heriwn, -ean
+sant/dr
+sian
+*stat-a-
+Greek
+ayua
+араріока
+порусс
+грохос
+E4/w
+тарти
+тароос
+EvAnpa
+yi(y)y lupos
+уліа, улітп
+Other 1
+Other 2
+Olr. droch
+OHG darra
+Lat. lorum
+Russ. glína
+Engl. clay
+TEp-ovn
+Kiwv
+OHG skina
+OHG stollo
+Preliminary conclusions
+We may preliminarily conclude that Armenian, Greek, (Phrygian) and Indo-Iranian were dia-
+lectally close to each other or even formed a dialectal group at the time of the Indo-European
+dispersal. Within this hypothetical dialect group, Proto-Armenian was situated between Proto-
+Greek (to the west) and Proto-Indo-Iranian (to the east). On the northern side it might have
+neighboured, notably, Proto-Germanic and Proto-Balto-Slavic.
+After the Indo-European dispersal, Armenian developed isoglosses with Indo-Iranian on
+the one hand and Greek on the other. The Indo-Iranians then moved eastwards, while
+the Proto-Armenians and Proto-Greeks remained in a common geographical region for a long
+period and developed numerous shared innovations. At a later stage, together or independ-
+ently, they borrowed a large number of words from the Mediterranean / Pontic substrate lan-
+guage(s), mostly cultural and agricultural words, as well as animal and plant designations.
+On the other hand, Armenian shows a considerable number of lexical correspondences
+with European branches of the Indo-European language family, a large portion of which too
+should be explained in terms of substrate rather than Indo-European heritage.
+126
+---PAGE---
+The place of Armenian in the Indo-European language family
+Literature
+ABAJYAN, A. H.
+1991
+Anc'yal kataryali cagman harc'a. In: Banber Erewani hamalsarani 1991, Nr 1: 162-167.
+ABEGHIAN, Manuk
+1899
+Der armenische Volksglaube. Leipzig: Druck von W. Drugulin.
+AČARYAN, Hrač ya Hakobi
+1913
+(Ačaiean), Hayeren gawarakan bararan. T'iflis (Eminean azgagrakan žołovacu; 9).
+1937
+(Adjarian), De l'affinité du grec et de l'arménien. In: Mélanges Emile Boisacq. Annuaire de l'Institut de
+Philologie et d'Histoire Orientales et Slaves. Bruxelles. 1: 3-4.
+1940-51 (AčarHLPatm 1-2): Hayoc' lezvi patmut'yun, vol. 1, Yerevan: University Press, 1940; vol. 2, Yerevan:
+State Press of Armenia (HayPetHrat), 1951.
+1971-79 (HAB), Hayeren armatakan bararan, in 4 vols (second edition). Yerevan: University Press. [The original
+edition: 1926-1935, in 7 volumes, Yerevan: University Press].
+ADAMS, Douglas Q.
+1999
+A dictionary of Tocharian B. Amsterdam/Atlanta: Rodopi (Leiden studies in Indo-European; 10).
+ADONC, N.
+1915
+Dionisij Orakijskij i armjanskie tolkovateli (texts and study). Petrograd: Tipografija Imperatorskoj Akade-
+mii Nauk. (Bibliotheca Armeno-Georgica, 4).
+ALAYAN, E. B.
+1974
+ALISAN, Łewond
+1910
+ALLEN, W. S.
+1978
+Barak'nnakan ew stugabanakan hetazotut yunner. Yerevan: Academy Press.
+Hin hawatk' kam het'anosakan krönk' Hayoc'. Venice: S. Lazar.
+The PIE velar series: neogrammarian and other solutions in the light of attested parallels. In: Transac-
+tions of the Philological Society 1978: 87-110.
+AMATUNI, Sahak Vardapet
+1912
+Hayoc' bar u ban. Vataršapat.
+ARUTJUNJAN, Covinar R.
+1983
+Armjano-grečeskie leksičeskie izoglossy. In: G. B. DŽAUKJAN, L. A. SARADŽEVA, C. R. ARUTJUNJAN.
+Očerki po sravnitel'noj leksikologii armjanskogo jazyka. Yerevan: Academy Press: 221-354.
+ARUTJUNJAN, N. V.
+2001
+Korpus urartskix klinoobraznyx nadpisej. Yerevan: Academy Press 'Gitutjun'.
+ASATRYAN, G. S.
+1997
+Remnant of an Indo-European poetic term for 'horse, stud' in New Iranian: Kurdish delazi. In: Iran and
+the Caucasus 1: 179-180.
+BAILEY, Harold W.
+1979
+Dictionary of Khotan Saka. Cambridge, London, New York, Melbourne: Cambridge University press.
+BALLES, Irene
+1997
+Reduktionserscheinungen in langen Wortformen als Ursprung morphologischer Doppelformen im
+Urindogermanischen: die Suffixformen *-jo- und *-iio-. In: Die Sprache 39.2: 141-167.
+BEEKES, Robert S. P.
+Uncle and nephew. In: JIES 4: 43-63.
+1990-92 The genitive in *-osio. In: Folia linguistica historica (Societas Linguistica Europaea) 11.1-2, 1990 [1992]:
+1996
+1998
+2000
+2003
+2008
+Ancient European loanwords. In: HS 109.2: 215-236.
+The origin of Lat. aqua, and of "teuta "people'. In: JIES 26, 3-4: 459-466.
+European substratum words in Greek. In: Michaela Ofitsch & Christian Zinko (eds.), 125 Jahre Indo-
+germanistik in Graz. Leykam: 21-31.
+Historical phonology of Classical Armenian, apud Kortlandt 2003: 133-211.
+Palatalized consonants in Pre-Greek. In: Evidence and counter-evidence: essays in honour of Frederik Kort-
+landt (ed. by Alexander Lubotsky, Jos Schaeken, Jeroen Wiedenhof, with the assistance of Rik Derksen
+and Sjoerd Siebinga). Vol. 1: Balto-Slavic and Indo-European linguistics; vol. 2: General linguistics.
+Amsterdam, New York: Rodopi. (Studies in Slavic and general linguistics; 32-33). 1: 45-56.
+127
+---PAGE---
+Hrach Martirosyan
+2010
+2011
+Etymological Dictionary of Greek (with the assistance of Lucien van Beek). 2 vols. Leiden: Brill.
+Comparative Indo-European linguistics: an introduction (2nd edition revised and corrected by Michiel da
+Vaan). Amsterdam, Philadelphia: John Benjamins.
+BEHR, Wolfgang
+2004-05 Hinc sunt leones: two ancient Eurasian migratory terms in Chinese revisited (1). In: International journal
+of Central Asian studies. Seoul, Institute of Asian culture and development; Tashkent, International as-
+sociation of Central Asian studies. 2004: 1-24; 2005: 1-28.
+BENVENISTE, Emile
+1964
+Éléments parthes en arménien. In: Revue des études arméniennes n.s. 1: 1-39.
+BIRD, Norman
+The distribution of Indo-European root morphemes: (a checklist for philologists). Wiesbaden: Otto Harras-
+sowitz.
+1993
+BIRWÉ, Robert
+1956
+The roots and non-roots of Indo-European: a lexicostatistical survey. Wiesbaden: Harrassowitz Verlag.
+Griechisch-arische Sprachbeziehungen im Verbalsystem. Walldorf-Hessen: Verlag für Orientkunde Dr.
+H. Vorndran.
+BLAŽEK, Václav
+Hic erant leones: Indo-European lion' et alii. In: JIES 33.1-2: 63-101.
+BONFANTE, Giuliano
+1937
+Les isoglosses gréco-arméniennes. I. Faits phonétiques. In: L. HELMSLEV, C. HÖEG, CH. MØLLeR, AD.
+STENDER-PETERSEN (eds.), Mélanges linguistiques offerts à M. Holger Pedersen à l'occsion de son soixante-
+dixième anniversaire, 7 avril 1937. Aarhus: Universitetsforlaget; København: Levin & Munksgaard: 15-
+33.
+1946
+Armenians and Phrygians. In: Armenian quarterly 1.1: 82-97.
+1981
+Hayereni dirk'a hndevropakan lezuneri mej. In: Patma-banasirakan handes 1981, Nr 2: 54-67.
+BRENTON, Lancelot Charles Lee
+1851
+The Septuagint with Apocrypha: Greek and English. London: Samuel Bagster & Sons, Ltd. (= Hendrickson
+Publishers, 1986/2009).
+BUGGE, Sophus
+1893
+Beiträge zur etymologischen Erläuterung der armenischen Sprache. In: ZVS 32: 1-87.
+CANIKEAN, Y. K.
+Hnut'iwnk' Aknay. T'iflis: Tparan M. D. Rötineanc'i. (T'iflisi hayoc' hratarakč akan ankerut'iwn; 89).
+1968-80 Dictionnaire étymologique de la langue grecque: histoire des mots (4 volumes). Paris: Klincksieck.
+CHEUNG, Johnny
+2007
+Etymological dictionary of the Iranian verb. Leiden, Boston: Brill. (Leiden Indo-European Etymological
+Dictionary series; 2).
+CLACKSON, James
+1994
+The linguistic relationship between Armenian and Greek. Oxford, Cambridge: Blackwell (Publications of
+the Philological Society; 30).
+2004-05 Review of Kortlandt 2003. In: Annual of Armenian linguistics 24-25: 153-158.
+2008
+Classical Armenian. In: Roger D. Woodard (ed.), The ancient languages of Asia Minor. Cambridge
+University Press: 124-143.
+CLACKSON, James & HORROCKS, Geoffrey
+2011
+The Blackwell history of the Latin language. Wiley-Blackwell.
+COLEMAN, R. G. G.
+1992
+Le lexique grec et le lexique indo-européen: étude comparative. In: Françoise LETOUBLON (ed.), La
+langue et les textes en grec ancien: actes du colloque Pierre Chantraine (Grenoble, 5-8 septembre 1989), Am-
+sterdam: Gieben: 169-179.
+COWE, S. Peter
+1992
+The Armenian version of Daniel. Atlanta, Georgia: Scholars Press (University of Pennsylvania Armenian
+texts and studies, 9).
+128
+---PAGE---
+The place of Armenian in the Indo-European language family
+Cox, Claude E.
+2006
+Armenian Job: reconstructed Greek text, critical edition of the Armenian with English translation. Leuven -
+Paris - Dudley, MA: Peeters. (Hebrew University Armenian studies, 8).
+DAVIES, Paul & Ross, Alan S. C.
+1977
+'Close relationship' in the Indo-European languages. In: Transactions of the Philological Society 1975
+[1977): 82-100.
+DAVT' YAN, K. S.
+1966
+Lernayin Łarabati barbarayin k'arteza. Yerevan: Academy Press.
+DEMIRA], Bardhyl
+1994
+Bemerkungen zur Entwicklung der anlautenden idg. Laryngale im Albanischen. In: In honorem Holger
+Pedersen: Kolloquium der Indogermanischen Gesellschaft vom 25. bis 28. März 1993 in Kopenhagen (hrsg.
+von J. E. Rasmussen, unter Mitwirkung von Benedicte Nielsen). Wiesbaden: Dr. Ludwig Reichert
+Verlag: 57-76.
+Albanische Etymologien: Untersuchungen zum albanischen Erbwortschatz. Amsterdam, Atlanta: Rodopi
+(Leiden studies in Indo-European; 7).
+2008
+Etymological dictionary of the Slavic inherited lexicon. Leiden, Boston: Brill. (Leiden Indo-European Ety-
+mological Dictionary Series; 4).
+DIAKONOFF, I. M.
+1984
+The pre-history of the Armenian people (transl. from D'jakonov 1968 by Lori Jennings; with revisions by
+the author). Delmar, New York: Caravan Books (Anatolian and Caucasian studies).
+DOČKALOVÁ, Lenka & BLAŽEK, Václav
+2011
+On Indo-European roads. In: JIES 39.3-4: 299-341.
+DURKIN-MEISTERERNST, Desmond
+2004
+Dictionary of Manichaean Middle Persian and Parthian. Turnhout: Brepols. (Corpus Fontium
+Manichaeorum; 3.1).
+EMMERICK, R. E. & SKJÆRVØ, P.O.
+1997
+Studies in the vocabulary of Khotanese III. Wien: Verlag der Österreichischen Akademie der Wissen-
+schaften. (Österreichische Akademie der Wissenschaften, philosophisch-historische Klasse; Sitzungs-
+berichte 651; Veröffentlichungen der Kommission für Iranistik hrsg. von H. Eichner und R. Schmitt,
+Nr. 27).
+ESKA, Joseph F. & WALLACE, Rex E.
+2001
+Remarks on the thematic genitive singular in ancient Italy and related matters. In: Incontri linguistici
+24: 77-97.
+EtimSlovIranJaz
+2000-
+V. S. RASTORGUEVA & D. I. EDEL'MAN, Etimologičeskij slovar' iranskix jazykov. Vol. 1, 2000; 2, 2003; 3, 2007
+(in progress). Moscow: "Vostočnaja Literatura" Publishers.
+EtimSlovSlavJaz
+1974- O. N. TRUBAČEV (ed.), Etimologičeskij slovar' slavjanskix jazykov. Vol. 1, 1974 — vol. 32, 2005 (in prog-
+ress). Moscow: "Nauka".
+EULER, Wolfram
+1979
+doiranisch-griechische Gemeinsamkeiten der Nominalbildung und deren indogermanische Grundlagen
+nsbruck: Institut für Sprachwissenschaft der Universität Innsbruck (Innsbrucker Beiträge zi
+Sprachwissenschaft).
+FORTSON, Benjamin W.
+2010
+Indo-European language and culture: an introduction (2nd edition). Chichester, U.K.: Wiley-Blackwell.
+(Blackwell textbooks in linguistics; 19).
+FRISK, Hjalmar
+1960-72 (GEW 1-3), Griechisches etymologisches Wörterbuch. Vol. 1, 1960; vol. 2, 1970; vol. 3 (Nachträge, Wort-
+register, Corrigenda, Nachwort), 1972. Heidelberg: Carl Winter.
+FURNÉE, Edzard Johan
+1972
+Die wichtigsten konsonantischen Erscheinungen des Vorgriechischen: mit einem Appendix über den Vokalis-
+mus. The Hague, Paris: Mouton.
+129
+---PAGE---
+Hrach Martirosyan
+GAMKRELIDZE, Th. V. & IVANOV, V. V.
+1984
+Indoevropejskij jazyk i indoevropejcy: rekonstrukciya i istoriko-tipologiceskij analiz prayazyka i protokultury.
+With a preface by R. Jakobson, 2 vols, Tbilisi: University Press.
+1995
+Indo-European and the Indo-Europeans: a reconstruction and historical analysis of a proto-language and a
+proto-culture. Part 1. The text. Transl. by J. Nichols, ed. by W. Winter. Berlin, New York : Mouton de
+Gruyter (Trends in linguistics. Studies and monographs, 80). [English translation of the Russian
+original 1984].
+HAAS, Otto
+1939
+Über die phrygischen Sprachreste und ihr Verhältnis zum Armenischen. In: Handes amsöreay 53.7-12:
+225-235.
+HAMP, Eric P.
+1975
+On the nasal presents of Armenian. In: ZVS 89: 100-109.
+1979
+Indo-European *g"en-Ha. In: ZVS 93.1: 1-7.
+1983
+Philologica varia. In: Revue des études arméniennes n.s. 17: 5-12.
+1983a
+On the Helleno-Armenian shared lexicon. In: Annual of Armenian linguistics 4: 63-64.
+1992
+On subgrouping and Armenian. In: Annual of Armenian linguistics 13: 55-61.
+HARUT YUNYAN, Sargis
+2006
+Hay hmayakan ew žołourdakan ałot'k'ner (Armenian incantations and folk prayers). Yerevan: University
+Press.
+HayLezBrbBar 1-
+2001
+A. SARGYAN et al. (eds.), Hayoc" lezvi barbarayin bararan. Vol. 1, 2001 [a-z]; vol. 2, 2002 [é-c]; vol. 3, 2004
+[k-č]; vol. 4, 2007 [m-č"];vol. 5, 2008 [letters p-s]. Yerevan: Academy Press "Gitut'yun".
+HerkWört
+1997
+Herkunftswörterbuch der deutschen Sprache (bearb. von Günther Drosdowski). Mannheim, Leipzig,
+Wien, Zürich: Dudenverlag. (Duden, 7).
+HoLsT, Jan Henrik.
+2009
+HOVHANNISYAN, L. S.
+HUBSCHMANN, H.
+Armenische Studien. Wiesbaden: Harrassowitz Verlag.
+Hayereni iranakan p'oxaiut yunnera. Yerevan: Academy Press.
+1875/77 Ueber die stellung des armenischen im kreise der indogermanischen sprachen. In: ZVS 23 [N.F. 3.1]:
+1883
+Armenische Studien. 1/1. Grundzüge der armenischen Etymologie. Leipzig: Breitkopf & Härtel.
+1897
+Armenische Grammatik. 1. Theil: Armenische Etymologie. Leipzig: Breitkopf & Härtel.
+IVANOV, V. V. & TOPOROV, V. N.
+1974
+Issledovanija v oblasti slavjanskix drevnostej: leksičeskie i frazeologičeskie voprosy rekonstrukcii tekstov. Mos-
+cow: "Nauka".
+JAHUKYAN, G. B.
+1963
+(DZAUKJAN), Urartskij i indoevropejskie jazyki. Yerevan: Academy Press.
+1968
+Hayerena ew p'iyugerena. In: Patma-banasirakan handes 1968, Nr 3: 121-137.
+1970
+Hayerena ew hndevropakan hin lezunera. Yerevan: Academy Press.
+1973
+Stugabanut'yunner. In: Lraber hasarakakan gitut'yunneri 1973, Nr 6: 17-22.
+1980
+(DJAHUKIAN), On the position of Armenian in the Indo-European languages. In: John GREPPIN (ed.),
+Proceedings of the First international symposium on Armenian linguistics (11-14 July 1979). Delmar, New
+York: Caravan Books: 3-16.
+1983
+(DZAUKJAN), Opyt semanticeskoj klassifikacii i areal'nogo raspredelenija indoevropejskoj leksiki
+armjanskogo jazyka. In: G. B. DZAUKJAN, L. A. SARADZEVA, C. R. ARUTJUNJAN. Očerki po sravnitel'noj
+leksikologii armjanskogo jazyka. Yerevan: Academy Press: 5-116.
+1986-87 L'étymologie des mots haraw "sud", hiwsis(i) "nord" et le système d'orientation des anciens Arméni-
+ens. In Revue des études arméniennes n.s. 20: 29-33.
+1987
+1991
+2010
+Hayoc' lezvi patmut'yun: naxagrayin zamanakašrjan. Yerevan: Academy Press.
+Stugabanut'yunner. In: Patma-banasirakan handes 1991, Nr 2: 36-44.
+Hayeren stugabanakan bararan (ed. by Vahan Sargsyan). Yerevan: "Asolik".
+130
+---PAGE---
+The place of Armenian in the Indo-European language family
+K'AjBERUNI
+1902
+Haykakan sovorut'iwnner. In: Azgagrakan handēs, year 7, book 9: 83-116.
+KATZ, Joshua T.
+2000
+Evening dress: the metaphorical background of Latin esper and Greek čonepoç. In Karlene JONES-
+BLeY, Martin E. HULD, Angela DELLA VoLPE (eds.), Proceedings of the eleventh Annual UCLA Indo-
+European conference. Los Angeles, June 4-5, 1999. Washington, DC: Institute for the Study of Man.
+(Journal of Indo-European Studies Monograph Series; 35): 69-93.
+K'EČ'EAN, Aak'ēl & PARAMEN, Mkrtič'
+1952
+Akn ew Aknc'ik. Initiated and compiled by Arak el K'éc'ean; composed and edited by Mkrtic Par-
+samean. Paris: Compatriotic Association of Eguen.
+KIMBALL, Sara
+1998
+On the origins of Hittite verbs of the type tēhhi, dãi. In: Jay JASANOFF, H. Craig MELCHERT & Lisi
+OLIVER (eds.), Mír curad: studies in honor of Calvert Watkins. Innsbruck: Institut für Sprachwissenschaft
+der Universität Innsbruck (Innsbrucker Beiträge zur Sprachwissenschaft; 92): 335-344.
+KLINGENSCHMITT, Gert
+1982
+Das altarmenische Verbum. Wiesbaden: Dr. Ludwig Reichert Verlag.
+KLOEKHORST, Alwin
+2006
+Initial laryngeals in Anatolian. In: HS 119: 77-108.
+2008
+Etymological dictionary of the Hittite inherited lexicon. Leiden, Boston: Brill.
+KOCHAROV, Petr
+2008
+Otraženie indoevropejskix nazal'nyx prezensov v drevnearmjanskom jazyke (thesis). Saint Petersburg.
+KORTLaNDt, Frederik H. H.
+1980
+Albanian and Armenian. In: ZVS 94: 243-251.
+1984
+Proto-Armenian case endings. In: International symposium on Armenian linguistics (Yerevan, September
+21-25, 1982): Reports. Yerevan: Academy Press: 97-106.
+1986
+Armenian and Albanian. In: Maurice LEROY & Francine MAWET (eds.), La place de l'arménien dans les
+langues indo-européennes. Louvain: Peeters: 38-47.
+2003
+Armeniaca: comparative notes; with an appendix on the historical phonology of Classical Armenian by
+Robert S. P. Beekes. Ann Arbor: Caravan Books.
+2007
+(Leiden studies in Indo-European; 14).
+c orien and petriei dedopment of the rih lengenge. Amaterdam, Ner York Rodopi
+2010
+Studies in Germanic, Indo-European and Indo-Uralic. Amsterdam, New York: Rodopi. (Leiden studies in
+Indo-European; 17).
+KUIPER, F. B. J.
+1995
+Gothic bagms and Old Icelandic ylgr. In: NOWELE 25, March: 63-88.
+LAMBERTERIE, Charles de
+1978
+Armeniaca I-VIII: études lexicales. In: BSL 73: 243-285.
+1978-79 Armeniaca X: une isoglosse gréco-arménienne. In: Revue des études arméniennes n.s. 13: 31-40.
+1982
+La racine *(s)per-ôh- en arménien. In: Revue des études arméniennes n.s. 16: 57-68.
+1983
+Une bagatelle étymologique (artewanunk/Spentávn). In: Revue des études arméniennes n.s. 17: 21-22.
+1986
+Deux isoglosses entre 'arménien et l'indo-iranien. In: Maurice LEROY & Francine MAWET (eds.), La
+place de 'arménien dans les langues indo-européennes. Louvain: Peeters: 48-61.
+1992
+1992a
+Introduction à 'arménien classique. In: LALIES 10 (Aussois, 1988-1989): 234-289.
+Le problème de 'homonymie: les trois verbes ootMo en grec ancien. In: Françoise LÉTOUBLON (ed.),
+La langue et les textes en grec ancien: actes du colloque Pierre Chantraine (Grenoble, 5-8 septembre 1989),
+Amsterdam: Gieben: 201-217.
+2012
+L'arménien et l'indo-européen balkanique. In: IX International Conference on Armenian linguistics (7-9
+November 2012, Saint Petersburg). Abstracts: 109-111.
+2012a
+Sur le nom du "rêve" en indo-européen balkanique. In: Etymology and the European lexicon: 14'h Fachta-
+gung of the Indogermanische Gesellschaft (17-22 September 2012, University of Copenhagen). Abstracts: 69.
+2013
+Grec, phrygien, arménien: des anciens aux modernes. In: Journal des Savants (janvier-juin 2013): 3-69.
+ŁANALANYAN, Aram
+1969
+Avandapatum. Yerevan: Academy Press.
+131
+---PAGE---
+Hrach Martirosyan
+LEHMANN, Winfred P.
+The genitive singular ending in *-syo: how an Indo-Europeanist works. In: Yoël L. ARBEITMAN & Allan
+R. BOMHARD (eds.), Bono homini donum: essays in hitorical linguistics, in memory of J. Alexander Kerns.
+Amsterdam: John Benjamins, vol. 1: 179-188.
+A Gothic Etymological Dictionary (based on the 3id ed. of Feist's dictionary). Leiden: E. J. Brill.
+Theoretical bases of Indo-European linguistics. London, New York: Routledge.
+LIDDELL, Henry George, & Scott, Robert
+A Greek-English Lexicon. A new edition revised and augmented throughout by Sir Henry Stuart Jones,
+with the assistance of Roderick McKenzie and with the co-operation of many scholars. Oxford:
+Clarendon Press [1940/53].
+LIGORIO, Orsat & LUBOTSKY, Alexander
+forthc.
+The Phrygian language (forthcoming).
+LUBOTSKY, A. M.
+2001
+Reflexes of Proto-Indo-European *sk in Indo-Iranian. In: Incontri linguistici (Pisa, Roma) 24: 25-57.
+2001a
+The Indo-Iranian substratum. In: Christian CARPELAN, Asko PARPOLA & Petteri KOSKIKALLIO (eds.),
+Early contacts between Uralic and Indo-European: linguistic and archaeological considerations. Papers pre-
+sented at an international symposium held at the Tvärminne Research Station of the University of
+Helsinki (8-10 January, 1999). Helsinki: Suomalais-ugrilainen seura. (Mémoires de la Société Finno-
+ougrienne, 242): 301-317.
+2002
+The Indo-Iranian word for 'shank, shin'. In: Journal of the American Oriental Society 122.2: 318-324.
+MAKAEV, E. A.
+1967
+Armjano-indoevropejskie leksiceskie izoglossy i areal'naja lingvistika: In: Zeitschrift für Phonetik,
+Sprachwissenschaft und Kommunikationsforschung 20: 449-464.
+MALLORY, J. P. & ADAMS, D. Q.
+2006 (eds.), Encyclopedia of Indo-European culture. London, Chicago: Fitzroy Dearborn Publishers.
+The Oxford introduction to Proto-Indo-European and the Proto-Indo-European world. Oxford University Press.
+MAŃCZAK, Witold
+1987
+The relationship of Armenian to Greek and Persian. In: Annual of Armenian linguistics 8: 19-28.
+MARTIROSYAN, Hrach K.
+2005
+On Armenian čiw 'shank'. In: Iran and the Caucasus 9.1: 81-84.
+2007
+Mediterranean-Pontic substratum words. In: Aramazd: Armenian journal of Near-Eastern studies, vol. 2
+(Yerevan: Association for Near Eastern and Caucasian Studies): 88-123.
+2010
+Etymological dictionary of the Armenian inherited lexicon. Leiden, Boston: Brill. (Leiden Indo-European
+Etymological Dictionary Series; 8).
+2012
+European and Mediterranean substrate words in Armenian. In: Etymology and the European lexicon:
+14"h Fachtagung of the Indogermanische Gesellschaft (17-22 September 2012, University of Copenhagen).
+Abstracts: 75-76.
+forthc.
+Vocative strategies and accent in Armenian: synchrony and diachrony. To appear in Sprachtypologie
+und Universalienforschung (ed. by Anaid Donabedian and Vladimir Plungian).
+prepar. 1 The Armenian month names. In preparation.
+prepar. 2 The Indo-European and Iranian layers of Armenian mythology. In preparation.
+prepar. 3 Lernayin akunk'i farna, Aršaluysi dic'uhin ew gixi u mort'u zohacesa višapakot'ołneri imastabanakan henk'um.
+In preparation.
+MATASOVIC, Ranko
+2009
+Etymological dictionary of Proto-Celtic. Leiden, Boston: Brill. (Leiden Indo-European Etymological Dic-
+tionary Series; 9).
+MAWET, Francine
+1983
+The motif of the bird in Armenian epic literature and its relations with Iranian tradition. In: Thomas J.
+SAMUELIAN & Michael E. STONE (eds.), Medieval Armenian culture. Chico, Calif.: Scholars Press, 1984
+(University of Pennsylvania Armenian texts and studies; 6): 179-193.
+MAYRHOFER, Manfred
+1986
+Lautlehre: segmentale Phonologie des Indogermanischen. In: Indogermanische Grammatik 1.2. Heidel-
+berg: Carl Winter, Universitätsverlag.
+132
+---PAGE---
+The place of Armenian in the Indo-European language family
+1956-80 (KEWA) Kurzgefaßtes etymologisches Wörterbuch des Altindischen (4 vols.). Heidelberg: Carl Winter Uni-
+versitätsverlag.
+1992-2001 (EWAia) Etymologisches Wörterbuch des Altindoarischen (3 vols). Heidelberg: Universitätsverlag
+C. Winter.
+MEID, Wolfgang
+Probleme der räumlichen und zeitlichen Gliederung des Indogermanischen. In: Helmut Rix (ed.),
+Flexion und Wortbildung: Akten der V. Fachtagung der Indogermanischen Gesellschaft (Regensburg, 9-14 Sep-
+tember 1973). Wiesbaden: Dr. Ludwig Reichert Verlag: 204-219.
+MEIER-BRÜGGER, Michael
+1995
+Griechisch (aiyu)rós, vedisch (rji)pyá- und Verwandtes. In: HS 108: 50-55.
+2003
+Indo-European linguistics. In cooperation with Matthias Fritz and Manfred Mayrhofer; translated by
+Charles Gertmenian. Berlin, New York: Walter de Gruyter.
+MEILLET, A.
+1898
+1900
+1896
+1924
+1925
+1936
+1950
+Étymologies arméniennes. In: MSL 10: 274-282.
+Notes sur quelques faits de morphologie. In: MSL 11: 6-21.
+Varia. In: MSL 9: 136-159.
+Remarques étymologiques. In: Revue des études arméniennes 4, fasc. 1: 1-6.
+Remarques sur l'étymologie de quelques mots grecs. In: BSL 26: 1-22.
+Esquisse d'une grammaire comparée de l'arménien classique. Wien: Mechitharisten.
+Les dialectes indo-européens (nouveau tirage avec une introduction nouvelle et des additions). Paris: Librairie
+ancienne Édouard Champion; Librairie de la Société de Linguistique de Paris.
+MifNarMir 1-2
+1980-82 Mify narodov mira: ènciklopedija. Redactor-in-chief: S. A. Tokarev. Vol. 1, 1980; vol. 2, 1982. Moscow:
+"Sovetskaja ènciklopedija"
+MONCHI-ZADEH, Davoud
+1990
+Wörter aus Xurāsān und ihre Herkunft. Leiden: E. J. Brill. (Acta Iranica 29).
+MORANI, Moreno
+1992
+Pour une histoire du génitif arménien. In: Muséon 105.3-4: 303-319.
+MORGENSTIERNE, Georg
+1962
+Feminine nouns in -a in Western Iranian dialects. In: A locust's leg: studies in honour of S. H. Tagizadeh:
+203-208.
+1974
+Etymological Vocabulary of the Shughni Group. Wiesbaden: Dr. Ludwig Reichert Verlag. (Beiträge zur
+2003
+A new etymological vocabulary of Pashto. Compiled and edited by J. Elfenbein, D. N. MacKenzie and
+Nicholas Sims-Williams. Wiesbaden: Dr. Ludwig Reichert Verlag. (Beiträge zur Iranistik; 23).
+MÜLLER, Friedrich
+1870
+Armeniaca II. In Sitzungsberichte der philosophisch-historischen Classe der Kaiserlichen Akademie der Wis-
+senschaften. 64.2. Wien: 447-456.
+NHB 1-2
+1836-37 G. AWETIK'EAN, X. SIWRMÈLEAN, M. AWGEREAN, Nor bargirk' haykazean lezui, 2 vols., Venice: St Lazar
+(1836-1837); reprinted: Yerevan: University Press (1979-1981).
+NOCENTINI, Alberto
+_e radici ie. *mor-/morm- 'incubo' e *bù-lbub- s
+1-2. Roma: Il Calamo. Vol. 1: 399-415.
+ODABAŠYAN, A. A.
+138-149.
+Tiezerastełman aíaspeli veraprukayin tarrern axtark'um. In: Patma-banasirakan handes 1986, Nr 3:
+OLSEN, B. A.
+1999
+2011
+The noun in Biblical Armenian: origin and word-formation: with special emphasis on the Indo-European heri-
+tage. Berlin, New York: Mouton de Gruyter. (Trends in linguistics. Studies and monographs 119).
+Review of Martirosyan 2010. In: Kratylos 56: 14-30.
+133
+---PAGE---
+Hrach Martirosyan
+OREL, Vladimir E.
+1993
+The position of Armenian. In: Annual of Armenian linguistics 14: 55-67.
+1998
+Albanian etymological dictionary. Leiden, Boston, Köln: Brill.
+PATRUBANY, Lukas v.
+1902-03 Idg. *e/ozg'h im Armenischen. In: IF 13: 124-125.
+PEDERSEN, Holger
+1900
+Albanesisch und Armenisch. In: ZVS 36: 340-341 (= 1982: 1-2).
+1905
+Zur armenischen Sprachgeschichte. In: ZVS 38: 194-240 (=1982: 56-102).
+1906
+Armenisch und die Nachbarsprachen. In: ZVS 39: 334 485 (= 1982: 112-263).
+1924
+Armenier. B. Sprache. In: Max EBERT (ed.), Reallexikon der Vorgeschichte. Vol. 1. Berlin, pp. 219-226
+(= 1982: 302-309).
+1925
+1982
+Le groupement des dialectes indo-européens. København.
+Kleine Schriften zum Armenischen (hrsg. von Rüdiger Schmitt). Hildesheim, New York: Georg Olms
+Verlag.
+PETERSSON, Herbert
+1916
+Beiträge zur armenischen Wortkunde. In: ZVS 47: 240-291.
+PETROSYAN, Armen
+2002
+The Indo-European and ancient Near Eastern sources of the Armenian Epic. JIES Monograph Nr 42. Wash-
+ington DC: Institute for the Study of Man.
+2005 Urartui vernaxavi ēt'nikakan patkanelut'yan xndira. In: Patma-banasirakan handes 2005, Nr 3: 208-226.
+PINAULT, Georges-Jean
+Introduction au tokharien. In: Lalies: Actes des sessions de linguistique et de littérature 7 (Aussois, 27 août
+- 1er septembre 1985), Paris: 5-224.
+2002
+Tokh. B k caññe, A k.cim et skr. tokharika. In: Indo-Iranian journal 45: 311-345.
+PISANI, Vittore
+1950
+Studi sulla fonetica dell'armeno. I. Palatalizzazioni ed esiti di s + gutturale; esiti delle semivocali. In:
+Ricerche linguistiche (Roma) 1/2: 165-193.
+1979
+(PIZANI), Hndevropakan lezuneri caguma. In: Patma-banasirakan handes 1979, Nr 1: 204-212.
+PISOWICZ, Andrzej
+1987
+Some remarks on Greek-Armenian-Persian lexical parallels a propos W. Mańczak's "The relationship
+of Armenian to Greek and Persian". In: Annual of Armenian linguistics 8: 29-33.
+POKORNY, Julius
+1959
+Indogermanisches etymologisches Wörterbuch, vol. 1. Bern, Stuttgart: Francke.
+PorzIg, Walter
+1954
+Die Gliederung des indogermanischen Sprachgebiets. Heidelberg: Winter. (Indogermanische Bibliothek.
+3. Keihe: Untersuchungen).
+1964
+(PORCIG, V.), Clenenie indoevropejskoj jazykovoj oblasti. (Russian translation of Porzig 1954; ed. by A. V.
+Desnickaja). Moscow: "Progress".
+PRONK, Tijmen
+2010 Sanskrit (v)/sabhá-, Greek ăponv, ěponv: the spraying bull of Indo-European? In: HS 122: 170-181.
+RINGE, Don, Tandy WARNOW & Ann TAYLOR
+2002
+Indo-European and computational cladistics. In: Transactions of the Philological Society 100.1: 59-129.
+RITTER, Ralf-Peter
+1983
+Eine verkannte Etymologie für armen. aniw 'Rad'. In: Münchener Studien zur Sprachwissenschaft 42:
+191-196.
+2006
+Zur Frage der Reste indogermanischer Dichtersprache im Armenischen. In: Georges-Jean PINAULT et
+Daniel PETIT (eds.), La langue poétique indo-européenne: actes du Colloque de travail de la Société des Etudes
+Indo-Européennes (Indogermanische Gesellschaft/Society for Indo-European Studies), Paris, 22-24 octobre
+2003. Leuven, Paris: Peeters: 413-417.
+RUSAKOV, A. Ju.
+1984
+Albanskij i armjanskij: nekotorye problemy. In: International symposium on Armenian linguistics (Yere-
+van, September 21-25, 1982): Reports. Yerevan:
+134
+---PAGE---
+The place of Armenian in the Indo-European language family
+SCHEFTELOWITZ, J.
+1904-05 Zur altarmenischen Lautgeschichte. In: Beiträge zur Kunde der indogermanischen Sprachen, Göttingen
+(ed. Ad. Bezzenberger), (1): 28, 1904: 282-313; (2): 29, 1905: 13-71.
+lag. zgh in den Einzelsprachen. In: ZVS 54: 224-253.
+SCHMIDT, Karl Horst
+1980
+Altarmenische Miszellen. In: Annual of Armenian linguistics 1: 1-5.
+1987
+The Indo-European background of the Classical Armenian noun declension. In: Annual of Armenian
+linguistics 8: 35-47.
+1988
+On Armenian phonology and Indo-European reconstruction. In: Mohammad Ali JAZAYERY and
+Werner WINTER (eds.), Languages and cultures: studies in honor of Edgar C. Polomé. Berlin, New York,
+Amsterdam: Mouton de Gruyter. (Trends in linguistics. Studies and monographs, 36): 601-610.
+SCHMITT, Rüdiger
+1967
+Dichtung und Dichtersprache in indogermanischer Zeit. Wiesbaden: Otto Harrassowitz.
+1970 Der 'Adler' im Alten Iran. In: Die Sprache 16.1: 63-77.
+1972-74 Die Erforschung des Klassisch-Armenischen seit Meillet (1936). In: Kratylos 17: 1-68.
+1975
+Von Bopp bis Hübschmann: Das Armenische als indogermanische Sprache. In: ZVS 89.1: 3-30.
+1983
+Iranisches Lehngut im Armenischen. In: Revue des études arméniennes n.s. 17: 73-112.
+1987
+Armenia and Iran I. Armenia, Achaemenid province. IV. Iranian influences in Armenian. 1. General.
+In: Encyclopaedia Iranica 2, 1987: 417-418; 445-459.
+2007
+Grammatik des Klassisch-Armenischen mit sprachvergleichenden Erläuterungen (2., durchgesehene Auf-
+lage). Innsbruck: Institut für Sprachen und Literaturen der Universität Innsbruck. (Innsbrucker Bei-
+träge zur Sprachwissenschaft).
+SCHRIJVER, Peter C. H.
+1991
+The reflexes of the Proto-Indo-European laryngeals in Latin. Amsterdam, Atlanta: Rodopi. (Leiden studies
+in Indo-European; 2).
+1997
+Animal, vegetable and mineral: some Western European substratum words. In: A. LUBOTSKY (ed.),
+Sound law and analogy: papers in honor of Robert S. P. Beekes on the occasion of his 60th birthday. Amster-
+dam-Atlanta, GA: Rodopi B.V.: 293-316.
+SCHWARTZ, Martin
+1986
+Coded sound patterns, acrostics, and anagrams in Zoroaster's oral poetry. In: B. FORSSMAN, K. HOFF-
+MANN, J. NARTEN (eds.), Studia grammatica iranica: Festschrift für Helmut Humbach. ("Münchener
+Studien zur Sprachwissenschaft", Beiheft 13, N.F.). München: R. Kitzinger: 327-392.
+SHIELDS, Kenneth Jr.
+1981
+A new look at the centum/satem isogloss. In: ZVS 95.2: 203-213.
+ŠIROKOv, Oleg
+1980
+Armjano-grečeskie ètnogenetičeskie kontakty po dannym sravnitel'no-istoričeskoj fonologii. In:
+Patma-banasirakan handes 1977, Nr 1: 85-100.
+Mesto armjanskogo jazyka sredi indoevropejskix i problema armjanskoj prarodiny: avtoxtonnost' armjan
+po dannym sravnitel'no-istoričeskogo jazykovedenija. In: Lraber hasarakakan gitut'yunneri 1980, Nr 5: 80-93.
+SKJÆRVØ, P. O.
+1997
+Avestica II. Yokes and spades and remnants of the "tripartite ideology". In: Münchener Studien zur
+Sprachwissenschaft 57: 115-128.
+SOLTA, G. R.
+1960
+Die Stellung des Armenischen im Kreise der indogermanischen Sprachen: eine Untersuchung der indoger-
+manischen Bestandteile des armenischen Wortschatzes. Wien: Mechitharisten. (Studien zur armenischen
+Geschichte; 9).
+SPECHT, Franz
+Zur Geschichte der Verbalklasse auf -ё: ein Deutungsversuch der Verwandtschaftsverhältnisse des In-
+dogermanischen. In: ZVS 62: 29-115.
+1939
+Sprachliches zur Urheimat der Indogermanen. In: ZVS 66.1/2: 1-74.
+STEMPEL, Reinhard
+1990
+Die Entwicklung von auslautendem *m und das Problem sekundärer n-Stämme im Armenischen. In:
+IndogForsch 55: 38-62.
+135
+---PAGE---
+Hrach Martirosyan
+2000
+Armenisch und Indoiranisch. In: Bernhard FORSSMAN & Robert PLATH (eds.), Indoarisch, Iranisch und
+die Indogermanistik: Arbeitstagung der Indogermanischen Gesellschaft vom 2. bis 5. Oktober 1997 in Erlangen.
+Wiesbaden: Reichert Verlag: 515-522.
+SZEMERÉNYI, Oswald
+1977
+Studies in the kinship terminology of the Indo-European languages: with special reference to Indian,
+Iranian, Greek, and Latin. In: Varia 1977 (Acta Iranica, Série 3. Textes et mémoires, 7): 1-240. Téhéran-
+Liège: Bibliothèque Pahlavi; Leiden: Brill.
+1985
+Armenian between Iran and Greece. In: U. PIEPER and G. STICKEL (eds.), Studia linguistica, diachronica et
+synchronica Werner Winter sexagenario anno MCMLXXXIII. Berlin, New York, Amsterdam: Mouton de
+Gruyter: 783-799.
+1996
+Introduction to Indo-European linguistics (translated from the 4' edition, 1990, with additional notes and
+references). Oxford: Clarendon Press.
+THIEME, Paul
+1952
+Studien zur indogermanischen Wortkunde und Religionsgeschichte. In: Berichte über die Verhandlun-
+gen der Sächsischen Akademie der Wissenschaften zu Leipzig: Philologisch-historische Klasse, 98.5. Berlin.
+Die Heimat der indogermanischen Gemeinsprache. In: Abhandlungen der Akademie der Wissenschaften
+und der Literatur in Mainz: geistes- und sozialwissenschaftliche Klasse, 1953.11 [1954]: 35-86. Wiesbaden.
+TISCHLER, Johann
+Glottochronologie und Lexikostatistik. Innsbruck: Institut für Sprachwissenschaft der Universität Inns-
+bruck. (Innsbrucker Beiträge zur Sprachwissenschaft; 11).
+THOMSON, R. W.
+2006
+Moses Khorenats'i, History of the Armenians: translation and commentary on the literary sources (revised
+edition of 1978). Ann Arbor: Caravan Books.
+VAAN, Michiel de
+2008
+Etymological dictionary of Latin and the other Italic languages. Leiden, Boston: Brill. (Leiden Indo-
+European Etymological Dictionary Series; 7).
+VIREDAZ, Rémy
+2005-07 Notes d'étymologie arménienne I. In: Revue des études arméniennes n.s. 30: 1-14.
+WATKINS, Calvert
+La famille indo-européenne de grec oexis: linguistique, poétique et mythologie. In: BSL 70.1: 11-26.
+How to kill a dragon: aspects of Indo-European poetics. New York, Oxford: Oxford University Press.
+WITZEL, Michael
+Linguistic evidence for cultural exchange in Prehistoric Western Central Asia. Philadelphia: University of
+Pennsylvania, Department of East Asian Languages and Civilizations. (Sino-Platonic papers; 129).
+WYATT, William F.
+Lexical correspondences between Armenian and Greek. In Annual of Armenian linguistics 3: 19-42.
+XAČ'ATUROVA, E. G.
+1973
+Ob armjano-indijskix leksičeskix izoglossax. In: Patma-banasirakan handes (= IFŽ) 1973, Nr 2: 191-199.
+1979
+Drevnejšie armjano-indo-iranskie jazykovye kontakty. In: Hayoc' lezvi hamematakan k'erakanut'yan
+harc'er. Yerevan: Academy Press: 325-375.
+XALAT'EANC', Grigor
+1896
+(XALAT' JANC), Armjanskij èpos v istorii Armenii Moiseja Xorenskago: opyt kritiki istočnikov (Part 1, Issledo-
+vanie. Part 2, Materialy). Moscow: Tipografija Varvary Gatcuk.
+YAKUBOVICH, Ilya
+2008
+The origin of Luwian possessive adjectives. In: Proceedings of the 19'h Annual UCLA Indo-European con-
+ference (Los Angeles, November 2-3, 2006). Washington, DC: Institute for the Study of Man. (Journal
+of Indo-European Studies Monograph Series, 54): 193-217.
+2010
+Morphological negation in Urartian. In: Aramazd: Armenian journal of Near Eastern studies, vol. 5.1:
+141-165.
+YusamXotor]
+1964
+ZOHRAPEAN, Yovhannes
+1805
+H. Yarut'iwn v. Hulunean & H. Matt'ēos v. Hačean, Yušamatean Xotorjuri. Vienna: Mechitharisten.
+AstuacašunČ' matean Hin ew Nor Ktakaranac' (4 vols.). Venice: S. Lazar.
+136
+---PAGE---
+The place of Armenian in the Indo-European language family
+Грач МАРТИРОСЯН. Место армянского языка в индоевропейской семье и его связь с гре-
+ческим и индоиранским.
+Основной задачей статьи является каталогизация лексических этимологий, сближаю-
+щих армянский язык с греческим и/или индоиранским. Предлагаемые списки вклю-
+чают в себя как общие инновации, так и изолированные ареальные термины. Обе
+группы этимологий (армяно-греческие и армяно-индоиранские) могут рассматривать-
+ся в рамках одной и той же пространственно-временной модели. В процессе расселе-
+ния носителей индоевропейских языков протоармянский продолжал контактировать с
+как соседними индоевропейскими диалектами, так и с неиндоевропейскими языками.
+Слова субстратного происхождения выделяются ограниченной географической дист-
+рибуцией, необычной фонологией или словообразованием, характерной семантикой.
+Материал, представленный в настоящей работе, не претендуя на исчерпывающую
+полноту, позволяет, тем не менее, сделать предварительный вывод о диалектной бли-
+зости армянского, греческого, (Фригийского), и индоиранских языков. Внутри данной
+гипотетической диалектной группы ареал протоармянского языка занимал промежу-
+точное положение между ареалом протоиндоиранцев на востоке и ареалом протогре-
+ков на западе. Впоследствии протоиндоиранцы сдвинулись далее на восток, тогда как
+протоармяне и протогреки продолжали оставаться в смежных географических ареалах
+на протяжении длительного прериода, развив многочисленные общие инновации. В
+последующий период они заимствовали, совместно или поодиночке, множество лек-
+сем, принадлежащих к черноморско-средиземноморскому субстрату, по преимущест-
+ву культурные и сельскохозяйтвенные термины, а также обозначения флоры и фауны.
+С другой стороны, армянский язык содержит значительное число лексических соответ-
+ствий индоевропейским языкам Европы, существенная часть которых также должна
+объясняться в терминах общего субстрата, а не индоевропейского наследия.
+Ключевые слова: армянская историческая лингвистика, армянская этимология, индоев-
+ропейская сравнительная лингвистика, индоиранская лексикология, греческая лекси-
+кология, средиземноморский субстрат.
+AUTHOR'S ADDITION TO P. 94:
+4.1.17. *g"ou-io- (or *g"hseu-io-): Arm. kogi, gen. kogw-o-y, ins. kogw-o-v 'butter', Skt. gávya-,
+gavyá-'consisting of cattle, coming from or belonging to a cow (as milk, curds, etc.)', YAv.
+gaoiia-'coming from cattle, consisting of cattle', Gr. adj. -Bo(F)Los, e.g. Èvveá-Bolos 'worth nine
+beeves'. This isogloss33 is based on the PIE word for 'cow' (Arm. kov; cf. nom. arew vs. oblique
+areg-"sun'). Armenian and Indic are closer to each other since they show a semantic develop-
+ment to 'a dairy product. Now we also have a wonderful match in Toch. B, kewiye 'pertaining
+to cow; butter' < *kăwiyă < *kăwäyă < *g"ow-iyo-,33a Although this makes the isogloss less signifi-
+cant, I nevertheless included it in order to emphasize its semantic closeness to another agree-
+ment between Armenian and Indic: Arm. ser 'cream' and Skt. śáras n. 'cream' (see §5.2.16).
+33 See already Meillet 1896: 152.
+33a Pinault 1989: 53. I am indebted to James Clackson for this information. For the Tocharian word, see also
+Adams 1999: 198.
+137
+---PAGE---
+
+---PAGE---
