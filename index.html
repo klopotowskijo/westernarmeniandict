@@ -89,6 +89,12 @@
       flex-shrink: 0;
       padding-bottom: 0.2rem;
     }
+    .topbar-tools {
+      margin-top: 0.45rem;
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.35rem;
+    }
     .subtitle-hy {
       font-family: "EB Garamond", serif;
       font-size: 1.3rem;
@@ -1256,6 +1262,10 @@
       background: var(--accent);
       color: #fff;
     }
+    .topbar-tools #toggleThemeBtn {
+      padding: 0.28rem 0.6rem;
+      font-size: 0.72rem;
+    }
     #searchSubmitBtn {
       border: 1px solid var(--accent);
       background: var(--accent);
@@ -1327,12 +1337,96 @@
       background: linear-gradient(180deg, #20262b 0%, #191e23 100%);
     }
     body[data-theme="dark"] .entry-head,
+    body[data-theme="dark"] .entry-card,
+    body[data-theme="dark"] .entry-content,
     body[data-theme="dark"] .empty-state,
     body[data-theme="dark"] .guide-card,
     body[data-theme="dark"] .lang-result-list,
     body[data-theme="dark"] #graphContainer,
     body[data-theme="dark"] #suggestions {
       background: #1f252a;
+    }
+    body[data-theme="dark"] .etymology-box {
+      background: #2b231b;
+      border-left-color: #d59864;
+      color: #eadfce;
+    }
+    body[data-theme="dark"] .nayiri-panel {
+      background: #1f2a22;
+      border-left-color: #6fae89;
+    }
+    body[data-theme="dark"] .morphology-panel {
+      background: #242032;
+      border-left-color: #9078be;
+    }
+    body[data-theme="dark"] .morphology-formula {
+      color: #e6dff5;
+    }
+    body[data-theme="dark"] .morphology-table {
+      background: #1e1a2a;
+      border-color: #554b69;
+    }
+    body[data-theme="dark"] .morphology-table th {
+      background: #332b46;
+      color: #e5daf7;
+      border-bottom-color: #5d5178;
+    }
+    body[data-theme="dark"] .morphology-table td {
+      border-bottom-color: #3f3654;
+      color: #ddd3ee;
+    }
+    body[data-theme="dark"] .nayiri-form-pill {
+      background: #26372a;
+      border-color: #4f7f62;
+      color: #d7ead6;
+    }
+    body[data-theme="dark"] .morpheme-component {
+      background: #2f2540;
+      border-color: #8063a0;
+      color: #e6dbf7;
+    }
+    body[data-theme="dark"] .morpheme-component.root {
+      background: #213746;
+      border-color: #5b8aa5;
+      color: #d5ebf7;
+    }
+    body[data-theme="dark"] .morpheme-component.prefix {
+      background: #43252a;
+      border-color: #9f5f66;
+      color: #f5d5d9;
+    }
+    body[data-theme="dark"] .morpheme-component.suffix {
+      background: #203a26;
+      border-color: #5b9a68;
+      color: #d3f2d9;
+    }
+    body[data-theme="dark"] .ety-confidence.high {
+      background: #233827;
+      border-color: #4f8a5d;
+      color: #cdebd2;
+    }
+    body[data-theme="dark"] .ety-confidence.medium {
+      background: #3a2e1f;
+      border-color: #9a7949;
+      color: #f0deb8;
+    }
+    body[data-theme="dark"] .ety-confidence.low {
+      background: #402427;
+      border-color: #9e6269;
+      color: #f6d3d8;
+    }
+    body[data-theme="dark"] .entry-meta {
+      border-top-color: #4c4135;
+    }
+    body[data-theme="dark"] .meta-pill {
+      background: #2a221a;
+      border-color: #6a563f;
+      color: #d7c7b3;
+    }
+    body[data-theme="dark"] .source-chip {
+      background: #34271c;
+      border-color: #7b6147;
+      color: #eddcc8;
     }
     body[data-theme="dark"] .suggestion:hover,
     body[data-theme="dark"] button.active,
@@ -1402,6 +1496,7 @@
       #suffixSection { padding-left: 0.95rem; padding-right: 0.95rem; }
       .entry-content { font-size: 1.04rem; }
       .topbar-right { text-align: left; }
+      .topbar-tools { justify-content: flex-start; }
       h1 { font-size: 1.85rem; }
       .search-row {
         flex-wrap: wrap;
@@ -1427,6 +1522,9 @@
         <div class="topbar-right">
           <div class="subtitle-hy">Արեւմտահայերէն Ստուգաբանական Բառարան</div>
           <div id="count"></div>
+          <div class="topbar-tools">
+            <button id="toggleThemeBtn" type="button" aria-pressed="false" title="Toggle light and dark theme">Dark Mode</button>
+          </div>
         </div>
       </div>
       <div class="topbar-ornament">&#10022; &#10022; &#10022;</div>
@@ -1446,7 +1544,6 @@
           <div class="search-actions">
             <button id="searchSubmitBtn" type="button" title="Run search">Search</button>
             <button id="randomWordBtn" type="button" title="Load a random entry">Random</button>
-            <button id="toggleThemeBtn" type="button" aria-pressed="false" title="Toggle light and dark theme">Dark Mode</button>
             <button id="toggleKeyboardBtn" type="button" aria-expanded="false" title="Toggle Armenian keyboard">Show Armenian Keyboard</button>
           </div>
         </div>
