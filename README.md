@@ -66,6 +66,7 @@ The dictionary covers borrowings from:
 - `download_nayiri_imaged_dictionary.py` - Download Nayiri imaged-dictionary manifests, page HTML, and scan images
 - `ocr_images_with_vision.swift` - OCR helper using macOS Vision for scan images
 - `ingest_nayiri_scans.py` - OCR downloaded Nayiri scans and optionally stage/merge them
+- `ingest_martirosyan_etymologies_pdf.py` - Extract ETYM-focused snippets from Martirosyan (2011) PDF for manual etymology curation
 
 ## Development
 
@@ -97,6 +98,31 @@ python3 ocr_etym_dict_to_json.py scans/my_ocr.txt staged_ocr_entries.json --sour
 python3 merge.py --extra-json staged_ocr_entries.json
 python3 review_merged_entries.py
 ```
+
+### Martirosyan (2011) PDF Workflow
+```bash
+# 1) Place/download the PDF once
+mkdir -p sources/armenian-etymologies-2011
+curl -L "https://vahagnakanch.wordpress.com/wp-content/uploads/2011/04/armenian-etymologies.pdf" \
+	-o sources/armenian-etymologies-2011/armenian-etymologies.pdf
+
+# 2) Extract plain text + ETYM snippets + optional queue exact-match hits
+python3 ingest_martirosyan_etymologies_pdf.py
+
+# 3) Build staged merge entries (confidence-thresholded)
+python3 build_martirosyan_staged_entries.py --min-confidence medium
+
+# 4) Optionally merge staged entries into dictionary
+python3 merge.py --extra-json sources/armenian-etymologies-2011/staged_martirosyan_entries.json
+
+# 5) Review outputs
+# - sources/armenian-etymologies-2011/etym_sections.jsonl
+# - sources/armenian-etymologies-2011/queue_hits.jsonl
+# - sources/armenian-etymologies-2011/staged_martirosyan_entries.json
+# - sources/armenian-etymologies-2011/staged_martirosyan_report.json
+```
+
+The Martirosyan integration is designed for manual curation: it creates page-indexed snippet artifacts rather than auto-writing etymology entries.
 
 ### Nayiri Scan Workflow
 ```bash

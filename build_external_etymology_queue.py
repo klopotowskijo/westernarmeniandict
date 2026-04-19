@@ -179,6 +179,14 @@ def source_adapter_manifest() -> Dict[str, object]:
                 "enabled": False,
             },
             {
+                "id": "martirosyan_studies_2011_pdf",
+                "name": "Martirosyan - Studies in Armenian Etymology (2011)",
+                "url": "https://vahagnakanch.wordpress.com/wp-content/uploads/2011/04/armenian-etymologies.pdf",
+                "scope": "Armenian historical and comparative etymology (manual curation from PDF snippets)",
+                "status": "existing-local-workflow",
+                "enabled": True,
+            },
+            {
                 "id": "open_manual_curation",
                 "name": "Manual Scholarly Curation",
                 "url": "",
@@ -224,6 +232,7 @@ def build_queue(entries: List[dict], title_set: set[str], limit: int = 0, skip_i
             "target_adapters": [
                 "nayiri_imaged_dictionary",
                 "nisanyan_sozluk",
+                "martirosyan_studies_2011_pdf",
                 "open_manual_curation",
             ],
         }
