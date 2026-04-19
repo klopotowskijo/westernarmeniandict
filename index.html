@@ -20,6 +20,11 @@
       --warning: #8d2a1e;
       --tab-bg: #f8f1e3;
       --tab-border: #ccbca5;
+      --bg-radial-a: #fff8e9;
+      --bg-radial-b: #efe1cc;
+      --bg-linear-top: #f8f2e6;
+      --bg-linear-bottom: var(--paper);
+      --container-shadow: 0 12px 45px rgba(66, 40, 18, 0.12);
     }
     * { box-sizing: border-box; }
     body {
@@ -27,17 +32,18 @@
       color: var(--ink);
       font-family: "EB Garamond", Georgia, serif;
       background:
-        radial-gradient(circle at 5% 0%, #fff8e9 0%, transparent 40%),
-        radial-gradient(circle at 95% 10%, #efe1cc 0%, transparent 38%),
-        linear-gradient(180deg, #f8f2e6 0%, var(--paper) 100%);
+        radial-gradient(circle at 5% 0%, var(--bg-radial-a) 0%, transparent 40%),
+        radial-gradient(circle at 95% 10%, var(--bg-radial-b) 0%, transparent 38%),
+        linear-gradient(180deg, var(--bg-linear-top) 0%, var(--bg-linear-bottom) 100%);
       min-height: 100vh;
+      transition: background 0.25s ease, color 0.25s ease;
     }
     .container {
       width: min(980px, 92vw);
       margin: 2.2rem auto;
       border: 1px solid var(--line);
       background: var(--card);
-      box-shadow: 0 12px 45px rgba(66, 40, 18, 0.12);
+      box-shadow: var(--container-shadow);
     }
     .topbar {
       border-top: 1px solid #cdbca5;
@@ -1233,6 +1239,23 @@
       background: var(--accent);
       color: #fff;
     }
+    #toggleThemeBtn {
+      background: transparent;
+      border: 1px dashed var(--accent);
+      color: var(--accent);
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.76rem;
+      letter-spacing: 0.04em;
+      padding: 0.34rem 0.7rem;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background 0.15s, color 0.15s;
+      text-transform: uppercase;
+    }
+    #toggleThemeBtn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
     #searchSubmitBtn {
       border: 1px solid var(--accent);
       background: var(--accent);
@@ -1280,6 +1303,94 @@
     }
     .brand-home-btn:hover {
       color: var(--accent);
+    }
+    body[data-theme="dark"] {
+      --paper: #121416;
+      --ink: #ede7dc;
+      --ink-soft: #b7afa0;
+      --line: #3c342b;
+      --card: #1b1f22;
+      --accent: #d59864;
+      --accent-soft: #3a2d21;
+      --warning: #f1937c;
+      --tab-bg: #22282d;
+      --tab-border: #4d4338;
+      --bg-radial-a: #2a241d;
+      --bg-radial-b: #1e2328;
+      --bg-linear-top: #16191d;
+      --bg-linear-bottom: #101316;
+      --container-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+    }
+    body[data-theme="dark"] .topbar,
+    body[data-theme="dark"] .controls,
+    body[data-theme="dark"] .site-footer {
+      background: linear-gradient(180deg, #20262b 0%, #191e23 100%);
+    }
+    body[data-theme="dark"] .entry-head,
+    body[data-theme="dark"] .empty-state,
+    body[data-theme="dark"] .guide-card,
+    body[data-theme="dark"] .lang-result-list,
+    body[data-theme="dark"] #graphContainer,
+    body[data-theme="dark"] #suggestions {
+      background: #1f252a;
+    }
+    body[data-theme="dark"] .suggestion:hover,
+    body[data-theme="dark"] button.active,
+    body[data-theme="dark"] button:hover {
+      background: #3a2d21;
+    }
+    body[data-theme="dark"] button {
+      color: #e9dece;
+      border-color: #5a4a3a;
+      background: #252c31;
+    }
+    body[data-theme="dark"] button.active,
+    body[data-theme="dark"] .tab-btn.section-active,
+    body[data-theme="dark"] .graph-mode-btn.active {
+      color: #fff4e5;
+      border-color: #d59864;
+      background: #6a4326;
+    }
+    body[data-theme="dark"] .empty-copy,
+    body[data-theme="dark"] .graph-note,
+    body[data-theme="dark"] .lang-result-meta,
+    body[data-theme="dark"] .guide-card-desc,
+    body[data-theme="dark"] .guide-card-period,
+    body[data-theme="dark"] .section-label,
+    body[data-theme="dark"] .ety-sources,
+    body[data-theme="dark"] .attestation-note,
+    body[data-theme="dark"] .ety-scope-note,
+    body[data-theme="dark"] .ety-donor-note,
+    body[data-theme="dark"] .permalink-status {
+      color: #c1b7a8;
+    }
+    body[data-theme="dark"] .word-title,
+    body[data-theme="dark"] .empty-title,
+    body[data-theme="dark"] h1,
+    body[data-theme="dark"] #langGuideSection h2,
+    body[data-theme="dark"] #suffixSection h2,
+    body[data-theme="dark"] #prefixSection h2,
+    body[data-theme="dark"] .guide-card-name,
+    body[data-theme="dark"] .lang-result-word,
+    body[data-theme="dark"] .subtitle-hy {
+      color: #f2eadf;
+    }
+    body[data-theme="dark"] #search,
+    body[data-theme="dark"] .graph-lang-input {
+      background: #13171b;
+      color: #efe7dc;
+      border-color: #4f4336;
+    }
+    body[data-theme="dark"] .graph-filters,
+    body[data-theme="dark"] .graph-help,
+    body[data-theme="dark"] .graph-language-panel {
+      background: #1b2126;
+      border-color: #4f4336;
+    }
+    body[data-theme="dark"] .topbar-ornament,
+    body[data-theme="dark"] .footer-sep,
+    body[data-theme="dark"] .lineage-arrow {
+      color: #8f8576;
     }
     @media (max-width: 760px) {
       .container { width: 100%; margin: 0; border: none; box-shadow: none; }
@@ -1335,6 +1446,7 @@
           <div class="search-actions">
             <button id="searchSubmitBtn" type="button" title="Run search">Search</button>
             <button id="randomWordBtn" type="button" title="Load a random entry">Random</button>
+            <button id="toggleThemeBtn" type="button" aria-pressed="false" title="Toggle light and dark theme">Dark Mode</button>
             <button id="toggleKeyboardBtn" type="button" aria-expanded="false" title="Toggle Armenian keyboard">Show Armenian Keyboard</button>
           </div>
         </div>
@@ -1452,7 +1564,33 @@
     let collapsedTreeNodes = new Set();
     let strictTreeRootWord = "";
     let strictTreeFocusNode = "";
+    const THEME_STORAGE_KEY = "dict-ardemis-theme";
     const ALT_FORMS_VISIBLE_COUNT = 10;
+    function getInitialTheme() {
+      try {
+        const saved = localStorage.getItem(THEME_STORAGE_KEY);
+        if (saved === "dark" || saved === "light") return saved;
+      } catch (e) {
+        console.warn("Unable to read theme preference:", e);
+      }
+      const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      return prefersDark ? "dark" : "light";
+    }
+    function applyTheme(themeName) {
+      const theme = themeName === "dark" ? "dark" : "light";
+      document.body.setAttribute("data-theme", theme);
+      const themeBtn = document.getElementById("toggleThemeBtn");
+      if (themeBtn) {
+        const darkActive = theme === "dark";
+        themeBtn.setAttribute("aria-pressed", darkActive ? "true" : "false");
+        themeBtn.textContent = darkActive ? "Light Mode" : "Dark Mode";
+      }
+      try {
+        localStorage.setItem(THEME_STORAGE_KEY, theme);
+      } catch (e) {
+        console.warn("Unable to persist theme preference:", e);
+      }
+    }
     function escapeHtml(value) {
       return String(value)
         .replace(/&/g, "&amp;")
@@ -4049,6 +4187,10 @@
         }
       }
     };
+    document.getElementById("toggleThemeBtn").onclick = () => {
+      const current = document.body.getAttribute("data-theme") === "dark" ? "dark" : "light";
+      applyTheme(current === "dark" ? "light" : "dark");
+    };
     document.getElementById("searchSubmitBtn").onclick = () => {
       runSearchFromInput();
       document.getElementById("search").focus();
@@ -4059,6 +4201,7 @@
     document.getElementById("footerHomeBtn").onclick = () => {
       goHome();
     };
+    applyTheme(getInitialTheme());
     async function openGraphSection() {
       const sec = document.getElementById("graphSection");
       const container = document.getElementById("graphContainer");
