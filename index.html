@@ -664,6 +664,43 @@
       color: #8a3737;
       border-color: #e3b4b4;
     }
+    .ety-relation {
+      display: inline-block;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.1rem 0.36rem;
+      border-radius: 3px;
+      margin-left: 0.25rem;
+      border: 1px solid transparent;
+      line-height: 1.5;
+    }
+    .ety-relation.borrowed {
+      background: #e8f2ff;
+      color: #1f4e86;
+      border-color: #b9d2ef;
+    }
+    .ety-relation.derived {
+      background: #fff2de;
+      color: #7a4a11;
+      border-color: #e3c59f;
+    }
+    .ety-relation.inherited {
+      background: #edf6e8;
+      color: #315f28;
+      border-color: #b8d7a8;
+    }
+    .ety-relation.reborrowed {
+      background: #f7ebff;
+      color: #5c2d85;
+      border-color: #d3b8ea;
+    }
+    .ety-relation.unknown {
+      background: #f3eee6;
+      color: #6b5b49;
+      border-color: #d6c7b3;
+    }
     .ety-sources {
       font-family: "IBM Plex Sans", sans-serif;
       font-size: 0.72rem;
@@ -1414,6 +1451,31 @@
       background: #402427;
       border-color: #9e6269;
       color: #f6d3d8;
+    }
+    body[data-theme="dark"] .ety-relation.borrowed {
+      background: #1d2b3b;
+      border-color: #3b5d85;
+      color: #d3e8ff;
+    }
+    body[data-theme="dark"] .ety-relation.derived {
+      background: #3a2d1f;
+      border-color: #8f6c43;
+      color: #f3dfbf;
+    }
+    body[data-theme="dark"] .ety-relation.inherited {
+      background: #233827;
+      border-color: #4f8a5d;
+      color: #cdebd2;
+    }
+    body[data-theme="dark"] .ety-relation.reborrowed {
+      background: #32253f;
+      border-color: #7c5aa0;
+      color: #ead9fb;
+    }
+    body[data-theme="dark"] .ety-relation.unknown {
+      background: #2b241d;
+      border-color: #5f4e3d;
+      color: #d8c9b5;
     }
     body[data-theme="dark"] .entry-meta {
       border-top-color: #4c4135;
@@ -2374,6 +2436,23 @@
         return { label: "strong", className: "high" };
       }
       return { label: "review", className: "medium" };
+    }
+    function inferEtymologyRelation(entry, etyText) {
+      const structured = Array.isArray(entry?.etymology) ? entry.etymology : [];
+      for (const et of structured) {
+        const rel = String(et && et.relation ? et.relation : "").trim().toLowerCase();
+        if (!rel) continue;
+        if (rel.includes("reborrow")) return { label: "reborrowed", className: "reborrowed" };
+        if (rel.includes("borrow")) return { label: "borrowed", className: "borrowed" };
+        if (rel.includes("inherit")) return { label: "inherited", className: "inherited" };
+        if (rel.includes("deriv") || rel === "derived") return { label: "derived", className: "derived" };
+      }
+      const signal = String(etyText || "").toLowerCase();
+      if (/\breborrowed from\b/.test(signal)) return { label: "reborrowed", className: "reborrowed" };
+      if (/\bborrowed from\b|\bloanword\b/.test(signal)) return { label: "borrowed", className: "borrowed" };
+      if (/\bderived from\b/.test(signal)) return { label: "derived", className: "derived" };
+      if (/\binherited from\b/.test(signal)) return { label: "inherited", className: "inherited" };
+      return { label: "unknown", className: "unknown" };
     }
     function inferAttestation(entry, etyText) {
       const raw = `${entry?.wikitext || ""}\n${entry?.etymology?.[0]?.text || ""}\n${etyText || ""}`;
@@ -3815,6 +3894,7 @@
       const seeAlso = parseWikitextSection(entry.wikitext || "", "See also");
       const ety = parseEtymology(entry);
       const etyConfidence = inferEtymologyConfidence(entry, ety);
+      const etyRelation = inferEtymologyRelation(entry, ety);
       const attestation = inferAttestation(entry, ety);
       const etySources = getEtymologySourceList(entry);
       const sourceBadge = getEntrySourceBadge(entry, etySources);
@@ -3848,7 +3928,7 @@
       if (morphologyHtml) {
         html += morphologyHtml;
       }
-      html += `<div class="section-label">Etymology <span class="source-badge ${escapeHtml(sourceBadge.className)}">${escapeHtml(sourceBadge.label)}</span><span class="ety-confidence ${escapeHtml(etyConfidence.className)}">${escapeHtml(etyConfidence.label)}</span></div>`;
+      html += `<div class="section-label">Etymology <span class="source-badge ${escapeHtml(sourceBadge.className)}">${escapeHtml(sourceBadge.label)}</span><span class="ety-relation ${escapeHtml(etyRelation.className)}">${escapeHtml(etyRelation.label)}</span><span class="ety-confidence ${escapeHtml(etyConfidence.className)}">${escapeHtml(etyConfidence.label)}</span></div>`;
       html += `<div class="etymology-box">${renderLineage(lineage)}${renderEtymologyTextWithLinks(ety)}</div>`;
       if (etyScopeNote) html += `<div class="ety-scope-note">${escapeHtml(etyScopeNote)}</div>`;
       if (donor) {
@@ -3920,6 +4000,7 @@
       }
       html += `<div class="entry-meta">`;
       html += `<span class="meta-pill">${defsToShow.length} defs</span>`;
+      html += `<span class="meta-pill">${escapeHtml(etyRelation.label)}</span>`;
       html += `<span class="meta-pill">ety ${escapeHtml(etyConfidence.label)}</span>`;
       if (attestation) html += `<span class="meta-pill">attestation ${escapeHtml(attestation)}</span>`;
       if (srcLangs.length) {
