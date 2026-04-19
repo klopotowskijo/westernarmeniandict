@@ -130,12 +130,20 @@ def detect_inflected_base(title: str, title_set: set[str]) -> str:
     t = str(title or "").strip()
     if len(t) < 4:
         return ""
+    # Avoid verb endings on nouns
+    VERB_ONLY_ENDINGS = ['ում', 'ել', 'ալ', 'իլ', 'աց', 'եց', 'ացիր', 'եցիր', 'եցին']
     for ending in INFLECTIONAL_ENDINGS:
+        if len(ending) < 2:
+            continue
         if len(t) <= len(ending) + 1:
             continue
         if not t.endswith(ending):
             continue
+        # If ending is verb-only, require stem to be a verb
         stem = t[:-len(ending)]
+        if ending in VERB_ONLY_ENDINGS:
+            if not (stem.endswith('ել') or stem.endswith('ալ') or stem.endswith('իլ')):
+                continue
         if stem in title_set:
             return stem
     return ""
