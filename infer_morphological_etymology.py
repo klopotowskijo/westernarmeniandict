@@ -193,11 +193,12 @@ def infer_breakdown(word: str, title_set: Set[str], suffixes: Set[str], prefixes
     if not word or len(word) < 3:
         return None
 
-    # Only allow suffixes/prefixes from curated lists
-    suffix = choose_longest_match(word, suffixes, from_start=False)
+    # Normalize to lowercase for Armenian (case-insensitive)
+    word_l = word.lower()
+    suffix = choose_longest_match(word_l, suffixes, from_start=False)
     if suffix and len(suffix) < 2:
         return None
-    stem_after_suffix = word[:-len(suffix)] if suffix else word
+    stem_after_suffix = word_l[:-len(suffix)] if suffix else word_l
 
     prefix = choose_longest_match(stem_after_suffix, prefixes, from_start=True)
     if prefix and len(prefix) < 2:
@@ -211,14 +212,13 @@ def infer_breakdown(word: str, title_set: Set[str], suffixes: Set[str], prefixes
     if len(root) < 2:
         return None
 
-    # Avoid verb suffixes on nouns: if suffix is a known verb ending, require root to be a verb
     VERB_ONLY_SUFFIXES = {'ել', 'ալ', 'իլ', 'ում', 'աց', 'եց', 'ացիր', 'եցիր', 'եցին'}
     if suffix and suffix in VERB_ONLY_SUFFIXES:
-        # If root is not a verb, skip
         if not (root.endswith('ել') or root.endswith('ալ') or root.endswith('իլ')):
             return None
 
-    root_attested = root in title_set
+    # Case-insensitive attestation
+    root_attested = root in {t.lower() for t in title_set}
 
     if not root_attested:
         has_strong_suffix = bool(suffix and suffix in STRONG_SUFFIXES)

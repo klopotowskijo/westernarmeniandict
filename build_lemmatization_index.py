@@ -15,52 +15,42 @@ def is_inflectional_form(root: str, candidate: str) -> bool:
     2. The candidate contains most of the root's letters (allowing some variation for tense/mood)
     3. It has typical inflectional markers
     """
-    if candidate == root or candidate == root.replace('ել', ''):
+    # Normalize to lowercase for Armenian (case-insensitive)
+    root_l = root.lower()
+    candidate_l = candidate.lower()
+    if candidate_l == root_l or candidate_l == root_l.replace('ել', ''):
         return False
 
-    # Only allow suffixes from a curated list
     INFLECTIONAL_MARKERS = [
         'ի', 'ին', 'ս', 'ը', 'ով', 'եր', 'ունք', 'եք',
-        'ում', 'ց', 'դ',  # Case endings
-        'թ', 'կ',  # Future/conditional markers
+        'ում', 'ց', 'դ',
+        'թ', 'կ',
     ]
-    # Verb-only endings (should not appear on nouns)
-    VERB_ONLY_ENDINGS = ['ում', 'ել', 'աց', 'եց', 'ացիր', 'եցիր', 'եցին', 'ում եմ', 'ում ես', 'ում է', 'ում ենք', 'ում եք', 'ում են']
+    VERB_ONLY_ENDINGS = ['ում', 'ել', 'ալ', 'իլ', 'աց', 'եց', 'ացիր', 'եցիր', 'եցին', 'ում եմ', 'ում ես', 'ում է', 'ում ենք', 'ում եք', 'ում են']
 
-    # For infinitive verbs (ending in -ել), check if stem appears in candidate
-    root_stem = root.replace('ել', '') if root.endswith('ել') else root
+    root_stem = root_l.replace('ել', '') if root_l.endswith('ել') else root_l
 
-    # Simple containment check on the stem
-    if root_stem not in candidate:
-        # Try without final endings
+    if root_stem not in candidate_l:
         for ending in ['ի', 'ե', 'ա', 'ո', 'ե']:
-            if root.endswith(ending) and root[:-len(ending)] in candidate:
+            if root_l.endswith(ending) and root_l[:-len(ending)] in candidate_l:
                 return True
-        # For words with կ- prefix (future forms), check if root appears after prefix
-        if candidate.startswith('կ') and root_stem in candidate[1:]:
+        if candidate_l.startswith('կ') and root_stem in candidate_l[1:]:
             return True
-        if candidate.startswith('չ') and root_stem in candidate[1:]:
+        if candidate_l.startswith('չ') and root_stem in candidate_l[1:]:
             return True
         return False
 
-    # Require minimum suffix length for inflectional marker
     for marker in INFLECTIONAL_MARKERS:
-        if candidate.endswith(marker) and candidate != root:
-            # Avoid verb-only endings on nouns
-            if any(candidate.endswith(verb_end) for verb_end in VERB_ONLY_ENDINGS):
-                # If root is not a verb, do not allow
-                # (Assume verbs end with 'ել', 'ալ', 'իլ')
-                if not (root.endswith('ել') or root.endswith('ալ') or root.endswith('իլ')):
+        if candidate_l.endswith(marker) and candidate_l != root_l:
+            if any(candidate_l.endswith(verb_end) for verb_end in VERB_ONLY_ENDINGS):
+                if not (root_l.endswith('ել') or root_l.endswith('ալ') or root_l.endswith('իլ')):
                     return False
-            # Optionally: require root to be attested in dictionary (could be passed as arg)
             if len(marker) < 2:
                 continue
             return True
 
-    # If it has prefix markers (կ-, չ-, ս-) and contains the stem, it's likely inflected
-    if (candidate.startswith('կ') or candidate.startswith('չ') or candidate.startswith('ս')) and candidate != root:
-        # Avoid verb prefixes on non-verbs
-        if not (root.endswith('ել') or root.endswith('ալ') or root.endswith('իլ')):
+    if (candidate_l.startswith('կ') or candidate_l.startswith('չ') or candidate_l.startswith('ս')) and candidate_l != root_l:
+        if not (root_l.endswith('ել') or root_l.endswith('ալ') or root_l.endswith('իլ')):
             return False
         return True
 

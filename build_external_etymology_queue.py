@@ -127,11 +127,11 @@ def score_priority(entry: dict) -> Tuple[int, str]:
 
 
 def detect_inflected_base(title: str, title_set: set[str]) -> str:
-    t = str(title or "").strip()
+    t = str(title or "").strip().lower()
     if len(t) < 4:
         return ""
-    # Avoid verb endings on nouns
     VERB_ONLY_ENDINGS = ['ում', 'ել', 'ալ', 'իլ', 'աց', 'եց', 'ացիր', 'եցիր', 'եցին']
+    title_set_l = {x.lower() for x in title_set}
     for ending in INFLECTIONAL_ENDINGS:
         if len(ending) < 2:
             continue
@@ -139,12 +139,11 @@ def detect_inflected_base(title: str, title_set: set[str]) -> str:
             continue
         if not t.endswith(ending):
             continue
-        # If ending is verb-only, require stem to be a verb
         stem = t[:-len(ending)]
         if ending in VERB_ONLY_ENDINGS:
             if not (stem.endswith('ել') or stem.endswith('ալ') or stem.endswith('իլ')):
                 continue
-        if stem in title_set:
+        if stem in title_set_l:
             return stem
     return ""
 
