@@ -3851,23 +3851,37 @@
       if (syncUrl) updateUrlState("language", cleanQuery);
     }
     function lookup(word, syncUrl = true) {
-      let entry = titleIndex[word];
-      // Fix: define pos for part of speech display
-      const pos = entry && entry.part_of_speech ? entry.part_of_speech : "";
-      const ety = parseEtymology(entry);
-      // Fix: define displayDefs before use
-      const displayDefs = Array.isArray(entry.definition) ? entry.definition : (entry.definition ? [entry.definition] : []);
-      const etyConfidence = inferEtymologyConfidence(entry, ety);
-      const etyRelation = inferEtymologyRelation(entry, ety);
-      const attestation = inferAttestation(entry, ety);
-      const etySources = getEtymologySourceList(entry);
-      const sourceBadge = getEntrySourceBadge(entry, etySources);
-      const srcLangs = getSourceLanguages(entry);
-      const lineage = getEtymologyLineage(entry);
-      const etyScopeNote = getEtymologyScopeNote(ety);
-      const donor = extractImmediateDonor(entry);
-      const ultimate = extractUltimateOrigin(entry, ety);
-      const rootDefLine = buildSurnameRootDefinition(entry, displayDefs, ety);
+        const el = document.getElementById("result");
+        let entry = titleIndex[word];
+        if (!entry) {
+          el.innerHTML = `<div class="not-found">No entry found for <b>${escapeHtml(word)}</b>.</div>`;
+          showSection("results");
+          if (syncUrl) updateUrlState("word", word);
+          return;
+        }
+        const nayiriEntry = (entry && entry.nayiri) || (window.nayiriIndex && window.nayiriIndex[entry.title]);
+        const morphologyHtml = entry ? renderMorphology(entry) : "";
+        const westernIpa = toWesternArmenianIPA(entry.title);
+        // Fix: define pos for part of speech display
+        const pos = entry && entry.part_of_speech ? entry.part_of_speech : "";
+        const ety = parseEtymology(entry);
+        // Fix: define displayDefs before use
+        const displayDefs = Array.isArray(entry.definition) ? entry.definition : (entry.definition ? [entry.definition] : []);
+        const etyConfidence = inferEtymologyConfidence(entry, ety);
+        const etyRelation = inferEtymologyRelation(entry, ety);
+        const attestation = inferAttestation(entry, ety);
+        const etySources = getEtymologySourceList(entry);
+        const sourceBadge = getEntrySourceBadge(entry, etySources);
+        const srcLangs = getSourceLanguages(entry);
+        const lineage = getEtymologyLineage(entry);
+        const etyScopeNote = getEtymologyScopeNote(ety);
+        const altForms = getStructuredLinks(entry, 'alternative_forms');
+        const derivedTerms = getStructuredLinks(entry, 'derived_terms');
+        const relatedTerms = getStructuredLinks(entry, 'related_terms');
+        const seeAlso = getStructuredLinks(entry, 'see_also');
+        const donor = extractImmediateDonor(entry);
+        const ultimate = extractUltimateOrigin(entry, ety);
+        const rootDefLine = buildSurnameRootDefinition(entry, displayDefs, ety);
       const defsToShow = rootDefLine ? [...displayDefs, rootDefLine] : displayDefs;
       currentWord = entry.title;
       const displayTitle = cleanDisplayTitle(entry.title);
@@ -3887,15 +3901,7 @@
         for (const d of defsToShow) html += `<li>${renderDefinitionLine(d)}</li>`;
         html += `</ol>`;
       }
-      // --- SYNONYMS SECTION ---
-      if (Array.isArray(entry.synonyms) && entry.synonyms.length) {
-        html += `<div class="section-label">Synonyms</div>`;
-        html += `<div class="word-links">`;
-        for (const syn of entry.synonyms) {
-          html += `<button type="button" class="word-link" data-word="${encodeURIComponent(syn)}">${escapeHtml(syn)}</button>`;
-        }
-        html += `</div>`;
-      }
+      // Removed duplicate synonyms section
       // Add morphology section if entry is an inflected form
       const morphologyHtml1 = renderMorphology(entry);
       if (morphologyHtml) {
@@ -3915,46 +3921,9 @@
         }
       }
 
-      html += `<div class="section-label">Etymology <span class="source-badge ${escapeHtml(sourceBadge.className)}">${escapeHtml(sourceBadge.label)}</span><span class="ety-relation ${escapeHtml(etyRelation.className)}">${escapeHtml(etyRelation.label)}</span><span class="ety-confidence ${escapeHtml(etyConfidence.className)}">${escapeHtml(etyConfidence.label)}</span></div>`;
-      html += `<div class="etymology-box">${renderLineage(lineage)}${renderEtymologyTextWithLinks(ety)}</div>`;
-      if (etyScopeNote) html += `<div class="ety-scope-note">${escapeHtml(etyScopeNote)}</div>`;
-      if (donor) {
-        const donorUrl = getDonorWiktionaryUrl(donor.term);
-        html += `<div class="ety-donor-note">Immediate donor: ${escapeHtml(donor.term)} (${escapeHtml(donor.langName)}). <a href="${escapeHtml(donorUrl)}" target="_blank" rel="noopener noreferrer">Trace donor etymology</a>.</div>`;
-      }
-      if (ultimate) {
-        const ultimateLang = ultimate.langName && ultimate.langName !== "unspecified"
-          ? ` (${escapeHtml(ultimate.langName)})`
-          : "";
-        html += `<div class="ety-donor-note">Ultimate origin: ${escapeHtml(ultimate.term)}${ultimateLang}.</div>`;
-      } else if (donor) {
-        html += `<div class="ety-donor-note">Ultimate origin: not specified in this source entry.</div>`;
-      }
-      html += `<div class="ety-sources">Sources: ${renderEtymologySources(etySources)}</div>`;
-      if (attestation) html += `<div class="attestation-note">Timeline: ${escapeHtml(attestation)}</div>`;
+      // Removed duplicate etymology section
 
-      // Nayiri panel
-      const nayiriEntry1 = (entry && entry.nayiri) || (window.nayiriIndex && window.nayiriIndex[entry.title]);
-      if (nayiriEntry) {
-        html += `<div class="section-label">Nayiri <span class="source-badge nayiri">Nayiri</span></div>`;
-        html += `<div class="nayiri-panel">`;
-        if (nayiriEntry.description) {
-          // Extract just the parenthetical gloss if present
-          const glossMatch = nayiriEntry.description.match(/\((.+)\)/);
-          const gloss = glossMatch ? glossMatch[1] : nayiriEntry.description;
-          html += `<div class="nayiri-gloss">${escapeHtml(gloss)}</div>`;
-        }
-        if (nayiriEntry.partOfSpeech) {
-          html += `<div class="nayiri-pos">${escapeHtml(nayiriEntry.partOfSpeech.toLowerCase())}</div>`;
-        }
-        if (nayiriEntry.wordForms && nayiriEntry.wordForms.length) {
-          const forms = [...new Set(nayiriEntry.wordForms)].slice(0, 12);
-          html += `<div class="nayiri-forms-grid">`;
-          for (const f of forms) html += `<span class="nayiri-form-pill">${escapeHtml(f)}</span>`;
-          html += `</div>`;
-        }
-        html += `</div>`;
-      }
+      // Nayiri panel (keep only one instance)
       // --- SYNONYMS SECTION ---
       if (Array.isArray(entry.synonyms) && entry.synonyms.length) {
         html += `<div class="section-label">Synonyms</div>`;
@@ -3964,11 +3933,7 @@
         }
         html += `</div>`;
       }
-      // Add morphology section if entry is an inflected form
-      const morphologyHtml2 = renderMorphology(entry);
-      if (morphologyHtml) {
-        html += morphologyHtml;
-      }
+      // Removed duplicate morphology section
       html += `<div class="section-label">Etymology <span class="source-badge ${escapeHtml(sourceBadge.className)}">${escapeHtml(sourceBadge.label)}</span><span class="ety-relation ${escapeHtml(etyRelation.className)}">${escapeHtml(etyRelation.label)}</span><span class="ety-confidence ${escapeHtml(etyConfidence.className)}">${escapeHtml(etyConfidence.label)}</span></div>`;
       html += `<div class="etymology-box">${renderLineage(lineage)}${renderEtymologyTextWithLinks(ety)}</div>`;
       if (etyScopeNote) html += `<div class="ety-scope-note">${escapeHtml(etyScopeNote)}</div>`;
@@ -4806,7 +4771,7 @@
     function loadNayiriLazy() {
       if (nayiriLoaded) return;
       nayiriLoaded = true;
-      fetch("nayiri-armenian-lexicon-2026-02-15-v1%202.json")
+      fetch("nayiri-armenian-lexicon-2026-02-15-v1-2.json")
         .then(r => r.json())
         .then(d => {
           // Build index: lemmaString → { description, partOfSpeech, wordForms }
