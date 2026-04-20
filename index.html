@@ -3853,6 +3853,8 @@
     function lookup(word, syncUrl = true) {
       let entry = titleIndex[word];
       const ety = parseEtymology(entry);
+      // Fix: define displayDefs before use
+      const displayDefs = Array.isArray(entry.definition) ? entry.definition : (entry.definition ? [entry.definition] : []);
       const etyConfidence = inferEtymologyConfidence(entry, ety);
       const etyRelation = inferEtymologyRelation(entry, ety);
       const attestation = inferAttestation(entry, ety);
