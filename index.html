@@ -4321,10 +4321,13 @@
         lemmatizationIndex = lemmaIndex || {};
         alternativeFormIndex = {};
         for (const e of dictionary) {
-          titleIndex[e.title] = e;
+          if (!titleIndex[e.title]) {
+            titleIndex[e.title] = [];
+          }
+          titleIndex[e.title].push(e);
           indexAlternativeFormsForEntry(e);
         }
-        allTitles = dictionary.map(e => e.title);
+        allTitles = Object.keys(titleIndex);
         document.getElementById("count").textContent =
           dictionary.length.toLocaleString() + " entries (loading inflections…)";
         // Apply URL state immediately so the page is usable right away.
@@ -4446,165 +4449,117 @@
       updateUrlState(searchMode, document.getElementById("search").value.trim());
       if (graphData) renderGraph(graphMode);
     };
-    document.getElementById("graphModeLineageBtn").onclick = () => {
-      setGraphMode("lineage");
-      updateUrlState(searchMode, document.getElementById("search").value.trim());
-      if (graphData) renderGraph(graphMode);
-    };
-    document.getElementById("graphModeTreeBtn").onclick = () => {
-      setGraphMode("tree");
-      updateUrlState(searchMode, document.getElementById("search").value.trim());
-      if (graphData) renderGraph(graphMode);
-    };
-    document.getElementById("graphResetBtn").onclick = () => {
-      restoreGraphSpotlight();
-      collapsedTreeNodes.clear();
-      strictTreeFocusNode = "";
-      if (graphData && graphMode === "tree") {
-        renderGraph("tree");
+      let entries = titleIndex[word] || [];
+      if (!Array.isArray(entries)) entries = [entries];
+      if (!entries.length) {
+        renderEmptyState();
         return;
       }
-      if (network) {
-        network.fit({ animation: { duration: 300, easingFunction: "easeInOutQuad" } });
-      }
-    };
-    document.getElementById("graphLangApplyBtn").onclick = () => {
-      const checked = document.querySelectorAll(".graph-lang-checkbox:checked");
-      applyGraphLanguageSelection([...checked].map(input => input.value));
-    };
-    document.getElementById("graphLangClearBtn").onclick = () => {
-      graphSelectedLanguages = new Set();
-      graphLanguageSearchTerm = "";
-      document.getElementById("graphLangSearch").value = "";
-      renderGraphLanguagePanel();
-      updateGraphSelectedSummary();
-      updateUrlState(searchMode, document.getElementById("search").value.trim());
-      if (graphData) renderGraph(graphMode);
-    };
-    document.getElementById("graphLangSearch").addEventListener("input", e => {
-      graphLanguageSearchTerm = e.target.value.trim();
-      renderGraphLanguagePanel();
-    });
-    document.getElementById("graphLangSearch").addEventListener("keydown", e => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        const checked = document.querySelectorAll(".graph-lang-checkbox:checked");
-        applyGraphLanguageSelection([...checked].map(input => input.value));
-      }
-    });
-    document.querySelectorAll("[data-graph-preset]").forEach(button => {
-      button.addEventListener("click", () => {
-        const raw = button.getAttribute("data-graph-preset") || "";
-        const langs = raw.split("|").map(v => v.trim()).filter(Boolean);
-        applyGraphLanguagePreset(langs);
-      });
-    });
-    document.addEventListener("click", e => {
-      if (!e.target.closest("#suggestions") && !e.target.closest("#search")) {
-        document.getElementById("suggestions").style.display = "none";
-      }
-      if (e.target.classList.contains("kbd-key")) {
-        const input = document.getElementById("search");
-        const action = e.target.getAttribute("data-kbd-action");
-        const key = e.target.getAttribute("data-kbd-key");
-        if (action === "backspace") {
-          const start = input.selectionStart ?? input.value.length;
-          const end = input.selectionEnd ?? input.value.length;
-          if (start !== end) {
-            input.value = input.value.slice(0, start) + input.value.slice(end);
-            input.setSelectionRange(start, start);
-          } else if (start > 0) {
-            input.value = input.value.slice(0, start - 1) + input.value.slice(end);
-            input.setSelectionRange(start - 1, start - 1);
+      let html = "";
+      for (const entry of entries) {
+        const pos = entry && entry.part_of_speech ? entry.part_of_speech : "";
+        const ety = parseEtymology(entry);
+        const displayDefs = Array.isArray(entry.definition) ? entry.definition : (entry.definition ? [entry.definition] : []);
+        const etyConfidence = inferEtymologyConfidence(entry, ety);
+        const etyRelation = inferEtymologyRelation(entry, ety);
+        const attestation = inferAttestation(entry, ety);
+        const etySources = getEtymologySourceList(entry);
+        const sourceBadge = getEntrySourceBadge(entry, etySources);
+        const srcLangs = getSourceLanguages(entry);
+        const lineage = getEtymologyLineage(entry);
+        const etyScopeNote = getEtymologyScopeNote(ety);
+        const donor = extractImmediateDonor(entry);
+        const ultimate = extractUltimateOrigin(entry, ety);
+        const rootDefLine = buildSurnameRootDefinition(entry, displayDefs, ety);
+        const defsToShow = rootDefLine ? [...displayDefs, rootDefLine] : displayDefs;
+        currentWord = entry.title;
+        const displayTitle = cleanDisplayTitle(entry.title);
+        html += `<article class="entry-card"><div class="entry-head"><div class="word-title">${escapeHtml(displayTitle)}</div>`;
+        if (pos || westernIpa) {
+          html += `<div class="word-meta-inline">`;
+          if (pos) html += `<div class="word-pos">${escapeHtml(pos)}</div>`;
+          if (westernIpa) html += `<div class="word-ipa-inline">IPA (WA) /${escapeHtml(westernIpa)}/</div>`;
+          html += `</div>`;
+        }
+        const encodedTitle = encodeURIComponent(entry.title);
+        html += `<div class="entry-tools"><button type="button" class="entry-tree-btn" data-word="${encodedTitle}">Open Tree</button><button type="button" class="permalink-btn" data-word="${encodedTitle}">Permalink</button><span class="permalink-status" id="permalinkStatus"></span></div>`;
+        html += `</div><div class="entry-content">`;
+        // Prefer explicit definition field if present
+        if (defsToShow.length) {
+          html += `<div class="section-label">Definition <span class="source-badge ${escapeHtml(sourceBadge.className)}">${escapeHtml(sourceBadge.label)}</span></div><ol>`;
+          for (const d of defsToShow) html += `<li>${renderDefinitionLine(d)}</li>`;
+          html += `</ol>`;
+        }
+        // --- SYNONYMS SECTION ---
+        if (Array.isArray(entry.synonyms) && entry.synonyms.length) {
+          html += `<div class="section-label">Synonyms</div>`;
+          html += `<div class="word-links">`;
+          for (const syn of entry.synonyms) {
+            html += `<button type="button" class="word-link" data-word="${encodeURIComponent(syn)}">${escapeHtml(syn)}</button>`;
           }
-          showSuggestions(input.value.trim());
-          input.focus();
-          return;
+          html += `</div>`;
         }
-        if (action === "space") {
-          insertTextAtCursor(input, " ");
-          showSuggestions(input.value.trim());
-          input.focus();
-          return;
+        // Add morphology section if entry is an inflected form
+        const morphologyHtml1 = renderMorphology(entry);
+        if (morphologyHtml) {
+          html += morphologyHtml;
         }
-        if (action === "clear") {
-          input.value = "";
-          showSuggestions("");
-          input.focus();
-          return;
+        // --- CALFA ETYMOLOGY SQUARE ---
+        if (entry.calfa && Array.isArray(entry.calfa.etymology) && entry.calfa.etymology.length) {
+          html += `<div class="section-label">Calfa <span class="source-badge calfa">Calfa</span></div>`;
+          for (const calfaEty of entry.calfa.etymology) {
+            const calfaText = calfaEty.text ? escapeHtml(calfaEty.text) : "";
+            const calfaAuthor = calfaEty.author || calfaEty.source || "Calfa";
+            html += `<div class="etymology-box">`;
+            html += `<div style="font-size:0.98em; margin-bottom:0.2em;">${calfaText}</div>`;
+            html += `<div class="ety-sources">Source: ${escapeHtml(calfaAuthor)}</div>`;
+            html += `</div>`;
+          }
         }
-        if (action === "search") {
-          runSearchFromInput();
-          input.focus();
-          return;
+        html += `<div class="section-label">Etymology <span class="source-badge ${escapeHtml(sourceBadge.className)}">${escapeHtml(sourceBadge.label)}</span><span class="ety-relation ${escapeHtml(etyRelation.className)}">${escapeHtml(etyRelation.label)}</span><span class="ety-confidence ${escapeHtml(etyConfidence.className)}">${escapeHtml(etyConfidence.label)}</span></div>`;
+        html += `<div class="etymology-box">${renderLineage(lineage)}${renderEtymologyTextWithLinks(ety)}</div>`;
+        if (etyScopeNote) html += `<div class="ety-scope-note">${escapeHtml(etyScopeNote)}</div>`;
+        if (donor) {
+          const donorUrl = getDonorWiktionaryUrl(donor.term);
+          html += `<div class="ety-donor-note">Immediate donor: ${escapeHtml(donor.term)} (${escapeHtml(donor.langName)}). <a href="${escapeHtml(donorUrl)}" target="_blank" rel="noopener noreferrer">Trace donor etymology</a>.</div>`;
         }
-        if (key) {
-          insertTextAtCursor(input, key);
-          showSuggestions(input.value.trim());
-          input.focus();
-          return;
+        if (ultimate) {
+          const ultimateLang = ultimate.langName && ultimate.langName !== "unspecified"
+            ? ` (${escapeHtml(ultimate.langName)})`
+            : "";
+          html += `<div class="ety-donor-note">Ultimate origin: ${escapeHtml(ultimate.term)}${ultimateLang}.</div>`;
+        } else if (donor) {
+          html += `<div class="ety-donor-note">Ultimate origin: not specified in this source entry.</div>`;
         }
+        html += `<div class="ety-sources">Sources: ${renderEtymologySources(etySources)}</div>`;
+        if (attestation) html += `<div class="attestation-note">Timeline: ${escapeHtml(attestation)}</div>`;
+        // Nayiri panel
+        const nayiriEntry = (entry && entry.nayiri) || (window.nayiriIndex && window.nayiriIndex[entry.title]);
+        if (nayiriEntry) {
+          html += `<div class="section-label">Nayiri <span class="source-badge nayiri">Nayiri</span></div>`;
+          html += `<div class="nayiri-panel">`;
+          if (nayiriEntry.description) {
+            // Extract just the parenthetical gloss if present
+            const glossMatch = nayiriEntry.description.match(/\((.+)\)/);
+            const gloss = glossMatch ? glossMatch[1] : nayiriEntry.description;
+            html += `<div class="nayiri-gloss">${escapeHtml(gloss)}</div>`;
+          }
+          if (nayiriEntry.partOfSpeech) {
+            html += `<div class="nayiri-pos">${escapeHtml(nayiriEntry.partOfSpeech.toLowerCase())}</div>`;
+          }
+          if (nayiriEntry.wordForms && nayiriEntry.wordForms.length) {
+            const forms = [...new Set(nayiriEntry.wordForms)].slice(0, 12);
+            html += `<div class="nayiri-forms-grid">`;
+            for (const f of forms) html += `<span class="nayiri-form-pill">${escapeHtml(f)}</span>`;
+            html += `</div>`;
+          }
+          html += `</div>`;
+        }
+        html += `</div></article>`;
       }
-      if (e.target.classList.contains("source-chip")) {
-        const lang = e.target.dataset.lang ? decodeURIComponent(e.target.dataset.lang) : "";
-        if (!lang) return;
-        setMode("language");
-        document.getElementById("search").value = lang;
-        lookupLanguage(lang, true);
-      }
-      if (e.target.classList.contains("lang-result-word")) {
-        const w = e.target.dataset.word ? decodeURIComponent(e.target.dataset.word) : "";
-        if (w) {
-          setMode("word");
-          document.getElementById("search").value = w;
-          lookup(w, true);
-        }
-      }
-      if (e.target.classList.contains("word-link")) {
-        const w = e.target.dataset.word ? decodeURIComponent(e.target.dataset.word) : "";
-        if (w) {
-          setMode("word");
-          document.getElementById("search").value = w;
-          lookup(w, true);
-        }
-      }
-      if (e.target.classList.contains("morphology-link")) {
-        const w = e.target.dataset.word ? decodeURIComponent(e.target.dataset.word) : "";
-        if (w) {
-          setMode("word");
-          document.getElementById("search").value = w;
-          lookup(w, true);
-        }
-      }
-      if (e.target.classList.contains("suggest-link")) {
-        const w = e.target.dataset.word ? decodeURIComponent(e.target.dataset.word) : "";
-        if (w) {
-          setMode("word");
-          document.getElementById("search").value = w;
-          lookup(w, true);
-        }
-      }
-      if (e.target.classList.contains("entry-tree-btn")) {
-        const w = e.target.dataset.word ? decodeURIComponent(e.target.dataset.word) : "";
-        if (!w) return;
-        setMode("word");
-        document.getElementById("search").value = w;
-        if (currentWord !== w) lookup(w, true);
-        setGraphMode("tree");
-        showSection("graph");
-        openGraphSection();
-      }
-      if (e.target.classList.contains("permalink-btn")) {
-        const w = e.target.dataset.word ? decodeURIComponent(e.target.dataset.word) : "";
-        if (!w) return;
-        const url = new URL(window.location.href);
-        url.searchParams.set("mode", "word");
-        url.searchParams.set("q", w);
-        copyToClipboard(url.toString())
-          .then(() => {
-            const status = document.getElementById("permalinkStatus");
-            if (!status) return;
-            status.textContent = "Link copied";
+      document.getElementById("result").innerHTML = html;
+      showSection("results");
+      if (syncUrl && entries.length) updateUrlState("word", entries[0].title);
             setTimeout(() => {
               if (status.textContent === "Link copied") status.textContent = "";
             }, 1400);
