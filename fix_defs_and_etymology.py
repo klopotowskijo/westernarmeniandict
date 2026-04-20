@@ -144,6 +144,19 @@ SURNAME_VARIANTS = [
     (re.compile(r'a surname originating from', re.I), None),  # drop if canonical already present
 ]
 
+def normalize_for_near_duplicate(text: str) -> str:
+    """
+    Normalize a definition for near-duplicate comparison:
+    - Lowercase
+    - Remove leading grammatical labels in parentheses (e.g., (transitive))
+    - Remove extra whitespace
+    """
+    t = str(text).strip()
+    # Remove leading parenthetical grammatical labels
+    t = re.sub(r'^\([^)]*\)\s*', '', t)
+    t = re.sub(r'\s+', ' ', t)
+    return t.lower().rstrip('.')
+
 def dedup_defs(defs):
     if not isinstance(defs, list) or len(defs) < 2:
         return defs
@@ -165,8 +178,8 @@ def dedup_defs(defs):
                 break
         if replaced:
             continue
-        # Generic dedup by normalized key
-        key = re.sub(r'\s+', ' ', s.lower().strip().rstrip('.')).strip()
+        # Near-duplicate deduplication (removes grammatical labels)
+        key = normalize_for_near_duplicate(s)
         if key and key not in seen_normalized:
             seen_normalized.add(key)
             result.append(s)

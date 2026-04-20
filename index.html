@@ -3838,14 +3838,61 @@
         return;
       }
       let html = `<div class="lang-results-title">${matches.length} entries with source language matching "${escapeHtml(cleanQuery)}"</div>`;
-      html += `<ul class="lang-result-list">`;
-      for (const m of matches) {
-        const langs = m.langs.length ? m.langs.join(", ") : "unspecified";
-        const encodedWord = encodeURIComponent(m.entry.title);
-        const displayTitle = cleanDisplayTitle(m.entry.title);
-        html += `<li class="lang-result-item"><span class="lang-result-word" data-word="${encodedWord}">${escapeHtml(displayTitle)}</span><span class="lang-result-meta">${escapeHtml(langs)}</span></li>`;
+      // If the query is for verbs or similar, sort by verb category
+      const verbCategories = ["intransitive", "transitive", "reflexive", "impersonal"];
+      function extractVerbCategory(entry) {
+        if (entry.entry && entry.entry.part_of_speech === "verb" && Array.isArray(entry.entry.definition)) {
+          for (const d of entry.entry.definition) {
+            const m = String(d).match(/^\((intransitive|transitive|reflexive|impersonal)\)/i);
+            if (m) return m[1].toLowerCase();
+          }
+        }
+        return null;
       }
-      html += `</ul>`;
+      // Only sort if most results are verbs
+      const verbMatches = matches.filter(m => m.entry && m.entry.part_of_speech === "verb");
+      if (verbMatches.length > 0 && verbMatches.length >= matches.length * 0.5) {
+        // Group by category
+        const grouped = {};
+        for (const cat of verbCategories) grouped[cat] = [];
+        const other = [];
+        for (const m of verbMatches) {
+          const cat = extractVerbCategory(m);
+          if (cat && grouped[cat]) grouped[cat].push(m);
+          else other.push(m);
+        }
+        html += `<ul class="lang-result-list">`;
+        for (const cat of verbCategories) {
+          if (grouped[cat].length) {
+            html += `<li class="lang-result-item"><b>${cat.charAt(0).toUpperCase() + cat.slice(1)} verbs</b></li>`;
+            for (const m of grouped[cat]) {
+              const langs = m.langs.length ? m.langs.join(", ") : "unspecified";
+              const encodedWord = encodeURIComponent(m.entry.title);
+              const displayTitle = cleanDisplayTitle(m.entry.title);
+              html += `<li class="lang-result-item"><span class="lang-result-word" data-word="${encodedWord}">${escapeHtml(displayTitle)}</span><span class="lang-result-meta">${escapeHtml(langs)}</span></li>`;
+            }
+          }
+        }
+        if (other.length) {
+          html += `<li class="lang-result-item"><b>Other verbs</b></li>`;
+          for (const m of other) {
+            const langs = m.langs.length ? m.langs.join(", ") : "unspecified";
+            const encodedWord = encodeURIComponent(m.entry.title);
+            const displayTitle = cleanDisplayTitle(m.entry.title);
+            html += `<li class="lang-result-item"><span class="lang-result-word" data-word="${encodedWord}">${escapeHtml(displayTitle)}</span><span class="lang-result-meta">${escapeHtml(langs)}</span></li>`;
+          }
+        }
+        html += `</ul>`;
+      } else {
+        html += `<ul class="lang-result-list">`;
+        for (const m of matches) {
+          const langs = m.langs.length ? m.langs.join(", ") : "unspecified";
+          const encodedWord = encodeURIComponent(m.entry.title);
+          const displayTitle = cleanDisplayTitle(m.entry.title);
+          html += `<li class="lang-result-item"><span class="lang-result-word" data-word="${encodedWord}">${escapeHtml(displayTitle)}</span><span class="lang-result-meta">${escapeHtml(langs)}</span></li>`;
+        }
+        html += `</ul>`;
+      }
       el.innerHTML = html;
       showSection("results");
       if (syncUrl) updateUrlState("language", cleanQuery);
@@ -3888,7 +3935,22 @@
       let html = `<article class="entry-card"><div class="entry-head"><div class="word-title">${escapeHtml(displayTitle)}</div>`;
       if (pos || westernIpa) {
         html += `<div class="word-meta-inline">`;
-        if (pos) html += `<div class="word-pos">${escapeHtml(pos)}</div>`;
+        // Show verb category next to POS if verb
+        let verbCategory = "";
+        if (pos === "verb" && Array.isArray(displayDefs)) {
+          // Look for (transitive), (intransitive), (ditransitive) at start of any definition
+          const catMatch = displayDefs.map(d => {
+            const m = String(d).match(/^\((transitive|intransitive|ditransitive)\)/i);
+            return m ? m[1].toLowerCase() : null;
+          }).filter(Boolean);
+          if (catMatch.length) {
+            // Deduplicate and join if multiple
+            verbCategory = Array.from(new Set(catMatch)).join(", ");
+          }
+        }
+        if (pos) {
+          html += `<div class="word-pos">${escapeHtml(pos)}${verbCategory ? ` (${escapeHtml(verbCategory)})` : ""}</div>`;
+        }
         if (westernIpa) html += `<div class="word-ipa-inline">IPA (WA) /${escapeHtml(westernIpa)}/</div>`;
         html += `</div>`;
       }
