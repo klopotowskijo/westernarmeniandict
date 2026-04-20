@@ -132,3 +132,4 @@ scans/
 # Large generated artifacts (kept compressed in repo)
 inflected_entries.jsonl
 western_armenian_with_inflections.json
+entries/

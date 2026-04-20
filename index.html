@@ -396,6 +396,12 @@
       font-size: 0.72rem;
       color: var(--ink-soft);
     }
+    .verb-transitivity {
+      font-style: italic;
+      color: var(--ink-soft);
+      font-size: 0.72rem;
+      margin-left: 0.4em;
+    }
     .word-meta-inline {
       display: flex;
       align-items: baseline;
@@ -3949,7 +3955,20 @@
           }
         }
         if (pos) {
-          html += `<div class="word-pos">${escapeHtml(pos)}${verbCategory ? ` (${escapeHtml(verbCategory)})` : ""}</div>`;
+          html += `<div class="word-pos">${escapeHtml(pos)}${verbCategory ? ` (${escapeHtml(verbCategory)})` : ""}`;
+          // --- Verb transitivity label ---
+          if (pos === "verb" && entry.transitivity) {
+            let label = "";
+            if (entry.transitivity === "transitive") label = "tr.";
+            else if (entry.transitivity === "intransitive") label = "intr.";
+            else if (entry.transitivity === "ambitransitive") label = "tr. & intr.";
+            else if (entry.transitivity === "reflexive") label = "refl.";
+            if (label) {
+              if (entry.transitivity_confidence === "medium") label += "?";
+              html += ` <span class="verb-transitivity">${label}</span>`;
+            }
+          }
+          html += `</div>`;
         }
         if (westernIpa) html += `<div class="word-ipa-inline">IPA (WA) /${escapeHtml(westernIpa)}/</div>`;
         html += `</div>`;

@@ -127,26 +127,67 @@ for entry in data:
 
 print(f"Valid titles: {len(valid_titles)}")
 
+
 for i, entry in enumerate(data):
     if i % 2000 == 0:
         print(f"  Processed {i}/{len(data)} entries...")
-    
+
     title = entry.get("title", "").strip()
     wikitext = entry.get("wikitext", "")
-    
+
     if not title or not wikitext:
         continue
-    
+
     pos = extract_pos(wikitext)
     senses = extract_senses(wikitext)
     etymology = extract_etymology(wikitext)
-    
-    entries.append({
+
+    # --- Transitivity extraction for verbs ---
+    transitivity = None
+    transitivity_confidence = None
+    if pos == "Verb":
+        # Look for {{lb|hyw|...}} or {{lb|hy|...}}
+        lb_patterns = [
+            r"\{\{lb\|hyw\|transitive\}\}",
+            r"\{\{lb\|hy\|transitive\}\}",
+            r"\{\{lb\|hyw\|intransitive\}\}",
+            r"\{\{lb\|hy\|intransitive\}\}",
+            r"\{\{lb\|hyw\|ambitransitive\}\}",
+            r"\{\{lb\|hyw\|reflexive\}\}",
+        ]
+        for pat in lb_patterns:
+            if re.search(pat, wikitext):
+                if "transitive" in pat and "intransitive" not in pat:
+                    transitivity = "transitive"
+                elif "intransitive" in pat:
+                    transitivity = "intransitive"
+                elif "ambitransitive" in pat:
+                    transitivity = "ambitransitive"
+                elif "reflexive" in pat:
+                    transitivity = "reflexive"
+                transitivity_confidence = "high"
+                break
+
+        # Also check for {{hy-verb ... trans=...}}
+        if transitivity is None:
+            m = re.search(r"\{\{hy-verb[^}]*trans=([^|}\s]+)", wikitext)
+            if m:
+                val = m.group(1).strip().lower()
+                if val in ["transitive", "intransitive", "ambitransitive", "reflexive"]:
+                    transitivity = val
+                    transitivity_confidence = "high"
+
+    entry_dict = {
         "lemma": title,
         "pos": pos,
         "senses": senses,
         "etymology": etymology
-    })
+    }
+    if transitivity:
+        entry_dict["transitivity"] = transitivity
+        entry_dict["transitivity_confidence"] = transitivity_confidence
+
+    entries.append(entry_dict)
 
 print(f"Processed {len(entries)} entries")
 
