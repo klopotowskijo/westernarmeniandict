@@ -3852,60 +3852,6 @@
     }
     function lookup(word, syncUrl = true) {
       let entry = titleIndex[word];
-      const el = document.getElementById("result");
-      document.getElementById("suggestions").style.display = "none";
-      el.style.display = "block";
-
-      // Trigger Nayiri load on first real lookup (background, no await).
-      loadNayiriLazy();
-
-      // If word not found, check if it's an inflected form and redirect to lemma
-      if (!entry && alternativeFormIndex[word]) {
-        const canonical = alternativeFormIndex[word];
-        if (canonical && canonical !== word) {
-          lookup(canonical, syncUrl);
-          return;
-        }
-      }
-
-      // If word not found, check if it's an inflected form and redirect to lemma
-      if (!entry && lemmatizationIndex[word]) {
-        const lemma = lemmatizationIndex[word];
-        lookup(lemma, syncUrl);
-        return;
-      }
-
-      // If still not found, try loading inflected entries lazily then retry.
-      if (!entry && !inflectedEntriesLoaded) {
-        el.innerHTML = `<div class="not-found">Searching inflected forms…</div>`;
-        showSection("results");
-        if (syncUrl) updateUrlState("word", word);
-        ensureInflectedEntries(() => lookup(word, syncUrl));
-        return;
-      }
-
-      if (!entry) {
-        const suggestions = getDidYouMeanWords(word, 4);
-        let suggestionHtml = "";
-        if (suggestions.length) {
-          suggestionHtml = `<div class="did-you-mean">Did you mean: ${suggestions.map(w => `<button type="button" class="suggest-link" data-word="${encodeURIComponent(w)}">${escapeHtml(w)}</button>`).join("")}</div>`;
-        }
-        el.innerHTML = `<div class="not-found">Not found: ${escapeHtml(word)}${suggestionHtml}</div>`;
-        showSection("results");
-        if (syncUrl) updateUrlState("word", word);
-        return;
-      }
-      const defs = parseDefinitions(entry);
-      const displayDefs = enrichDefinitions(entry, defs);
-      const pos = parsePOS(entry.wikitext || "", entry.part_of_speech || "");
-      const westernIpa = toWesternArmenianIPA(entry.title);
-      const altForms = [...new Set(filterArmenianScriptTerms([
-        ...parseWikitextSection(entry.wikitext || "", "Alternative forms"),
-        ...getStructuredLinks(entry, "alternative_forms")
-      ]))];
-      const derivedTerms = parseWikitextSection(entry.wikitext || "", "Derived terms");
-      const relatedTerms = parseWikitextSection(entry.wikitext || "", "Related terms");
-      const seeAlso = parseWikitextSection(entry.wikitext || "", "See also");
       const ety = parseEtymology(entry);
       const etyConfidence = inferEtymologyConfidence(entry, ety);
       const etyRelation = inferEtymologyRelation(entry, ety);
@@ -3947,7 +3893,75 @@
         html += `</div>`;
       }
       // Add morphology section if entry is an inflected form
-      const morphologyHtml = renderMorphology(entry);
+      const morphologyHtml1 = renderMorphology(entry);
+      if (morphologyHtml) {
+        html += morphologyHtml;
+      }
+
+      // --- CALFA ETYMOLOGY SQUARE ---
+      if (entry.calfa && Array.isArray(entry.calfa.etymology) && entry.calfa.etymology.length) {
+        html += `<div class="section-label">Calfa <span class="source-badge calfa">Calfa</span></div>`;
+        for (const calfaEty of entry.calfa.etymology) {
+          const calfaText = calfaEty.text ? escapeHtml(calfaEty.text) : "";
+          const calfaAuthor = calfaEty.author || calfaEty.source || "Calfa";
+          html += `<div class="etymology-box">`;
+          html += `<div style="font-size:0.98em; margin-bottom:0.2em;">${calfaText}</div>`;
+          html += `<div class="ety-sources">Source: ${escapeHtml(calfaAuthor)}</div>`;
+          html += `</div>`;
+        }
+      }
+
+      html += `<div class="section-label">Etymology <span class="source-badge ${escapeHtml(sourceBadge.className)}">${escapeHtml(sourceBadge.label)}</span><span class="ety-relation ${escapeHtml(etyRelation.className)}">${escapeHtml(etyRelation.label)}</span><span class="ety-confidence ${escapeHtml(etyConfidence.className)}">${escapeHtml(etyConfidence.label)}</span></div>`;
+      html += `<div class="etymology-box">${renderLineage(lineage)}${renderEtymologyTextWithLinks(ety)}</div>`;
+      if (etyScopeNote) html += `<div class="ety-scope-note">${escapeHtml(etyScopeNote)}</div>`;
+      if (donor) {
+        const donorUrl = getDonorWiktionaryUrl(donor.term);
+        html += `<div class="ety-donor-note">Immediate donor: ${escapeHtml(donor.term)} (${escapeHtml(donor.langName)}). <a href="${escapeHtml(donorUrl)}" target="_blank" rel="noopener noreferrer">Trace donor etymology</a>.</div>`;
+      }
+      if (ultimate) {
+        const ultimateLang = ultimate.langName && ultimate.langName !== "unspecified"
+          ? ` (${escapeHtml(ultimate.langName)})`
+          : "";
+        html += `<div class="ety-donor-note">Ultimate origin: ${escapeHtml(ultimate.term)}${ultimateLang}.</div>`;
+      } else if (donor) {
+        html += `<div class="ety-donor-note">Ultimate origin: not specified in this source entry.</div>`;
+      }
+      html += `<div class="ety-sources">Sources: ${renderEtymologySources(etySources)}</div>`;
+      if (attestation) html += `<div class="attestation-note">Timeline: ${escapeHtml(attestation)}</div>`;
+
+      // Nayiri panel
+      const nayiriEntry1 = (entry && entry.nayiri) || (window.nayiriIndex && window.nayiriIndex[entry.title]);
+      if (nayiriEntry) {
+        html += `<div class="section-label">Nayiri <span class="source-badge nayiri">Nayiri</span></div>`;
+        html += `<div class="nayiri-panel">`;
+        if (nayiriEntry.description) {
+          // Extract just the parenthetical gloss if present
+          const glossMatch = nayiriEntry.description.match(/\((.+)\)/);
+          const gloss = glossMatch ? glossMatch[1] : nayiriEntry.description;
+          html += `<div class="nayiri-gloss">${escapeHtml(gloss)}</div>`;
+        }
+        if (nayiriEntry.partOfSpeech) {
+          html += `<div class="nayiri-pos">${escapeHtml(nayiriEntry.partOfSpeech.toLowerCase())}</div>`;
+        }
+        if (nayiriEntry.wordForms && nayiriEntry.wordForms.length) {
+          const forms = [...new Set(nayiriEntry.wordForms)].slice(0, 12);
+          html += `<div class="nayiri-forms-grid">`;
+          for (const f of forms) html += `<span class="nayiri-form-pill">${escapeHtml(f)}</span>`;
+          html += `</div>`;
+        }
+        html += `</div>`;
+      }
+      // --- SYNONYMS SECTION ---
+      if (Array.isArray(entry.synonyms) && entry.synonyms.length) {
+        html += `<div class="section-label">Synonyms</div>`;
+        html += `<div class="word-links">`;
+        for (const syn of entry.synonyms) {
+          html += `<button type="button" class="word-link" data-word="${encodeURIComponent(syn)}">${escapeHtml(syn)}</button>`;
+        }
+        html += `</div>`;
+      }
+      // Add morphology section if entry is an inflected form
+      const morphologyHtml2 = renderMorphology(entry);
       if (morphologyHtml) {
         html += morphologyHtml;
       }
@@ -3969,7 +3983,7 @@
       html += `<div class="ety-sources">Sources: ${renderEtymologySources(etySources)}</div>`;
       if (attestation) html += `<div class="attestation-note">Timeline: ${escapeHtml(attestation)}</div>`;
       // Nayiri panel
-      const nayiriEntry = (entry && entry.nayiri) || (window.nayiriIndex && window.nayiriIndex[entry.title]);
+      const nayiriEntry2 = (entry && entry.nayiri) || (window.nayiriIndex && window.nayiriIndex[entry.title]);
       if (nayiriEntry) {
         html += `<div class="section-label">Nayiri <span class="source-badge nayiri">Nayiri</span></div>`;
         html += `<div class="nayiri-panel">`;
@@ -4288,12 +4302,12 @@
 
     function loadDictionary() {
       Promise.all([
-        fetch("western_armenian_merged.json")
+        fetch("western_armenian_merged_with_all_calfa.json")
           .then(r => {
             if (!r.ok) throw new Error("merged dictionary not found");
             return r.json();
           })
-          .catch(() => fetch("western_armenian_wiktionary.json").then(r => r.json())),
+          .catch(() => fetch("western_armenian_merged_with_all_calfa.json").then(r => r.json())),
         fetch("lemmatization_index.json")
           .then(r => r.json())
           .catch(() => ({}))
