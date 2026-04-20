@@ -105,9 +105,15 @@ def merge_entry(existing, incoming):
 
     existing_ety = normalize_etymologies(existing)
     incoming_ety = normalize_etymologies(incoming)
-    append_unique(existing_ety, [item for item in incoming_ety if item not in existing_ety])
-    if existing_ety:
-        existing["etymology"] = existing_ety
+    # Separate Calfa etymologies from others
+    calfa_ety = [item for item in incoming_ety if (item.get("source") or "").lower().startswith("calfa")]
+    other_ety = [item for item in incoming_ety if item not in calfa_ety]
+    # Remove any duplicates from existing_ety
+    unique_existing_ety = [item for item in existing_ety if item not in calfa_ety and item not in other_ety]
+    # Combine: Calfa first, then other incoming, then unique existing
+    combined_ety = calfa_ety + other_ety + unique_existing_ety
+    if combined_ety:
+        existing["etymology"] = combined_ety
 
     if not clean_text(existing.get("part_of_speech")):
         existing["part_of_speech"] = normalize_pos(incoming.get("part_of_speech"))
