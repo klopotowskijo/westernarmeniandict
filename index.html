@@ -1647,11 +1647,10 @@
         <div class="source-filter-wrap">
           <span style="font-family: 'IBM Plex Sans', sans-serif; font-size: 0.72rem; font-weight: 600; margin-right: 0.8rem;">Cite sources:</span>
           <label><input type="checkbox" class="cite-filter" value="Calfa" checked> Calfa</label>
-                    <label><input type="checkbox" class="cite-filter" value="Hubschmann" checked> Hübschmann</label>
+          <label><input type="checkbox" class="cite-filter" value="Hubschmann" checked> Hübschmann</label>
           <label><input type="checkbox" class="cite-filter" value="Bedrossian" checked> Bedrossian</label>
           <label><input type="checkbox" class="cite-filter" value="Rivola" checked> Rivola</label>
           <label><input type="checkbox" class="cite-filter" value="Awetikean" checked> Awetikʻean</label>
-          <label><input type="checkbox" class="cite-filter" value="Taba" checked> Taba</label>
           <label><input type="checkbox" class="cite-filter" value="Martirosyan" checked> Martirosyan</label>
           <label><input type="checkbox" class="cite-filter" value="Ačaṙean" checked> Ačaṙean</label>
         </div>
@@ -1715,6 +1714,7 @@
       <h2>Armenian Prefixes &amp; Word-Forming Elements</h2>
       <p class="guide-intro">Click any prefix to look it up in the dictionary.</p>
       <div id="prefixGrid" class="prefix-grid"></div>
+    </section>
 
     <section id="sourcesSection" style="display:none">
       <h2>Etymology Sources &amp; Scholars</h2>
@@ -2771,6 +2771,8 @@
       guideBtn.classList.toggle("section-active", section === "guide");
       suffixBtn.classList.toggle("section-active", section === "suffix");
       prefixBtn.classList.toggle("section-active", section === "prefix");
+      const sourcesBtn = document.getElementById("showSourcesBtn");
+      if (sourcesBtn) sourcesBtn.classList.toggle("section-active", section === "sources");
     }
     function setGraphMode(mode) {
       graphMode = mode === "language" || mode === "lineage" || mode === "tree" ? mode : "tree";
@@ -4761,8 +4763,17 @@
       { name: "English", code: "en", desc: "Increasingly present in diaspora Western Armenian, especially in Anglophone communities (USA, Canada, Australia).", period: "20th century–present" },
       { name: "Syriac / Aramaic", code: "syc / arc", desc: "Semitic languages of early Christianity; many early Christian and liturgical terms entered Armenian through Syriac translations.", period: "4th–7th century" },
       { name: "Proto-Indo-European (Anatolian branch)", code: "Anatolian", desc: "Some very early strata of Armenian vocabulary may reflect Anatolian contact layers from languages like Hittite.", period: "c. 2000–1200 BCE" },
+    ]; 
+    const SOURCES_GUIDE = [
+      { name: "Calfa", code: "Calfa (1861)", count: 5715, desc: "Ambroise Calfa's Dictionnaire arménien-français, a foundational French-Armenian dictionary." },
+      { name: "Hübschmann", code: "Hübschmann (1897)", count: 37, desc: "Heinrich Hübschmann's Armenische Grammatik, pioneering work on Armenian historical linguistics." },
+      { name: "Bedrossian", code: "Bedrossian (1875)", count: 11, desc: "Matthias Bedrossian's New Dictionary Armenian-English, a standard reference." },
+      { name: "Rivola", code: "Rivola (1633)", count: 5, desc: "Francisco Rivola's Dictionarium armeno-latinum, one of the earliest Armenian-Latin dictionaries." },
+      { name: "Awetikʻean", code: "Awetikʻean (1836-37)", count: 1, desc: "Nor bargirk haykazean lezui (New Dictionary of the Armenian Language)." },
+      { name: "Martirosyan", code: "Martirosyan (2011)", count: 45, desc: "Hrach Martirosyan's etymological research on Armenian vocabulary." },
+      { name: "Ačaṙean", code: "Ačaṙean (1926)", count: 18, desc: "Hrachʻeay Ačaṙean's Etymological Dictionary of the Armenian Language, the standard etymological reference." }
     ];
-
+  
     function renderLangGuide() {
       const grid = document.getElementById("langGuideGrid");
       if (!grid) return;
@@ -4784,6 +4795,34 @@
         document.getElementById("search").value = lang;
         lookupLanguage(lang, true);
         showSection("results");
+      });
+    }
+    function renderSourcesGuide() {
+      const grid = document.getElementById("sourcesGrid");
+      if (!grid) return;
+      grid.innerHTML = SOURCES_GUIDE.map(source => `
+        <button type="button" class="guide-card guide-card-btn source-card-btn" data-source="${escapeHtml(source.name)}" title="Browse words citing ${escapeHtml(source.name)}">
+          <div class="guide-card-name">${escapeHtml(source.name)}<span class="guide-card-code">${escapeHtml(source.code)}</span></div>
+          <div style="font-size:0.75rem; color:#8a4f28; margin:0.2rem 0;">${source.count} entries</div>
+          <div class="guide-card-desc">${escapeHtml(source.desc)}</div>
+        </button>
+      `).join("");
+      
+      grid.querySelectorAll('.source-card-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const sourceName = btn.dataset.source;
+          const checkboxes = document.querySelectorAll('.cite-filter');
+          checkboxes.forEach(cb => cb.checked = false);
+          const targetCheckbox = Array.from(checkboxes).find(cb => cb.value === sourceName);
+          if (targetCheckbox) targetCheckbox.checked = true;
+          const q = document.getElementById('search').value.trim();
+          if (searchMode === 'word') {
+            if (q) lookup(q, true);
+          } else {
+            if (q) lookupLanguage(q, true);
+          }
+          showSection("results");
+        });
       });
     }
 
@@ -4878,6 +4917,7 @@
       document.getElementById("langGuideSection").style.display = section === "guide" ? "block" : "none";
       document.getElementById("suffixSection").style.display = section === "suffix" ? "block" : "none";
       document.getElementById("prefixSection").style.display = section === "prefix" ? "block" : "none";
+      document.getElementById("sourcesSection").style.display = section === "sources" ? "block" : "none";
       setSectionTabs(section);
     }
 
@@ -4906,6 +4946,12 @@
     document.getElementById("showPrefixBtn").onclick = () => {
       showSection("prefix");
       renderPrefixGrid();
+      graphVisible = false;
+      updateUrlState(searchMode, document.getElementById("search").value.trim());
+    };
+      document.getElementById("showSourcesBtn").onclick = () => {
+      showSection("sources");
+      renderSourcesGuide();
       graphVisible = false;
       updateUrlState(searchMode, document.getElementById("search").value.trim());
     };
