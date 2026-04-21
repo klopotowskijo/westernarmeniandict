@@ -1646,6 +1646,10 @@
         <div class="source-filter-wrap">
           <span style="font-family: 'IBM Plex Sans', sans-serif; font-size: 0.72rem; font-weight: 600; margin-right: 0.8rem;">Cite sources:</span>
           <label><input type="checkbox" class="cite-filter" value="Calfa" checked> Calfa</label>
+                    <label><input type="checkbox" class="cite-filter" value="Hubschmann" checked> Hübschmann</label>
+          <label><input type="checkbox" class="cite-filter" value="Bedrossian" checked> Bedrossian</label>
+          <label><input type="checkbox" class="cite-filter" value="Rivola" checked> Rivola</label>
+          <label><input type="checkbox" class="cite-filter" value="Awetikean" checked> Awetikʻean</label>
           <label><input type="checkbox" class="cite-filter" value="Taba" checked> Taba</label>
           <label><input type="checkbox" class="cite-filter" value="Martirosyan" checked> Martirosyan</label>
           <label><input type="checkbox" class="cite-filter" value="Ačaṙean" checked> Ačaṙean</label>
@@ -4932,7 +4936,7 @@
     loadDictionary();
 
     // Citation source detection for filtering
-    function getCitationSources(entry) {
+        function getCitationSources(entry) {
       const sources = [];
       const etyText = String(entry.etymology || '') + ' ' + String(entry.wikitext || '');
       const lowerText = etyText.toLowerCase();
@@ -4941,6 +4945,10 @@
       if (lowerText.includes('taba')) sources.push('Taba');
       if (lowerText.includes('martirosyan')) sources.push('Martirosyan');
       if (lowerText.includes('ačaṙean') || lowerText.includes('acharyan')) sources.push('Ačaṙean');
+      if (lowerText.includes('hubschmann') || lowerText.includes('hübschmann')) sources.push('Hubschmann');
+      if (lowerText.includes('bedrossian') || lowerText.includes('bedrosian')) sources.push('Bedrossian');
+      if (lowerText.includes('rivola')) sources.push('Rivola');
+      if (lowerText.includes('awetik') || lowerText.includes('awetikʻean')) sources.push('Awetikean');
       
       return sources;
     }
