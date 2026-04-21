@@ -3792,22 +3792,51 @@
       html += `</div>`;
       return html;
     }
-    function renderDefinitionLine(definitionText) {
+        function renderDefinitionLine(definitionText) {
       const text = String(definitionText || "");
+      
+      // Handle special patterns first
       const m = text.match(/^(Inflected form of|Inferential form of|Inferred form of|Inflection of)\s+(.+)$/i);
-      if (!m) return escapeHtml(text);
-
-      const label = m[1];
-      let base = (m[2] || "").trim();
-      let trailing = "";
-      const punct = base.match(/([.,;:!?]+)$/);
-      if (punct) {
-        trailing = punct[1];
-        base = base.slice(0, -trailing.length).trim();
+      if (m) {
+        const label = m[1];
+        let base = (m[2] || "").trim();
+        let trailing = "";
+        const punct = base.match(/([.,;:!?]+)$/);
+        if (punct) {
+          trailing = punct[1];
+          base = base.slice(0, -trailing.length).trim();
+        }
+        if (!base) return escapeHtml(text);
+        return escapeHtml(label) + ' <button type="button" class="morphology-link" data-word="' + encodeURIComponent(base) + '">' + escapeHtml(base) + '</button>' + escapeHtml(trailing);
       }
-      if (!base) return escapeHtml(text);
+      
+      // For regular definitions, make all dictionary words clickable
+      let result = escapeHtml(text);
+      
+      if (typeof dictionary !== "undefined" && dictionary && window.dictionaryData === undefined) {
+        window.dictionaryData = dictionary;
+      }
+      
+      if (window.dictionaryData && window.dictionaryData.length) {
+        const wordSet = new Set();
+        window.dictionaryData.forEach(function(entry) {
+          if (entry.title) wordSet.add(entry.title);
+        });
+        
+        if (typeof lemmatizationIndex !== "undefined") {
+          Object.keys(lemmatizationIndex).forEach(function(w) { wordSet.add(w); });
+        }
+        
+        const sortedWords = Array.from(wordSet).sort(function(a, b) { return b.length - a.length; });
+        const pattern = new RegExp("\\b(" + sortedWords.map(function(w) { return w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }).join("|") + ")\\b", "g");
+        
+        result = result.replace(pattern, function(match) {
+          const lemma = (typeof lemmatizationIndex !== "undefined" && lemmatizationIndex[match]) ? lemmatizationIndex[match] : match;
+          return `<button type="button" class="morphology-link" data-word="${encodeURIComponent(lemma)}">${escapeHtml(match)}</button>`;
+        });
+      }
 
-      return `${escapeHtml(label)} <button type="button" class="morphology-link" data-word="${encodeURIComponent(base)}">${escapeHtml(base)}</button>${escapeHtml(trailing)}`;
+      return result;
     }
     function lookupLanguage(query, syncUrl = true) {
       const el = document.getElementById("result");
