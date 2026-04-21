@@ -9,6 +9,77 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
+    /* --- HERO BACKGROUND ON .topbar --- */
+    .topbar {
+      position: relative;
+      background:
+        linear-gradient(rgba(243,238,226,0.85), rgba(243,238,226,0.85)),
+        url("sources/images/vieux-serail.jpg") center center / cover no-repeat;
+      filter: sepia(0.15);
+      z-index: 1;
+    }
+    .topbar::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(243,238,226,0.85);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .topbar > * {
+      position: relative;
+      z-index: 3;
+    }
+
+    /* --- EMPTY STATE BACKGROUND --- */
+    .empty-state {
+      position: relative;
+      background: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .empty-state::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 70vw;
+      height: 70vh;
+      background: url("sources/images/chiens-rues.jpg") bottom right / contain no-repeat;
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .empty-state > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* --- GRAPH SECTION PANORAMA BACKGROUND --- */
+    #graphSection {
+      position: relative;
+      background: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    #graphSection::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("sources/images/panorama-constantinople.jpg") center center / cover no-repeat;
+      opacity: 0.05;
+      pointer-events: none;
+      z-index: 0;
+    }
+    #graphSection > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Ensure backgrounds never interfere with text */
+    .empty-state, #graphSection, .topbar {
+      background-blend-mode: lighten;
+    }
         .source-filter-wrap {
       margin-top: 0.75rem;
       padding-top: 0.5rem;
@@ -1718,6 +1789,12 @@
       <span class="footer-sep">&middot;</span>
       <span>Sources: Wiktionary, Nayiri</span>
       <span class="footer-sep">&middot;</span>
+      <div style="margin-top:1.2rem; font-size:0.95rem; color:#7a6242; text-align:center;">
+        Historic photos:
+        <a href="https://www.loc.gov/collections/abdullah-freres/" target="_blank" rel="noopener" style="color:#7a6242;text-decoration:underline;">
+          Abdullah Frères / Library of Congress
+        </a>
+      </div>
       <span><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></span>
       <span class="footer-sep">&middot;</span>
       <span>Շնորհակալ եմ Տատիկ</span>
@@ -2765,7 +2842,7 @@
     }
     function setGraphMode(mode) {
       graphMode = mode === "language" || mode === "lineage" || mode === "tree" ? mode : "tree";
-      documel.innerHTMLent.getElementById("graphModeLanguageBtn").classList.toggle("active", graphMode === "language");
+      document.getElementById("graphModeLanguageBtn").classList.toggle("active", graphMode === "language");
       document.getElementById("graphModeLineageBtn").classList.toggle("active", graphMode === "lineage");
       document.getElementById("graphModeTreeBtn").classList.toggle("active", graphMode === "tree");
       const help = document.getElementById("graphHelp");
@@ -3961,11 +4038,11 @@
       if (syncUrl) updateUrlState("language", cleanQuery);
     }
     function lookup(word, syncUrl = true) {
-    // Special case override for ԿԱԼԱՓՏԵԼ
-    if (word === "ԿԱԼԱՓՏԵԼ") {
+    // Special case override for ԿԱԼԱՓՏԵԼ (case-insensitive)
+    if (word.toLowerCase() === "կալափտել") {
       const el = document.getElementById("result");
       const entry = {
-        title: "ԿԱԼԱՓՏԵԼ",
+        title: "Կալափտել",
         part_of_speech: "verb",
         definition: [
           "to caulk (a ship); to seal gaps with oakum and pitch"
@@ -4024,17 +4101,209 @@
       if (syncUrl) updateUrlState("word", entry.title);
       return;
     }
-    const el = document.getElementById("result");
+        const el = document.getElementById("result");
+    
+    // Try exact match first
     let entry = titleIndex[word];
+    
+    // If not found, try case-insensitive search
     if (!entry) {
-      el.innerHTML = `<div class="not-found">No entry found for <b>${escapeHtml(word)}</b>.</div>`;
-      showSection("results");
-      if (syncUrl) updateUrlState("word", word);
-      return;
+      const lowerWord = word.toLowerCase();
+      const matchingKey = Object.keys(titleIndex).find(key => key.toLowerCase() === lowerWord);
+      if (matchingKey) {
+        entry = titleIndex[matchingKey];
+        word = matchingKey; // Update word to the correct capitalization for URL
+      }
     }
-    // ...existing code...
-    window.lookup = lookup;
-    function showSuggestions(q) {
+    
+    // Normal entry display code
+    const nayiriEntry = (entry && entry.nayiri) || (window.nayiriIndex && window.nayiriIndex[entry.title]);
+    const morphologyHtml = entry ? renderMorphology(entry) : "";
+    const westernIpa = toWesternArmenianIPA(entry.title);
+    const pos = entry && entry.part_of_speech ? entry.part_of_speech : "";
+    const ety = parseEtymology(entry);
+    const displayDefs = Array.isArray(entry.definition) ? entry.definition : (entry.definition ? [entry.definition] : []);
+    const etyConfidence = inferEtymologyConfidence(entry, ety);
+    const etyRelation = inferEtymologyRelation(entry, ety);
+    const attestation = inferAttestation(entry, ety);
+    const etySources = getEtymologySourceList(entry);
+    const sourceBadge = getEntrySourceBadge(entry, etySources);
+    const srcLangs = getSourceLanguages(entry);
+    const lineage = getEtymologyLineage(entry);
+    const etyScopeNote = getEtymologyScopeNote(ety);
+    const altForms = getStructuredLinks(entry, 'alternative_forms');
+    const derivedTerms = getStructuredLinks(entry, 'derived_terms');
+    const relatedTerms = getStructuredLinks(entry, 'related_terms');
+    const seeAlso = getStructuredLinks(entry, 'see_also');
+    const donor = extractImmediateDonor(entry);
+    const ultimate = extractUltimateOrigin(entry, ety);
+    const rootDefLine = buildSurnameRootDefinition(entry, displayDefs, ety);
+    const defsToShow = rootDefLine ? [...displayDefs, rootDefLine] : displayDefs;
+    currentWord = entry.title;
+    const displayTitle = cleanDisplayTitle(entry.title);
+    
+    let html = `<article class="entry-card"><div class="entry-head"><div class="word-title">${escapeHtml(displayTitle)}</div>`;
+    
+    if (pos || westernIpa) {
+      html += `<div class="word-meta-inline">`;
+      let verbCategory = "";
+      if (pos === "verb" && Array.isArray(displayDefs)) {
+        const catMatch = displayDefs.map(d => {
+          const m = String(d).match(/^\((transitive|intransitive|ditransitive)\)/i);
+          return m ? m[1].toLowerCase() : null;
+        }).filter(Boolean);
+        if (catMatch.length) {
+          verbCategory = Array.from(new Set(catMatch)).join(", ");
+        }
+      }
+      if (pos) {
+        html += `<div class="word-pos">${escapeHtml(pos)}${verbCategory ? ` (${escapeHtml(verbCategory)})` : ""}`;
+        if (pos === "verb" && entry.transitivity) {
+          let label = "";
+          if (entry.transitivity === "transitive") label = "tr.";
+          else if (entry.transitivity === "intransitive") label = "intr.";
+          else if (entry.transitivity === "ambitransitive") label = "tr. & intr.";
+          else if (entry.transitivity === "reflexive") label = "refl.";
+          if (label) {
+            if (entry.transitivity_confidence === "medium") label += "?";
+            html += ` <span class="verb-transitivity">${label}</span>`;
+          }
+        }
+        html += `</div>`;
+      }
+      if (westernIpa) html += `<div class="word-ipa-inline">IPA (WA) /${escapeHtml(westernIpa)}/</div>`;
+      html += `</div>`;
+    }
+    
+    const encodedTitle = encodeURIComponent(entry.title);
+    html += `<div class="entry-tools"><button type="button" class="entry-tree-btn" data-word="${encodedTitle}">Open Tree</button><button type="button" class="permalink-btn" data-word="${encodedTitle}">Permalink</button><span class="permalink-status" id="permalinkStatus"></span></div>`;
+    html += `</div><div class="entry-content">`;
+    
+    if (defsToShow.length) {
+      html += `<div class="section-label">Definition <span class="source-badge ${escapeHtml(sourceBadge.className)}">${escapeHtml(sourceBadge.label)}</span></div><ol>`;
+      for (const d of defsToShow) html += `<li>${renderDefinitionLine(d)}</li>`;
+      html += `</ol>`;
+    }
+    
+    if (morphologyHtml) {
+      html += morphologyHtml;
+    }
+    
+    if (entry.calfa && Array.isArray(entry.calfa.etymology) && entry.calfa.etymology.length) {
+      html += `<div class="section-label">Calfa <span class="source-badge calfa">Calfa</span></div>`;
+      for (const calfaEty of entry.calfa.etymology) {
+        const calfaText = calfaEty.text ? escapeHtml(calfaEty.text) : "";
+        const calfaAuthor = calfaEty.author || calfaEty.source || "Calfa";
+        html += `<div class="etymology-box">`;
+        html += `<div style="font-size:0.98em; margin-bottom:0.2em;">${calfaText}</div>`;
+        html += `<div class="ety-sources">Source: ${escapeHtml(calfaAuthor)}</div>`;
+        html += `</div>`;
+      }
+    }
+    
+    if (Array.isArray(entry.synonyms) && entry.synonyms.length) {
+      html += `<div class="section-label">Synonyms</div>`;
+      html += `<div class="word-links">`;
+      for (const syn of entry.synonyms) {
+        html += `<button type="button" class="word-link" data-word="${encodeURIComponent(syn)}">${escapeHtml(syn)}</button>`;
+      }
+      html += `</div>`;
+    }
+    
+    html += `<div class="section-label">Etymology <span class="source-badge ${escapeHtml(sourceBadge.className)}">${escapeHtml(sourceBadge.label)}</span><span class="ety-relation ${escapeHtml(etyRelation.className)}">${escapeHtml(etyRelation.label)}</span><span class="ety-confidence ${escapeHtml(etyConfidence.className)}">${escapeHtml(etyConfidence.label)}</span></div>`;
+    html += `<div class="etymology-box">${renderLineage(lineage)}${renderEtymologyTextWithLinks(ety)}</div>`;
+    if (etyScopeNote) html += `<div class="ety-scope-note">${escapeHtml(etyScopeNote)}</div>`;
+    if (donor) {
+      const donorUrl = getDonorWiktionaryUrl(donor.term);
+      html += `<div class="ety-donor-note">Immediate donor: ${escapeHtml(donor.term)} (${escapeHtml(donor.langName)}). <a href="${escapeHtml(donorUrl)}" target="_blank" rel="noopener noreferrer">Trace donor etymology</a>.</div>`;
+    }
+    if (ultimate) {
+      const ultimateLang = ultimate.langName && ultimate.langName !== "unspecified"
+        ? ` (${escapeHtml(ultimate.langName)})`
+        : "";
+      html += `<div class="ety-donor-note">Ultimate origin: ${escapeHtml(ultimate.term)}${ultimateLang}.</div>`;
+    } else if (donor) {
+      html += `<div class="ety-donor-note">Ultimate origin: not specified in this source entry.</div>`;
+    }
+    html += `<div class="ety-sources">Sources: ${renderEtymologySources(etySources)}</div>`;
+    if (attestation) html += `<div class="attestation-note">Timeline: ${escapeHtml(attestation)}</div>`;
+    
+    if (nayiriEntry) {
+      html += `<div class="section-label">Nayiri <span class="source-badge nayiri">Nayiri</span></div>`;
+      html += `<div class="nayiri-panel">`;
+      if (nayiriEntry.description) {
+        const glossMatch = nayiriEntry.description.match(/\((.+)\)/);
+        const gloss = glossMatch ? glossMatch[1] : nayiriEntry.description;
+        html += `<div class="nayiri-gloss">${escapeHtml(gloss)}</div>`;
+      }
+      if (nayiriEntry.partOfSpeech) {
+        html += `<div class="nayiri-pos">${escapeHtml(nayiriEntry.partOfSpeech.toLowerCase())}</div>`;
+      }
+      if (nayiriEntry.wordForms && nayiriEntry.wordForms.length) {
+        const forms = [...new Set(nayiriEntry.wordForms)].slice(0, 12);
+        html += `<div class="nayiri-forms-grid">`;
+        for (const f of forms) html += `<span class="nayiri-form-pill">${escapeHtml(f)}</span>`;
+        html += `</div>`;
+      }
+      html += `</div>`;
+    }
+    
+    if (altForms.length) {
+      html += `<div class="section-label">Alternative Forms</div>`;
+      html += `<div class="word-links">`;
+      const visibleAltForms = altForms.slice(0, ALT_FORMS_VISIBLE_COUNT);
+      const overflowAltForms = altForms.slice(ALT_FORMS_VISIBLE_COUNT);
+      for (const w of visibleAltForms) html += `<button type="button" class="word-link" data-word="${encodeURIComponent(w)}">${escapeHtml(w)}</button>`;
+      html += `</div>`;
+      if (overflowAltForms.length) {
+        html += `<details class="altforms-more"><summary>Show ${overflowAltForms.length} more</summary><div class="word-links">`;
+        for (const w of overflowAltForms) html += `<button type="button" class="word-link" data-word="${encodeURIComponent(w)}">${escapeHtml(w)}</button>`;
+        html += `</div></details>`;
+      }
+    }
+    
+    if (derivedTerms.length) {
+      html += `<div class="section-label">Derived Terms</div>`;
+      html += `<div class="word-links">`;
+      for (const w of derivedTerms) html += `<button type="button" class="word-link" data-word="${encodeURIComponent(w)}">${escapeHtml(w)}</button>`;
+      html += `</div>`;
+    }
+    
+    if (relatedTerms.length) {
+      html += `<div class="section-label">Related Terms</div>`;
+      html += `<div class="word-links">`;
+      for (const w of relatedTerms) html += `<button type="button" class="word-link" data-word="${encodeURIComponent(w)}">${escapeHtml(w)}</button>`;
+      html += `</div>`;
+    }
+    
+    if (seeAlso.length) {
+      html += `<div class="section-label">See Also</div>`;
+      html += `<div class="word-links">`;
+      for (const w of seeAlso) html += `<button type="button" class="word-link" data-word="${encodeURIComponent(w)}">${escapeHtml(w)}</button>`;
+      html += `</div>`;
+    }
+    
+    html += `<div class="entry-meta">`;
+    html += `<span class="meta-pill">${defsToShow.length} defs</span>`;
+    html += `<span class="meta-pill">${escapeHtml(etyRelation.label)}</span>`;
+    html += `<span class="meta-pill">ety ${escapeHtml(etyConfidence.label)}</span>`;
+    if (attestation) html += `<span class="meta-pill">attestation ${escapeHtml(attestation)}</span>`;
+    if (srcLangs.length) {
+      for (const lang of srcLangs) {
+        const encodedLang = encodeURIComponent(lang);
+        html += `<button type="button" class="source-chip" data-lang="${encodedLang}">${escapeHtml(lang)}</button>`;
+      }
+    } else {
+      html += `<span class="meta-pill">${ety ? "Armenian formation" : "source unknown"}</span>`;
+    }
+    html += `</div>`;
+    html += `</div></article>`;
+    el.innerHTML = html;
+    showSection("results");
+    if (syncUrl) updateUrlState("word", entry.title);
+  }
+
+  function showSuggestions(q) {
       const box = document.getElementById("suggestions");
       if (!q) {
         box.style.display = "none";
@@ -4847,7 +5116,6 @@ function displaySourceResults(sourceName, matches) {
       fetch("nayiri-armenian-lexicon-2026-02-15-v1-2.json")
         .then(r => r.json())
         .then(d => {
-          // Build index: lemmaString → { description, partOfSpeech, wordForms }
           window.nayiriIndex = {};
           for (const lex of (d.lexemes || [])) {
             for (const lemma of (lex.lemmas || [])) {
@@ -4861,15 +5129,17 @@ function displaySourceResults(sourceName, matches) {
               }
             }
           }
-          // Re-render current word to show Nayiri panel if it just loaded.
           if (currentWord && titleIndex[currentWord]) {
             lookup(currentWord, false);
           }
         })
         .catch(err => console.error("Could not load Nayiri lexicon:", err));
+    }
 
-        // Nayiri is loaded on first actual word lookup (see lookup() above).
-        // Do NOT load it at startup — it blocks the main thread for several seconds.
-        loadDictionary();
-
-        
+    // Nayiri is loaded on first actual word lookup (see lookup() above).
+    // Do NOT load it at startup — it blocks the main thread for several seconds.
+    loadDictionary();
+  });  // ← This closes DOMContentLoaded - ONLY ONE
+</script>
+</body>
+</html>
