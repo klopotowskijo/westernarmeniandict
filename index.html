@@ -9,6 +9,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
+        .source-filter-wrap {
+      margin-top: 0.75rem;
+      padding-top: 0.5rem;
+      border-top: 1px dashed #d8c9b4;
+    }
+    .source-filter-wrap label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.75rem;
+      margin-right: 0.8rem;
+    }
     :root {
       --paper: #f3eee2;
       --ink: #2f2922;
@@ -1628,7 +1641,15 @@
         <button id="showSuffixBtn" class="tab-btn">Suffixes</button>
         <button id="showPrefixBtn" class="tab-btn">Prefixes</button>
       </div>
-      <div class="keyboard-wrap">
+            <div class="keyboard-wrap">
+        <!-- Citation Source Filter -->
+        <div class="source-filter-wrap">
+          <span style="font-family: 'IBM Plex Sans', sans-serif; font-size: 0.72rem; font-weight: 600; margin-right: 0.8rem;">Cite sources:</span>
+          <label><input type="checkbox" class="cite-filter" value="Calfa" checked> Calfa</label>
+          <label><input type="checkbox" class="cite-filter" value="Taba" checked> Taba</label>
+          <label><input type="checkbox" class="cite-filter" value="Martirosyan" checked> Martirosyan</label>
+          <label><input type="checkbox" class="cite-filter" value="Ačaṙean" checked> Ačaṙean</label>
+        </div>
         <div id="armenianKeyboard" class="keyboard-panel" aria-hidden="true"></div>
       </div>
     </section>
@@ -3847,7 +3868,8 @@
         if (syncUrl) updateUrlState("language", "");
         return;
       }
-      const matches = dictionary
+            const matches = dictionary
+        .filter(entry => matchesCiteFilter(entry))
         .filter(entry => {
           // Check structured source languages first
           const langs = getSourceLanguages(entry);
@@ -4905,9 +4927,53 @@
         })
         .catch(err => console.error("Could not load Nayiri lexicon:", err));
     }
-    // Nayiri is loaded on first actual word lookup (see lookup() above).
+        // Nayiri is loaded on first actual word lookup (see lookup() above).
     // Do NOT load it at startup — it blocks the main thread for several seconds.
     loadDictionary();
+
+    // Citation source detection for filtering
+    function getCitationSources(entry) {
+      const sources = [];
+      const etyText = String(entry.etymology || '') + ' ' + String(entry.wikitext || '');
+      const lowerText = etyText.toLowerCase();
+      
+      if (lowerText.includes('calfa')) sources.push('Calfa');
+      if (lowerText.includes('taba')) sources.push('Taba');
+      if (lowerText.includes('martirosyan')) sources.push('Martirosyan');
+      if (lowerText.includes('ačaṙean') || lowerText.includes('acharyan')) sources.push('Ačaṙean');
+      
+      return sources;
+    }
+
+    function getActiveCiteFilters() {
+      const checkboxes = document.querySelectorAll('.cite-filter:checked');
+      const active = [];
+      checkboxes.forEach(cb => active.push(cb.value));
+      return active;
+    }
+
+    function matchesCiteFilter(entry) {
+      const activeFilters = getActiveCiteFilters();
+      if (activeFilters.length === 0) return true;
+      const entrySources = getCitationSources(entry);
+      for (const filter of activeFilters) {
+        if (entrySources.includes(filter)) return true;
+      }
+      return false;
+    }
+
+    // Add event listeners for cite filters
+    document.querySelectorAll('.cite-filter').forEach(cb => {
+      cb.addEventListener('change', () => {
+        const q = document.getElementById('search').value.trim();
+        if (searchMode === 'word') {
+          if (q) lookup(q, true);
+        } else {
+          if (q) lookupLanguage(q, true);
+        }
+      });
+    });
+
   });
   </script>
 </body>
