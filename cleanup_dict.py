@@ -107,12 +107,19 @@ def clean_entry_content(entry, stats):
             def_dropped.append((orig_d, 'source_artifact'))
             cat_this.add('source_artifact')
             continue
+        # Remove definitions that are only POS labels (e.g., 'transitive', '(transitive)', 'verb (transitive)')
+        d_no_label = INLINE_LABEL_RE.sub('', d).strip()
+        # If after removing label, nothing remains, drop it
+        if not d_no_label:
+            def_dropped.append((orig_d, 'pos_label_only'))
+            cat_this.add('pos_label_only')
+            continue
         # 8. Probable transliteration, flag
         if is_probably_transliteration(d):
             add_review_reason(entry, "possible_transliteration")
             cat_this.add('possible_transliteration')
-        # only keep non-empty, non-artifact
-        if d.strip():
+        # only keep non-empty, non-artifact, non-label-only
+        if d_no_label.strip():
             new_definitions.append(d)
         touched.update(cat_this)
     definitions = new_definitions
@@ -130,15 +137,17 @@ def clean_entry_content(entry, stats):
             # Prefer label-free version if possible
             old_def = dedup_norm[found]
             if INLINE_LABEL_RE.match(old_def) and not INLINE_LABEL_RE.match(d):
-                dedup_norm[found] = normed
+                dedup_norm[found] = d
             touched.add('dupe_def_with_inline_label')
         else:
             dedup_norm[normed] = d
     dedup_list = []
-    for d in dedup_norm.keys():
+    for d in dedup_norm.values():
         # strip label fragments from final output too
         out_def = INLINE_LABEL_RE.sub('', d).strip()
-        dedup_list.append(out_def)
+        # Remove if after stripping label, nothing remains
+        if out_def:
+            dedup_list.append(out_def)
     definitions = dedup_list
 
     # 4. Remove fully redundant definitions: token overlap
