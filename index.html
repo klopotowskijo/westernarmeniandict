@@ -3792,9 +3792,7 @@
       html += `</div>`;
       return html;
     }
-        function renderDefinitionLine(definitionText) {      const text = String(definitionText || "");      const m = text.match(/^(Inflected form of|Inferential form of|Inferred form of|Inflection of)\s+(.+)$/i);      if (!m) return escapeHtml(text);      ...    }
-
-function renderDefinitionLine(definitionText) {
+    function renderDefinitionLine(definitionText) {
       const text = String(definitionText || "");
       const m = text.match(/^(Inflected form of|Inferential form of|Inferred form of|Inflection of)\s+(.+)$/i);
       if (!m) return escapeHtml(text);
