@@ -3764,22 +3764,42 @@
       }
     }
     function getMorphemeMeaning(form) {
-      const meanings = {
-        "կ": "FUT (future)",
-        "չ": "NEG (negation)",
-        "ներ": "PL (plural)",
-        "եր": "PL (plural)",
-        "ի": "GEN/DAT (genitive-dative)",
-        "ին": "DAT (dative)",
-        "ից": "ABL (ablative)",
-        "ով": "INS (instrumental)",
-        "ում": "LOC (locative)",
-        "ը": "DEF.SG (definite singular)",
-        "ս": "POSS.1SG",
-        "դ": "POSS.2SG"
-      };
-      return meanings[form] || `[unknown: ${form}]`;
-    }
+  const meanings = {
+    // Verb suffixes
+    "կ": "FUT (future)",
+    "չ": "NEG (negation)",
+    "եմ": "1st person singular present",
+    "ես": "2nd person singular present",
+    "ի": "3rd person singular present",
+    "ենք": "1st person plural present",
+    "եք": "2nd person plural present",
+    "են": "3rd person plural present",
+    // Noun suffixes
+    "ներ": "PL (plural)",
+    "եր": "PL (plural)",
+    "ին": "DAT (dative)",
+    "ից": "ABL (ablative)",
+    "ով": "INS (instrumental)",
+    "ում": "LOC (locative)",
+    "ը": "DEF.SG (definite singular)",
+    "ս": "POSS.1SG",
+    "դ": "POSS.2SG",
+    // Word formation suffixes
+    "ություն": "abstract noun suffix",
+    "ութիւն": "abstract noun suffix",
+    "ացում": "action noun suffix",
+    "ցում": "action noun suffix",
+    "ական": "adjective suffix",
+    "ավոր": "possessor/agent suffix",
+    "իչ": "agent noun suffix",
+    "ուհի": "feminine suffix",
+    "արան": "place suffix",
+    "աստան": "place suffix (land of)",
+    "պետ": "chief/leader suffix",
+    "կերտ": "builder/maker suffix"
+  };
+  return meanings[form] || `[unknown: ${form}]`;
+}
     function splitStackedSuffixes(suffixForm) {
       const suffix = String(suffixForm || "");
       if (!suffix) return [];
