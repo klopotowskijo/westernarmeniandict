@@ -1589,63 +1589,6 @@
       .search-label-row {
         display: block;
       }
-      /* Bottom sheet for keyboard */
-      .keyboard-panel {
-        position: fixed;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: 0;
-        border-radius: 16px 16px 0 0;
-        z-index: 1000;
-        max-width: 100vw;
-        box-shadow: 0 -4px 24px rgba(0,0,0,0.18);
-        padding-bottom: env(safe-area-inset-bottom, 12px);
-        display: none;
-        min-height: 220px;
-      }
-      .keyboard-panel[aria-hidden="false"] {
-        display: block;
-      }
-      /* Touch targets */
-      .kbd-key, .kbd-key.action, .kbd-key.wide, button, .tab-btn, .entry-tree-btn, .permalink-btn, .word-link, .source-chip, .empty-sample {
-        min-height: 44px !important;
-        min-width: 44px !important;
-        font-size: 1.1rem;
-      }
-      /* Filter drawer */
-      .source-filter-wrap {
-        position: fixed;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: #fffdf8;
-        border-top: 2px solid #ccbca5;
-        z-index: 1100;
-        box-shadow: 0 -2px 18px rgba(0,0,0,0.13);
-        padding: 1.2rem 1.1rem 1.1rem;
-        display: none;
-        border-radius: 16px 16px 0 0;
-      }
-      .source-filter-wrap.open {
-        display: block;
-      }
-      .source-filter-toggle-btn {
-        display: inline-block;
-        font-size: 1rem;
-        background: var(--accent);
-        color: #fff;
-        border: none;
-        border-radius: 6px;
-        padding: 0.6rem 1.2rem;
-        margin-bottom: 0.7rem;
-        min-width: 44px;
-        min-height: 44px;
-      }
-      .source-filter-wrap label {
-        font-size: 1rem;
-        margin-bottom: 0.7rem;
-      }
     }
   </style>
 </head>
@@ -1700,18 +1643,6 @@
         <button id="showSourcesBtn" class="tab-btn">Sources</button>
       </div>
             <div class="keyboard-wrap">
-        <!-- Citation Source Filter -->
-        <button type="button" class="source-filter-toggle-btn" id="openSourceFilterDrawer">Filter Sources</button>
-        <div class="source-filter-wrap" id="sourceFilterDrawer">
-          <span style="font-family: 'IBM Plex Sans', sans-serif; font-size: 0.95rem; font-weight: 600; margin-right: 0.8rem;">Cite sources:</span>
-          <label><input type="checkbox" class="cite-filter" value="Calfa" checked> Calfa</label>
-          <label><input type="checkbox" class="cite-filter" value="Hubschmann" checked> Hübschmann</label>
-          <label><input type="checkbox" class="cite-filter" value="Bedrossian" checked> Bedrossian</label>
-          <label><input type="checkbox" class="cite-filter" value="Rivola" checked> Rivola</label>
-          <label><input type="checkbox" class="cite-filter" value="Awetikean" checked> Awetikʻean</label>
-          <label><input type="checkbox" class="cite-filter" value="Martirosyan" checked> Martirosyan</label>
-          <label><input type="checkbox" class="cite-filter" value="Ačaṙean" checked> Ačaṙean</label>
-        </div>
         <div id="armenianKeyboard" class="keyboard-panel" aria-hidden="true"></div>
       </div>
     </section>
@@ -1794,38 +1725,6 @@
   </div>
   <script src="https://unpkg.com/vis-network@9.1.9/dist/vis-network.min.js" defer></script>
   <script>
-  // --- Mobile filter drawer and keyboard bottom sheet logic ---
-  document.addEventListener('DOMContentLoaded', function() {
-    function isMobile() {
-      return window.matchMedia('(max-width: 760px)').matches;
-    }
-    // Filter drawer
-    var openBtn = document.getElementById('openSourceFilterDrawer');
-    var drawer = document.getElementById('sourceFilterDrawer');
-    if (openBtn && drawer) {
-      openBtn.addEventListener('click', function() {
-        drawer.classList.toggle('open');
-      });
-      // Close drawer on outside click
-      document.addEventListener('click', function(e) {
-        if (isMobile() && drawer.classList.contains('open') && !drawer.contains(e.target) && e.target !== openBtn) {
-          drawer.classList.remove('open');
-        }
-      });
-    }
-    // Keyboard bottom sheet
-    var keyboardPanel = document.getElementById('armenianKeyboard');
-    var toggleKeyboardBtn = document.getElementById('toggleKeyboardBtn');
-    if (keyboardPanel && toggleKeyboardBtn) {
-      toggleKeyboardBtn.addEventListener('click', function() {
-        var open = keyboardPanel.getAttribute('aria-hidden') !== 'false';
-        keyboardPanel.setAttribute('aria-hidden', open ? 'false' : 'true');
-        if (isMobile()) {
-          keyboardPanel.style.display = open ? 'block' : 'none';
-        }
-      });
-    }
-  });
   document.addEventListener('DOMContentLoaded', function() {
     let dictionary = [];
     let titleIndex = {};
@@ -3185,7 +3084,7 @@
       if (!graphData || !Array.isArray(graphData.links)) return;
       graphAvailableLanguages = [...new Set(
         graphData.links.map(l => getGraphLinkLanguage(l)).filter(Boolean)
-      )].sort((a, b) => a.localeCompare(b, "hy"));
+      )].sort((a, b) => a.localeCompare(b));
       renderGraphLanguagePanel();
       updateGraphSelectedSummary();
     }
@@ -3264,7 +3163,7 @@
       if (searchResolved) return searchResolved;
       return "";
     }
-    function extractNeighborhood(word, depth = 2, maxEdges = 220, maxNodes = 30) {
+    function extractNeighborhood(word, depth = 2, maxEdges = 220) {
       if (!graphIndex || !graphIndex.adjacency) return [];
       const out = [];
       const visitedNodes = new Set([word]);
@@ -3280,7 +3179,7 @@
             if (visitedEdges.has(key)) continue;
             visitedEdges.add(key);
             out.push(l);
-            if (out.length >= maxEdges || visitedNodes.size >= maxNodes) return out;
+            if (out.length >= maxEdges) return out;
             const a = String(l.source);
             const b = String(l.target);
             if (!visitedNodes.has(a)) {
@@ -3291,7 +3190,6 @@
               visitedNodes.add(b);
               next.push(b);
             }
-            if (visitedNodes.size >= maxNodes) return out;
           }
         }
         frontier = next;
@@ -3312,6 +3210,7 @@
           const inward = (graphIndex.incoming && graphIndex.incoming.get(parent)) || [];
           const candidates = (outward.length ? outward : inward)
             .filter(l => matchesGraphLanguage(l))
+            .filter(l => !isLangNode(String(l.source)) && !isLangNode(String(l.target)))
             .slice(0, 5);
           for (const l of candidates) {
             const src = String(l.source);
@@ -3458,10 +3357,10 @@
       };
 
       if (mode === "tree") {
-        let treeLinks = buildStrictTreeLinks(seedWord, 3, 30, true);
+        let treeLinks = buildStrictTreeLinks(seedWord, 3, 160, true);
         const usedLanguageFallback = !treeLinks.length && graphSelectedLanguages.size > 0;
         if (usedLanguageFallback) {
-          treeLinks = buildStrictTreeLinks(seedWord, 3, 30, false);
+          treeLinks = buildStrictTreeLinks(seedWord, 3, 160, false);
         }
         if (!treeLinks.length) {
           container.innerHTML = "<p style=\"padding:0.8rem\">No tree data for this selection and language filter. Pick another word or clear filter.</p>";
@@ -3541,25 +3440,22 @@
           ? `Strict tree view rooted at ${normalizeGraphWordLabel(seedWord)} | no branches matched the active language filter, so showing all languages for this word.`
           : `Strict tree view rooted at ${normalizeGraphWordLabel(seedWord)}${getGraphLanguageSuffix()}`;
       } else if (mode === "lineage") {
-        let nodeCount = 0;
-        const nodeSet = new Set();
         for (const l of links) {
           const src = String(l.source);
           const tgt = String(l.target);
           if (isLangNode(src) || isLangNode(tgt)) continue;
           const rel = String(l.relation || "").trim();
-          // Always show edge label, and clarify if missing
-          const labelText = rel ? rel : "etymological link";
+          // Only show edge label for specific/non-generic relations
+          const GENERIC_RELS = new Set(["derived", "related", "etymological link", "unknown", ""]);
+          const showLabel = rel && !GENERIC_RELS.has(rel.toLowerCase()) && rel.length <= 18;
           addWordNode(src, "word", true);
           addWordNode(tgt, "word", true);
-          nodeSet.add(src); nodeSet.add(tgt);
-          if (nodeSet.size > 30) break;
           edges.push({
             from: src,
             to: tgt,
             arrows: "to",
-            label: labelText,
-            title: labelText,
+            label: showLabel ? rel : "",
+            title: rel || undefined,
             font: { size: 10, align: "middle" },
             color: { color: "#b69b7f", highlight: "#8a4f28" }
           });
@@ -3973,8 +3869,7 @@
         if (syncUrl) updateUrlState("language", "");
         return;
       }
-            const matches = dictionary
-        .filter(entry => matchesCiteFilter(entry))
+      const matches = dictionary
         .filter(entry => {
           // Check structured source languages first
           const langs = getSourceLanguages(entry);
@@ -4864,7 +4759,9 @@
       { name: "Rivola", code: "Rivola (1633)", count: 5, desc: "Francisco Rivola's Dictionarium armeno-latinum, one of the earliest Armenian-Latin dictionaries." },
       { name: "Awetikʻean", code: "Awetikʻean (1836-37)", count: 1, desc: "Nor bargirk haykazean lezui (New Dictionary of the Armenian Language)." },
       { name: "Martirosyan", code: "Martirosyan (2011)", count: 45, desc: "Hrach Martirosyan's etymological research on Armenian vocabulary." },
-      { name: "Ačaṙean", code: "Ačaṙean (1926)", count: 18, desc: "Hrachʻeay Ačaṙean's Etymological Dictionary of the Armenian Language, the standard etymological reference." }
+      { name: "Ačaṙean", code: "Ačaṙean (1926)", count: 18, desc: "Hrachʻeay Ačaṙean's Etymological Dictionary of the Armenian Language, the standard etymological reference." },
+      { name: "Taba", code: "Taba (2011)", count: 200, desc: "David M. Taba's Iranian Character of the Armenian Language — a word list demonstrating Persian-Iranian influences on Armenian vocabulary." },
+      { name: "Manoukian", code: "Manoukian", count: 29, desc: "Manoukian's Bosphorus Records — Ottoman Turkish contact entries in Western Armenian." }
     ];
   
     function renderLangGuide() {
@@ -4894,26 +4791,19 @@
       const grid = document.getElementById("sourcesGrid");
       if (!grid) return;
       grid.innerHTML = SOURCES_GUIDE.map(source => `
-        <button type="button" class="guide-card guide-card-btn source-card-btn" data-source="${escapeHtml(source.name)}" title="Browse words citing ${escapeHtml(source.name)}">
+        <button type="button" class="guide-card guide-card-btn" data-source="${escapeHtml(source.name)}" title="Browse words citing ${escapeHtml(source.name)}">
           <div class="guide-card-name">${escapeHtml(source.name)}<span class="guide-card-code">${escapeHtml(source.code)}</span></div>
           <div style="font-size:0.75rem; color:#8a4f28; margin:0.2rem 0;">${source.count} entries</div>
           <div class="guide-card-desc">${escapeHtml(source.desc)}</div>
         </button>
       `).join("");
-      
-      grid.querySelectorAll('.source-card-btn').forEach(btn => {
+      grid.className = "guide-grid";
+      grid.querySelectorAll('.guide-card-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           const sourceName = btn.dataset.source;
-          const checkboxes = document.querySelectorAll('.cite-filter');
-          checkboxes.forEach(cb => cb.checked = false);
-          const targetCheckbox = Array.from(checkboxes).find(cb => cb.value === sourceName);
-          if (targetCheckbox) targetCheckbox.checked = true;
-          const q = document.getElementById('search').value.trim();
-          if (searchMode === 'word') {
-            if (q) lookup(q, true);
-          } else {
-            if (q) lookupLanguage(q, true);
-          }
+          setMode("language");
+          document.getElementById("search").value = sourceName;
+          lookupLanguage(sourceName, true);
           showSection("results");
         });
       });
@@ -5080,58 +4970,8 @@
     // Do NOT load it at startup — it blocks the main thread for several seconds.
     loadDictionary();
 
-    // Citation source detection for filtering
-        function getCitationSources(entry) {
-      const sources = [];
-      const etyText = String(entry.etymology || '') + ' ' + String(entry.wikitext || '');
-      const lowerText = etyText.toLowerCase();
-      
-      if (lowerText.includes('calfa')) sources.push('Calfa');
-      if (lowerText.includes('taba')) sources.push('Taba');
-      if (lowerText.includes('martirosyan')) sources.push('Martirosyan');
-      if (lowerText.includes('ačaṙean') || lowerText.includes('acharyan')) sources.push('Ačaṙean');
-      if (lowerText.includes('hubschmann') || lowerText.includes('hübschmann')) sources.push('Hubschmann');
-      if (lowerText.includes('bedrossian') || lowerText.includes('bedrosian')) sources.push('Bedrossian');
-      if (lowerText.includes('rivola')) sources.push('Rivola');
-      if (lowerText.includes('awetik') || lowerText.includes('awetikʻean')) sources.push('Awetikean');
-      
-      return sources;
-    }
-
-    function getActiveCiteFilters() {
-      const checkboxes = document.querySelectorAll('.cite-filter:checked');
-      const active = [];
-      checkboxes.forEach(cb => active.push(cb.value));
-      return active;
-    }
-
-    function matchesCiteFilter(entry) {
-      const activeFilters = getActiveCiteFilters();
-      if (activeFilters.length === 0) return true;
-      const entrySources = getCitationSources(entry);
-      for (const filter of activeFilters) {
-        if (entrySources.includes(filter)) return true;
-      }
-      return false;
-    }
-
-    // Add event listeners for cite filters
-    document.querySelectorAll('.cite-filter').forEach(cb => {
-      cb.addEventListener('change', () => {
-        const q = document.getElementById('search').value.trim();
-        if (searchMode === 'word') {
-          if (q) lookup(q, true);
-        } else {
-          if (q) lookupLanguage(q, true);
-        }
-      });
-    });
-
+    // ...existing code...
   });
   </script>
 </body>
-  <footer style="width:100%;margin:2.5rem auto 0;padding:1.2rem 0 1.5rem 0;text-align:center;font-size:0.93rem;color:#8a4f28;background:linear-gradient(180deg,#f8f0e2 0%,#fffdf9 100%);border-top:1px solid #e2d2c0;">
-    <span>Dictionary Ardemis &mdash; Western Armenian Etymological Dictionary</span><br>
-    <span style="font-size:0.92em;color:#a07c4a;">Etymology graph and data include citations from <a href="https://calfa.fr/" target="_blank" rel="noopener noreferrer" style="color:#a07c4a;text-decoration:underline dotted;">Calfa</a> (calfa.fr)</span>
-  </footer>
 </html>
