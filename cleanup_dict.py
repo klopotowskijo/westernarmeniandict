@@ -124,7 +124,19 @@ def clean_entry_content(entry, stats):
         touched.update(cat_this)
     definitions = new_definitions
 
-    # 7. Deduplicate definitions differing only by inline POS labels at start
+    # 7. Remove exact duplicates first
+    seen_defs = set()
+    exact_deduped = []
+    for d in definitions:
+        if d not in seen_defs:
+            seen_defs.add(d)
+            exact_deduped.append(d)
+        else:
+            touched.add('exact_duplicate_definition')
+            def_dropped.append((d, 'exact_duplicate'))
+    definitions = exact_deduped
+
+    # 7b. Deduplicate definitions differing only by inline POS labels at start
     dedup_norm = {}
     for d in definitions:
         normed = INLINE_LABEL_RE.sub('', d).strip()
@@ -201,6 +213,7 @@ def main():
     parser.add_argument('json_path')
     parser.add_argument('--dry-run', action='store_true', help="Show stats only, don't write file")
     parser.add_argument('--report', action='store_true', help="Dump affected entries to affected_entries_report.json")
+    parser.add_argument('--preview', action='store_true', help="Show before/after definitions for changed entries")
     args = parser.parse_args()
     stats = defaultdict(int)
     review_dump = []
@@ -208,10 +221,22 @@ def main():
         data = json.load(f)
     cleaned = []
     for entry in data:
+        orig_defs = entry.get('definitions', [])
         new_entry, touched = clean_entry_content(entry, stats)
         cleaned.append(new_entry)
         if touched and args.report:
             review_dump.append(new_entry)
+        if args.preview and touched:
+            new_defs = new_entry.get('definitions', [])
+            if orig_defs != new_defs:
+                print(f"Entry: {entry.get('word', '[no word]')}")
+                print("  Before:")
+                for d in orig_defs:
+                    print(f"    - {d}")
+                print("  After:")
+                for d in new_defs:
+                    print(f"    - {d}")
+                print()
     print("Summary of entries and fixes:")
     for k, v in sorted(stats.items()):
         print(f"  {k}: {v}")
