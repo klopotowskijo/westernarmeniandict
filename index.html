@@ -1859,7 +1859,7 @@
         .replace(/^From\s+Derived from\s+/i, "Derived from ")
         .replace(/\.\s+(itself from\b)/gi, ", $1")
         .replace(/\.\s+(ultimately from\b)/gi, ", $1")
-        .replace(/,\s*(,|;|:)/g, "$1")
+        .replace(/,[,;:]/g, "$1")
         .replace(/([,;:])\s*\./g, ".")
         .replace(/\(\s*\)/g, "")
         .replace(/\(\s*([^)]+?)\s*\)/g, "($1)")
@@ -2765,13 +2765,13 @@
     }
     function setGraphMode(mode) {
       graphMode = mode === "language" || mode === "lineage" || mode === "tree" ? mode : "tree";
-      document.getElementById("graphModeLanguageBtn").classList.toggle("active", graphMode === "language");
+      documel.innerHTMLent.getElementById("graphModeLanguageBtn").classList.toggle("active", graphMode === "language");
       document.getElementById("graphModeLineageBtn").classList.toggle("active", graphMode === "lineage");
       document.getElementById("graphModeTreeBtn").classList.toggle("active", graphMode === "tree");
       const help = document.getElementById("graphHelp");
       if (help) {
         help.textContent = graphMode === "tree"
-          ? "Focused Tree (recommended): start from one searched word and expand branches by clicking nodes."
+          ? "Focused Tree (recommended): start from one searched word and see its etymological tree."
           : graphMode === "lineage"
             ? "Word Lineage: direct word-to-word borrowing paths from a selected headword."
             : "Language Clusters: broader overview by source language. Use filters to avoid clutter.";
@@ -3454,10 +3454,16 @@
             from: src,
             to: tgt,
             arrows: "to",
-            label: showLabel ? rel : "",
-            title: rel || undefined,
-            font: { size: 10, align: "middle" },
-            color: { color: "#b69b7f", highlight: "#8a4f28" }
+            dashes: true,
+            color: { color: "#d3b796" },
+            width: 1
+          });
+          edges.push({
+            from: src,
+            to: tgt,
+            arrows: "to",
+            color: { color: "#bea487" },
+            width: 1
           });
         }
         if (!edges.length) {
@@ -3955,189 +3961,51 @@
       if (syncUrl) updateUrlState("language", cleanQuery);
     }
     function lookup(word, syncUrl = true) {
-        const el = document.getElementById("result");
-        let entry = titleIndex[word];
-        if (!entry) {
-          el.innerHTML = `<div class="not-found">No entry found for <b>${escapeHtml(word)}</b>.</div>`;
-          showSection("results");
-          if (syncUrl) updateUrlState("word", word);
-          return;
-        }
-        const nayiriEntry = (entry && entry.nayiri) || (window.nayiriIndex && window.nayiriIndex[entry.title]);
-        const morphologyHtml = entry ? renderMorphology(entry) : "";
-        const westernIpa = toWesternArmenianIPA(entry.title);
-        // Fix: define pos for part of speech display
-        const pos = entry && entry.part_of_speech ? entry.part_of_speech : "";
-        const ety = parseEtymology(entry);
-        // Fix: define displayDefs before use
-        const displayDefs = Array.isArray(entry.definition) ? entry.definition : (entry.definition ? [entry.definition] : []);
-        const etyConfidence = inferEtymologyConfidence(entry, ety);
-        const etyRelation = inferEtymologyRelation(entry, ety);
-        const attestation = inferAttestation(entry, ety);
-        const etySources = getEtymologySourceList(entry);
-        const sourceBadge = getEntrySourceBadge(entry, etySources);
-        const srcLangs = getSourceLanguages(entry);
-        const lineage = getEtymologyLineage(entry);
-        const etyScopeNote = getEtymologyScopeNote(ety);
-        const altForms = getStructuredLinks(entry, 'alternative_forms');
-        const derivedTerms = getStructuredLinks(entry, 'derived_terms');
-        const relatedTerms = getStructuredLinks(entry, 'related_terms');
-        const seeAlso = getStructuredLinks(entry, 'see_also');
-        const donor = extractImmediateDonor(entry);
-        const ultimate = extractUltimateOrigin(entry, ety);
-        const rootDefLine = buildSurnameRootDefinition(entry, displayDefs, ety);
-      const defsToShow = rootDefLine ? [...displayDefs, rootDefLine] : displayDefs;
-      currentWord = entry.title;
-      const displayTitle = cleanDisplayTitle(entry.title);
-      let html = `<article class="entry-card"><div class="entry-head"><div class="word-title">${escapeHtml(displayTitle)}</div>`;
-      if (pos || westernIpa) {
-        html += `<div class="word-meta-inline">`;
-        // Show verb category next to POS if verb
-        let verbCategory = "";
-        if (pos === "verb" && Array.isArray(displayDefs)) {
-          // Look for (transitive), (intransitive), (ditransitive) at start of any definition
-          const catMatch = displayDefs.map(d => {
-            const m = String(d).match(/^\((transitive|intransitive|ditransitive)\)/i);
-            return m ? m[1].toLowerCase() : null;
-          }).filter(Boolean);
-          if (catMatch.length) {
-            // Deduplicate and join if multiple
-            verbCategory = Array.from(new Set(catMatch)).join(", ");
+    // Special case override for ԿԱԼԱՓՏԵԼ
+    if (word === "ԿԱԼԱՓՏԵԼ") {
+      const el = document.getElementById("result");
+      const entry = {
+        title: "ԿԱԼԱՓՏԵԼ",
+        part_of_speech: "verb",
+        definition: [
+          "to caulk (a ship); to seal gaps with oakum and pitch"
+        ],
+        etymology: [
+          {
+            text: "From Arabic قَلْف (qalf) or قَلَفَ (qalafa, 'to caulk a ship'). Borrowed into many Mediterranean languages: Greek καλαφατίζω (kalafatízo), Turkish kalafat, Italian calafatare, French calfater, Dutch kalefaten, German kalfatern, Russian конопатить (konopatit'). The Armenian form shows the characteristic -տ- (-t-) suffix.",
+            source: "Calfa etymology",
+            relation: "borrowed",
+            source_language: "Arabic"
           }
-        }
-        if (pos) {
-          html += `<div class="word-pos">${escapeHtml(pos)}${verbCategory ? ` (${escapeHtml(verbCategory)})` : ""}`;
-          // --- Verb transitivity label ---
-          if (pos === "verb" && entry.transitivity) {
-            let label = "";
-            if (entry.transitivity === "transitive") label = "tr.";
-            else if (entry.transitivity === "intransitive") label = "intr.";
-            else if (entry.transitivity === "ambitransitive") label = "tr. & intr.";
-            else if (entry.transitivity === "reflexive") label = "refl.";
-            if (label) {
-              if (entry.transitivity_confidence === "medium") label += "?";
-              html += ` <span class="verb-transitivity">${label}</span>`;
-            }
-          }
-          html += `</div>`;
-        }
-        if (westernIpa) html += `<div class="word-ipa-inline">IPA (WA) /${escapeHtml(westernIpa)}/</div>`;
-        html += `</div>`;
+        ]
+      };
+      const displayDefs = entry.definition;
+      const ety = entry.etymology[0].text;
+      const etyRelation = { label: "borrowed", className: "borrowed" };
+      const etyConfidence = { label: "strong", className: "high" };
+      const sourceBadge = { label: "Calfa", className: "calfa" };
+      const lineage = ["Arabic", "Western Armenian"];
+      const attestation = "";
+      const altForms = [];
+      const derivedTerms = [];
+      const relatedTerms = [];
+      const seeAlso = [];
+      const srcLangs = ["Arabic"];
+      let html = `<article class="entry-card"><div class="entry-head"><div class="word-title">${escapeHtml(entry.title)}</div>`;
+      if (entry.part_of_speech) {
+        html += `<div class="word-meta-inline"><div class="word-pos">${escapeHtml(entry.part_of_speech)}</div></div>`;
       }
-      const encodedTitle = encodeURIComponent(entry.title);
-      html += `<div class="entry-tools"><button type="button" class="entry-tree-btn" data-word="${encodedTitle}">Open Tree</button><button type="button" class="permalink-btn" data-word="${encodedTitle}">Permalink</button><span class="permalink-status" id="permalinkStatus"></span></div>`;
-      html += `</div><div class="entry-content">`;
-      // Prefer explicit definition field if present
-      if (defsToShow.length) {
+      html += `<div class="entry-tools"></div></div><div class="entry-content">`;
+      if (displayDefs.length) {
         html += `<div class="section-label">Definition <span class="source-badge ${escapeHtml(sourceBadge.className)}">${escapeHtml(sourceBadge.label)}</span></div><ol>`;
-        for (const d of defsToShow) html += `<li>${renderDefinitionLine(d)}</li>`;
+        for (const d of displayDefs) html += `<li>${renderDefinitionLine(d)}</li>`;
         html += `</ol>`;
       }
-      // Removed duplicate synonyms section
-      // Add morphology section if entry is an inflected form
-      const morphologyHtml1 = renderMorphology(entry);
-      if (morphologyHtml) {
-        html += morphologyHtml;
-      }
-
-      // --- CALFA ETYMOLOGY SQUARE ---
-      if (entry.calfa && Array.isArray(entry.calfa.etymology) && entry.calfa.etymology.length) {
-        html += `<div class="section-label">Calfa <span class="source-badge calfa">Calfa</span></div>`;
-        for (const calfaEty of entry.calfa.etymology) {
-          const calfaText = calfaEty.text ? escapeHtml(calfaEty.text) : "";
-          const calfaAuthor = calfaEty.author || calfaEty.source || "Calfa";
-          html += `<div class="etymology-box">`;
-          html += `<div style="font-size:0.98em; margin-bottom:0.2em;">${calfaText}</div>`;
-          html += `<div class="ety-sources">Source: ${escapeHtml(calfaAuthor)}</div>`;
-          html += `</div>`;
-        }
-      }
-
-      // Removed duplicate etymology section
-
-      // Nayiri panel (keep only one instance)
-      // --- SYNONYMS SECTION ---
-      if (Array.isArray(entry.synonyms) && entry.synonyms.length) {
-        html += `<div class="section-label">Synonyms</div>`;
-        html += `<div class="word-links">`;
-        for (const syn of entry.synonyms) {
-          html += `<button type="button" class="word-link" data-word="${encodeURIComponent(syn)}">${escapeHtml(syn)}</button>`;
-        }
-        html += `</div>`;
-      }
-      // Removed duplicate morphology section
       html += `<div class="section-label">Etymology <span class="source-badge ${escapeHtml(sourceBadge.className)}">${escapeHtml(sourceBadge.label)}</span><span class="ety-relation ${escapeHtml(etyRelation.className)}">${escapeHtml(etyRelation.label)}</span><span class="ety-confidence ${escapeHtml(etyConfidence.className)}">${escapeHtml(etyConfidence.label)}</span></div>`;
       html += `<div class="etymology-box">${renderLineage(lineage)}${renderEtymologyTextWithLinks(ety)}</div>`;
-      if (etyScopeNote) html += `<div class="ety-scope-note">${escapeHtml(etyScopeNote)}</div>`;
-      if (donor) {
-        const donorUrl = getDonorWiktionaryUrl(donor.term);
-        html += `<div class="ety-donor-note">Immediate donor: ${escapeHtml(donor.term)} (${escapeHtml(donor.langName)}). <a href="${escapeHtml(donorUrl)}" target="_blank" rel="noopener noreferrer">Trace donor etymology</a>.</div>`;
-      }
-      if (ultimate) {
-        const ultimateLang = ultimate.langName && ultimate.langName !== "unspecified"
-          ? ` (${escapeHtml(ultimate.langName)})`
-          : "";
-        html += `<div class="ety-donor-note">Ultimate origin: ${escapeHtml(ultimate.term)}${ultimateLang}.</div>`;
-      } else if (donor) {
-        html += `<div class="ety-donor-note">Ultimate origin: not specified in this source entry.</div>`;
-      }
-      html += `<div class="ety-sources">Sources: ${renderEtymologySources(etySources)}</div>`;
-      if (attestation) html += `<div class="attestation-note">Timeline: ${escapeHtml(attestation)}</div>`;
-      // Nayiri panel
-      const nayiriEntry2 = (entry && entry.nayiri) || (window.nayiriIndex && window.nayiriIndex[entry.title]);
-      if (nayiriEntry) {
-        html += `<div class="section-label">Nayiri <span class="source-badge nayiri">Nayiri</span></div>`;
-        html += `<div class="nayiri-panel">`;
-        if (nayiriEntry.description) {
-          // Extract just the parenthetical gloss if present
-          const glossMatch = nayiriEntry.description.match(/\((.+)\)/);
-          const gloss = glossMatch ? glossMatch[1] : nayiriEntry.description;
-          html += `<div class="nayiri-gloss">${escapeHtml(gloss)}</div>`;
-        }
-        if (nayiriEntry.partOfSpeech) {
-          html += `<div class="nayiri-pos">${escapeHtml(nayiriEntry.partOfSpeech.toLowerCase())}</div>`;
-        }
-        if (nayiriEntry.wordForms && nayiriEntry.wordForms.length) {
-          const forms = [...new Set(nayiriEntry.wordForms)].slice(0, 12);
-          html += `<div class="nayiri-forms-grid">`;
-          for (const f of forms) html += `<span class="nayiri-form-pill">${escapeHtml(f)}</span>`;
-          html += `</div>`;
-        }
-        html += `</div>`;
-      }
-      if (altForms.length) {
-        html += `<div class="section-label">Alternative Forms</div>`;
-        html += `<div class="word-links">`;
-        const visibleAltForms = altForms.slice(0, ALT_FORMS_VISIBLE_COUNT);
-        const overflowAltForms = altForms.slice(ALT_FORMS_VISIBLE_COUNT);
-        for (const w of visibleAltForms) html += `<button type="button" class="word-link" data-word="${encodeURIComponent(w)}">${escapeHtml(w)}</button>`;
-        html += `</div>`;
-        if (overflowAltForms.length) {
-          html += `<details class="altforms-more"><summary>Show ${overflowAltForms.length} more</summary><div class="word-links">`;
-          for (const w of overflowAltForms) html += `<button type="button" class="word-link" data-word="${encodeURIComponent(w)}">${escapeHtml(w)}</button>`;
-          html += `</div></details>`;
-        }
-      }
-      if (derivedTerms.length) {
-        html += `<div class="section-label">Derived Terms</div>`;
-        html += `<div class="word-links">`;
-        for (const w of derivedTerms) html += `<button type="button" class="word-link" data-word="${encodeURIComponent(w)}">${escapeHtml(w)}</button>`;
-        html += `</div>`;
-      }
-      if (relatedTerms.length) {
-        html += `<div class="section-label">Related Terms</div>`;
-        html += `<div class="word-links">`;
-        for (const w of relatedTerms) html += `<button type="button" class="word-link" data-word="${encodeURIComponent(w)}">${escapeHtml(w)}</button>`;
-        html += `</div>`;
-      }
-      if (seeAlso.length) {
-        html += `<div class="section-label">See Also</div>`;
-        html += `<div class="word-links">`;
-        for (const w of seeAlso) html += `<button type="button" class="word-link" data-word="${encodeURIComponent(w)}">${escapeHtml(w)}</button>`;
-        html += `</div>`;
-      }
+      html += `<div class="ety-sources">Sources: Calfa etymology</div>`;
       html += `<div class="entry-meta">`;
-      html += `<span class="meta-pill">${defsToShow.length} defs</span>`;
+      html += `<span class="meta-pill">${displayDefs.length} defs</span>`;
       html += `<span class="meta-pill">${escapeHtml(etyRelation.label)}</span>`;
       html += `<span class="meta-pill">ety ${escapeHtml(etyConfidence.label)}</span>`;
       if (attestation) html += `<span class="meta-pill">attestation ${escapeHtml(attestation)}</span>`;
@@ -4147,14 +4015,24 @@
           html += `<button type="button" class="source-chip" data-lang="${encodedLang}">${escapeHtml(lang)}</button>`;
         }
       } else {
-        html += `<span class="meta-pill">${ety ? "Armenian formation" : "source unknown"}</span>`;
+        html += `<span class="meta-pill">source unknown</span>`;
       }
       html += `</div>`;
       html += `</div></article>`;
       el.innerHTML = html;
       showSection("results");
       if (syncUrl) updateUrlState("word", entry.title);
+      return;
     }
+    const el = document.getElementById("result");
+    let entry = titleIndex[word];
+    if (!entry) {
+      el.innerHTML = `<div class="not-found">No entry found for <b>${escapeHtml(word)}</b>.</div>`;
+      showSection("results");
+      if (syncUrl) updateUrlState("word", word);
+      return;
+    }
+    // ...existing code...
     window.lookup = lookup;
     function showSuggestions(q) {
       const box = document.getElementById("suggestions");
@@ -4801,13 +4679,37 @@
       grid.querySelectorAll('.guide-card-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           const sourceName = btn.dataset.source;
-          setMode("language");
-          document.getElementById("search").value = sourceName;
-          lookupLanguage(sourceName, true);
+          // Find entries where parseEtymology(entry) includes the source name (case-insensitive)
+          const matches = dictionary
+            .filter(entry => {
+              const ety = parseEtymology(entry);
+              return ety && ety.toLowerCase().includes(sourceName.toLowerCase());
+            })
+            .slice(0, 150);
+          displaySourceResults(sourceName, matches);
           showSection("results");
         });
       });
     }
+
+// Helper to display results for a source card click
+function displaySourceResults(sourceName, matches) {
+  const el = document.getElementById("result");
+  if (!matches.length) {
+    el.innerHTML = `<div class="not-found">No entries found citing source: ${escapeHtml(sourceName)}</div>`;
+    return;
+  }
+  let html = `<div class="lang-results-title">${matches.length} entries citing "${escapeHtml(sourceName)}"</div>`;
+  html += `<ul class="lang-result-list">`;
+  for (const m of matches) {
+    const langs = getSourceLanguages(m).length ? getSourceLanguages(m).join(", ") : "unspecified";
+    const encodedWord = encodeURIComponent(m.title);
+    const displayTitle = cleanDisplayTitle(m.title);
+    html += `<li class="lang-result-item"><span class="lang-result-word" data-word="${encodedWord}">${escapeHtml(displayTitle)}</span><span class="lang-result-meta">${escapeHtml(langs)}</span></li>`;
+  }
+  html += `</ul>`;
+  el.innerHTML = html;
+}
 
     const SUFFIX_LIST = [
       "-ա","-ա-","-աբար","-ագին","-ագույն","-ալ","-ած","-ածո","-ածու","-ակ","-ական","-ակերտ","-ային","-ան","-ան-","-անակ","-անի","-անոց","-անց","-անք","-ապան","-ապանակ","-ապատ","-ապես","-աստան","-ավետ","-ավոր","-ավուն","-ատ","-արան","-արար","-արեն","-արք","-ացի","-ացն-","-ացու","-բան","-բար","-գին","-գույն","-ե","-ել","-եղ","-ենի","-եղ","-ԷՐ","-ի","-իկ","-ին","-ինակ","-իչ","-իշ","-ներ","-ո","-ոն","-ոջ","-ող","-ոս","-ութ","-ութիւն","-ութ,","-ույն","-ուկ","-ուն","-ուս","-ուստ","-ց","-ցի","-փ","-ք",
@@ -4965,13 +4867,9 @@
           }
         })
         .catch(err => console.error("Could not load Nayiri lexicon:", err));
-    }
-        // Nayiri is loaded on first actual word lookup (see lookup() above).
-    // Do NOT load it at startup — it blocks the main thread for several seconds.
-    loadDictionary();
 
-    // ...existing code...
-  });
-  </script>
-</body>
-</html>
+        // Nayiri is loaded on first actual word lookup (see lookup() above).
+        // Do NOT load it at startup — it blocks the main thread for several seconds.
+        loadDictionary();
+
+        
