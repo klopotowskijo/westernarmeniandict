@@ -1,0 +1,106 @@
+Etymology Merge Report
+======================
+Total entries: 35401
+
+Martirosyan etymologies: 63
+Calfa etymologies: 4856
+Wiktionary etymologies: 16774
+Existing etymologies: 0
+Placeholder etymologies: 13708
+
+Entries with no etymology after merge: 13708
+First 20: ['-ոջ', '-ուճ', '-ույր', '-չի', '-պատիկ', 'Աբգար', 'Աիդա', 'Ալադին', 'Ալասքա', 'Ալբինա', 'Ալյասկա', 'Ալպեր', 'Ախալցխա', 'Աղձնիք', 'Ամիրան', 'Այրարատ', 'Անակ', 'Անժելա', 'Ապիրատ', 'Ապոլլոն']
+
+Sample before/after for each source type:
+
+Source: Wiktionary
+-ա
+BEFORE: [{'text': "Abstracted away from European female given names commonly ending in -''a''.", 'relation': 'unknown'}]
+AFTER: [{'text': "Abstracted away from European female given names commonly ending in -''a''.", 'relation': 'unknown'}]
+
+-ա-
+BEFORE: [{'text': 'From .', 'relation': 'unknown', 'source': 'wikitext', 'source_language': ''}]
+AFTER: [{'text': 'From .', 'relation': 'unknown', 'source': 'wikitext', 'source_language': ''}]
+
+-աբար
+BEFORE: [{'text': 'From .', 'relation': 'unknown', 'source': 'wikitext', 'source_language': ''}]
+AFTER: [{'text': 'From .', 'relation': 'unknown', 'source': 'wikitext', 'source_language': ''}]
+
+-ագին
+BEFORE: [{'text': 'From .', 'relation': 'unknown', 'source': 'wikitext', 'source_language': ''}]
+AFTER: [{'text': 'From .', 'relation': 'unknown', 'source': 'wikitext', 'source_language': ''}]
+
+-ագույն
+BEFORE: [{'text': 'From .', 'relation': 'unknown', 'source': 'wikitext', 'source_language': ''}]
+AFTER: [{'text': 'From .', 'relation': 'unknown', 'source': 'wikitext', 'source_language': ''}]
+
+
+Source: Placeholder
+-ոջ
+BEFORE: []
+AFTER: [{'text': 'Etymology needs research', 'relation': 'placeholder', 'source': 'merge_complete.py'}]
+
+-ուճ
+BEFORE: []
+AFTER: [{'text': 'Etymology needs research', 'relation': 'placeholder', 'source': 'merge_complete.py'}]
+
+-ույր
+BEFORE: []
+AFTER: [{'text': 'Etymology needs research', 'relation': 'placeholder', 'source': 'merge_complete.py'}]
+
+-չի
+BEFORE: []
+AFTER: [{'text': 'Etymology needs research', 'relation': 'placeholder', 'source': 'merge_complete.py'}]
+
+-պատիկ
+BEFORE: []
+AFTER: [{'text': 'Etymology needs research', 'relation': 'placeholder', 'source': 'merge_complete.py'}]
+
+
+Source: Martirosyan
+Ագա
+BEFORE: [{'text': 'Proper name. Etymology unknown or from foreign source. May be of biblical (Աբել, Աբիսողոմ), historical, or other origin.', 'relation': 'no-etymology-needed', 'source': 'abbreviation_proper_name_handler'}]
+AFTER: [{'text': 'Martirosyan (2011), p. 17: gaagaagaagannnn `zealous (child, pupil)\'. Attested only once, in a late mediaeval song [NHB 1: 2c]: Zi sireli ic`es mardkan, / Ler yusaneld manuk agan! "Be zealous in your study so that you be loved by people". \uf107\uf107\uf107\uf107 ETYM Clackson (1994: 223-22498) ascribes a meaning `early\' to agan and identifies it to -agan found in anagan `late; evening (time)\' (q.v.). The latter is considered, thus, as composed of the privative prefix an- and agan `early\', literally *`not-early\'. This is actually proposed first in NHB 1: 101a. However, in its only attestation (see above) agan means, as stated by A‰ar\uf307yan (HAB 1: 75a), `zealous (child, pupil)\' rather than `early\'. Therefore, the connection with an-agan is…', 'relation': 'unknown', 'source': 'Martirosyan, H. (2011), Studies in Armenian Etymology', 'confidence': 'high', 'inferred': True}]
+
+Ասատրյան
+BEFORE: [{'text': 'From Old Armenian Ասատրյան. Etymology needs further research.', 'relation': 'unknown', 'source': ''}, {'text': "Martirosyan (2011), p. 142: lage of Po/lmidtildeosk`ilisa, Dilij\uf30can) (see HayKendA\uf19ax 3, 1965: 432); Xa\uf19eak Gyulnazaryan (1984: 85), all of them being native speakers of the Ararat dialect. For K`anak`er\uf307 ark`ad see G. D. Asatryan 1990: 54. \uf107\uf107\uf107\uf107 ETYM No etymology in HAB 1: 304a. \uf241ap`anc`yan (1961: 166) connects with Hitt. ark- `to cut off, divide', treating -at as the suffix seen in arm-at `root' etc. Given that the Hittite verb is glossed nowadays as `(Land) zerteilen, aufteilen' rather than `to cut off, divide', Greppin (1981a: 496) considers the etymology to be unconvincing. A. A. Abrahamyan (1958: 63-64; I cite from Greppin, ibid.) interprets it as *arg- (cf. z-arg-anam `to grow, improve' + -at < -(h)at `cut', basic….", 'relation': 'unknown', 'source': 'Martirosyan, H. (2011), Studies in Armenian Etymology'}]
+AFTER: [{'text': "Martirosyan (2011), p. 142: lage of Po/lmidtildeosk`ilisa, Dilij\uf30can) (see HayKendA\uf19ax 3, 1965: 432); Xa\uf19eak Gyulnazaryan (1984: 85), all of them being native speakers of the Ararat dialect. For K`anak`er\uf307 ark`ad see G. D. Asatryan 1990: 54. \uf107\uf107\uf107\uf107 ETYM No etymology in HAB 1: 304a. \uf241ap`anc`yan (1961: 166) connects with Hitt. ark- `to cut off, divide', treating -at as the suffix seen in arm-at `root' etc. Given that the Hittite verb is glossed nowadays as `(Land) zerteilen, aufteilen' rather than `to cut off, divide', Greppin (1981a: 496) considers the etymology to be unconvincing. A. A. Abrahamyan (1958: 63-64; I cite from Greppin, ibid.) interprets it as *arg- (cf. z-arg-anam `to grow, improve' + -at < -(h)at `cut', basic…", 'relation': 'unknown', 'source': 'Martirosyan, H. (2011), Studies in Armenian Etymology', 'confidence': 'high', 'inferred': True}]
+
+Արարատ
+BEFORE: [{'text': 'Borrowed via Classical Armenian from Ancient Greek Ἀραράτ. Ultimately from hbo אֲרָרָט.', 'relation': 'borrowed', 'source': 'wikitext', 'source_language': 'Ancient Greek'}]
+AFTER: [{'text': "Martirosyan (2011), p. 477: -a-ker `id.' (Agat`ange/lmidtildeos), etc. \uf107\uf107\uf107\uf107 DIALDIALDIALDIAL The form hund is widespread in dialects: Aslanbek, Axalc`xa, Mu\uf19a, Cilicia, Ararat, etc. Without the initial h-: Xarberd and T`iflis [HAB 3: 601b]. \uf107\uf107\uf107\uf107 ETYM A‰ar\uf307yan (HAB 3: 601) rejects all the etymological attempts including those connecting with Skt. a\uf301ndhas- and Gr. \uf061\uf094\uf06e\uf071\uf06f\uf06a (Canini, Mu\uf308ller) and leaves the origin of the word open. J\uf30cahukyan (1990: 72, sem. field 8) considers a word of unknown origin. The connection with Skt. a\uf301ndhas- etc. cannot be ruled out; see s.v. and `cornfield'. unknunknunknunkn (singulative; spelled also as ungn), an-stem: GDSg unkan (abundant in the Bible), AblSg y-unkan-e\uf304 (Bible, Ephrem), ISg unka…", 'relation': 'unknown', 'source': 'Martirosyan, H. (2011), Studies in Armenian Etymology', 'confidence': 'high', 'inferred': True}]
+
+Գորիս
+BEFORE: [{'text': 'Proper name. Etymology unknown or from foreign source. May be of biblical (Աբել, Աբիսողոմ), historical, or other origin.', 'relation': 'no-etymology-needed', 'source': 'abbreviation_proper_name_handler'}]
+AFTER: [{'text': "Martirosyan (2011), p. 39: , ‰a\uf308/lmidtildea\uf308c` (see A‰ar\uf307yan 1952: 290; M. Muradyan 1962: 164L9, 204b; Orbeli 2002: 126Nr26, 279) suggest an early date. In Goris, the -r- has been metathesized: ‰a/lmidtildearc` (see Margaryan 1975: 361b). \uf107\uf107\uf107\uf107 ETYM Since 1852 (Ayvazovsk`i; see HAB) connected with Gr. \uf061\uf027\uf06c\uf065\uf02f\uf077 `to grind' (probably an athematic present), MInd. \uf430ṭ\uf430 `flour', Av. a\uf19aa- (< * arta-) `gemahlen', NPers. \uf430rd `flour', etc. [HAB 1: 118a; Hu\uf308bschmann 1897: 414; Meillet 1924: 4-6; Pisani 1950a; Mayrhofer, EWAia 1: 108]; for Hindi \uf430ṭ\uf430 etc. see also Scheller 1965, for Pers. a\uf304s etc.: Bla\uf308sing 2000: 35-36. Meillet (1924: 5) assumes a present nasal infix ( *-ln- > Arm. -/lmidtilde-) and treats aor. a/lmidtildeac`i as sec…", 'relation': 'unknown', 'source': 'Martirosyan, H. (2011), Studies in Armenian Etymology', 'confidence': 'high', 'inferred': True}]
+
+Դավթյան
+BEFORE: [{'text': '[Non-English or unclear etymology removed.].', 'relation': 'unknown', 'source': ''}, {'text': "Martirosyan (2011), p. 90: 295]; Kar‰ewan du\uf308nd [H. Muradyan 1960: 192a], Kak`avaberd dund [H. Muradyan 1967: 169b]. \uf241araba/lmidtilde (Martakert, Step`anakert) ənd/cturn\uf301xtə, ənd/cturn\uf301xtnə and ənd/cturn\uf301xnə (see Davt`yan 1966: 56, 310). \uf107\uf107\uf107\uf107 ETYM Armenian andund-k`, o- stem `abyss' is a privative compound of PIE *bhudhno- (probably from older *bhudhmno- which resulted from an original paradigm NSg *bhudh-me\uf304n, GSg *bhudh-mn-o\uf301s): Skt. budhna\uf301- m. `bottom, ground, depth; lowest part of anything (as the root of a tree etc.)', OAv. bu\uf304na- `ground', Pahl. bun `base, foundation, bottom', Arm. bun `trunk of a tree; shaft of a spear' (Iranian loanword; see also s.v. bun-k`), Gr. \uf070\uf075\uf071\uf06d\uf068\uf02f\uf06e , -\uf065\uf02f\uf06e\uf06f\uf06a m. `bottom (of a cup or jar….", 'relation': 'unknown', 'source': 'Martirosyan, H. (2011), Studies in Armenian Etymology'}, {'text': "Martirosyan (2011), p. 106: is this solely based on the literery tradition? Note also Me/lmidtilderi place-name A\uf301ndar\uf307 (< antar\uf307) [A/lmidtildeayan 1954: 262b]; \uf241araba/lmidtilde a\uf301ntar\uf307 (next to a couple of synonyms) [Davt`yan 1966: 312]. \uf107\uf107\uf107\uf107 ETYM The component *-tar\uf307 has been frequently compared to IE *doru- `wood; tree' (see HAB s.v.v. targal, tarr, tor\uf307n, torg, tram). Bugge (1890: 85-86) compares the correspondence car\uf307 `tree' vs. an-tar\uf307 `forest' (with an- from *sm\uf325-; see also Sarad\uf19eeva 1986: 36735) with cic : (merka)tit `teat', q.v. A‰ar\uf307yan (HAB 4: 671) connects antar\uf307 directly to Gr. \uf064\uf065\uf02f\uf06e\uf064\uf072\uf06f\uf06e , deriving the latter from *\uf064\uf065\uf02f\uf06e\uf072\uf06f\uf06e. J\uf30cahukyan (1987: 118, 245, 258, 259; 1988, 2: 80) restores *sm\uf325-dəru- with a qu….", 'relation': 'unknown', 'source': 'Martirosyan, H. (2011), Studies in Armenian Etymology'}]
+AFTER: [{'text': "Martirosyan (2011), p. 90: 295]; Kar‰ewan du\uf308nd [H. Muradyan 1960: 192a], Kak`avaberd dund [H. Muradyan 1967: 169b]. \uf241araba/lmidtilde (Martakert, Step`anakert) ənd/cturn\uf301xtə, ənd/cturn\uf301xtnə and ənd/cturn\uf301xnə (see Davt`yan 1966: 56, 310). \uf107\uf107\uf107\uf107 ETYM Armenian andund-k`, o- stem `abyss' is a privative compound of PIE *bhudhno- (probably from older *bhudhmno- which resulted from an original paradigm NSg *bhudh-me\uf304n, GSg *bhudh-mn-o\uf301s): Skt. budhna\uf301- m. `bottom, ground, depth; lowest part of anything (as the root of a tree etc.)', OAv. bu\uf304na- `ground', Pahl. bun `base, foundation, bottom', Arm. bun `trunk of a tree; shaft of a spear' (Iranian loanword; see also s.v. bun-k`), Gr. \uf070\uf075\uf071\uf06d\uf068\uf02f\uf06e , -\uf065\uf02f\uf06e\uf06f\uf06a m. `bottom (of a cup or jar…", 'relation': 'unknown', 'source': 'Martirosyan, H. (2011), Studies in Armenian Etymology', 'confidence': 'high', 'inferred': True}, {'text': "Martirosyan (2011), p. 106: is this solely based on the literery tradition? Note also Me/lmidtilderi place-name A\uf301ndar\uf307 (< antar\uf307) [A/lmidtildeayan 1954: 262b]; \uf241araba/lmidtilde a\uf301ntar\uf307 (next to a couple of synonyms) [Davt`yan 1966: 312]. \uf107\uf107\uf107\uf107 ETYM The component *-tar\uf307 has been frequently compared to IE *doru- `wood; tree' (see HAB s.v.v. targal, tarr, tor\uf307n, torg, tram). Bugge (1890: 85-86) compares the correspondence car\uf307 `tree' vs. an-tar\uf307 `forest' (with an- from *sm\uf325-; see also Sarad\uf19eeva 1986: 36735) with cic : (merka)tit `teat', q.v. . A‰ar\uf307yan (HAB 4: 671) connects antar\uf307 directly to Gr. \uf064\uf065\uf02f\uf06e\uf064\uf072\uf06f\uf06e , deriving the latter from *\uf064\uf065\uf02f\uf06e\uf072\uf06f\uf06e . J\uf30cahukyan (1987: 118, 245, 258, 259; 1988, 2: 80) restores *sm\uf325-dəru- with a qu…", 'relation': 'unknown', 'source': 'Martirosyan, H. (2011), Studies in Armenian Etymology', 'confidence': 'high', 'inferred': True}]
+
+
+Source: Calfa
+Զ
+BEFORE: [{'text': 'Armenian alphabet letter Za (Զ). No etymology needed.', 'relation': 'no-etymology-needed', 'source': 'abbreviation_proper_name_handler'}]
+AFTER: [{'text': "= Իր շատ ճոխ գործածութիւնից դատելով՝ պէտք է լինի բնիկ հայ։ Բայց որովհետև զ ձայնով սկսող հայերեն բառերը կա՛մ փո-խառութիւն են և կամ դեռ մեկնուած չեն, ուս-տի յայտնի չէ թէ ի՛նչ պիտի լինէր սրա հնխ. ձևը։ Սակայն որովհետև հնխ. g'h երկու ձայ-նաւորի միջև տալիս է հայերեն զ և բառի սկզբում տալիս է հյ. ձ, իսկ ձ դառնում է բաղաձայնի մօտ զ, ուստի կարելի է ենթա-զրել՝ որ զ ձևն էլ ծագել է հնխ. g'h-ից (այս-պէս դարձած նախ բաղաձայնով սկսող բա-ռերի մօտ և յետոյ ընդհանրացած)։ Այս մը-տածումով կարելի է մեր բառի հետ համե-մատութեան առնել հսլ. za մասնիկը, որի գործածութեան եղանակը մերին շատ է մօ-տենում. այսպէս՝ za n je= զ-ի. jetu ja za raka =կալաւ զձեռանէ նորա. za utra=զա-ռաւօտու.-հսլ. za սեռականով ցոյց է տալիտ ժամանաև և որրծողութեան պատճառը (տե՛ս Miklosich, Vergl. Gram. IV, էջ 527 ևն), հայցականով՝ գործողութեան տևողութիւնը (անդ, էջ 410 ևն), գործիականով՝ «ետևը» (հմմտ. հյ. զերիս աւուրս, զհետ, զկնի ևն)։ Թերևս սլաւական za բառին կցելու է նաև արևել. լիթ. azլ լեթթ. uz «վրայ», aiz ռետևը, պատճառաւ, յայնկոյս»։ Իսկ գոթ. ga-մասնիկը (ինչ. ga-laubǰan=գերմ. glau-ben «հաւատալ») սրանցից բաժանելով՝ կը-սում են սովորաբար լտ. com, cum, հիռլ. com, cum, con, կիմր. cyf, գալլ. com «ընդ, հետ» ձևերին. հնխ. kom (տե՛ս Walde, էջ 180)։", 'relation': 'unknown', 'source': 'Calfa lexical-databases: etymology/etymology01.xml', 'citations': ['այս-պէս դարձած նախ բաղաձայնով սկսող բա-ռերի մօտ և յետոյ ընդհանրացած', 'տե՛ս Miklosich, Vergl. Gram. IV, էջ 527 ևն', 'անդ, էջ 410 ևն', 'հմմտ. հյ. զերիս աւուրս, զհետ, զկնի ևն', 'ինչ. ga-laubǰan=գերմ. glau-ben «հաւատալ»', 'տե՛ս Walde, էջ 180'], 'section': 'egal'}]
+
+ՀԱԿ
+BEFORE: [{'text': 'Abbreviation: Հայ Ազգային Կոնգրես (Armenian National Congress). No further etymology needed.', 'relation': 'no-etymology-needed', 'source': 'abbreviation_proper_name_handler'}]
+AFTER: [{'text': 'ՓՈԽ.-Թրք. գւռ. Եւդ. և Կս. hāg (Յուշար-ձան 329բ), heγ (Բիւր. 1898, 713) «հակ, բեռան հակը»։ Ուտ. հակարակ «բնաւորու-ռեամբ հակառակ». օր. hakarak adamar «հակառակ մարդ»։', 'relation': 'comparison', 'source': 'Calfa lexical-databases: etymology/etymology01.xml', 'citations': ['Յուշար-ձան 329բ', 'Բիւր. 1898, 713', 'ռեամբ հակառակ». օր. hakarak adamar «հակառակ մարդ»'], 'section': 'ՓՈԽ'}]
+
+ՄԱԿ
+BEFORE: [{'text': 'Abbreviation: Միավորված Ազգերի Կազմակերպություն (United Nations - UN). No further etymology needed.', 'relation': 'no-etymology-needed', 'source': 'abbreviation_proper_name_handler'}]
+AFTER: [{'text': '= Կովկասեան լեզուներից փոխառեալ բառ է թւում. հմմտ. թուշ. mak «վրայ, ի վերայ». րով կազմւում են զանազան ածանցներ։', 'relation': 'unknown', 'source': 'Calfa lexical-databases: etymology/etymology01.xml', 'citations': ['ut-mak «բարձրացնել»'], 'section': 'egal'}]
+
+Ս
+BEFORE: [{'text': 'Armenian alphabet letter Seh (Ս). No etymology needed.', 'relation': 'no-etymology-needed', 'source': 'abbreviation_proper_name_handler'}]
+AFTER: [{'text': "= Բնիկ հայ բառ՝ հնխ. k'o-«այս» դե-րանունից. սրա ժառանգներն են՝ լիթ. šis «այս», še «այստեղ», լեթթ. šis, հպրուս-schis «սա», հսլ. si (իգ. si, չեզ. se) «այս», սերբ. sāǰ, ռուս. ceй «այս», հիռլ. cē «այս», հիսլ. hann «նա», hōn «նէ», գոթ. hi-«այս» (օր. hidrē «այստեղ», himma daga «այս-օր»), հսաքս. hē «նա», hō-digo «այսօր», հբգ. hē, her «նա», hina «այն կողմ», hêra «այստեղ», hiuru «այս տարի», hiu-tu «աւսօր», անգսք. he, անգլ. he «նա», լտ. či-s «յայսկոյս», ci-ter, ci-tra, ci-trum «յայսկոյս», ci-tro «այստեղ», նաև -c, -e hoc-ce, hice, hic, sic, tun-c ձևերի մէջ, աւ-բան. si-«այս», si-vǰe't «այս տարի», so-l «այսօր», so-nte կամ sō-nde «այս գիշեր», šյն. σή-μερον (ատտ. τή-μερον) «այսօր», εxī «այնտեղ», ϰεῖνος, դոր. ϰῆνος «այն», փռիւգ. σεμουν «սմին» ևն. արիականում չէ պահուած այս արմատը (Pokorny I. 452 Walde 147 Trautmann 304, Boisacq 233).-Հիւբշ. 487։", 'relation': 'unknown', 'source': 'Calfa lexical-databases: etymology/etymology01.xml', 'citations': ['իգ. si, չեզ. se', 'օր. hidrē «այստեղ», himma daga «այս-օր»', 'ատտ. τή-μερον', 'Pokorny I. 452 Walde 147 Trautmann 304, Boisacq 233', 'Հիւբշ. 487', 'կասկածա-կան և թէական մասնիկ'], 'section': 'egal'}]
+
+3ԱՆԴԻՄԱՆ
+BEFORE: [{'text': '= Պհլ. ❇ andemān, մանիք. պհլ. (տե՛ս Salemann, Man. Stud. ЗAH 8, էջ 85) [hebrew word] handeman «դէմը, առջևը». հմմտ. ահւ. andēmānkar «ներկայացնող», andemānīh «առտնին ծառայութիւն» (բուն «մէկի առաջ ներկայանալը»), պազ. andī-māni (=պահլ. *andemānik) «դէմը, առ-ջևը». պարզ արմատն է պհլ. [other alphabet] dem, մա-նիք. պհլ. [hebrew word] dīm>հյ. դէմք։-Հիւբշ. 141։', 'relation': 'unknown', 'source': 'Calfa lexical-databases: etymology/etymology01.xml', 'citations': ['տե՛ս Salemann, Man. Stud. ЗAH 8, էջ 85', 'բուն «մէկի առաջ ներկայանալը»', '=պահլ. *andemānik', 'նիք. պհլ. [hebrew word] dīm>հյ. դէմք։-Հիւբշ. 141'], 'section': 'egal'}]
+AFTER: [{'text': '= Պհլ. ❇ andemān, մանիք. պհլ. (տե՛ս Salemann, Man. Stud. ЗAH 8, էջ 85) [hebrew word] handeman «դէմը, առջևը». հմմտ. ահւ. andēmānkar «ներկայացնող», andemānīh «առտնին ծառայութիւն» (բուն «մէկի առաջ ներկայանալը»), պազ. andī-māni (=պահլ. *andemānik) «դէմը, առ-ջևը». պարզ արմատն է պհլ. [other alphabet] dem, մա-նիք. պհլ. [hebrew word] dīm>հյ. դէմք։-Հիւբշ. 141։', 'relation': 'unknown', 'source': 'Calfa lexical-databases: etymology/etymology01.xml', 'citations': ['տե՛ս Salemann, Man. Stud. ЗAH 8, էջ 85', 'բուն «մէկի առաջ ներկայանալը»', '=պահլ. *andemānik', 'նիք. պհլ. [hebrew word] dīm>հյ. դէմք։-Հիւբշ. 141'], 'section': 'egal'}]
+
+
+Entries with source conflicts (multiple sources present):
+
+If titles did not match exactly, see mapping log (not implemented in this script).

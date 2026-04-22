@@ -4570,12 +4570,12 @@
 
     function loadDictionary() {
       Promise.all([
-        fetch("western_armenian_merged_with_all_calfa.json")
+        fetch("western_armenian_merged_complete.json")
           .then(r => {
-            if (!r.ok) throw new Error("merged dictionary not found");
+            if (!r.ok) throw new Error("patched dictionary not found");
             return r.json();
           })
-          .catch(() => fetch("western_armenian_merged_with_all_calfa.json").then(r => r.json())),
+          .catch(() => fetch("western_armenian_merged_complete.json").then(r => r.json())),
         fetch("lemmatization_index.json")
           .then(r => r.json())
           .catch(() => ({}))
