@@ -1,0 +1,64 @@
+Manual review needed: 446 entries
+affix: 7
+proper_name: 25
+abbreviation: 2
+other: 412
+
+Sample entries by category:
+
+Category: affix
+  -ապես: Etymology needs research - no usable data found
+  -իկ: Etymology needs research - no usable data found
+  գերա-: Etymology needs research - no usable data found
+  թերա-: Etymology needs research - no usable data found
+  նախա-: Etymology needs research - no usable data found
+  վերա-: Etymology needs research - no usable data found
+  քառա-: Etymology needs research - no usable data found
+
+Category: proper_name
+  Ալլահ: Etymology needs research - no usable data found
+  Ատալիա: Etymology needs research - no usable data found
+  Բաբաջանյան: Etymology needs research - no usable data found
+  Դանիա: Etymology needs research - no usable data found
+  Լիպարիտ: Etymology needs research - no usable data found
+  Կասպք: Etymology needs research - no usable data found
+  Հերովդես: Etymology needs research - no usable data found
+  Մանանդյան: Etymology needs research - no usable data found
+  Մեմնոն: Etymology needs research - no usable data found
+  Մսըր: Etymology needs research - no usable data found
+  Նիկողայոս: Etymology needs research - no usable data found
+  Չուխաջյան: Etymology needs research - no usable data found
+  Չոփուրյան: Etymology needs research - no usable data found
+  Պարմենիդես: Etymology needs research - no usable data found
+  Պինդարոս: Etymology needs research - no usable data found
+  Պյութագորաս: Etymology needs research - no usable data found
+  Ջամբազյան: Etymology needs research - no usable data found
+  Սիմոնիդես: Etymology needs research - no usable data found
+  Սղերդ: Etymology needs research - no usable data found
+  Սոկրատես: Etymology needs research - no usable data found
+
+Category: abbreviation
+  ՆԱՏՕ: Etymology needs research - no usable data found
+  ՔՈՒՇԱՏ: Etymology needs research - no usable data found
+
+Category: other
+  աբա: Etymology needs research - no usable data found
+  աբասի: Etymology needs research - no usable data found
+  աբլա: Etymology needs research - no usable data found
+  աբսորբել: Etymology needs research - no usable data found
+  ադամանդ: Etymology needs research - no usable data found
+  աթթար: Etymology needs research - no usable data found
+  աժդահա: Etymology needs research - no usable data found
+  ալ: Etymology needs research - no usable data found
+  ալաժահրի: Etymology needs research - no usable data found
+  ալամ: Etymology needs research - no usable data found
+  ալմաս: Etymology needs research - no usable data found
+  ալոճ: Etymology needs research - no usable data found
+  ալքիմիա: Etymology needs research - no usable data found
+  ախմախ: Etymology needs research - no usable data found
+  ակռա: Etymology needs research - no usable data found
+  աղա: Etymology needs research - no usable data found
+  աղատել: Etymology needs research - no usable data found
+  աղեղ: Etymology needs research - no usable data found
+  աճռել: Etymology needs research - no usable data found
+  ամեն: Etymology needs research - no usable data found
