@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Etymology Review Tool</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f7f7f7; margin: 0; padding: 0; }
+    .container { max-width: 1100px; margin: 30px auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px #0001; }
+    .filters { display: flex; gap: 20px; margin-bottom: 20px; flex-wrap: wrap; }
+    .card { background: #f9f9f9; border: 1px solid #ddd; border-radius: 6px; padding: 18px; margin-bottom: 18px; box-shadow: 0 1px 4px #0001; }
+    .card h2 { margin: 0 0 8px 0; font-size: 1.3em; }
+    .card label { font-weight: bold; }
+    .card textarea, .card input[type=text] { width: 100%; margin: 4px 0 10px 0; padding: 6px; border-radius: 4px; border: 1px solid #ccc; font-size: 1em; }
+    .card select { margin-bottom: 10px; }
+    .card .save-btn { background: #1976d2; color: #fff; border: none; border-radius: 4px; padding: 7px 16px; cursor: pointer; font-size: 1em; }
+    .card .save-btn:active { background: #125ea2; }
+    .save-all-btn { background: #388e3c; color: #fff; border: none; border-radius: 4px; padding: 10px 24px; font-size: 1.1em; cursor: pointer; margin-bottom: 20px; }
+    .save-all-btn:active { background: #256029; }
+    .hidden { display: none; }
+    .flex { display: flex; gap: 10px; align-items: center; }
+    @media (max-width: 700px) { .container { padding: 5px; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Etymology Review Tool</h1>
+    <div class="filters">
+      <label>Show:
+        <select id="filter-type">
+          <option value="all">All</option>
+          <option value="missing">Missing</option>
+          <option value="placeholder">Placeholders</option>
+          <option value="short">Short Etymologies</option>
+        </select>
+      </label>
+      <label>Part of Speech:
+        <select id="filter-pos">
+          <option value="all">All</option>
+        </select>
+      </label>
+      <button class="save-all-btn" id="save-all">Save All</button>
+    </div>
+    <div id="cards"></div>
+  </div>
+  <script>
+    let entries = [];
+    let filteredEntries = [];
+    let partOfSpeechSet = new Set();
+
+    function isMissing(ety) {
+      return !ety || ety === '[MISSING]';
+    }
+    function isPlaceholder(ety) {
+      return ["Etymology needs research", "Unknown", "unknown"].includes((ety||"").trim());
+    }
+    function isShort(ety) {
+      return (ety||"").trim().length > 0 && (ety||"").trim().length < 30;
+    }
+
+    function renderFilters() {
+      const posSelect = document.getElementById('filter-pos');
+      posSelect.innerHTML = '<option value="all">All</option>' +
+        Array.from(partOfSpeechSet).sort().map(pos => `<option value="${pos}">${pos}</option>`).join('');
+    }
+
+    function filterEntries() {
+      const type = document.getElementById('filter-type').value;
+      const pos = document.getElementById('filter-pos').value;
+      filteredEntries = entries.filter(entry => {
+        let match = true;
+        if (type === 'missing') match = isMissing(entry.etymology);
+        else if (type === 'placeholder') match = isPlaceholder(entry.etymology);
+        else if (type === 'short') match = isShort(entry.etymology);
+        if (pos !== 'all') match = match && entry.part_of_speech === pos;
+        return match;
+      });
+      renderCards();
+    }
+
+    function renderCards() {
+      const cardsDiv = document.getElementById('cards');
+      cardsDiv.innerHTML = '';
+      filteredEntries.forEach((entry, idx) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <h2>${entry.title}</h2>
+          <div><label>Part of Speech:</label> ${entry.part_of_speech || ''}</div>
+          <div><label>Definition:</label> <span>${entry.definition || ''}</span></div>
+          <div><label>Current Etymology:</label> <span>${entry.etymology || '<span style=\'color:#c00\'>MISSING</span>'}</span></div>
+          <div class="flex">
+            <label for="ety-${idx}">Edit Etymology:</label>
+            <textarea id="ety-${idx}" rows="2">${entry.etymology === '[MISSING]' ? '' : entry.etymology || ''}</textarea>
+          </div>
+          <div class="flex">
+            <label for="src-${idx}">Source:</label>
+            <select id="src-${idx}">
+              <option value="Martirosyan" ${entry.source==="Martirosyan"?'selected':''}>Martirosyan</option>
+              <option value="Calfa" ${entry.source==="Calfa"?'selected':''}>Calfa</option>
+              <option value="Wiktionary" ${entry.source==="Wiktionary"?'selected':''}>Wiktionary</option>
+              <option value="Manual" ${entry.source==="Manual"?'selected':''}>Manual</option>
+              <option value="Unknown" ${!entry.source||entry.source==="Unknown"?'selected':''}>Unknown</option>
+            </select>
+            <button class="save-btn" onclick="saveEntry(${idx})">Save</button>
+          </div>
+        `;
+        cardsDiv.appendChild(card);
+      });
+    }
+
+    function saveEntry(idx) {
+      const entry = filteredEntries[idx];
+      const ety = document.getElementById(`ety-${idx}`).value.trim();
+      const src = document.getElementById(`src-${idx}`).value;
+      entry.etymology = ety || '[MISSING]';
+      entry.source = src;
+      // Update in main entries array
+      const mainIdx = entries.findIndex(e => e.title === entry.title && e.part_of_speech === entry.part_of_speech);
+      if (mainIdx !== -1) {
+        entries[mainIdx].etymology = entry.etymology;
+        entries[mainIdx].source = entry.source;
+      }
+      alert('Entry saved!');
+    }
+
+    function saveAll() {
+      const data = JSON.stringify(entries, null, 2);
+      const blob = new Blob([data], {type: 'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'review_list_updated.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    document.getElementById('filter-type').addEventListener('change', filterEntries);
+    document.getElementById('filter-pos').addEventListener('change', filterEntries);
+    document.getElementById('save-all').addEventListener('click', saveAll);
+
+    fetch('review_list.json')
+      .then(resp => resp.json())
+      .then(data => {
+        entries = data;
+        partOfSpeechSet = new Set(entries.map(e => e.part_of_speech).filter(Boolean));
+        renderFilters();
+        filteredEntries = entries.slice();
+        renderCards();
+      })
+      .catch(err => {
+        document.getElementById('cards').innerHTML = '<div style="color:#c00">Failed to load review_list.json</div>';
+      });
+  </script>
+</body>
+</html>

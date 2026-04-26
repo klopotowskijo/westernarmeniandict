@@ -1,0 +1,429 @@
+-արեն: (Suffix) Forms adverbs, corresponding to the English "-ly".
+
+Խալաճեան: Khalajian (a surname).
+
+ա̈: A letter used in Armenian dialectology representing the near-open front vowel /æ/. Transliterated as ä.
+
+ագուցանել: (Verb) To insert, to fit in, to join (e.g., woodworking joints).
+
+ահաբեկվել: (Verb) To be terrified, to become scared.
+
+աղբյուրակ: (Noun) A small spring, a little source (diminutive of աղբյուր - spring/source).
+
+առէջք: (Noun) A vestibule, an antechamber, a narthex (especially of a church).
+
+արբանյակային: (Adjective) Satellite (relating to a satellite).
+
+գիւղերէն: (Adverb/Adjective) From the village, in the village dialect/language.
+
+զինվել: (Verb) To arm oneself, to take up arms.
+
+ըղրի: A type of small, lightweight, single-horse carriage.
+
+ընգնել: (Verb) Dialectal form of "to fall, to drop."
+
+լցվիլ: (Verb) To be filled, to become full.
+
+խտիղ: (Noun) A tickling sensation, a pleasant thrill.
+
+հառաջացում: (Noun) Archaic spelling of առաջացում (generation, production, causing).
+
+ձագուկ: (Noun) A small cub, a little chick (diminutive of ձագ - young animal).
+
+մտահոգվել: (Verb) To become worried, concerned, or anxious.
+
+նկուղային: (Adjective) Basement (e.g., basement floor, basement room).
+
+նուաստացնել: (Verb) To humiliate, to degrade, to belittle.
+
+որդյակ: (Noun) Diminutive of որդի (son); little son, dear boy.
+
+ջրածնային: (Adjective) Hydrogen (e.g., hydrogen bomb, hydrogen bond).
+
+սկյուռիկ: (Noun) A little squirrel, a cute squirrel (diminutive of սկյուռ).
+
+սփոփվել: (Verb) To be consoled, comforted, or soothed.
+
+ւ: The 34th letter of the classical Armenian alphabet; represents /v/; called "hyun."
+
+օղողել: (Verb) To rinse, to wash (especially dishes or laundry).
+
+։: The Armenian full stop / period (the "վերջակետ").
+
+առկախվել: (Verb) To be suspended, to be hanging (from something).
+
+գարուններ: (Noun) Nominative plural of գարուն (springs, the seasons).
+
+եղինջներ: (Noun) Nominative plural of եղինջ (nettles).
+
+եղջյուրներ: (Noun) Nominative plural of եղջյուր (horns).
+
+երազող: (Verb) Subject participle of երազել (dreaming).
+
+եք: (Verb) Second-person plural present of եմ (you are).
+
+էկող: (Verb) Dialectal form of եկող (coming).
+
+էղիր: (Verb) Dialectal form of եղիր (be [imperative]).
+
+թվարկության: (Noun) Dative singular of թվարկություն (enumeration, listing).
+
+թվարկությունից: (Noun) Ablative singular of թվարկություն.
+
+ծառան: (Noun) Definite nominative singular of ծառա (the servant).
+
+հալած: (Verb) Resultative participle of հալել (melted).
+
+հայեր: (Noun) Nominative plural of հայ (Armenians).
+
+հուզող: (Verb) Subject participle of հուզել (exciting, touching, moving).
+
+հրո: (Noun) Dative singular of հուր (to the fire).
+
+յարձակող: (Verb) Subject participle of յարձակել (attacking).
+
+յորղաններ: (Noun) Nominative plural of յորղան (blankets, quilts).
+
+նշխարներ: (Noun) Nominative plural of նշխար (holy relics).
+
+չեղան: (Verb) Negative form of եղան (they were not).
+
+չեղանք: (Verb) Negative form of եղանք (we were not).
+
+չեղար: (Verb) Negative form of եղար (you [sg.] were not).
+
+չեղաք: (Verb) Negative form of եղաք (you [pl.] were not).
+
+չեմ: (Verb) Negative form of եմ (I am not).
+
+ջուրը: (Noun) Definite nominative singular of ջուր (the water).
+
+ջրեր: (Noun) Nominative plural of ջուր (waters).
+
+ջրի: (Noun) Dative singular of ջուր (to the water).
+
+սարսափեցնող: (Verb) Subject participle of սարսափեցնել (terrifying, horrifying).
+
+սմբակներ: (Noun) Nominative plural of սմբակ (hooves).
+
+Translations for the all-caps entries:
+
+ԱՂԻ: (Noun) Intestine, gut; also an old word for "salt."
+
+ԱՄԱՐՈՒ: (Noun) An unmarried person; a bachelor or spinster.
+
+ԱՅՐ: (Noun) A man, a husband; a cave.
+
+ԱՅՐԻ: (Noun/Adj) A widow; widowed.
+
+ԱՆԱԶԱՐՄ: (Adj) Without shame, shameless, impudent.
+
+ԱՆԱԼՂԿ: (Noun) An unused word meaning "weakness" or "imbecility."
+
+ԱՆՈՅՇ: (Adj) An old spelling of անուշ (sweet, pleasant).
+
+ԱՆՈՒԹ: (Noun) Armpit.
+
+ԱՆՈՒՐ: (Noun) A collar (for an animal), a shackle.
+
+ԱՇԽԱՏ: (Noun) A field, cultivated land; work.
+
+ԱՋ: (Adj/Noun) Right (direction); the right hand.
+
+ԱՌՈՒՈՅՏ: (Noun) Alfalfa, lucerne.
+
+ԱՐԴ: (Adv) Now, at present; a particle meaning "well..., so..., then...".
+
+ԱՐԺԱՆ: (Noun) A thurible, a censer (used in church).
+
+ԱՒԱՆ: (Noun) A small town, a borough.
+
+ԲԱԺԱՆԵԼ: (Verb) To divide, to separate, to distribute.
+
+ԲԱՄԲ: (Noun) A large quantity, a crowd; a lot, much.
+
+ԲԱՇԽ: (Noun/Verb) A portion, a share; to distribute.
+
+ԲԱՐԳԱՒԱՃ: (Adj) Prosperous, thriving, flourishing.
+
+ԲԻԾ: (Noun) An awl.
+
+ԲԻՒՐԵՂ: (Noun) Crystal.
+
+ԲՈՎ: (Noun) An oven, a furnace.
+
+ԲՈՒԽԵՐԻԿ: A type of stew or thick soup, often made with vegetables and meat.
+
+ԲՈՒՆ: (Noun) A trunk (of a tree), a stem; a nest; the main part.
+
+ԲՐԴԵԼ: (Verb) Dialectal form of "to crumble (bread)".
+
+ԲՐՍԻ ԱՆԴԱՐՈՒ: A phrase meaning "for no reason, in vain."
+
+ԳԵՂՁ: (Noun) A gland (e.g., thyroid, salivary).
+
+ԳԻՒՏ: (Noun) An invention, a discovery.
+
+ԳՈՂ: (Noun) A lap (the area between the waist and knees of a seated person).
+
+ԳՈՒՄ: (Noun) A sum (of money), an amount; a heap.
+
+ԴԱՍՏԱՔԱՐ: (Noun) A milestone.
+
+ԴԱՏԱՍՏԱՆ: (Noun) A court of law, a tribunal.
+
+ԴԱՐԳ: (Noun) A turning point, a stage, a level.
+
+ԴԺՈԽ: (Noun) Hell.
+
+ԴԺՊԱՐԻՇՏ: (Adj) Very difficult, extremely hard.
+
+ԴԻՄԱԿ: (Noun) A mask.
+
+ԵԿՂԵՍԻԱՍՏԷՍ: (Noun) An ecclesiastic, a clergyman.
+
+ԵՂԵՌՆ: (Noun) A crime, an atrocity, a heinous deed.
+
+ԵՂԾ: (Adj) False, forged; distorted.
+
+ԵՐԱՆ: (Noun) A color, a hue; a kind.
+
+ԵՐԻ: (Verb) Third-person singular imperfect of եմ (he/she/it was).
+
+ԵՐԿԻՐ: (Noun) Land, earth, country.
+
+ԵՓ: (Noun) A suffix; the act of putting or placing.
+
+ԶԱՒԱԿ: (Noun) A child, an offspring.
+
+ԶԵՆՈՃՌԵԱԼ: (Adj) Strengthened, fortified.
+
+ԶԵՌԱՆԳ: (Noun) A type of colored mineral or ore; also a term for a type of fish.
+
+ԸՄԲՈՇԽՈՐԵԱԼ: (Adj) Full, satisfied (especially from eating).
+
+ԸՆԿՈՅԶ: (Noun) A bunch (of grapes).
+
+ԸՆՉՈՒԻԼ: (Verb) To emerge, to spring forth, to originate.
+
+ԹԱԹԱՂԵԼ: (Verb) To stroke, to caress.
+
+ԹԱՂ: (Noun) A neighborhood, a quarter (of a city).
+
+ԹԱՄԲ: (Noun) A saddle.
+
+ԹԱՐԽՈՒՆ: (Noun) Tarragon.
+
+ԹԵՓ: (Noun) Bran, husk.
+
+ԹՇՆԱՄ: (Noun) An enemy, a foe.
+
+ԹՈՂ: (Verb) Let, allow; a suffix forming adverbs.
+
+ԹՈՐԹՈՇ: (Adj) Swollen, puffed up.
+
+ԹՈՒԽ: (Adj) Dark-skinned, swarthy.
+
+ԺԱՌԱՆԳ: (Noun) An heir, an inheritor.
+
+ԽԱԴ: (Adj) Unripe, raw, green (of fruit).
+
+ԽԱԶ: (Noun) A line, a scratch, a mark.
+
+ԽԱՆՁԱԼ: (Verb) To boast, to brag.
+
+ԽԱՇԱՐ: (Noun) A pole, a stick, a prop.
+
+ԽՈԶ: (Noun) A pig.
+
+ԽՈՃԿՈՐ: (Noun) A small piglet, a young pig.
+
+ԽՈՐԱՍԱՆԻ: (Noun) A mortar (for grinding).
+
+ԽՈՑ: (Noun) A sore, an ulcer, a wound.
+
+ԾԱԼ: (Noun) A fold, a pleat, a crease.
+
+ԾԱՌԱՅ: (Noun) A servant.
+
+ԾԵՐ: (Adj) Old, aged (of a person).
+
+ԾԵՐԻԼ: (Verb) To grow old, to age.
+
+ԿԱԶՄՈՐ: (Noun) A type of plant, perhaps butcher's broom.
+
+ԿԱՂԱԲՈՅՍ: (Noun) A type of plant, maybe "cabbage thistle."
+
+ԿԱՂԱՄԱԽ: (Noun) A type of plant, possibly "wild celery."
+
+ԿԱՇԱՌ: (Noun) A bribe.
+
+ԿԱՏԱՐ: (Noun) The top, the summit, the peak.
+
+ԿԱՏՈՐ: (Noun) A piece, a fragment, a slice.
+
+ԿԱՐԱԿԻՄ: (Noun) A pit, a ditch, a trench.
+
+ԿԱՐԾ: (Noun) A palate.
+
+ԿԱՒԱՏ: (Noun) A guarantor, a surety; a godfather.
+
+ԿԵԼ: (Noun) A swelling, a tumor; a wave.
+
+ԿԵՐ: (Noun) Food, nourishment (especially for animals).
+
+ԿՇԻՌ: (Noun) A weight.
+
+ԿՈԽ: (Noun) A kick, a blow with the foot.
+
+ԿՈՐԷՔ: (Noun) A difficult and narrow place; a strait.
+
+ՀԱԼԱԾ: (Noun/Verb) Pursuit, persecution; to pursue.
+
+ՀԱԼԻՔ: (Noun) A wave.
+
+ՀԱՃ: (Noun) A handful; often used as a prefix meaning "multi-".
+
+ՀԱՅԹ: (Verb) To invent, to devise, to contrive.
+
+ՀԱՅԿ: (Proper Noun) Hayk (the legendary patriarch and founder of the Armenian nation).
+
+ՀԱՆ: (Noun) A part, a share; a section.
+
+ՀԱՍ: (Noun) An ear of grain (e.g., wheat, barley).
+
+ՀԱՐՊԱՆ: (Noun) A lute, a musical instrument.
+
+ՀԵԶ: (Adj) Gentle, meek, mild.
+
+ՀԵՂ: (Adj) Clever, smart, intelligent.
+
+ՀԵՂԳ: (Adj) Weak, feeble, flabby.
+
+ՀԵՂԻՆԱԿ: (Noun) An author, a writer.
+
+ՀԻՒԱՆԴ: (Adj/Noun) Sick, ill; a patient.
+
+ՀԻՒՐ: (Noun) A guest.
+
+ՀՈԳԻ: (Noun) Spirit, soul.
+
+ՀՈԾ: (Adj) Thick, dense, compact.
+
+ՀՈՄԱՆԻ: (Noun) A namesake; a colleague.
+
+ՃԱՄԲՐՈՒԿ: (Noun) A suitcase, a trunk.
+
+ՃՈՆ: (Proper Noun) John.
+
+ՄԱԶ: (Noun) Hair (of the body or animals).
+
+ՄԱՄՐԻՉ: (Noun) A sieve, a strainer.
+
+ՄԱՅՐ: (Noun) Mother.
+
+ՄԱՏԱԿ: (Adj) Female (of animals).
+
+ՄԱՐԹ: (Adj) Possible, feasible; able.
+
+ՄԷՋ: (Postposition) In, inside, among.
+
+ՄՈԽԻՐ: (Noun) Ash (remains of a fire).
+
+ՄՈՆԱՔՈՍ: (Noun) A monk.
+
+ՄՌՏԻԿՈՆ: (Noun) A marten (an animal).
+
+ՅԵՄՌ: (Noun) An ambiguous word meaning "a young man, a lad."
+
+ՅՈՒՆՈՒԱՐ: (Noun) January.
+
+ՆԱԽԻՐ: (Noun) A herd (of cattle, buffaloes).
+
+ՆՄԱՆ: (Adj) Similar, like, resembling.
+
+ՆՈԽԱԶ: (Noun) A spy, a scout.
+
+ՇԵԹ: (Adj) Expensive, dear, precious.
+
+ՇԵՂՋ: (Noun) A pile, a heap, a stack.
+
+ՈԶՈՏՆ: (Noun) A hedgehog.
+
+ՈՂՆ: (Noun) A vertebra; a joint.
+
+ՈՐԼՈՐ: (Noun) A quail.
+
+ՈՐՁ: (Adj) Male (of animals).
+
+ՈՐՏՈՒ: (Noun) A vagina.
+
+ՈՒՂԻ: (Noun) A road, a path, a way.
+
+ՈՒՂԻՂ: (Adj) Straight, direct; honest.
+
+ՈՒՐՈՑՆ: (Adj) Separate, different, distinct.
+
+ՊԱՅՏ: (Noun) A horseshoe.
+
+ՊԱՌԱԿ: (Adj) Empty, idle, vacant.
+
+ՊԱՏԱՆԴ: (Noun) A hostage.
+
+ՊԱՏՆԷՇ: (Noun) A rampart, a wall, a bulwark.
+
+ՊԱՐԱՊ: (Adj) Empty, vain; unoccupied.
+
+ՊԷՏ: (Noun) A chief, a leader, a master.
+
+ՊՂՊՋԱԿ: (Noun) A bubble.
+
+ՊՈՌՆԻԿ: (Noun) A fornicator, an adulterer.
+
+ՊՈՒԿ: (Noun) A bag, a sack.
+
+ՌՈՒՄԲ: (Noun) A slingshot; a catapult.
+
+ՍԱԿՌ: (Noun) An axe, a hatchet.
+
+ՍԱՆ: (Noun) A mortar (for grinding).
+
+ՍԱՏՐԻՆՋ: (Noun) A centipede.
+
+ՍԻԹԵՅՔ: (Noun) A path, a way.
+
+ՍՆԴՄԱՅ: (Noun) A column, a pillar.
+
+ՍՊԱՆԱՆԵԼ: (Verb) To kill, to murder.
+
+ՍՏՈՐ: (Postposition) Under, below, beneath.
+
+ՎԱՐԱՐ: (Adj) A deep or hidden place; a lair.
+
+ՎԿԱՅ: (Noun) A witness.
+
+ՎՏԱՐ: (Noun) Danger, risk, peril.
+
+ՎՐԷԺ: (Noun) Revenge, vengeance.
+
+ՏԵՂԵԱԿ: (Adj) Informed, aware, knowledgeable.
+
+ՑԵՅ: (Noun) A shade, a tinge, a hue.
+
+ՑՈՒՐՏ: (Adj) Cold, chilly.
+
+ՓԱՅՏ: (Noun) Wood; a stick.
+
+ՓԱՌ: (Noun) Glory, fame.
+
+ՓՈՂ: (Noun) Money.
+
+ՔԱՆԱՍԱՐ: (Noun) A raider, a plunderer.
+
+ՔԱՆԴ: (Verb) To demolish, to destroy, to break.
+
+ՔԱՆԴԱԿ: (Noun) A piece, a fragment; a joke.
+
+ՔԱՐԿՈՒԹ: (Noun) A step, a pace; a rung.
+
+ՕՐԷՆ: (Noun) Law.

@@ -1,0 +1,44 @@
+Total entries updated: 14861
+Failed to match: 0
+
+Sample before/after:
+Word: -աբար
+Before: [{'text': 'From Old Armenian -աբար', 'relation': 'unknown', 'source': 'wikitext', 'source_language': ''}]
+After: [{'text': 'From Old Armenian -abar', 'relation': 'inherited', 'source': 'hy.wiktionary.org (translated from Armenian)'}]
+---
+Word: -ագին
+Before: [{'text': 'From Old Armenian -ագին', 'relation': 'unknown', 'source': 'wikitext', 'source_language': ''}]
+After: [{'text': 'From Old Armenian -agın', 'relation': 'inherited', 'source': 'hy.wiktionary.org (translated from Armenian)'}]
+---
+Word: -ագույն
+Before: [{'text': 'From Old Armenian -ագոյն', 'relation': 'unknown', 'source': 'wikitext', 'source_language': ''}]
+After: [{'text': 'From Old Armenian -agon', 'relation': 'inherited', 'source': 'hy.wiktionary.org (translated from Armenian)'}]
+---
+Word: -ալ
+Before: [{'text': 'From Old Armenian infinitive suffix -ալ. From PIE *-l- suffix forming verbal nouns.', 'relation': 'auto-filled', 'source': 'auto_fill_script'}]
+After: [{'text': 'From Old Armenian infinitive suffix -al. From PIE *-l- suffix forming verbal nouns.', 'relation': 'inherited', 'source': 'hy.wiktionary.org (translated from Armenian)'}]
+---
+Word: -ած
+Before: [{'text': 'From Old Armenian -ած', 'relation': 'unknown', 'source': 'wikitext', 'source_language': ''}]
+After: [{'text': 'From Old Armenian -ats', 'relation': 'inherited', 'source': 'hy.wiktionary.org (translated from Armenian)'}]
+---
+Word: -ածո
+Before: [{'text': 'From Old Armenian -ածոյ', 'relation': 'unknown', 'source': 'wikitext', 'source_language': ''}]
+After: [{'text': 'From Old Armenian -adjective', 'relation': 'inherited', 'source': 'hy.wiktionary.org (translated from Armenian)'}]
+---
+Word: -ածու
+Before: [{'text': 'From Old Armenian -ածու. Forms nouns from past participles.', 'relation': 'auto-generated', 'source': 'final_batch'}]
+After: [{'text': 'From Old Armenian - atsu. Forms nouns from past participles.', 'relation': 'inherited', 'source': 'hy.wiktionary.org (translated from Armenian)'}]
+---
+Word: -ական
+Before: [{'text': 'From Old Armenian -ական', 'relation': 'unknown', 'source': 'wikitext', 'source_language': ''}]
+After: [{'text': 'From Old Armenian -an', 'relation': 'inherited', 'source': 'hy.wiktionary.org (translated from Armenian)'}]
+---
+Word: -ակերտ
+Before: [{'text': 'From Old Armenian -ակերտ', 'relation': 'unknown', 'source': 'wikitext', 'source_language': ''}]
+After: [{'text': 'From Old Armenian -akert', 'relation': 'inherited', 'source': 'hy.wiktionary.org (translated from Armenian)'}]
+---
+Word: -ային
+Before: [{'text': 'From Old Armenian -ային', 'relation': 'unknown', 'source': 'wikitext', 'source_language': ''}]
+After: [{'text': 'From Old Armenian -ayin', 'relation': 'inherited', 'source': 'hy.wiktionary.org (translated from Armenian)'}]
+---

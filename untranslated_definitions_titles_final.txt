@@ -1,0 +1,35 @@
+աղբյուրակ	['alternative form of աղբերակ.', 'alternative form of աղբերակ (aġberak).', 'diminutive of աղբյուր (aġbyur).']	(Noun) A small spring, a little source (diminutive of աղբյուր - spring/source).
+հառաջացում	['Western Armenian alternative form of առաջացում.', '(Western Armenian) alternative form of առաջացում (aṙaǰacʻum).']	(Noun) Archaic spelling of առաջացում (generation, production, causing).
+ձագուկ	['diminutive of ձագ (jag).']	(Noun) A small cub, a little chick (diminutive of ձագ - young animal).
+որդյակ	['diminutive of որդի (ordi).']	(Noun) Diminutive of որդի (son); little son, dear boy.
+սկյուռիկ	['diminutive of սկյուռ (skyuṙ, “squirrel”).']	(Noun) A little squirrel, a cute squirrel (diminutive of սկյուռ).
+։	['Armenian full stop or period, used to indicate the end of a sentence. Called վերջակետ in Armenian.']	The Armenian full stop / period (the "վերջակետ").
+գարուններ	['nominative plural of գարուն (garun).']	(Noun) Nominative plural of գարուն (springs, the seasons).
+եղինջներ	['nominative plural of եղինջ (eġinǰ).']	(Noun) Nominative plural of եղինջ (nettles).
+եղջյուրներ	['nominative plural of եղջյուր (eġǰyur).']	(Noun) Nominative plural of եղջյուր (horns).
+երազող	['subject participle of երազել (erazel).']	(Verb) Subject participle of երազել (dreaming).
+եք	['second-person plural present of եմ (em).']	(Verb) Second-person plural present of եմ (you are).
+էկող	['(dialectal, colloquial) alternative form of եկող (ekoġ).']	(Verb) Dialectal form of եկող (coming).
+էղիր	['(dialectal) alternative form of եղիր (eġir).']	(Verb) Dialectal form of եղիր (be [imperative]).
+թվարկության	['dative singular of թվարկություն (tʻvarkutʻyun).']	(Noun) Dative singular of թվարկություն (enumeration, listing).
+թվարկությունից	['ablative singular of թվարկություն (tʻvarkutʻyun).']	(Noun) Ablative singular of թվարկություն.
+ծառան	['definite nominative singular of ծառա (caṙa).']	(Noun) Definite nominative singular of ծառա (the servant).
+հալած	['resultative participle of հալել (halel).']	(Verb) Resultative participle of հալել (melted).
+հայեր	['nominative plural of հայ (hay).']	(Noun) Nominative plural of հայ (Armenians).
+հուզող	['subjective participle of հուզել (huzel).']	(Verb) Subject participle of հուզել (exciting, touching, moving).
+հրո	['(literary, poetic) dative singular of հուր (hur).']	(Noun) Dative singular of հուր (to the fire).
+յարձակող	['subject participle of յարձակիլ (yarjakil).']	(Verb) Subject participle of յարձակել (attacking).
+յորղաններ	['nominative plural of յորղան (yorġan).']	(Noun) Nominative plural of յորղան (blankets, quilts).
+նշխարներ	['nominative plural of նշխար (nšxar).']	(Noun) Nominative plural of նշխար (holy relics).
+չեղան	['negative form of եղան (eġan).']	(Verb) Negative form of եղան (they were not).
+չեղանք	['negative form of եղանք (eġankʻ).']	(Verb) Negative form of եղանք (we were not).
+չեղար	['negative form of եղար (eġar).']	(Verb) Negative form of եղար (you [sg.] were not).
+չեղաք	['negative form of եղաք (eġakʻ).']	(Verb) Negative form of եղաք (you [pl.] were not).
+չեմ	['negative form of եմ (em).']	(Verb) Negative form of եմ (I am not).
+ջուրը	['definite nominative singular of ջուր (ǰur).']	(Noun) Definite nominative singular of ջուր (the water).
+ջրեր	['nominative plural of ջուր (ǰur).']	(Noun) Nominative plural of ջուր (waters).
+ջրի	['dative singular of ջուր (ǰur).']	(Noun) Dative singular of ջուր (to the water).
+սարսափեցնող	['subject participle of սարսափեցնել (sarsapʻecʻnel): terrifying, horrifying.']	(Verb) Subject participle of սարսափեցնել (terrifying, horrifying).
+սմբակներ	['nominative plural of սմբակ (smbak).']	(Noun) Nominative plural of սմբակ (hooves).
+ԱՆՈՅՇ	['(ի հլ. յգ. ուղ. անոյշք կամ անու-շունք) «համեղ, ախորժելի, հոտաւէտ» ՍԳր. Կիւրղ. ծն. «հաճելի բան, ախորժելի կեանօ» Եւս. քր. «սիրով, ախորժելով» Ոսկ. բ. կոր. որից անոյշք «երկնային արքայութիւն» Եզն. անուշակ «անմահական» Գ. մկ. զ. 10. Եւս. քր. ա. անուշակ կերակուր «անմահների ու-տելիքը, ἀμβροσῖα» Իմ. ժթ. 20. անուշահամ Ագաթ. անուշահոտ Ագաթ. Եզն. անուշանալ «անու» հոտեր քսուելով հոտաւէտուիլ» Ոսկ. ա. տիմ. մ. և ես. անուշարար «ախորժելի» Չաք. թ. 17. «քաղցրեղէն եփող» Եղիշ. անու-շութիւն «քաղցրութիւն, բոյր» ՍԳր. Ագաթ. ւետնաբար անուշացնել զսիրտ «հաճել, հա-մոզել» Սմբ. պտմ. 102։']	(Adj) An old spelling of անուշ (sweet, pleasant).
+ԵՐԻ	['(-ւոյ, -եաց) «կենդանու առջևի ռաների վերի մասը, լանջակողմը, երբուծ» ՍԳր. (գրուած էրի Կանոն. էջ 54), որից՝ առ երի «մօտը, կողքին, քովը» (որ և յերի) Խոր. աշխ., առ երի ընթանալ «զուգընթանալ, հա-մապատասխան լինել» Եւս. քր. նշանակու-թեան տարբերութեան համար հմմտ. կողք «մարմնի կողերը» և գւռ. կողքը, կողքին «քո-վր»։']	(Verb) Third-person singular imperfect of եմ (he/she/it was).

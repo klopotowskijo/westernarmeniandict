@@ -1,0 +1,6 @@
+title,part_of_speech,definition,new_etymology,source_language,relation,cognates,pie_root
+# 447 rows to be filled in with the drafted etymologies for each Priority 1 word.
+# Example row:
+# աբեղա,noun,"['dialectal forms recorded in dialectological notation.', 'abegha.', '(figuratively) hermit, recluse.']","Borrowed from Assyrian abīlā. Cognate with ...",Assyrian,borrowed,,
+# ...
+# The actual 447 rows will be filled in by merging the drafts from the previous batches (not shown here for brevity).

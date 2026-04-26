@@ -1,0 +1,99 @@
+=== անուն ===
+BEFORE:
+[]
+AFTER:
+[
+  {
+    "text": "From Old Armenian անուն (anun). From Proto-Indo-European *h₃néh₃mn ('name'). Cognate with Latin nōmen, English name, Greek όνομα (ónoma).",
+    "relation": "inherited",
+    "source": "PIE restoration",
+    "source_language": "Proto-Indo-European"
+  }
+]
+
+=== ատամ ===
+BEFORE:
+[]
+AFTER:
+[
+  {
+    "text": "From Old Armenian ատամն (atamn). From Proto-Indo-European *h₃dónts ('tooth'). Cognate with Latin dēns, English tooth, Greek δόντι (dónti).",
+    "relation": "inherited",
+    "source": "PIE restoration",
+    "source_language": "Proto-Indo-European"
+  }
+]
+
+=== հայր ===
+BEFORE:
+[
+  {
+    "text": "Learned borrowing from Old Armenian հայր.",
+    "relation": "unknown",
+    "source": ""
+  }
+]
+AFTER:
+[
+  {
+    "text": "From Old Armenian հայր (hayr). From Proto-Indo-European *ph₂tḗr ('father'). Cognate with Latin pater, English father, Greek πατέρας (patéras).",
+    "relation": "inherited",
+    "source": "PIE restoration",
+    "source_language": "Proto-Indo-European"
+  },
+  {
+    "text": "Learned borrowing from Old Armenian հայր.",
+    "relation": "unknown",
+    "source": ""
+  }
+]
+
+=== մայր ===
+BEFORE:
+[
+  {
+    "text": "From Old Armenian մայր. Etymology needs further research.",
+    "relation": "ultimate-batch",
+    "source": "comprehensive_etymology"
+  }
+]
+AFTER:
+[
+  {
+    "text": "From Old Armenian մայր (mayr). From Proto-Indo-European *méh₂tēr ('mother'). Cognate with Latin māter, English mother, Greek μητέρα (mitéra).",
+    "relation": "inherited",
+    "source": "PIE restoration",
+    "source_language": "Proto-Indo-European"
+  },
+  {
+    "text": "From Old Armenian մայր. Etymology needs further research.",
+    "relation": "ultimate-batch",
+    "source": "comprehensive_etymology"
+  }
+]
+
+=== սիրտ ===
+BEFORE:
+[
+  {
+    "text": "From .",
+    "relation": "unknown",
+    "source": "wikitext",
+    "source_language": ""
+  }
+]
+AFTER:
+[
+  {
+    "text": "From Old Armenian սիրտ (sirt). From Proto-Indo-European *ḱḗr ('heart'). Cognate with Latin cor, English heart, Greek καρδιά (kardiá).",
+    "relation": "inherited",
+    "source": "PIE restoration",
+    "source_language": "Proto-Indo-European"
+  },
+  {
+    "text": "From .",
+    "relation": "unknown",
+    "source": "wikitext",
+    "source_language": ""
+  }
+]

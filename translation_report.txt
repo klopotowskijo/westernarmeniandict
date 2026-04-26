@@ -1,0 +1,55 @@
+Words updated: 42
+Failed translations: 58
+Failed words: ագաթ, ազբ, աղջիկ, անգ, անել, անութ, աչք, ապուր, ասք, ավլել, արոս, արև, բակ, բայ, բանել, բաննա, բառ, բեհեզ, բեյթ, բղուղ, բմբուլ, բազմանալ, բաժանորդ, բալատուր, բաղկանալ, բաղձալ, բաղձանք, բաղնիք, բարեկամ, բարևել, բացառել, բացել, բժշկել, բյուրեղյա, բյուրեղացնել, բնություն, բնութագիր, բնութագրել, բնութագիրք, բնութագիրություն, բնութագիրական, բնութագիրականություն, բնութագիրականորեն, այծքաղ, այպանել, այտուց, այրիլ, այցելել, անամօթ, անայլայլ, անարգ, անարգանք, անարգել, անբասիր, անգութ, անդեորդ, անդոհանք, անդրուար
+
+Sample before/after (10):
+--- աբեղա ---
+Armenian: Փոխառություն ասորերեն abīlā բառից։
+English: Borrowed from the Assyrian word abīlā.
+Merged: {"text": "Borrowed from the Assyrian word abīlā. (Armenian: Փոխառություն ասորերեն abīlā բառից։)", "relation": "borrowed", "source": "hy.wiktionary.org (translated)"}
+
+--- ախտ ---
+Armenian: Բնիկ Հայերեն բառ։
+English: Native Armenian word.
+Merged: {"text": "Native Armenian word. (Armenian: Բնիկ Հայերեն բառ։)", "relation": "inherited", "source": "hy.wiktionary.org (translated)"}
+
+--- ականջ ---
+Armenian: Հավանաբար բնիկ հնդեվրոպական ծագում ունի, բայց ճիշտ ձևի վերականգնումը դժվարություններ է հարուցում։
+English: It is probably of indigenous Indo-European origin, but reconstructing the correct form is difficult.
+Merged: {"text": "It is probably of indigenous Indo-European origin, but reconstructing the correct form is difficult. (Armenian: Հավանաբար բնիկ հնդեվրոպական ծագում ունի, բայց ճիշտ ձևի վերականգնումը դժվարություններ է հարուցում։)", "relation": "borrowed", "source": "hy.wiktionary.org (translated)"}
+
+--- աղանձ ---
+Armenian: Թերևս բնիկ հնդեվրոպական՝  polntio՝  pel- «ալյուր, փոշի, ալյուրից շիլա». հմմտ. հայերեն աղանդեր , բարբառային աղանձ «փշրված կորկոտ», հին հնդկերեն palala «տրորած քունջութ»։
+English: Perhaps native Indo-European: polntio: pel- "flour, powder, flour porridge". cf. Armenian aghander, dialectal aghandz "crushed semolina", Old Indic palala "crushed sesame".
+Merged: {"text": "Perhaps native Indo-European: polntio: pel- \"flour, powder, flour porridge\". cf. Armenian aghander, dialectal aghandz \"crushed semolina\", Old Indic palala \"crushed sesame\". (Armenian: Թերևս բնիկ հնդեվրոպական՝  polntio՝  pel- «ալյուր, փոշի, ալյուրից շիլա». հմմտ. հայերեն աղանդեր , բարբառային աղանձ «փշրված կորկոտ», հին հնդկերեն palala «տրորած քունջութ»։)", "relation": "borrowed", "source": "hy.wiktionary.org (translated)"}
+
+--- աղոթք ---
+Armenian: Բնիկ հնդեվրոպական՝  olьu-ti-   el- բնաձայնական արմատից. հմմտ. հայերեն աղաչել, ողոքել , լիտվերեն nu-aldéti «հնչել»։
+English: Native Indo-European: from the phonetic root olьu-ti- el-. cf. Armenian to beg, to lament, Lithuanian nu-aldéti "to sound".
+Merged: {"text": "Native Indo-European: from the phonetic root olьu-ti- el-. cf. Armenian to beg, to lament, Lithuanian nu-aldéti \"to sound\". (Armenian: Բնիկ հնդեվրոպական՝  olьu-ti-   el- բնաձայնական արմատից. հմմտ. հայերեն աղաչել, ողոքել , լիտվերեն nu-aldéti «հնչել»։)", "relation": "inherited", "source": "hy.wiktionary.org (translated)"}
+
+--- ամիս ---
+Armenian: Առաջացել է բնիկ հնդեվրոպական meñsos- արմատից։ Համեմատել հին հնդկերեն mãsa «լուսին, ամիս», հունարեն, հոներեն μείς, դորիական μής, լատիներեն meñsis, ռուսերեն месяц ամիս․ հայերենի ա- հավելվածը բացատրվում է կամ որպես ամ՝ «տարի» բառի ազդեցություն կամ որպես նախնական կոկորդայինի արտացոլում։
+English: Derived from the native Indo-European root meñsos-. Compare Old Indic mãsa "moon, month", Greek, Honshic μείς, Doric μής, Latin meñsis, Russian месяц month. The Armenian suffix a- is explained either as an influence of the word am, "year", or as a reflection of an initial laryngeal.
+Merged: {"text": "Derived from the native Indo-European root meñsos-. Compare Old Indic mãsa \"moon, month\", Greek, Honshic μείς, Doric μής, Latin meñsis, Russian месяц month. The Armenian suffix a- is explained either as an influence of the word am, \"year\", or as a reflection of an initial laryngeal. (Armenian: Առաջացել է բնիկ հնդեվրոպական meñsos- արմատից։ Համեմատել հին հնդկերեն mãsa «լուսին, ամիս», հունարեն, հոներեն μείς, դորիական μής, լատիներեն meñsis, ռուսերեն месяц ամիս․ հայերենի ա- հավելվածը բացատրվում է կամ որպես ամ՝ «տարի» բառի ազդեցություն կամ որպես նախնական կոկորդայինի արտացոլում։)", "relation": "borrowed", "source": "hy.wiktionary.org (translated)"}
+
+--- ամպ ---
+Armenian: Բնիկ հնդեվրոպական՝  nbhó-,  mbhó- «ամպ» արմատից. հմմտ. հին հնդկերեն nábhas «ամպ, երկինք, մթնոլորտ», հին բարբառային գերմաներեն nebul, գերմաներեն Nebel «մշուշ», հին իռլանդերեն nem, կիմրերեն nef «երկինք», պարսկերեն nam «խոնավ» և այլն։
+English: Native Indo-European: from the root nbhó-, mbhó- "cloud". cf. Old Indic nábhas "cloud, sky, atmosphere", Old Dialectal German nebul, German Nebel "fog", Old Irish nem, Cymraeg nef "sky", Persian nam "moist", etc.
+Merged: {"text": "Native Indo-European: from the root nbhó-, mbhó- \"cloud\". cf. Old Indic nábhas \"cloud, sky, atmosphere\", Old Dialectal German nebul, German Nebel \"fog\", Old Irish nem, Cymraeg nef \"sky\", Persian nam \"moist\", etc. (Armenian: Բնիկ հնդեվրոպական՝  nbhó-,  mbhó- «ամպ» արմատից. հմմտ. հին հնդկերեն nábhas «ամպ, երկինք, մթնոլորտ», հին բարբառային գերմաներեն nebul, գերմաներեն Nebel «մշուշ», հին իռլանդերեն nem, կիմրերեն nef «երկինք», պարսկերեն nam «խոնավ» և այլն։)", "relation": "inherited", "source": "hy.wiktionary.org (translated)"}
+
+--- այտ ---
+Armenian: Բնիկ հնդեվրոպական՝  oid- «ուռչել» արմատից. հմմտ. հունարեն οίδέω՝ «ուռչել»։
+English: Native Indo-European: from the root oid- "to swell". cf. Greek οίδέω: "to swell".
+Merged: {"text": "Native Indo-European: from the root oid- \"to swell\". cf. Greek οίδέω: \"to swell\". (Armenian: Բնիկ հնդեվրոպական՝  oid- «ուռչել» արմատից. հմմտ. հունարեն οίδέω՝ «ուռչել»։)", "relation": "inherited", "source": "hy.wiktionary.org (translated)"}
+
+--- անիծ ---
+Armenian: Բնիկ հնդեվրոպական՝  knid-s արմատից. հմմտ. ալբաներեն thëni, հունարեն κονις, -ίδες, միջին իռլանդերեն sned, հին անգլերեն hnitu «անիծ»։
+English: Native Indo-European: from the root knid-s. cf. Albanian thëni, Greek κονις, -ίδες, Middle Irish sned, Old English hnitu "curse".
+Merged: {"text": "Native Indo-European: from the root knid-s. cf. Albanian thëni, Greek κονις, -ίδες, Middle Irish sned, Old English hnitu \"curse\". (Armenian: Բնիկ հնդեվրոպական՝  knid-s արմատից. հմմտ. ալբաներեն thëni, հունարեն κονις, -ίδες, միջին իռլանդերեն sned, հին անգլերեն hnitu «անիծ»։)", "relation": "inherited", "source": "hy.wiktionary.org (translated)"}
+
+--- անձ ---
+Armenian: Առաջացել է բնիկ հնդեվրոպական anghen-՝ «շունչ, անձ» արմատից։ Համեմատել հարավիռլանդերեն angi «հոտ, բույր» բառի հետ։ լատ․ persona
+English: Derived from the native Indo-European root anghen-, "breath, person". Compare with the Southern Irish word angi "smell, aroma". Latin persona
+Merged: {"text": "Derived from the native Indo-European root anghen-, \"breath, person\". Compare with the Southern Irish word angi \"smell, aroma\". Latin persona (Armenian: Առաջացել է բնիկ հնդեվրոպական anghen-՝ «շունչ, անձ» արմատից։ Համեմատել հարավիռլանդերեն angi «հոտ, բույր» բառի հետ։ լատ․ persona)", "relation": "borrowed", "source": "hy.wiktionary.org (translated)"}
+

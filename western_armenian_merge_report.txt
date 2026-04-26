@@ -1,0 +1,51 @@
+Total entries: 35978
+Nayiri/Martirosyan etymologies: 0
+Calfa etymologies: 5576
+Wiktionary etymologies: 16363
+Entries with no etymology: 13897
+
+Sample Calfa entries (before/after):
+
+աբեթ
+BEFORE: [{'text': 'ՓՈԽ.-Վրաց. աբեդի «աբեթ» (տե՛ս Ա-ճառ. Բազմ. 1898 225բ և Արրտ. 1898, 370բ), մինգր. օբեդ «աբեթ», սվան. հաբե-դի, հոբեդ «աբեթ», Մառ ИАН 1918, էջ 339 այս բառերը համարում է bed «վառել» ար-մատից. հմմտ. սվան. libdine «վառել», եթէ այսպէս է, ուրեմն բառը բնիկ Կովկա-ռեան կդառնայ և հետևաբար հայ ձևը կլինի վրացականից փոխառեալ։ Առ այժմ այս ստուգաբանութիւնը անհաստատ է թւում մեզ։ / [Non-English or unclear etymology removed.].', 'relation': 'comparison', 'source': 'Calfa lexical-databases: etymology/etymology01.xml'}]
+AFTER: [{'text': 'ՓՈԽ.-Վրաց. աբեդի «աբեթ» (տե՛ս Ա-ճառ. Բազմ. 1898 225բ և Արրտ. 1898, 370բ), մինգր. օբեդ «աբեթ», սվան. հաբե-դի, հոբեդ «աբեթ», Մառ ИАН 1918, էջ 339 այս բառերը համարում է bed «վառել» ար-մատից. հմմտ. սվան. libdine «վառել», եթէ այսպէս է, ուրեմն բառը բնիկ Կովկա-ռեան կդառնայ և հետևաբար հայ ձևը կլինի վրացականից փոխառեալ։ Առ այժմ այս ստուգաբանութիւնը անհաստատ է թւում մեզ։ / [Non-English or unclear etymology removed.].', 'relation': 'comparison', 'source': 'Calfa lexical-databases: etymology/etymology01.xml'}]
+
+ագատ
+BEFORE: [{'text': 'From Old Armenian ագատ. Etymology needs further research.', 'relation': 'final-batch', 'source': 'remaining_words_handler'}, {'text': "= արաբ. [arabic word] 'aqd «կապ, պսակ, մանե-ակ», [arabic word] 'uqda «կապ, հանգոյց», յգ. [arabic word] *uoad, 'əqd «կապեր, հանգոյցներ»։ Աճ.", 'relation': 'unknown', 'source': 'Calfa lexical-databases: etymology/etymology01.xml'}]
+AFTER: [{'text': 'From Old Armenian ագատ. Etymology needs further research.', 'relation': 'final-batch', 'source': 'remaining_words_handler'}, {'text': "= արաբ. [arabic word] 'aqd «կապ, պսակ, մանե-ակ», [arabic word] 'uqda «կապ, հանգոյց», յգ. [arabic word] *uoad, 'əqd «կապեր, հանգոյցներ»։ Աճ.", 'relation': 'unknown', 'source': 'Calfa lexical-databases: etymology/etymology01.xml'}]
+
+ազապ
+BEFORE: [{'text': 'From Old Armenian ազապ. Etymology needs further research.', 'relation': 'comprehensive', 'source': 'final_batch'}, {'text': "= արաբ. [hebrew word] 'azāb, որից փոխառեալ են նաև թրք. azab, քրդ. azeb, նոյն նշ. ըստ այսմ մեր բառը գրելի էր ազաբ, ինչպես հնչում են զանազան գաւառականներ։ -Հիւբշ. 261։ / [Non-English or unclear etymology removed.].", 'relation': 'unknown', 'source': 'Calfa lexical-databases: etymology/etymology01.xml'}]
+AFTER: [{'text': 'From Old Armenian ազապ. Etymology needs further research.', 'relation': 'comprehensive', 'source': 'final_batch'}, {'text': "= արաբ. [hebrew word] 'azāb, որից փոխառեալ են նաև թրք. azab, քրդ. azeb, նոյն նշ. ըստ այսմ մեր բառը գրելի էր ազաբ, ինչպես հնչում են զանազան գաւառականներ։ -Հիւբշ. 261։ / [Non-English or unclear etymology removed.].", 'relation': 'unknown', 'source': 'Calfa lexical-databases: etymology/etymology01.xml'}]
+
+ազգ
+BEFORE: [{'text': '= փոխառեալ պհլ. [arabic word] azg «ճիւղ» բա-ռից, որ ծագում է հնխ. azgho «ճիւղ» ձե-վից և որի այլ ժառանգներն են յն. ὄσχος, ὄσχη, ωσχη «ճիւղ, ծիլ, ընձիւղ». պհլ. բառի շարունակութիւնն է պրս. [arabic word] āzaγ կամ azaγ, [arabic word] azax «յօտեցեալ այրելի ճիւղք որթոց» (տե՛ս Pokorny, 1, 185)։ / [Non-English or unclear etymology removed.].', 'relation': 'unknown', 'source': 'Calfa lexical-databases: etymology/etymology01.xml'}]
+AFTER: [{'text': '= փոխառեալ պհլ. [arabic word] azg «ճիւղ» բա-ռից, որ ծագում է հնխ. azgho «ճիւղ» ձե-վից և որի այլ ժառանգներն են յն. ὄσχος, ὄσχη, ωσχη «ճիւղ, ծիլ, ընձիւղ». պհլ. բառի շարունակութիւնն է պրս. [arabic word] āzaγ կամ azaγ, [arabic word] azax «յօտեցեալ այրելի ճիւղք որթոց» (տե՛ս Pokorny, 1, 185)։ / [Non-English or unclear etymology removed.].', 'relation': 'unknown', 'source': 'Calfa lexical-databases: etymology/etymology01.xml'}]
+
+ազդ
+BEFORE: [{'text': "= հպրս. azdā «լուր» (օր. karahyā naiy azda abava չեղև ազդ ժողովրդեան). պհլ. azd «լուր» (օր. Arjāsp azd mat ազդ եղև Արջասպայ. Geigar, Tatkār i Zarirān, էջ 48) մանիք. պհլ. azd «յայտարարել», az-degar «ծանուցող, տեղեկաբեր» (Salemann ЗAH 8 (1908), էջ 51), աֆղան. zda, սանս-addha «ապահով, ստոյգ, հաստատ»։ Իրա-նեան բառը պէտք է ունեցած լինի նաև մեր «ներգործութիւն, ուժ» նշանակութիւնը։ Պահլաւերէնի միջոցով բառը փոխառու-թեամբ անցել է նաև արամերէնի՝ [hebrew word] azd կամ [hebrew word] azdā ձևով, այս բառը նշանա-կում է նախ «ազդ, լուր». օր. azd hn yt'bd «ազդ եղև» ZAPh. 2, 265, երկրորդ՝ գոր-ծածուած է Դան. բ. 5. millətā minni azdā աւստեղ բառի իմաստն անորոշ է. յոյն թարգմանութիւնն ունի ό λόγος ἀπ' ἐμοῦ λτεστη. հալը՝ բանն վերացաւ յինեն. Վուլ-գատան՝ Sermo recessit a me. որով azdā կլինի «λόγος, բան (խոսք), sermo»։ Սակայն Mö̈ldeke (տե՛ս Schrader, Die keilinsrhr u. d. alte Test. Giessen 1872. 6171 հա-նում է պրս. azda «ապահով, ստոլգ, հաս-կլինի «իմ խօսքս հաստատ, անդառնալի է». այսպէսով արամ. azdā նոյնանում է մեր ազդու բառի հետ։ / [Non-English or unclear etymology removed.].", 'relation': 'unknown', 'source': 'Calfa lexical-databases: etymology/etymology01.xml'}, {'text': 'ՓՈԽ.-Lag. Ges. Abhd. 186 յունաց ա-ւանդած ἀζαβαρίτης ձևը սրբագրելով «ζδαβαρι-της հասկանում է հյ. ազդաբեր։-Ան-բացասականի պատճառով մեզանից են փոխառեալ վրաց. անազդի, անազդեուլի «իսկոյն, անմիջապէս, յանկարծաևան». անազդադ, անազդեուլադ «յանկարծական, անմիջապէս», որոնք ծագում են հլ. ան-ազդ (հմմտ. յ-ան-կարծ) ձևից. այս բա-ռը գործածուած է Ոսկ. մ. ա. 13 «յեղակարծ, յանկարծահաս» նշանակութեամբ՝ որ նրա հետ նոյն է։ / [Non-English or unclear etymology removed.].', 'relation': 'comparison', 'source': 'Calfa lexical-databases: etymology/etymology01.xml'}]
+AFTER: [{'text': "= հպրս. azdā «լուր» (օր. karahyā naiy azda abava չեղև ազդ ժողովրդեան). պհլ. azd «լուր» (օր. Arjāsp azd mat ազդ եղև Արջասպայ. Geigar, Tatkār i Zarirān, էջ 48) մանիք. պհլ. azd «յայտարարել», az-degar «ծանուցող, տեղեկաբեր» (Salemann ЗAH 8 (1908), էջ 51), աֆղան. zda, սանս-addha «ապահով, ստոյգ, հաստատ»։ Իրա-նեան բառը պէտք է ունեցած լինի նաև մեր «ներգործութիւն, ուժ» նշանակութիւնը։ Պահլաւերէնի միջոցով բառը փոխառու-թեամբ անցել է նաև արամերէնի՝ [hebrew word] azd կամ [hebrew word] azdā ձևով, այս բառը նշանա-կում է նախ «ազդ, լուր». օր. azd hn yt'bd «ազդ եղև» ZAPh. 2, 265, երկրորդ՝ գոր-ծածուած է Դան. բ. 5. millətā minni azdā աւստեղ բառի իմաստն անորոշ է. յոյն թարգմանութիւնն ունի ό λόγος ἀπ' ἐμοῦ λτεστη. հալը՝ բանն վերացաւ յինեն. Վուլ-գատան՝ Sermo recessit a me. որով azdā կլինի «λόγος, բան (խոսք), sermo»։ Սակայն Mö̈ldeke (տե՛ս Schrader, Die keilinsrhr u. d. alte Test. Giessen 1872. 6171 հա-նում է պրս. azda «ապահով, ստոլգ, հաս-կլինի «իմ խօսքս հաստատ, անդառնալի է». այսպէսով արամ. azdā նոյնանում է մեր ազդու բառի հետ։ / [Non-English or unclear etymology removed.].", 'relation': 'unknown', 'source': 'Calfa lexical-databases: etymology/etymology01.xml'}, {'text': 'ՓՈԽ.-Lag. Ges. Abhd. 186 յունաց ա-ւանդած ἀζαβαρίτης ձևը սրբագրելով «ζδαβαρι-της հասկանում է հյ. ազդաբեր։-Ան-բացասականի պատճառով մեզանից են փոխառեալ վրաց. անազդի, անազդեուլի «իսկոյն, անմիջապէս, յանկարծաևան». անազդադ, անազդեուլադ «յանկարծական, անմիջապէս», որոնք ծագում են հլ. ան-ազդ (հմմտ. յ-ան-կարծ) ձևից. այս բա-ռը գործածուած է Ոսկ. մ. ա. 13 «յեղակարծ, յանկարծահաս» նշանակութեամբ՝ որ նրա հետ նոյն է։ / [Non-English or unclear etymology removed.].', 'relation': 'comparison', 'source': 'Calfa lexical-databases: etymology/etymology01.xml'}]
+
+Sample Nayiri entries (before/after):
+
+Entries with no etymology (first 20):
+-ոջ
+-ուճ
+-ույր
+-չի
+-պատիկ
+Աբգար
+Աիդա
+Ալադին
+Ալասքա
+Ալբինա
+Ալյասկա
+Ալպեր
+Ախալցխա
+Աղձնիք
+Ամիրան
+Այրարատ
+Անակ
+Անժելա
+Ապիրատ
+Ապոլլոն

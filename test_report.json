@@ -1,0 +1,43 @@
+{
+  "xml": "/Users/jdklopotowski/Downloads/western-armenian-etymology-main-root-/sources/calfa-etymology/etymology01.xml",
+  "source_url": "https://raw.githubusercontent.com/calfa-co/lexical-databases/main/etymology/etymology01.xml",
+  "entries_total": 11326,
+  "entries_with_etymology": 0,
+  "entries_with_borrowing_notes": 1060,
+  "etymology_rows": 0,
+  "section_counts": {
+    "egal": 0,
+    "ՓՈԽ": 0,
+    "ԳՒՌ": 2661,
+    "indent_content": 7440
+  },
+  "staged_json": "test_staged.json",
+  "etymology_jsonl": "test_etymology.jsonl",
+  "sample_titles": [
+    "3ԱՆԴԻՄԱՆ",
+    "3ԱՆԴՈՒԳՆ",
+    "IԾՈՒՐՔ",
+    "XԱԳԱՆ",
+    "ԱԱԴԵՄՈՎԹ",
+    "ԱԱԼՈՒՍԱՆ",
+    "ԱԱԿԱՐԱՆ",
+    "ԱԱՄՐ",
+    "ԱԱՐԱՏԱԿ",
+    "ԱԲ",
+    "ԱԲԲԱ",
+    "ԱԲԲԱՆԱ",
+    "ԱԲԲՈԿ",
+    "ԱԲԲՈՐ",
+    "ԱԲԵԹ",
+    "ԱԲԵՂԱՅ",
+    "ԱԲԵՂԲԻ",
+    "ԱԲԻՈՆ",
+    "ԱԲԽՈՌ",
+    "ԱԲՈՔ",
+    "ԱԲՐԱՅ",
+    "ԱԳԱՀ",
+    "ԱԳԱՆ",
+    "ԱԳԱՆԻՄ",
+    "ԱԳԱՆՈՎԹ"
+  ]
+}

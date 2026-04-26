@@ -1,10 +1,331 @@
 {
-  "total_entries": 24670,
-  "already_meaningful": 24493,
-  "weak_replaced": 0,
-  "missing_filled": 0,
-  "still_missing": 177,
-  "high_confidence": 0,
-  "medium_confidence": 0,
-  "examples": []
+  "total_entries": 35978,
+  "already_meaningful": 20264,
+  "weak_replaced": 74,
+  "missing_filled": 2258,
+  "still_missing": 13382,
+  "high_confidence": 1148,
+  "medium_confidence": 1184,
+  "examples": [
+    {
+      "title": "Հեքիմյան",
+      "prefix": null,
+      "root": "հեքիմ",
+      "suffix": "յան",
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "ագահություն",
+      "prefix": null,
+      "root": "ագահ",
+      "suffix": "ություն",
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "ազատություն",
+      "prefix": null,
+      "root": "ազատ",
+      "suffix": "ություն",
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "ազգաբան",
+      "prefix": null,
+      "root": "ազգ",
+      "suffix": "աբան",
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "ազգական",
+      "prefix": null,
+      "root": "ազգ",
+      "suffix": "ական",
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "ախտաբան",
+      "prefix": null,
+      "root": "ախտ",
+      "suffix": "աբան",
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "աղահանք",
+      "prefix": null,
+      "root": "աղահ",
+      "suffix": "անք",
+      "root_attested": false,
+      "confidence": "medium"
+    },
+    {
+      "title": "աղամող",
+      "prefix": null,
+      "root": "աղամ",
+      "suffix": "ող",
+      "root_attested": false,
+      "confidence": "medium"
+    },
+    {
+      "title": "աղանդավորություն",
+      "prefix": null,
+      "root": "աղանդավոր",
+      "suffix": "ություն",
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "աղբանոց",
+      "prefix": null,
+      "root": "աղբ",
+      "suffix": "անոց",
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "աղքատանոց",
+      "prefix": null,
+      "root": "աղքատ",
+      "suffix": "անոց",
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "ամբարհավաճություն",
+      "prefix": null,
+      "root": "ամբարհավաճ",
+      "suffix": "ություն",
+      "root_attested": false,
+      "confidence": "medium"
+    },
+    {
+      "title": "ամերիկացի",
+      "prefix": "ամե",
+      "root": "րիկա",
+      "suffix": "ցի",
+      "root_attested": false,
+      "confidence": "medium"
+    },
+    {
+      "title": "այբբենարան",
+      "prefix": null,
+      "root": "այբբեն",
+      "suffix": "արան",
+      "root_attested": false,
+      "confidence": "medium"
+    },
+    {
+      "title": "անասուն",
+      "prefix": "ան",
+      "root": "ասուն",
+      "suffix": null,
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "անդրուար",
+      "prefix": "ան",
+      "root": "դրուար",
+      "suffix": null,
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "անելիք",
+      "prefix": "ան",
+      "root": "ելիք",
+      "suffix": null,
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "աներկյուղանալ",
+      "prefix": "ան",
+      "root": "երկյուղա",
+      "suffix": "նալ",
+      "root_attested": false,
+      "confidence": "medium"
+    },
+    {
+      "title": "անիոն",
+      "prefix": "ան",
+      "root": "իոն",
+      "suffix": null,
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "անհամեստություն",
+      "prefix": "ան",
+      "root": "համեստ",
+      "suffix": "ություն",
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "անուշահոտություն",
+      "prefix": "ան",
+      "root": "ուշահոտ",
+      "suffix": "ություն",
+      "root_attested": false,
+      "confidence": "medium"
+    },
+    {
+      "title": "անուր",
+      "prefix": "ան",
+      "root": "ուր",
+      "suffix": null,
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "անսարքություն",
+      "prefix": "ան",
+      "root": "սարք",
+      "suffix": "ություն",
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "անվրդովություն",
+      "prefix": "ան",
+      "root": "վրդով",
+      "suffix": "ություն",
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "ապաշրջափակում",
+      "prefix": "ապա",
+      "root": "շրջափակում",
+      "suffix": null,
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "ապաստարան",
+      "prefix": "ապա",
+      "root": "ստ",
+      "suffix": "արան",
+      "root_attested": false,
+      "confidence": "medium"
+    },
+    {
+      "title": "ապատեղեկատվություն",
+      "prefix": "ապա",
+      "root": "տեղեկատվ",
+      "suffix": "ություն",
+      "root_attested": false,
+      "confidence": "medium"
+    },
+    {
+      "title": "ապրանք",
+      "prefix": null,
+      "root": "ապր",
+      "suffix": "անք",
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "ավերանք",
+      "prefix": null,
+      "root": "ավեր",
+      "suffix": "անք",
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "ավիահաղորդակցություն",
+      "prefix": null,
+      "root": "ավիահաղորդակց",
+      "suffix": "ություն",
+      "root_attested": false,
+      "confidence": "medium"
+    },
+    {
+      "title": "ատյան",
+      "prefix": null,
+      "root": "ատ",
+      "suffix": "յան",
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "արգանդափող",
+      "prefix": null,
+      "root": "արգանդափ",
+      "suffix": "ող",
+      "root_attested": false,
+      "confidence": "medium"
+    },
+    {
+      "title": "արծաթասիրություն",
+      "prefix": null,
+      "root": "արծաթասիր",
+      "suffix": "ություն",
+      "root_attested": false,
+      "confidence": "medium"
+    },
+    {
+      "title": "արհեստանոց",
+      "prefix": null,
+      "root": "արհեստ",
+      "suffix": "անոց",
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "արհեստավոր",
+      "prefix": null,
+      "root": "արհեստ",
+      "suffix": "ավոր",
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "արձագանք",
+      "prefix": null,
+      "root": "արձագ",
+      "suffix": "անք",
+      "root_attested": false,
+      "confidence": "medium"
+    },
+    {
+      "title": "արշավանք",
+      "prefix": null,
+      "root": "արշավ",
+      "suffix": "անք",
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "արտագաղթ",
+      "prefix": "արտա",
+      "root": "գաղթ",
+      "suffix": null,
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "արտահոսք",
+      "prefix": "արտա",
+      "root": "հոսք",
+      "suffix": null,
+      "root_attested": true,
+      "confidence": "high"
+    },
+    {
+      "title": "արտասահմանցի",
+      "prefix": "արտա",
+      "root": "սահման",
+      "suffix": "ցի",
+      "root_attested": true,
+      "confidence": "high"
+    }
+  ]
 }

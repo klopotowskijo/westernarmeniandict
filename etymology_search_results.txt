@@ -1,0 +1,892 @@
+աբա:
+  Source: main
+  Field: etymology
+  Value: [{"text": "From .", "relation": "unknown", "source": "wikitext", "source_language": "Ottoman Turkish"}]
+
+աբանոս:
+  Source: main
+  Field: etymology
+  Value: [{"text": "From .", "relation": "unknown", "source": "wikitext", "source_language": ""}]
+
+աբասի:
+  Source: main
+  Field: etymology
+  Value: [{"text": "From .", "relation": "unknown", "source": "wikitext", "source_language": "Persian"}]
+
+աբեղա:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Alternative forms===
+{{col-top|2|dia}}
+* dialectal forms recorded in dialectological notation
+** {{alt|hy|աբՙէղա||կր}}
+** {{alt|hy|ապեղա||սլմ}}
+** {{alt|hy|ափէղա||պլ|ռ}}
+** {{alt|hy|ափիղա||տփ}}
+** {{alt|hy|ա̈պէղա|հա̈պէղա||մրղ}}
+* dialectal forms recorded in literary-like orthography
+** {{alt|hy|հաբեղա}}
+{{col-bottom}}
+
+===Etymology===
+{{inh+|hy|xcl|աբեղայ}}.
+
+===Pronunciation===
+{{hy-IPA}}
+* {{audio|hy|Hy-աբեղա.ogg|a=Eastern Armenian}}{{attn|hy|that audio starts and cuts kinda suudenly instead of leaving a short threshold of silence}}
+
+===Noun===
+{{wp|hy:}}
+{{hy-h|noun|TAO=աբեղայ}}
+
+# [[abegha]]
+# {{lb|hy|figuratively}} [[hermit]], [[recluse]]
+
+====Declension====
+{{hy-noun-ի-ներ|a=on}}
+
+====Derived terms====
+{{col|hy|աբեղաթող|աբեղախաղ|աբեղախոտ|աբեղաձագ|աբեղաճաշ|աբեղաջարդ|աբեղացու|աբեղուկ}}
+
+====Related terms====
+{{col|hy|աբեղայական|աբեղայակերպ|աբեղայություն}}
+
+====Descendants====
+* {{desc|en|abegha|bor=1}}
+
+===References===
+* {{R:xcl:HAB|vol=I|page=74b}}
+
+{{C|hy|Armenia|Christianity|Monasticism}}
+
+աբոլիցիոնիզմ:
+  Source: main
+  Field: etymology
+  Value: [{"text": "From .", "relation": "unknown", "source": "wikitext", "source_language": "Russian"}]
+
+աբոյ:
+  Source: main
+  Field: etymology
+  Value: [{"text": "From .", "relation": "unknown", "source": "wikitext", "source_language": "Russian"}]
+
+աբոնեմենտ:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Etymology===
+Borrowed from {{bor|hy|ru|абонеме́нт}}.
+
+===Pronunciation===
+{{hy-IPA}}
+* {{audio|hy|Hy-աբոնեմենտ.ogg|a=Eastern Armenian}}
+
+===Noun===
+{{hy-h|noun}}
+
+# [[subscription]]; [[season ticket]]
+#: {{syn|hy|բաժանորդագիր}}
+
+====Declension====
+{{hy-noun-ի-ներ}}
+
+====Derived terms====
+* {{l|hy|աբոնեմենտային}}
+
+====Related terms====
+* {{l|hy|աբոնենտ}}
+
+աբոնենտ:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Etymology===
+Borrowed from {{bor|hy|ru|абоне́нт}}.
+
+===Pronunciation===
+{{hy-IPA}}
+* {{audio|hy|Hy-աբոնենտ.ogg|a=Eastern Armenian}}
+
+===Noun===
+{{hy-h|noun}}
+
+# [[subscriber]]
+
+====Declension====
+{{hy-noun-ի-ներ}}
+
+====Synonyms====
+* {{l|hy|բաժանորդ}}
+
+====Related terms====
+* {{l|hy|աբոնենտ}}
+* {{l|hy|աբոնեմենտային}}
+
+աբորտ:
+  Source: main
+  Field: etymology
+  Value: [{"text": "From .", "relation": "unknown", "source": "wikitext", "source_language": "Russian"}]
+
+աբսոլյուտ:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Etymology===
+{{abor|hy|ru|абсолю́тный}}.
+
+===Pronunciation===
+{{hy-IPA|ափսոլյուտ|W=0}}
+* {{audio|hy|Hy-աբսոլյուտ.ogg|a=Eastern Armenian}}
+
+===Adjective===
+{{hy-adj}}
+
+# {{lb|hy|colloquial}} [[absolute]]
+#: {{syn|hy|բացարձակ}}
+
+====Declension====
+{{hy-noun-ի-ներ|n=on}}
+
+աբսոլյուտիզմ:
+  Source: main
+  Field: etymology
+  Value: [{"text": "From .", "relation": "unknown", "source": "wikitext", "source_language": "Russian"}]
+
+աբսորբել:
+  Source: main
+  Field: etymology
+  Value: [{"text": "From .", "relation": "unknown", "source": "wikitext", "source_language": "Latin"}]
+
+աբսուրդ:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Etymology===
+{{bor+|hy|ru|абсу́рд}}.
+
+===Pronunciation===
+{{hy-IPA|ափսուրդ|W=0}}
+* {{audio|hy|Hy-աբսուրդ.ogg|a=Eastern Armenian}}
+
+===Noun===
+{{hy-h|noun}}
+
+# [[absurdity]], [[nonsense]]
+#: {{syn|hy|անհեթեթություն}}
+
+====Declension====
+{{hy-noun-ի-ներ}}
+
+===Adjective===
+{{hy-adj||-}}
+
+# [[absurd]]
+#: {{syn|hy|անհեթեթ}}
+
+====Declension====
+{{hy-noun-ի-ներ|n=on}}
+
+աբստրակցիա:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Etymology===
+Borrowed from {{bor|hy|ru|абстра́кция}}.
+
+===Pronunciation===
+{{hy-IPA|ափստրակցիա|W=0}}
+* {{audio|hy|Hy-աբստրակցիա.ogg|a=Eastern Armenian}}
+
+===Noun===
+{{hy-h|noun}}
+
+# [[abstraction]]
+
+====Declension====
+{{hy-noun-ի-ներ}}
+
+աբստրահել:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Etymology===
+{{abor|hy|la|abstrahō}}.
+
+===Pronunciation===
+{{hy-IPA|ափստրահել}}
+* {{audio|hy|Hy-աբստրահել.ogg|a=Eastern Armenian}}
+
+===Verb===
+{{hy-h|verb}}
+
+# to [[abstract]]
+
+====Inflection====
+{{hy-conj-ել|mp=on}}
+
+ագաթ:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Alternative forms===
+* {{alter|hy|ագատ}}
+
+===Etymology===
+Ultimately from {{der|hy|grc|ἀχάτης}}.
+
+===Pronunciation===
+{{hy-IPA}}
+* {{audio|hy|Hy-ագաթ.ogg|a=Eastern Armenian}}
+* {{audio|hy|HyW-ագաթ.ogg|a=Western Armenian}}
+
+===Noun===
+{{hy-h|noun}}
+
+# [[agate]]
+#: {{syn|hy|աղեղ|q=dialectal}}
+
+====Declension====
+{{hy-noun-ի-ներ}}
+
+{{topics|hy|Gems}}
+
+ագահաբար:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Etymology===
+{{suffix|hy|ագահ|աբար|gloss1=greedy|gloss2=-ly}}.
+
+===Pronunciation===
+{{hy-IPA}}
+* {{audio|hy|Hy-ագահաբար.ogg|a=Eastern Armenian}}
+
+===Adverb===
+{{hy-h|adv}}
+
+# [[greedily]], [[avidly]]
+# [[eagerly]]
+
+ագահություն:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Alternative forms===
+* {{alter|hy|ագահութիւն||TAO}}
+
+===Etymology===
+From {{uder|hy|xcl|ագահութիւն}}. {{surf|hy|ագահ|-ություն}}.
+
+===Pronunciation===
+{{hy-IPA}}
+* {{audio|hy|Hy-ագահություն.ogg|a=Eastern Armenian}}
+
+===Noun===
+{{hy-h|noun}}
+
+# [[greed]], [[avarice]]
+
+====Declension====
+{{hy-noun-ություն}}
+
+ագարակ:
+  Source: main
+  Field: wikitext
+  Value: {{also|Ագարակ}}
+==Armenian==
+
+===Etymology===
+{{learned borrowing|hy|xcl|ագարակ}}.
+
+===Pronunciation===
+{{hy-IPA}}
+* {{audio|hy|Hy-ագարակ.ogg|a=Eastern Armenian}}
+* {{hyphenation|hy|ա|գա|րակ}}
+
+===Noun===
+{{hy-h|noun}}
+
+# [[farm]]; [[farmstead]]
+#: {{syn|hy|ֆերմա}}
+# {{lb|hy|historical}} landed [[estate]]
+#: {{syn|hy|կալվածք}}
+# {{lb|hy|historical}} single-[[homestead]] settlement, [[khutor]]
+
+====Declension====
+{{hy-noun-ի-ներ}}
+
+===Further reading===
+* {{R:hy:Sukiasyan:2009|page=5b}}
+* {{R:hy:Patmakan|page=5}}
+* {{R:hy:Aghayan}}
+* {{R:hy:HBB}}
+
+{{C|hy|Agriculture}}
+
+==Old Armenian==
+
+===Etymology===
+Probably borrowed from an unknown descendant of {{cog|ine-pro|*h₂éǵros}}. Has also been linked with {{cog|sux|𒀀𒃼|tr=A.GAR<sub>3</sub>}}, {{m|sux|𒅊|tr=AGAR<sub>4</sub>|ts=agar||field}}. Yet another proposal derives the word from {{uder|xcl|xhu|𒀀𒉿𒊑𒉿|tr=a-wi-ri-we|ts=awari-|t=field}}.
+
+===Noun===
+{{xcl-noun}}
+
+# landed property; [[estate]], a house with all possessions; [[village]]
+#: {{ux|xcl|ագարակ տեղիք|t=rural or country places|inline=1}}
+
+====Declension====
+{{xcl-noun-ի-ա}}
+
+====Derived terms====
+{{col|xcl
+|ագարակաբաշխ
+|ագարակային
+|ագարականամ
+|ագարակեմ
+|ագարակիկ
+}}
+
+====Descendants====
+* {{desc|hy|ագարակ|lbor=1}}
+* {{desctree|oge|აგარაკი|bor=1}}
+
+===Further reading===
+* {{R:xcl:Bedr}}
+* {{R:xcl:NHB}}
+* {{R:xcl:HAB}}
+* {{R:xcl:Martirosyan|agarak|page=4}}
+* {{R:xcl:Thorso:2023|page=20}}
+
+{{C|xcl|Agriculture}}
+
+ագուցահանել:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Etymology===
+{{denominal verb|hy|ագուցահան}}.
+
+===Pronunciation===
+{{hy-IPA}}
+* {{audio|hy|Hy-ագուցահանել.ogg|a=Eastern Armenian}}
+
+===Verb===
+{{hy-h|verb}}
+
+# to cut a [[groove]], [[rabbet]]
+
+====Inflection====
+{{hy-conj-ել|mp=on}}
+
+ագուցավորել:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Etymology===
+{{denominal verb|hy|ագուցավոր}}.
+
+===Pronunciation===
+{{hy-IPA}}
+* {{audio|hy|Hy-ագուցավորել.ogg|a=Eastern Armenian}}
+
+===Verb===
+{{hy-h|verb|TAO=ագուցաւորել}}
+
+# to [[groove]], [[match]], [[rabbet]]
+
+====Inflection====
+{{hy-conj-ել|mp=on}}
+
+ագուցել:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Alternative forms===
+* {{alt|hy|ագուցանել}}
+
+===Etymology===
+{{learned borrowing|hy|xcl|ագուցանեմ}}. {{doublet|hy|հագցնել}}.
+
+===Pronunciation===
+{{hy-IPA}}
+* {{audio|hy|Hy-ագուցել.ogg|a=Eastern Armenian}}
+* {{hyphenation|hy|ա|գու|ցել}}
+
+===Verb===
+{{hy-h|verb}}
+
+# {{lb|hy|transitive}} to [[fit in]], to [[joint]], to [[enchase]]
+
+====Conjugation====
+{{hy-conj-ել|mp=on}}
+
+===References===
+* {{R:hy:Kuyumjyan|ագուցանել}}
+
+ագրեգատավորել:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Etymology===
+{{denominal verb|hy|ագրեգատավոր}}.
+
+===Pronunciation===
+{{hy-IPA}}
+* {{audio|hy|Hy-ագրեգատավորել.ogg|a=Eastern Armenian}}
+
+===Verb===
+{{hy-h|verb}}
+
+# {{lb|hy|technology}} to [[aggregate]], [[unitize]], [[gang up]]
+
+====Inflection====
+{{hy-conj-ել|mp=on}}
+
+ագրեսիա:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Etymology===
+{{etymon|hy|:bor|ru:агре́ссия}}
+{{bor+|hy|ru|агре́ссия}}.
+
+===Pronunciation===
+{{hy-IPA|ագրե՛սիա}}
+* {{audio|hy|Hy-ագրեսիա.ogg|a=Eastern Armenian}}
+
+===Noun===
+{{wp|hy:+ (քաղաքականություն)}}
+{{hy-h|noun}}
+
+# [[aggression]]
+# {{lb|hy|international law}} [[war of aggression]]
+
+====Declension====
+{{hy-noun-ի-ներ}}
+
+===References===
+* {{R:hy:HBB}}
+* {{R:hy:Patmakan|page=5}}
+
+{{C|hy|War}}
+
+ադալաթ:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Etymology===
+{{bor+|hy|ota|عدالت|tr=ʿadālet}}.
+
+===Pronunciation===
+{{hy-IPA}}
+
+===Noun===
+{{hy-h|noun}} {{tlb|hy|dialectal|Ararat|Tbilisi|Urmia}}
+
+# [[justice]], [[fairness]]
+
+====Declension====
+{{rfinfl|hy}}
+
+ադամանդել:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Etymology===
+{{denominal verb|hy|ադամանդ}}.
+
+===Pronunciation===
+{{hy-IPA}}
+* {{audio|hy|Hy-ադամանդել.ogg|a=Eastern Armenian}}
+
+===Verb===
+{{hy-h|verb}}
+
+# {{lb|hy|rare|transitive}} to adorn with [[diamond]]s
+
+====Inflection====
+{{hy-conj-ել|mp=on}}
+
+ադաշ:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Alternative forms===
+* {{alt|hy|ատաշ||Western Armenian}}
+
+===Etymology===
+From {{bor|hy|ota|آداش|tr=adaş||namesake}} and {{bor|hy|az|adaş||namesake}}.
+
+===Pronunciation===
+{{hy-IPA|W=0}}
+
+===Noun===
+{{hy-h|noun}} {{lb|hy|dialectal|Ararat|Karabakh|Mush|Van|Karin|Nor Nakhichevan|Meghri}}
+
+# [[namesake]] {{gloss|person with the same name as another}}
+#: {{syn|hy|անվանակից}}
+
+====Declension====
+{{hy-noun-ի-ներ|a=on}}
+
+===References===
+* {{R:hy:Trq|ատաշ}}
+* {{R:hy:HLBB}}
+
+ազան:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Alternative forms===
+* {{alt|hy|էզան||պլ}}
+
+===Etymology===
+{{bor+|hy|az|azan}} and {{bor|hy|ota|اذان|tr=ezan}}, ultimately from {{der|hy|ar|أَذَان|t=call to prayer}}.
+
+===Pronunciation===
+{{hy-IPA}}
+* {{audio|hy|Hy-ազան.ogg}}
+
+===Noun===
+{{hy-h|noun}} 
+
+# {{lb|hy|Islam}} [[azan]], [[adhan]], a call by the [[mullah]] inviting to [[prayer]].
+# {{lb|hy|dialectal|figuratively}} a long, boring speech or monologue
+
+====Declension====
+{{hy-noun-ի-ներ}}
+
+===References===
+* {{R:hy:Trq|էզան|page=95}}
+* {{R:hy:HLBB}}
+* {{R:hy:Sargsyan|ա̈զա̈ն|page=29b}}
+
+ազատագնել:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Etymology===
+{{denominal verb|hy|ազատագին}}.
+
+===Pronunciation===
+{{hy-IPA|ազատագընել}}
+* {{audio|hy|Hy-ազատագնել.ogg|a=Eastern Armenian}}
+
+===Verb===
+{{hy-h|verb}}
+
+# {{lb|hy|transitive}} to [[ransom]]
+
+====Inflection====
+{{hy-conj-ել|mp=on}}
+
+ազատագրել:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Etymology===
+{{denominal verb|hy|ազատագիր}}.
+
+===Pronunciation===
+{{hy-IPA}}
+* {{audio|hy|Hy-ազատագրել.ogg|a=Eastern Armenian}}
+
+===Verb===
+{{hy-h|verb}}
+
+# to [[liberate]], [[set free]]; to [[emancipate]]
+
+====Inflection====
+{{hy-conj-ել|mp=on}}
+
+ազատազրկել:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Etymology===
+{{denominal verb|hy|ազատազուրկ}}.
+
+===Pronunciation===
+{{hy-IPA|ազատազըրկել}}
+* {{audio|hy|Hy-ազատազրկել.ogg|a=Eastern Armenian}}
+
+===Verb===
+{{hy-h|verb}}
+
+# to [[confine]], deprive of liberty, [[imprison]]
+
+====Inflection====
+{{hy-conj-ել|mp=on}}
+
+ազատել:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Etymology===
+{{inh+|hy|xcl|ազատեմ}}.
+
+===Pronunciation===
+{{hy-IPA}}
+* {{audio|hy|Hy-ազատել.ogg|a=Eastern Armenian}}
+
+===Verb===
+{{hy-h|verb}}
+
+# to [[free]]
+
+====Inflection====
+{{hy-conj-ել|mp=on}}
+
+ազատլամա:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Etymology===
+{{bor+|hy|ota|آزادلامه}}. Compare {{cog|tr|azatlamak}}.
+
+===Pronunciation===
+{{hy-IPA}}
+
+===Noun===
+{{head|hy|noun}}
+
+# {{tlb|hy|dialectal|Karin|Sebastia}} [[liberation]]
+# {{tlb|hy|dialectal}} [[divorce]]
+
+ազատություն:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Etymology===
+From {{uder|hy|xcl|ազատութիւն}}. {{surface analysis|hy|ազատ|-ություն}}.
+
+===Pronunciation===
+{{hy-IPA}}
+* {{audio|hy|Hy-ազատություն.ogg|a=Eastern Armenian}}
+
+===Noun===
+{{hy-h|noun|TAO=ազատութիւն}}
+
+# [[freedom]]
+
+====Declension====
+{{hy-noun-ություն}}
+{{hyw-noun-ութիւն|head=ազատութիւն}}
+
+ազգաբան:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Etymology===
+{{learned borrowing|hy|xcl|ազգաբան}}. {{surf|hy|ազգ|-ա-|-բան}}.
+
+===Pronunciation===
+{{hy-IPA}}
+* {{audio|hy|Hy-ազգաբան.ogg|a=Eastern Armenian}}
+
+===Noun===
+{{hy-h|noun}}
+
+# [[ethnologist]]
+# [[genealogist]]
+#: {{syn|hy|տոհմաբան|ծագումնաբան}}
+
+====Declension====
+{{hy-noun-ի-ներ|a=on}}
+{{hyw-noun-ի-ներ|a=on}}
+
+====Related terms====
+* {{l|hy|ազգաբանություն}}
+
+{{C|hy|Scientists}}
+
+ազգական:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Etymology===
+From {{uder|hy|xcl|ազգական}}. {{surf|hy|ազգ|-ական}}.
+
+===Pronunciation===
+{{hy-IPA}}
+* {{audio|hy|Hy-ազգական.ogg|a=Eastern Armenian}}
+
+===Noun===
+{{hy-h|noun}}
+
+# [[relation]], [[relative]]; [[kinsman]]; [[kinswoman]]; [[kindred]], [[kinsfolk]]
+
+====Declension====
+{{hy-noun-ի-ներ|a=on}}
+
+{{C|hy|Family}}
+
+ազդարարել:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Etymology===
+{{denominal verb|hy|ազդարար}}.
+
+===Pronunciation===
+{{hy-IPA}}
+* {{audio|hy|Hy-ազդարարել.ogg|a=Eastern Armenian}}
+
+===Verb===
+{{hy-h|verb}}
+
+# to [[announce]], to [[proclaim]], to [[advertise]] {{gloss|to give public notice of; to announce publicly}}
+
+====Inflection====
+{{hy-conj-ել|mp=on}}
+
+ազիկ:
+  Source: main
+  Field: etymology
+  Value: [{"text": "From .", "relation": "unknown", "source": "wikitext", "source_language": "Russian"}]
+
+ազոտ:
+  Source: main
+  Field: etymology
+  Value: [{"text": "From .", "relation": "unknown", "source": "wikitext", "source_language": "Russian"}]
+
+աժդահա:
+  Source: main
+  Field: etymology
+  Value: [{"text": "From .", "relation": "unknown", "source": "wikitext", "source_language": "Persian"}]
+
+ալաճա:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Etymology===
+{{bor+|hy|ota|آلاجه|tr=alaca}}. Compare {{cog|bg|аладжа}}, {{cog|tt|алача}}, {{cog|az|alaca}}.
+
+===Pronunciation===
+{{hy-IPA}}
+* {{audio|hy|Hy-ալաճա.ogg|a=Eastern Armenian}}
+
+===Adjective===
+{{hy-adj||-}} {{tlb|hy|dialect|Polis|Nor Nakhijevan|Van|Erzurum}}
+
+# [[multi-coloured]], [[piebald]]
+
+===References===
+* {{R:hy:Trq}}
+
+ալամ:
+  Source: main
+  Field: etymology
+  Value: [{"text": "From .", "relation": "unknown", "source": "wikitext", "source_language": "Arabic"}]
+
+ալբոմ:
+  Source: main
+  Field: etymology
+  Value: [{"text": "From .", "relation": "unknown", "source": "wikitext", "source_language": "Russian"}]
+
+ալբուխարա:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Alternative forms===
+* {{alter|hy|ալբուխարի|ալբուխար|ալիբուխարա|ալի պոխորա}}
+
+===Etymology===
+Ultimately from {{der|hy|fa|آلوی بخارا|tr=âlû'i buxârâ}}
+
+===Pronunciation===
+{{hy-IPA|W=0}}
+
+===Noun===
+{{hy-h|noun}}
+
+# [[alubukhara]]
+#: {{hyper|hy|սալորենի}}
+#* {{Q|hy||ԲԳՏ|page 4|quote=ալի պօխօրայ․ սուզինի|trans={{m|hy||ալի պօխօրայ}} = {{m|it|susini}}|refn=<ref>{{R:hy:Orengo:2019|page=214}}</ref>}}
+
+====Declension====
+{{hy-noun-ի-ներ}}
+
+===References===
+<references/>
+
+===Further reading===
+* {{R:hy:Sargsyan|ալբուխար(ի)|vol=I|page=15a}}
+* {{R:hy:Ptugh|vol=I|pages=147–148}}, citing as {{m|hy||ալբուխարի}}
+
+{{topics|hy|Fruits|Stone fruits}}
+
+ալիբի:
+  Source: main
+  Field: etymology
+  Value: [{"text": "From .", "relation": "unknown", "source": "wikitext", "source_language": "Russian"}]
+
+ալիշ-վերիշ:
+  Source: main
+  Field: wikitext
+  Value: ==Armenian==
+
+===Etymology===
+{{bor+|hy|ota|آلیش ویریش|tr=alışveriş}} and {{bor|hy|az|alış-veriş}}. Compare {{cog|tr|alışveriş}}.
+
+===Pronunciation===
+{{hy-IPA}}
+
+===Noun===
+{{head|hy|noun}}
+{{tlb|hy|dialectal|Ararat|Tbilisi|Karin|Karabakh|Van|Nor Nakhichevan}}
+
+# [[commerce]], [[trade]]
+#: {{syn|hy|առևտուր}}
+#: {{syn|hy|առուծախ}}
+
+ալկաշ:
+  Source: main
+  Field: etymology
+  Value: [{"text": "From .", "relation": "unknown", "source": "wikitext", "source_language": "Russian"}]
+
+ալկիոն:
+  Source: main
+  Field: etymology
+  Value: [{"text": "From .", "relation": "unknown", "source": "wikitext", "source_language": "Ancient Greek"}]
+
+ալկոգել:
+  Source: main
+  Field: etymology
+  Value: [{"text": "From .", "relation": "unknown", "source": "wikitext", "source_language": "Russian"}]
+
+ալմանախ:
+  Source: main
+  Field: etymology
+  Value: [{"text": "From .", "relation": "unknown", "source": "wikitext", "source_language": "Russian"}]
+

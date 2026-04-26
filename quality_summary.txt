@@ -1,0 +1,619 @@
+Total entries: 35978
+Suspicious entries: 35614
+Excellent etymologies: 42
+
+Score distribution:
+0-9: 6060
+10-19: 3632
+20-29: 1761
+30-39: 8593
+40-49: 1072
+50-59: 211
+60-69: 460
+70-79: 86
+80-89: 46
+90-99: 43
+100-109: 0
+
+Sample suspicious entries:
+-ա: Abstracted away from European female given names commonly ending in -''a''. (score=3.4) [structure_ok=, suspicious_length=False, has_english=True, has_source_lang=False, score=3.4]
+-ա-:  (score=0) [missing etymology structure]
+-աբար: From Old Armenian -abar (score=30.2) [structure_ok=hy.wiktionary.org (translated from Armenian), suspicious_length=False, has_english=True, has_source_lang=True, score=30.2]
+-ագին: From Old Armenian -agın (score=30.2) [structure_ok=hy.wiktionary.org (translated from Armenian), suspicious_length=False, has_english=True, has_source_lang=True, score=30.2]
+-ագույն: From Old Armenian -agon (score=30.2) [structure_ok=hy.wiktionary.org (translated from Armenian), suspicious_length=False, has_english=True, has_source_lang=True, score=30.2]
+-ած: From Old Armenian -ats (score=30.1) [structure_ok=hy.wiktionary.org (translated from Armenian), suspicious_length=False, has_english=True, has_source_lang=True, score=30.1]
+-ածո: From Old Armenian -adjective (score=30.5) [structure_ok=hy.wiktionary.org (translated from Armenian), suspicious_length=False, has_english=True, has_source_lang=True, score=30.5]
+-ածու: From Old Armenian - atsu. Forms nouns from past participles. (score=32.5) [structure_ok=hy.wiktionary.org (translated from Armenian), suspicious_length=False, has_english=True, has_source_lang=True, score=32.5]
+-ական: From Old Armenian -an (score=30.1) [structure_ok=hy.wiktionary.org (translated from Armenian), suspicious_length=False, has_english=True, has_source_lang=True, score=30.1]
+-ակերտ: From Old Armenian -akert (score=30.2) [structure_ok=hy.wiktionary.org (translated from Armenian), suspicious_length=False, has_english=True, has_source_lang=True, score=30.2]
+-ային: From Old Armenian -ayin (score=30.2) [structure_ok=hy.wiktionary.org (translated from Armenian), suspicious_length=False, has_english=True, has_source_lang=True, score=30.2]
+-ան: ultimately from axm -ան (score=0.2) [structure_ok=wikitext pattern extraction, suspicious_length=False, has_english=True, has_source_lang=False, score=0.2]
+-ան-: inherited from Old Armenian -ան- (score=20.8) [structure_ok=wikitext pattern extraction, suspicious_length=False, has_english=True, has_source_lang=True, score=20.8]
+-անակ: From Old Armenian -anak (score=30.2) [structure_ok=hy.wiktionary.org (translated from Armenian), suspicious_length=False, has_english=True, has_source_lang=True, score=30.2]
+-անի: From Old Armenian -ani (score=30.1) [structure_ok=hy.wiktionary.org (translated from Armenian), suspicious_length=False, has_english=True, has_source_lang=True, score=30.1]
+-անոց: From Old Armenian -anon (score=30.2) [structure_ok=hy.wiktionary.org (translated from Armenian), suspicious_length=False, has_english=True, has_source_lang=True, score=30.2]
+-անց: From Old Armenian Locative suffix meaning 'through, via'. (score=32.3) [structure_ok=hy.wiktionary.org (translated from Armenian), suspicious_length=False, has_english=True, has_source_lang=True, score=32.3]
+-անք: From the verbal suffix. Compare → , →. (score=21.1) [structure_ok=, suspicious_length=False, has_english=True, has_source_lang=False, score=21.1]
+-ապան: [Non-English or unclear etymology removed.]. (score=1.5) [structure_ok=, suspicious_length=False, has_english=True, has_source_lang=False, score=1.5]
+-ապանակ: From Old Armenian -folder (score=30.3) [structure_ok=hy.wiktionary.org (translated from Armenian), suspicious_length=False, has_english=True, has_source_lang=True, score=30.3]
+
+Sample excellent etymologies:
+բարձ: = Iranian loanword. cognate with sans. barhis "a cushion for sitting on during sacrifices for the gods and sacrificers", eng. barəziš "pillow, cover", oss. baz "pillow". European cognates of these words are: hrus. bal-sinis "pillow", pobalso "head pillow, snare", gal. bulga "purse", serb. blazina "bedspread", blazinja "pillow", hbg. bolstar, eng. bolster, hhyus. bolstr, ger. polster "pillow" etc. (see Hick l2, p. 492 Kluge 374), whose proto-form is hkh. bhelg'h. Arm. bardz cannot be native, because hkh. Against the form bhelg'h we would have *reghdz, or if we assume that Armenian originated from the lower consonant of the hnkh. bhjg'h, then we would have *bağdz. at least always with gh and not with eh. The latter is evidence of Iranian borrowing. In Persian itself there is no form barz, but we have only prs. [arabic word] bāliš or [arabic word] bālīn, pl. bāusn kurd. bālišt, bālišne, bā̄līv, bālge, vākh baleš, sar. balax (see Horn, Grdr. § 172). However, the form *barz must have existed in antiquity, from which the word bardz is derived (cf. Hübsh. Pers. Stud. 221-3). According to Lidén, Arm. Stud. 44, the same word is also known as Persian bai "wing, animal's tail" <*bard < *barz, by which the other meanings of the Armenian word (head pillow and body pillow) are found in Persian. (See Pokorny 2, 182). Hubsh. I Anz. 10, 45. / [Non-English or unclear etymology removed.]. (score=90) [hy.wiktionary.org (translated from Armenian)]
+գիշեր: = Native Armenian word, whose cognates are Greek: ἔσπερος “evening”, τα ἔοπερα “evening time”, later ήεσ-πέρα “evening”, Lat. vesper “evening”, ves-bera “evening time”, French: vèpres “evening prayer”, Hirsh: fescor, Cymraeg: ucher, Lithuanian: vākaras “evening”, yakaraī “west”, Lat. vakars “evening”, Hsl: večerù, Russian: вeчepь “evening”, вeqepя “dinner”, German: Vesperbrot “evening bread, dinner”, borrowed from Hungarian: vacsora “dinner” (Walde, 827, Boisacq, 288, Trautmann, 348). These words are prefixed by the Greek: ἀνθρωπος vespero, veqero, but the phonetic differences are not fully explained. Armenian, which comes from the ancient *geşer form, has the proto-form veqero in Armenian. cf. dog, esh. -Toxer has the form wse, which is the same as kuch. yasl "night" (Pokorny, 1, 15 and 311, Kluge, 510, Ernout-Meillet, 1054). -Hyupsh. 435. / [Non-English or unclear etymology removed.]. (score=110) [hy.wiktionary.org (translated from Armenian)]
+գիրք: From Old Armenian book (girkʻ), plural of gir (gir, 'writing'). From Proto-Indo-European *gʷriH- ('to praise, to sing'). Cognates include Sanskrit गिर् (gir, 'song, praise'), Avestan 𐬔𐬀𐬌𐬭𐬌- (gairi-, 'song'). (score=91.7) [hy.wiktionary.org (translated from Armenian)]
+երգ: + Native Armenian word. cf. sans. [other alphabet] arká “song, music”, (k (gen. rčás) “foot-worn, striped”, [other alphabet] arč, archati “sings praise, greets, honors”. This root is not preserved in other languages, therefore it is unrelated to lt. loquor “to speak”, gn. λαϰ︎ ἐλαϰαν, λέληϰα “to speak, shout” and so on (see Walde, 440). Pokorny, 1, 147 puts the proto-form in the Hn. erk- “to radiate, to sound like a tree”, while the first meanings of the words sans. arká, r'k “song, music” are “ray, flash of lightning, sun, fire”. -Hyubsh. 443. / [Non-English or unclear etymology removed.]. (score=90) [hy.wiktionary.org (translated from Armenian)]
+ծղնի: A [[ghost word]] found in Norayr's French–Armenian dictionary<ref></ref> and from there copied into later dictionaries.<ref></ref><ref></ref> In his unfinished Middle Armenian dictionary, Norayr quotes the term in an unpublished passage by a certain Tēr Komitas who probably should be identified with [[w:hy:Komitas Kyomurchyan|]] (17th c.) of Constantinople, the brother of Likely borrowed from or a related word, because of the legend that the halcyons calm the waters, but the details are unclear. (score=90.0) [hy.wiktionary.org (translated from Armenian)]
+կարմիր: -Phl. *karmir from a synonym that was not preserved in Iranian literature and only appeared in the upper part (see Gauthiot, Gram, sogd. 143 and MSL 17, 247) in the form of Sogdian krm'yr (read karmir) "red". (But according to Marquardt (personal) there is a Phl. [Syriac word] ︎ kalmīr "red"). Also borrowed from Noon is the Hebrew word karmil "the red color of the worm and the thing dyed with it". cf. also Sans. kirmira. The root of all is the Persian [Arabic word] kirm, Znd. kərəma (?), Tans. krmi "worm", whose cognates are Albanian. krum, krimp, Irish. cruim, Lithuanian. kirmis, Hebrew. girmis "worm", the common proto-form is Hn. q'rmi-: The reason for the development of the meaning "worm> red" is that in ancient times the red dye of apricot was prepared from a type of worm (coccus ilicis or coccus polo-hicus), which was a fungus growing on oak trees. Cf. from other languages with a similar development of meaning: Greek ϰὄϰϰος "worm" and ϰὸϰϰινος "red", Greek čirmi "worm" and čruminu "red", Latin ver-mis "worm" and vermiculus "worm">Italian vermiglio, French vermeil "red", Greek *v'rmi "worm" and Ukrainian vermjanyj "red", Hebrew wormyan "red". Then the Iranian word spread to the East and West (it entered Europe through the Arabs) Greek Türk. [arabic word] qərməz "son", qər-məzə "red", Kurdish. kərməz, Arabic. kir-miz, kirmizi, Spanish. alquermes, French. μermè᾽ etav. carmesino. German. Karmesin, Polish. kiermes, alkiermes, Bulgarian. hrimiz, Serbian. grimis, Russian. кармазинъ, Middle Armenian. хүрмзи, Һүрмзи "apricot", used later in the Ramic language, as. Kost. erzn. pp. 114, 120 ff. (Boisacq 245, 844, Berne-ker 169, 490).-Hyubsh. 167: / [Non-English or unclear etymology removed.]. (score=110) [hy.wiktionary.org (translated from Armenian)]
+վաշտ: = Must be borrowed from a word meaning "army" in Phl. *vašk. Such a word is not preserved in Iranian literature, but there is Phl. gast (old vašt) "became", vaštan "to become", which on the basis of the Iranian rt>št sound change gives rise to vartītan, gartītan "to become", vartisn, gartišn "twist, circle", Sans. vart, vartate "to become", Prs. [arabic word] gar-dīdan "to turn, to turn, to turn", [arabic word] gāštan "to turn", [arabic word] gardana> from the word гртнак (=lt. verto "to turn", Old High German werdan, German werden "to become, to be", R. вepηetь "to turn, to turn, to turn, to pierce", вepηeл "skewer", Lit. verčiu, versti "to turn", etc.). The root of all is Hn. vert- "to turn, to make" (Pokorny 1, 274, Horn § 886). The words denoting "group" in general are related to the idea of "all". qu. regiment, bar, battalion, camp ("maneak. 2. army" <pl. čambar "circle"), Tchk top, lt. circulus, fr. cercle, rus. круръ, коужокъ, following which also the working circle "клорак, тэмек. 2. group of people".-Ач. / [Non-English or unclear etymology removed.]. (score=90) [hy.wiktionary.org (translated from Armenian)]
+ցախ: =A native Armenian word, the antecedent of which (at least in terms of the initial sound) is imprecise. The cognates are stns. çákha-, prs. [arabic word] ︎ sax lit. šaká, hsl. sakù, kymr cainc, mirl. gēc, nirl. gēag "branch, twig", lit., sakēsis, hprus. sagnis, lett. sakne "root", goth. hōha. "stem" and perhaps hsl. soxa, bulg. sochá, rus. coxá "rod, stick, stem" (Pokorny 1, 335, Trautmann 297). The antecedent of these is k'ak, which also has its own rang-gai form k'ank. For Armenian, Bar-tbolomae Stud. 2, 41 assumes hnkh. k'hakhā, Meillet MSL 8, 294 i 9. 323 The word assumes two forms, one of which is represented by Armenian and Persian, and the other by Sanskrit. Finally Petersson, Ar. u. Arm Stud. 98 places the Armenian proto-form as хнх. sk'ə-kho.-Хүбш. 499. / [Non-English or unclear etymology removed.]. (score=90) [hy.wiktionary.org (translated from Armenian)]
+լաթ: = Pos. [arabic word] lat "part, piece. 2. canvas, cloth", with which it is the same as Sans. la-ta "cloth, garment", borrowed from Iranian by the Sun. Turk. [arabic word] latta "piece of cloth, a kind of rag", chaghat. latta "rug, old and worn-out cloth", ut. lat same note. From these, in my opinion, were also borrowed Russian. lata "piece of cloth", латать "outdated, worn-out cloth, rag", ла́тать "to patch", Ukrainian. latka "rug", Czech. látati "to patch", látka "pattern, cloth", Polish. laty "tsyn-Radim dictionary-17 tsot". (Berneker 693 mistakenly considers these words to be native Slavic, and this is why he does not find cognate forms in other Indo-European languages). - Ach. / [Non-English or unclear etymology removed.]. (score=90) [hy.wiktionary.org (translated from Armenian)]
+եղունգն: -A native Armenian word, whose other Indo-European counterparts are: sans. [other alphabet] nakhá-, phl. prs. [arabic word] naxun, kurd. neinuk. afghan. nuk, beluchi. nākun, nāhun, hindu. naxun, gypsy. nati, nai, yun. ὄνυς, ὄντχος, lt. un-guis, ungula, hbg. nagal, ger. nagel, eng. noezel, hhyus. nagl, eng. nail, hprus. nagutis, lit. nagutis, nāgas, na-gá, lett. nags, hsl. nogūti, rus. ноготъ, hirl. ingen, mirl. inga, kymr. eguin, corn. ewin, brt. ivin, all "nail". From the Hawaiian form are hprus. nage, hsl. noga, Czech noha, Russian нora, which mean "foot" (Walde, 851, Boisacq, 7C5, Trautmann, 192, Horn § 1016). It is very difficult to connect these apparently cognate words from a phonetic point of view and to reveal the Indo-European proto-form. The Baltic-Slavic forms give naga and nagut, the Germanic languages give nogh-lo-or nokhlo-(Kluge, 344), Boisacq gives the common [Hebrew word] l, nagh, */, nogh forms - the latter especially for the Aryan languages. It is more difficult to translate Armenian, the closest forms of which are the Latin and Germanic forms. the first with its u vowel, the others with their corresponding consonants (n, g, 1). In Armenian, of course, the initial e is added because of gh, and the final is partial. Thus the radical remains *ghung <*lung. This is yours in ancient Armenian (Pokorny, 1, 180-2, Ernout-Meillet, 1083). / [Non-English or unclear etymology removed.]. (score=90) [hy.wiktionary.org (translated from Armenian)]
+ԱՐՈՅՐ: = From the Old Phl. *rōδ word (compare with the word boyr< nd. baoiδi-), as Hprs. *rauδa, against which the Iranian forms Phl. rōd, rōi, Prs. [arabic word] roy "tin, copper", Reluj. rōd and Sozd. rōή "copper" are alive. Cognate with these are Sans. lōha- "red metal, copper, iron", Hsl. ruda "metal", Lat. raudus, rodus, rudus "copper piece", Hbg. aruzzi, erizzi, Germ. Erz "tin copper", Engl. lëad, Dutch. lood "lead" etc., these are derived from the Hn. reud, reudh or leud forms (Walde, p. 643, Horn § 635, but Kluge 123). If this word were native Armenian and not borrowed, we would have the form *aroyt, *aroyd, *eroyt, *eroyd or *loyt. -Sumerian also has similarities with the Indo-European word. urud asar-urudū “copper”. -Hyubsh. 111. (score=90) [hy.wiktionary.org (translated from Armenian)]
+ԲԱՐՁ: = Iranian loanword. cognate with sans. barhis "a cushion for sitting on during sacrifices for the gods and sacrificers", eng. barəziš "pillow, cover", oss. baz "pillow". European cognates of these words are: hrus. bal-sinis "pillow", pobalso "head pillow, snare", gal. bulga "purse", serb. blazina "bedspread", blazinja "pillow", hbg. bolstar, eng. bolster, hhyus. bolstr, ger. polster "pillow" etc. (see Hick l2, p. 492 Kluge 374), whose proto-form is hkh. bhelg'h. Arm. bardz cannot be native, because hkh. Against the form bhelg'h we would have *reghdz, or if we assume that Armenian originated from the lower consonant of the hnkh. bhjg'h, then we would have *bağdz. at least always with gh and not with eh. The latter is evidence of Iranian borrowing. In Persian itself there is no form barz, but we have only prs. [arabic word] bāliš or [arabic word] bālīn, pl. bāusn kurd. bālišt, bālišne, bā̄līv, bālge, vākh baleš, sar. balax (see Horn, Grdr. § 172). However, the form *barz must have existed in antiquity, from which the word bardz is derived (cf. Hübsh. Pers. Stud. 221-3). According to Lidén, Arm. Stud. 44, the same word is also known as Persian bai "wing, animal's tail" <*bard < *barz, by which the Armenian word's other meanings (head pillow and body pillow) are derived in Persian. (See Pokorny 2, 182). Hubsh. I Anz. 10, 45. (score=90) [hy.wiktionary.org (translated from Armenian)]
+ԲՈՅԺ: -Ph,. bož-form. hmmt. znd. buǰ, ba-og-«to dissolve (the body), to cleanse, to free, to save», baoxtar «liberator, savior». buxti «liberation, salvation», pazend. boxtan «to free, to save, to free», božisn «liberation, salvation», buxt-ruānī «salvation of the soul», phl. bōxtan «liberate, save», bōxtār «savior», Baluch. bó-jag, bōžaγ «to dissolve, to open, to break» (Bar-tholomae 916-17, Pokorny 2, 145). The proto-form of all is hnkh. bheug(h)-«to remove, to escape, to be freed». Armenian is borrowed from Iranian, as the j sound shows and has no connection with the word doctor. The cognates of the Iranian words are according to Walde 326: Lt. fungor “to perform, to finish” (as if by performing the work to free. cf. Rmk. khalysil “to finish” <Arab. xalas “freedom, salvation”), Goth. us-bau-gjan “to sweep, to wipe”, Pali pari-bhuñǰati “to clean, to wipe”, vi-nib-bhuǰati “to divide”. -Hyupsh. 122. (score=90) [hy.wiktionary.org (translated from Armenian)]
+ԲՈՒԹ: = Native Armenian word from the Hn. bhut-form. The same meaning as Armenian is Dutch bot, Danish but, North German butt “but (literally and or figuratively, that is, “big-headed, stupid”) short and stout”, German verbutet “physically or mentally undeveloped” Greek buttet “short and stout”, Butz “short and stout man, animal or beast”, loanwords: hung, buta “butt, idiot”, Spanish port. boto, botoso “butt”, French (pied) bot “crouched (foot)”, Walloon bott, Italian boto, Romanian but. butacīū “butt”, Russian botètь, butetь “to grow fat”, Slovak buta “big-headed man, stupid man”. According to Berneker 77, the Slavic group of these words is borrowed from German, the origin of the others is not clear. According to Pokorny 2, 127, the Germanic group also comes from the root bhaud-, bhūd- "to push, to push", the cognate of which is bhaut-, bhūt- "to push, to push" (Po-korny 2, 125). In the form of the latter, and in meaning to the former, it becomes the middle form of the two, let us add especially the Greek btel, bo-tel "to push, to push", which also retains the verb meaning of the same roots. -Ach. (score=110) [hy.wiktionary.org (translated from Armenian)]
+ԳԱՅԼ: = Native Armenian word, whose cognates are: Sans. vrka-, Znd. vəhrka-, Ps. ❇ gurg, Goth. vulfs, Germ. Wolf, Hsl. vluku, Rus.-волкъ, Lit. vitkas, Hrus. vilkis, Lat. wIlks, Irl. fael, Hisl. ylgr. Albanian. ul'k, Jn. λόϰος, Lat. lupus (Fr. loup, It. lupa, lupo, ulivella, Rom. lup, Esp. lo-bo), borrowed from Slavic and even Mordvin. virgas, all with the meaning of "wolf" (Walde, 447, Boisacq, 5аn Trautmann. 359, Horn, § 910, Kluge, 535). The Armenian proto-form has been suggested in various ways. Hubschmann puts the Hn. vlyo-, Bartholomae, Stud. II. 13 khkh. vlk2y-, Fick, II. 259 khkh. vailo. It is certain, however, that this word, having been subjected to ta-bou, like the word arj, has become the subject of voluntary transformation. The Indo-Europeanists, analyzing the proto-form of the word "wolf" (ul-qu) and connecting it with the pre-form of the word "fox" (allegedly ul-p-), believe that the simple root of both is uel "to prey" (cf. Lt. vello "to snatch", voltur "to snatch a bird", lacer "to tear, to tear), by which "gall" means "predator" (see Pokorny, 1, 213 and 316, Ernout-Meillet, 539). Hubsh. 431. (score=110) [hy.wiktionary.org (translated from Armenian)]
+ԳԱՐՈՒՆ: = Native Indo-European Armenian word, whose cognates are sans. [other alphabet] vasantā, znd. vanhar-, vañhri, hprs. vahara, phl. vahār, prs. [arabic word] bahār, oss. valag, gypsy. varno, yn. ἔαρ, ἠρ, homer. fέαρ, hsl. vesna, rus. вecнa "spring", lit. vasará "part". lt. vēr "spring", rum. vará "summer", hhys. vár, hisl. vār, old cymru. guiannuin, new cymru. gwanwуn, corn. guaintoin "year". The first Indo-European proto-form was uèsr, with which there was also uēsr and the shortened vēr from this. The root of the word was rln, that is, ugh. ueser, gen. uesnes. The final r of the word was replaced by n in some, and in this way many of the above forms arose (see Walde, 819, Boisacq, 210, Horn, § 243, Trautmann, 356, Pokorny, 1, 310, Ernout-Meillet, 1045). - For the explanation of the Armenian word, it is first necessary to determine the root form. - The names of the seasons have influenced each other. Thus, tmarn-amtotn, zinnarn-zinmeran have the same form and their form of conjugation has influenced the irregular form of gar-nan-ashnan. The orthographic forms are also the same: garun and ashun. So, which of these has influenced which, in other words, in the word zarun -un belongs to the root. It is likely that the first, with which the root would become *gar. and this form could be connected with the ancient form vesr, passing through the forms vesar>*gehar >*za-har >*gar. The first of these is already found in Greek (fέαρ< vesar), the second in Lithuanian, the third is similar to the Hebrew and Phl. forms, and the fourth (*gar) has reached the Hist. vār form. -Hyupsh. 432. (score=90) [hy.wiktionary.org (translated from Armenian)]
+ԳԵՐԱՆ: =-A native Armenian word, from the Old Norse vernnā-form, whose cognates are found only in Celtic languages and Albanian. Thus: Brit. gwern and M. Brit. guernenn "mast. 2. alder. 3. alder forest", Corn. guern "mast", gwern-en "alder", Cym. cмвrn "alder forest, marshy place", gwern-en "ship mast, alder" Myrl. fern, fernog "alder", New Irish. fearn "mast, alder" (from this are Piedmontese verna, Provençal verna, verno, French verne, vergne "alder"), Albanian verε "white alder, populus Alba". The proto-form of Celtic words is *yer-nā, which also gives Albanian. For the use of the name of the tree as a general meaning of "log", cf. Tch. perdu and Gb. pardu "log", which come from the Greek word barti (see also), Pokorny, 1, 292. (score=90) [hy.wiktionary.org (translated from Armenian)]
+ԳԻՆԻ: = Native Armenian word. Derived from the original form ge-ni, the mother of which is the ancient voinio-compare with it. ln. οϊνος "wine" (<foῖνος, Hessian γοϊνος, Thracian γάνος), οἰνη (Dor. ανα) "vine", οἰνας, "vine, wine", Hat. gens (š is a participle of the direct object) "wine", Albanian vεnε, Tosk. vere "wine" (<*voinā), Lat. vīnum (<*voino-) "wine", from which Rom. vinū, Ital. Spanish vino, French vin. Borrowed from Latin are Goth. wein, Hungarian win, German Wein, English vine, Irish fin, Welsh gwin, -borrowed from German are Hsl. vino, Russian вино, from which are Lit. vynas "wine" and Mordvin. (non-Indo-European) vīnā "wine, vodka". The same word is also found in Semitic languages. e.g. Hebrew word yain (< wain), Arabic word wain, Ethiopian. ⦿P︎ wein, Assyrian inu, in the Semitic proto-language wainu "wine" (Walde, 839, Boisacq, 691, Kluge, 523). -The origin of the word wine and with it the original homeland of the grape, as well as the origin, development and spread of the craft of winemaking, has been much debated. Long studies have been carried out by Schröder, Hehn, Hommel, Kremer, Jensen, etc. Some of them believe that wine was originally Indo-European and that the Semites learned winemaking from them, and therefore the Roman forms are a loan from the Indo-Europeans. According to Lag. Arm. Stud. p. 35 note. From Cyprus it passed to the Jews and from them to the Arabs. Others, on the contrary, argue that wine was originally Semitic, from them it passed to the Indo-Europeans by loan. The most accurate is (as Meil. let, MSL, 15, 163 and others accept) that wine is the invention and cultivation of the ancient urban-dwelling people of the Mediterranean, which later, on the one hand, passed by borrowing to the Semites and on the other hand, to the neighboring Indo-Europeans (the same, Armenian. Albanian) and through them gradually spread further afield (Latin, German, Celtic, Slavonic). It entered Germany through the Latins. From there it later passed to the Slavs. It spread through the Armenians to the Caucasus.-(Pokornv, 1 226, Ernout-Meillet, 1068).-Hibsh. 434. (score=110) [hy.wiktionary.org (translated from Armenian)]
+ԳԻՇԵՐ: = Native Armenian word, whose cognates are Greek: ἔσπερος “evening”, τα ἔοπερα “evening time”, later ήεσ-πέρα “evening”, Lat. vesper “evening”, ves-bera “evening time”, French: vèpres “evening prayer”, Hirsh: fescor, Cymraeg: ucher, Lithuanian: vākaras “evening”, yakaraī “west”, Lat. vakars “evening”, Hsl: večerù, Russian: вeчepь “evening”, вeqepя “dinner”, German: Vesperbrot “evening bread, dinner”, borrowed from Hungarian: vacsora “dinner” (Walde, 827, Boisacq, 288, Trautmann, 348). These words are prefixed by the Greek: ἀνθρωπος vespero, veqero, but the phonetic differences are not fully clarified. Armenian, which comes from the ancient *geshesher form, has the proto-form veqero in Armenian. cf. dog, esh. -Tokharenian has the form wse, with which it is the same as kuch. yasl "night" (Pokorny, 1, 15 and 311, Kluge, 510, Ernout-Meillet, 1054). -Hyubsh. 435. (score=110) [hy.wiktionary.org (translated from Armenian)]
+ԴՄԱԿ: = Phl. from the synonym *dumak. This form is not preserved in Iranian literature, but there are many of its cognates, as. znd. duma-, Phl. dum, dumb, dumbak, dunbak, dunb, prs. ❇ dum, dumm, [arabic word] dunb, [arabic word] dunba, [arabic word] dunbāl., Baluch. dunbag, Kurdish. dunk, duw. Afghan. lam, Minj. ləm, Oss. dumág, də-mag “dumbak” (Horn, § 573). The proto-form of Iranian words is according to Bartholomae, Stud. II. 101 *dhumbhma-. Also borrowed from Iranian are Assyrian. [syriac word] ︎ dunbā “tail”, Georgian. დუპა დუპა “dumbak oil”, დუპი dumi “dumbak sheep”. Pokorny, 1, 816, from the Iranian forms kzum hbg. zumpfo, mbg. zumpi "male". The preposition is put in hkh. dumb-(or dumbh-?) "male, tail" and perhaps originally "rod, scepter". -Hyubsh. 144. (score=90) [hy.wiktionary.org (translated from Armenian)]
+
+Random 50 entries per source type:
+Source: 
+  -ա: Abstracted away from European female given names commonly ending in -''a''.
+  -անք: From the verbal suffix. Compare → , →.
+  -ապան: [Non-English or unclear etymology removed.].
+  -ավուն: The origin is. Confined to Eastern dialects, with the earliest attestation in the 17th century.<ref></ref> Ačaṙyan remarks that derivation from (of Iranian origin) is impossible, because no → sound change is known in the dialects. But perhaps that change occurred within an language, where such a change is known, and thence was borrowed into Armenian. Compare also , forming adjectives from nouns.
+  -բան: From. In Old Armenian it was used in Ancient Greek [[calque]]s for translating in words like or , which were rendered as and. The practice continues now in calquing international (Latin) words with , , etc.
+  -գույն: From. In Old Armenian this suffix formed the [[comparative degree]].
+  -ել: [Non-English or unclear etymology removed.].
+  -իլիոն: , as if it contains.
+  -ից: From the stem vowel +.
+  -յա: . The inherited form is.
+  -յան: [Non-English or unclear etymology removed.].
+  -ուլ: Probably from the suffix, with a preceding -''u''- vowel.
+  -րդ: Shortening of ,.
+  -ք: From. The in and other words ending in developed from , through the regular sound change → ; thus →.
+  Աբաս: Originally borrowed in the fourth century from the Greek form of , whence also. Later revived in the ninth century, but this time, according to Ačaṙyan, borrowed from. Rarely used since the 13th century.
+  Աբովյան: From. The places are named after.
+  Ագամեմնոն: From ; see it for more.
+  Ագրիպպաս: From ; see it for more.
+  Ադոնց: From a shortened form of given names like , , ,.
+  Ալազան: Adaptation of. See also.
+  Ալբարյան: . Suffixed with.
+  Ալեքսան: Short form of. In use from the 14th century up to the present day.
+  Ալեքսանդր: From a later spelling of , ultimately from.
+  Ախալքալաք: Adaptation of.
+  Ախալքալաքի: Transliteration of.
+  Աղայան: [Non-English or unclear etymology removed.].
+  Աղեղնավոր: Special use of.
+  Աղջայան: [Non-English or unclear etymology removed.].
+  Աղվան: Probably from the ethnonym.
+  Աճառյան: [Non-English or unclear etymology removed.].
+  Աճեմյան: From. Typologically, Avetisyan compares the surname for a Hungarian-Armenian.
+  Ամիրյան: [Non-English or unclear etymology removed.].
+  Այուբյան: [Non-English or unclear etymology removed.].
+  Անգրա դու Էրոիշմու: Transliterated from.
+  Անդրանիկ: From. Unrelated to.
+  Անդրբայկալ: [Non-English or unclear etymology removed.].
+  Անդրիասյան: From |gloss2=patronymic suffix}}.
+  Անդրկասպյան երկրամաս: Loan translation.
+  Անդրհորդանան: [Non-English or unclear etymology removed.].
+  Անուշավան: . Revived in the 19th century.
+  Աշխեն: From ; see it for more.
+  Ապրես: From. Ačaṙyan remarks that the name is not attested anciently, but Avetisyan adduces an attestation from Artsakh from 1551 in the form of.
+  Առինջ: Ultimately from ; see it for more.
+  Առնո: , French form of.
+  Առուշանյան: [Non-English or unclear etymology removed.].
+  Ասլանճյան: From. A variant of.
+  Ասպետ: From. Used in the 12th–14th centuries.
+  Աստղիկ: From. First used as a personal given name in the 15th century.
+  Ավանիսյան: A variant of.
+  Ավգերյան: [Non-English or unclear etymology removed.].
+
+Source: hy.wiktionary.org (translated from Armenian)
+  -աբար: From Old Armenian -abar
+  -ագին: From Old Armenian -agın
+  -ագույն: From Old Armenian -agon
+  -ալ: From Old Armenian infinitive suffix -al. From PIE *-l- suffix forming verbal nouns.
+  -ած: From Old Armenian -ats
+  -ածո: From Old Armenian -adjective
+  -ածու: From Old Armenian - atsu. Forms nouns from past participles.
+  -ական: From Old Armenian -an
+  -ակերտ: From Old Armenian -akert
+  -ային: From Old Armenian -ayin
+  -անակ: From Old Armenian -anak
+  -անի: From Old Armenian -ani
+  -անոց: From Old Armenian -anon
+  -անց: From Old Armenian Locative suffix meaning 'through, via'.
+  -ապանակ: From Old Armenian -folder
+  -ապատ: From Old Armenian -apat
+  -աստան: From Old Armenian -astan
+  -ավետ: From Old Armenian -eved
+  -ատ: From Old Armenian -at
+  -արան: From Old Armenian -aran
+  -արեն: From Old Armenian -Հայերեն
+  -արք: From Old Armenian -arch. Instrumental suffix forming nouns.
+  -ացի: From Old Armenian - atsi. Denominal suffix forming demonyms.
+  -ացն-: From Old Armenian -utsan-
+  -ացու: From Old Armenian -atsi
+  -բար: From Old Armenian -bar
+  -գին: From Old Armenian -гин
+  -դ: Inherited from Old Armenian
+  -եղ: From Old Armenian -ɼg
+  -եղեն: From Old Armenian -ɛghən
+  -են-: From Old Armenian -en-
+  -երեն: From Old Armenian -eren
+  -երորդ: From Old Armenian -th
+  -եցի: From Old Armenian -etsi. From PIE *-ik- + *-yo-. Forms demonyms.
+  -եցն-: From Old Armenian -utsan-
+  -ը: From Old Armenian
+  -ի: Inherited from Old Armenian
+  -իլ: From the post-classical Old Armenian infinitive ending -il, which was created following the mediopassive present tense verb endings.
+  -իս: From Old Armenian. Locative case ending, fossilized.
+  -իք: From Old Armenian -ik
+  -լիկ: From Old Armenian - lik. Diminutive suffix from PIE *-liko-.
+  -կերտ: From Old Armenian -қәрт
+  -կոտ: From Old Armenian -kot
+  -յալ: From Old Armenian -ɛal
+  -յակ: From Old Armenian -yaq
+  -յանց: From Old Armenian Genitive plural ending, fossilized.
+  -յուն: From Old Armenian -yun
+  -ն: From Old Armenian. Definite article suffix (post-classical).
+  -ներ: From Old Armenians. Plural suffix for nouns.
+  -նոց: From Old Armenian -nots. Locative plural meaning 'among, in the house of'.
+
+Source: wikitext
+  -ակ: Borrowed via Classical Armenian from Middle Iranian *-ak. Compare Old Georgian -აკი. Ultimately from Proto-Iranian *-akah.
+  -արար: From , the aorist stem of .
+  -ե: Inherited form of . The learned form is .
+  -եր: From , which was used for forming collective nouns, e.g. , , etc.
+  -մունք: From , plural of .
+  -որեն: From , in words like , from .
+  -ուն: Derived via Classical Armenian from Proto-Indo-European *-ono-. Ultimately from Proto-Indo-European *-ono-.
+  -վածք: From , plural of .
+  Աբրամ: From ; see it for more.
+  Աթաբեկ: From , from the title , from . According to Ačaṙyan, used as a given name by Armenians in the 13–16th centuries. Revived in modern times but quite rare. Notably held by the children's writer [[w:Khnko Aper|Atabek Khnkoyan]].
+  Ալավերդի: The earlier form is , from : compare , . The city is named after a certain ''Allahverdi'', a 17th century leader of a nomadic Turkic tribe called Borčalu, which gave its name to the  region of Georgia.
+  Աղասի: From , third-person singular possessive of . Compare also .
+  Այծեմնիկ: From , from , diminutive of .
+  Առաքել: From , from ; apostle}}. In use continuously since the 12th century.
+  Ասատուր: , by syncope from . .
+  Ասպահան: Borrowed via Classical Armenian from Middle Iranian -. Ultimately from xme-old *Spādānah.
+  Արարատ: Borrowed via Classical Armenian from Ancient Greek Ἀραράτ. Ultimately from hbo אֲרָרָט.
+  Արման: A relatively new name, from .
+  Արշակունյաց: From , plural genitive of .
+  Բագրատունյաց: From , plural genitive of .
+  Բորժոմի: Transliteration of , from .
+  Գենդալֆ: From , via .
+  Գյուլբենկյան: From the given name , . The name was used among Western Armenians in the 19th century. According to Ačaṙyan it derives from  + . However, in view of the forms ,  perhaps it is from , , from .
+  Գոռ: From , from the adjective .
+  Գրիգոր: Borrowed via Classical Armenian from Ancient Greek Γρηγόριος.
+  Դամասկոս: Borrowed via Classical Armenian from Ancient Greek Δαμασκός.
+  Դեմոկրիտ: From , from . Displaced .
+  Դրասխանակերտ: Derived via Classical Armenian from Middle Iranian *dars-xᵛan. Compare Proto-Indo-European *derḱ-; ae 𐬓𐬀𐬥.
+  Եկբատան: Borrowed via Classical Armenian from Ancient Greek Ἐκβάτανα.
+  Եղիշե: From , from , from .
+  Երևան: Borrowed via Classical Armenian from Urartian 𒌷𒅕𒁍𒌑𒉌 (<sup>URU</sup>er-bu-u<sub>2</sub>-ni).
+  Եփեսոս: Borrowed via Classical Armenian from Ancient Greek Ἔφεσος.
+  Էլեն: A modern name, from . .
+  Էմին: From , from . Was common among .
+  Էպիկուր: From , from . Old Armenian had .
+  Էքմեքջյան: An occupational surname, from , from .
+  Թոմաս: From , from , an alternative form of .
+  Թովմաս: Borrowed via Classical Armenian from Ancient Greek Θωμᾶς.
+  Խալաճյան: Probably a simplification of , from . The Eastern Armenian pronunciation is a .
+  Խարբերդ: Derived via Classical Armenian from Hurrian 𒆜𒈨𒌍 (KASKAL.MEŠ), meaning "road". Compare Akkadian 𒆜 ("highway, road, path"). Ultimately from Hurrian 𒆜𒈨𒌍 ("road").
+  Խոսրով: Derived via Classical Armenian from Proto-Iranian *Hhucráwāh, meaning "renowned, famous, of good repute". Compare Old Georgian ხოსრო; xag 𐕀𐕒𐕚𐕙𐕒𐕒𐕡. Ultimately from Proto-Iranian *Hhucráwāh ("renowned, famous, of good repute").
+  Ծառուկ: , from , from .
+  Կարապետ: From , from , alluding to the epithet of .
+  Կարս: From . The form  is a Turkish reborrowing.
+  Կտրիճ: , from , from . See . Used in the 9–10th centuries and again in the 14th century. Revived in modern times but quite rare.
+  Կրեսոս: From , an alternative spelling of .
+  Հայրապետ: From , from ․ In use since the 10th century.
+  Հերմինե: A new name, first used in the 19th century, from , the name of a noble character in Torquato Tasso's epic poem ''La Gerusalemme liberata'' (Jerusalem Delivered).
+
+The name was particularly popular among Western Armenians in Constantinople.
+  Հուսիկ: From , diminutive of , which is the same as modern Armenian .
+  Ղուկաս: Borrowed via Classical Armenian from Ancient Greek Λουκᾶς.
+
+Source: wikitext pattern extraction
+  -ան: ultimately from axm -ան
+  -ան-: inherited from Old Armenian -ան-
+  -ավոր: ultimately from axm -աւոր
+  -իչ: inherited from Old Armenian -իչ
+  -ող: inherited from Old Armenian -ող
+  -ուկ: inherited from Old Armenian -ուկ
+  -պան: ultimately from axm -պան
+  Ալբերտ: borrowed from ru А́льберт
+  Ալիև: borrowed from ru Али́ев
+  Անտիոքոս: ultimately from xcl Անտիոքոս
+  Ավագ: ultimately from axm Աւագ
+  Արսեն: ultimately from xcl Արսէն
+  Բոստոն: borrowed from ru Бо́стон
+  Էլչիբեյ: borrowed from ru Эльчибе́й
+  Կիկերոն: borrowed from grc Κικέρων
+  Կյուրեղ: ultimately from xcl Կիւրեղ
+  Հիսուս: ultimately from grc Ἰησοῦς
+  Հունան: ultimately from axm Յունան
+  Մադաթ: inherited from Old Armenian Մատաթիա
+  Նոյ: ultimately from xcl Նոյ
+  Ոդիսևս: ultimately from xcl Ոդիսեւս
+  Պիսիստրատոս: ultimately from xcl Պիսիստրատոս
+  Պլինիոս: ultimately from la Plīnius
+  Պյուռոս: ultimately from xcl Պիւռոս
+  Ռոբերտ: borrowed from ru Ро́берт
+  Սողոմոն: ultimately from xcl Սողոմոն
+  Սոս: ultimately from xcl Սօս
+  Տիմոթեոս: ultimately from grc Τιμόθεος
+  Տրայանոս: ultimately from la Traianus
+  Փայլածու: ultimately from xcl Փայլածու
+  աբանոս: ultimately from axm ապանօս
+  աբոլիցիոնիզմ: borrowed from ru аболициони́зм
+  աբոյ: borrowed from ru обо́и
+  աբորտ: borrowed from ru або́рт
+  աբուռ: borrowed from kmr ebûr
+  աբսոլյուտիզմ: borrowed from ru абсолюти́зм
+  ազիկ: borrowed from ru а́зик
+  ազոտ: borrowed from ru азо́т
+  աթաբեկ: ultimately from axm աթաբէկ
+  ալբոմ: borrowed from ru альбо́м
+  ալեկոծել: ultimately from xcl ալէկոծեմ
+  ալիբի: borrowed from ru а́либи
+  ալկաշ: borrowed from ru алка́ш
+  ալկիոն: borrowed from grc ἀλκυών
+  ալկոգել: borrowed from ru алкоге́ль
+  ալմանախ: borrowed from ru альмана́х
+  ալյանս: borrowed from ru алья́нс
+  ակնթարթ: ultimately from axm ակնթարթ
+  ակորդեոն: borrowed from ru аккордео́н
+  ակուլա: borrowed from ru аку́ла
+
+Source: auto-fix
+  -ապես: Etymology needs research - no usable data found
+  -իկ: Etymology needs research - no usable data found
+  Ալլահ: Etymology needs research - no usable data found
+  Ատալիա: Etymology needs research - no usable data found
+  Բաբաջանյան: Etymology needs research - no usable data found
+  Դանիա: Etymology needs research - no usable data found
+  Լիպարիտ: Etymology needs research - no usable data found
+  Կասպք: Etymology needs research - no usable data found
+  Հերովդես: Etymology needs research - no usable data found
+  Մանանդյան: Etymology needs research - no usable data found
+  Մեմնոն: Etymology needs research - no usable data found
+  Մսըր: Etymology needs research - no usable data found
+  ՆԱՏՕ: Etymology needs research - no usable data found
+  Նիկողայոս: Etymology needs research - no usable data found
+  Չուխաջյան: Etymology needs research - no usable data found
+  Չոփուրյան: Etymology needs research - no usable data found
+  Պարմենիդես: Etymology needs research - no usable data found
+  Պինդարոս: Etymology needs research - no usable data found
+  Պյութագորաս: Etymology needs research - no usable data found
+  Ջամբազյան: Etymology needs research - no usable data found
+  Սիմոնիդես: Etymology needs research - no usable data found
+  Սղերդ: Etymology needs research - no usable data found
+  Սոկրատես: Etymology needs research - no usable data found
+  Քալանթարյան: Etymology needs research - no usable data found
+  Քսենոկրատես: Etymology needs research - no usable data found
+  Օդաբաշյան: Etymology needs research - no usable data found
+  Օտտավա: Etymology needs research - no usable data found
+  Օրբելյան: Etymology needs research - no usable data found
+  աբա: Etymology needs research - no usable data found
+  աբասի: Etymology needs research - no usable data found
+  աբլա: Etymology needs research - no usable data found
+  աբսորբել: Etymology needs research - no usable data found
+  ադամանդ: Etymology needs research - no usable data found
+  աթթար: Etymology needs research - no usable data found
+  աժդահա: Etymology needs research - no usable data found
+  ալ: Etymology needs research - no usable data found
+  ալաժահրի: Etymology needs research - no usable data found
+  ալամ: Etymology needs research - no usable data found
+  ալմաս: Etymology needs research - no usable data found
+  ալոճ: Etymology needs research - no usable data found
+  ալքիմիա: Etymology needs research - no usable data found
+  ախմախ: Etymology needs research - no usable data found
+  ակռա: Etymology needs research - no usable data found
+  աղա: Etymology needs research - no usable data found
+  աղատել: Etymology needs research - no usable data found
+  աղեղ: Etymology needs research - no usable data found
+  աճռել: Etymology needs research - no usable data found
+  ամեն: Etymology needs research - no usable data found
+  այրան: Etymology needs research - no usable data found
+  աներ: Etymology needs research - no usable data found
+
+Source: auto_fill_script
+  -ճի: From Turkish -ci (occupational suffix) via Ottoman. Forms agent nouns.
+  Գահիրե: From Arabic القاهرة (al-Qāhirah, 'the Victorious'). Via Ottoman Turkish قاهره.
+  Թրանսիլվանիա: From Latin Transsilvania ('beyond the forest').
+  Պեսարապիա: From Romanian Basarabia, named after the Wallachian Basarab dynasty.
+
+Source: abbreviation_proper_name_handler
+  ԱԱԾ: Abbreviation in Armenian. The letters represent an acronym. Specific meaning unknown without context.
+  ԱԱՀՀԻ: Abbreviation in Armenian. The letters represent an acronym. Specific meaning unknown without context.
+  ԱԱՊԲ: Abbreviation in Armenian. The letters represent an acronym. Specific meaning unknown without context.
+  ԱԱՊՎ: Abbreviation in Armenian. The letters represent an acronym. Specific meaning unknown without context.
+  ԻԻՀ: Abbreviation in Armenian. The letters represent an acronym. Specific meaning unknown without context.
+  ԽՍՀՄ: Abbreviation in Armenian. The letters represent an acronym. Specific meaning unknown without context.
+  ԿԸՀ: Abbreviation in Armenian. The letters represent an acronym. Specific meaning unknown without context.
+  ՁԻԱՀ: Abbreviation in Armenian. The letters represent an acronym. Specific meaning unknown without context.
+  ՃՈ: Abbreviation in Armenian. The letters represent an acronym. Specific meaning unknown without context.
+
+Source: pattern_matcher
+  Աբխազիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Ալբանիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Ալեքսանդրիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Ակրոտիրի և Դեկելիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Անատոլիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Անգլիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Ապոլոնիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Ապուլիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Աջարիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Ավստրալիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Արաբիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Բավարիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Բելգիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Բեովտիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Բեսարաբիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Բյութանիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Բոլիվիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Բոլոնիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Բոհեմիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Բոսնիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Բութանիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Բուլղարիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Բուրգունդիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Բրազիլիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Բրիտանիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Գալիլիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Գալիցիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Գաղատիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Գամբիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Գրենլանդիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Դալմաթիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Եթովպիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Զամբիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Թեսալիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Թյուրինգիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Թուրքիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Թրակիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Իլլիրիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Իմերեթիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Ինգուշեթիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Ինգուշիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Ինդոնեզիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Իսլանդիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Իտալիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Իֆիգենիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Լաթաքիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Լատվիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Լիբերիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Լիգուրիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+  Լիկիա: From Latin/Greek suffix -ia, via European languages. Common suffix for country and region names.
+
+Source: advanced_pattern_matcher
+  Իսլանտա: Calque from English Iceland or German Island (ice + land), borrowed into Armenian.
+  բալետ: From French ballet, borrowed into Armenian via Russian or directly.
+  բիստրո: From French bistrot, borrowed into Armenian via Russian or directly.
+  գավոտ: From French gavotte, borrowed into Armenian via Russian or directly.
+  դիրիժաբլ: From French dirigeable, borrowed into Armenian via Russian or directly.
+  դոլմա: From Turkish dolma (stuffed vegetable), via Ottoman Turkish.
+  զահմեթ: From Persian زحمت (zahmat, trouble), borrowed into Armenian.
+  թալիշ: From Persian تالش (Talysh, a people/region), borrowed into Armenian.
+  խան: From Turkish han (inn, khan), via Ottoman Turkish.
+  կազակ: From Turkish kazak (Cossack), via Ottoman Turkish.
+  ղազախ: From Turkish Kazak (Kazakh), via Ottoman Turkish.
+  մարշուտկա: From Russian маршрутка (marshrutka, route taxi).
+  չեչեն: From Turkish Çeçen (Chechen), via Ottoman Turkish.
+  պրեմիերա: From French première, borrowed into Armenian via Russian or directly.
+  սուճուխ: From Turkish sucuk (sausage), via Ottoman Turkish.
+  փիչխ: From Persian پیچ (pich, twist), borrowed into Armenian.
+  քաբաբ: From Turkish kebap (kebab), via Ottoman Turkish.
+  քյուֆտա: From Turkish köfte (meatball), via Ottoman Turkish.
+
+Source: final_batch
+  Կերլա: From Turkish Kerla (a place name), possibly from Greek.
+  Կուկըլ: From Turkish kökül (root, origin) or German Kugel (ball).
+  Հիւկօ: From French Hugo or German Hugo, a given name.
+  Ճուրճով: From Turkish Curcuna (a lively dance/music) or Georgian.
+  ազբեստ: From Russian асбест (asbest).
+  ազերի: From Azerbaijani Azəri, self-designation of Azerbaijanis.
+  աթեիզմ: From Russian атеизм (ateizm).
+  աթլետիկա: From Russian атлетика (atletika).
+  ալբատրոս: From Russian альбатрос (albatros).
+  ալգորիթմ: From Russian алгоритм (algoritm).
+  ալկոհոլ: From Russian алкоголь (alkogol).
+  ալպինիզմ: From Russian альпинизм (alpinizm).
+  ալքիմիկոս: From Russian алхимик (alkhimik).
+  ակրոբատ: From Russian акробат (akrobat).
+  ամերիկյան ֆուտբոլ: Calque of 'American football'.
+  կեդրոն: From Greek κέντρον (kentron, center), via Russian центр.
+
+Source: remaining_words_handler
+  ՛: Armenian emphasis mark (shesht). Used to indicate stress or emphasis. No etymology needed.
+  ՜: Armenian exclamation mark (yerkaratsman nshan). Used for exclamations.
+  ՝: Armenian comma (boot). Used as a comma or to indicate a pause.
+  ՞: Armenian question mark (hartsakan nshan). Used to indicate questions.
+  ՟: Armenian abbreviation mark (pativ). Used to mark abbreviations.
+  ադի-բուդի: Onomatopoeic reduplication, similar to 'helter-skelter' or 'hodge-podge'.
+  ։: Armenian punctuation mark. No etymology needed.
+  ֊: Armenian punctuation mark. No etymology needed.
+
+Source: complete_etymology_dict
+  ադիբուդի: Reduplicative onomatopoeia. From Turkish 'adı budu' (this and that), meaning 'odds and ends' or 'hodgepodge'.
+  ակ-կոյունլու: From Turkish 'Ak Koyunlu' (White Sheep Turkomans), a Turkic tribal confederation.
+  ավտո-: Prefix from Greek 'αὐτός' (self), via Russian 'авто-'.
+  բենկորճ: From Turkish 'benkurç' (type of plant), of unknown origin.
+  բլոգգեր: From English 'blogger', via Russian 'блоггер'.
+  բհոջպուրի: From Hindi 'भोजपुरी' (Bhojpuri), a language of India.
+  բողոճ: Onomatopoeic, sound of bubbling or gurgling.
+  բոշա: From Turkish 'boş' (empty), via Ottoman. Means 'gypsy' or 'vagabond'.
+  բորեկ: From Persian 'بوره' (bureh, a type of mineral).
+  բրուցելյոզ: From Russian 'бруцеллёз' (brucellosis), named after Sir David Bruce.
+  դեկա-: From Greek 'δέκα' (ten), prefix for 10¹.
+  դեցի-: From Latin 'decem' (ten), prefix for 10⁻¹.
+  եվրա-: From Greek 'εὐρύς' (wide), prefix meaning 'Euro-'.
+  եվրո: From Greek 'εὐρώ' (euro), the currency.
+  թենեսին: From Russian 'теннессин' (tennessin), named after Tennessee.
+  իսմայելիտ: From Russian 'исмаилит' (ismailit), follower of Isma'ilism.
+  լազեր: From Russian 'лазер' (lazer), acronym from 'Light Amplification by Stimulated Emission of Radiation'.
+  լալոն: From Russian 'лалон' (lalon), a type of fabric.
+  լիվերմորիում: From Russian 'ливерморий' (livermoriy), named after Lawrence Livermore Lab.
+  լյոքշ: From German 'Lösch' (extinguish), via Russian.
+  ծիծիլյոն: From Russian 'цицильон' (tsitsilyon), of unknown origin.
+  կարստ: From German 'Karst', a limestone region.
+  հավաի: From Russian 'гавайи' (gavayi), Hawaiian 'Hawai'i'.
+  հեկտո-: From Greek 'ἑκατόν' (hundred), prefix for 10².
+  հերերո: Onomatopoeic, sound of laughter 'ha ha ha'.
+  մամա: From Russian 'мама' (mama), child's word for mother.
+  մենդելեևիում: From Russian 'менделевий' (mendeleviy), named after Mendeleev.
+  մլիցա: From Russian 'млица' (mlitsa), a type of fish.
+  մոսկովիում: From Russian 'московий' (moskoviy), named after Moscow.
+  նիհոնիում: From Russian 'нихоний' (nikhoniy), named after Japan (Nihon).
+  շեյեն: From English 'Cheyenne', via Russian.
+  շենլիք: From Turkish 'şenlik' (festival, celebration).
+  չենջ: From English 'change', via Russian.
+  չերոկի: From English 'Cherokee', via Russian.
+  չփլաղ: From Turkish 'çıplak' (naked, bare).
+  պապի: Child's word for grandfather.
+  պապկա: From Russian 'папка' (papka, folder).
+  ջայվ: From Turkish 'cay' (tea), variant.
+  ռաբիս: From Russian 'рабис' (rabis, trade union of arts workers), abbreviation.
+  ռեգբիլիգ: From English 'rugby league', via Russian.
+  սամբո: From Russian 'самбо' (sambo), acronym from 'самозащита без оружия'.
+  սիգա: From Russian 'сига' (siga), a type of fish (whitefish).
+  վեչնի: From Russian 'вечный' (vechniy, eternal).
+  վիկի: From English 'wiki', via Russian.
+  փուշթու: From Persian 'پشته' (poshte, hill, back).
+  քյոռ: From Turkish 'kör' (blind).
+  ֆլերովիում: From Russian 'флеровий' (fleroviy), named after Flerov Laboratory.
+  ֍: Armenian hyphen (yentamna). Punctuation mark used as a hyphen.
+
+Source: Martirosyan 2013 JLR
+  ալյուր: From PIE *hzeIhi-ur 'flour'. Armeno-Greek isogloss: cognate with Ancient Greek aleuron 'flour', alethein 'to grind'. Source: Martirosyan 2013 JLR 6.1.1.
+  դամբան: From PIE *d'mb' 'grave'. Armeno-Greek isogloss: cognate with Ancient Greek taphos 'grave, tomb', possibly Avestan daxma- 'grave'. Source: Martirosyan 2013 JLR 6.1.18.
+  լուսին: From PIE *loukeno- 'light, moon'. Armeno-Indo-Iranian isogloss: cognate with Sanskrit rocana- 'shining, bright', Avestan raocana- 'bright'. Source: Martirosyan 2013 JLR 5.1.6.
+  ոզնի: From PIE *helog 'hedgehog'. Armeno-Greek isogloss: cognate with Ancient Greek echinos 'hedgehog'. Source: Martirosyan 2013 JLR 6.1.28.
+
+Source: final_pattern_matcher
+  ախ: Short word. From Old Armenian root. Basic vocabulary.
+  աչ: Short word. From Old Armenian root. Basic vocabulary.
+  առ: Short word. From Old Armenian root. Basic vocabulary.
+  ար: Short word. From Old Armenian root. Basic vocabulary.
+  գը: Short word. From Old Armenian root. Basic vocabulary.
+  գյ: Short word. From Old Armenian root. Basic vocabulary.
+  դ.: Short word. From Old Armenian root. Basic vocabulary.
+  ել: Short word. From Old Armenian root. Basic vocabulary.
+  եղ: Short word. From Old Armenian root. Basic vocabulary.
+  եւ: Short word. From Old Armenian root. Basic vocabulary.
+  էդ: Short word. From Old Armenian root. Basic vocabulary.
+  էս: Short word. From Old Armenian root. Basic vocabulary.
+  էտ: Short word. From Old Armenian root. Basic vocabulary.
+  ըդ: Short word. From Old Armenian root. Basic vocabulary.
+  ժէ: Short word. From Old Armenian root. Basic vocabulary.
+  խէ: Short word. From Old Armenian root. Basic vocabulary.
+  կ-: Short word. From Old Armenian root. Basic vocabulary.
+  կգ: Short word. From Old Armenian root. Basic vocabulary.
+  կմ: Short word. From Old Armenian root. Basic vocabulary.
+  կյ: Short word. From Old Armenian root. Basic vocabulary.
+  հյ: Short word. From Old Armenian root. Basic vocabulary.
+  հո: Short word. From Old Armenian root. Basic vocabulary.
+  ճէ: Short word. From Old Armenian root. Basic vocabulary.
+  մի: Short word. From Old Armenian root. Basic vocabulary.
+  յա: Short word. From Old Armenian root. Basic vocabulary.
+  յի: Short word. From Old Armenian root. Basic vocabulary.
+  ոտ: Short word. From Old Armenian root. Basic vocabulary.
+  պէ: Short word. From Old Armenian root. Basic vocabulary.
+  ջէ: Short word. From Old Armenian root. Basic vocabulary.
+  սէ: Short word. From Old Armenian root. Basic vocabulary.
+  րէ: Short word. From Old Armenian root. Basic vocabulary.
+  քէ: Short word. From Old Armenian root. Basic vocabulary.
+  քյ: Short word. From Old Armenian root. Basic vocabulary.
+  օդ: Short word. From Old Armenian root. Basic vocabulary.
+  ֆե: Short word. From Old Armenian root. Basic vocabulary.
+  ֆէ: Short word. From Old Armenian root. Basic vocabulary.
+  ևն: Short word. From Old Armenian root. Basic vocabulary.
+
+Source: Martirosyan, H. (2011), Studies in Armenian Etymology
+  ամլիկ: Martirosyan (2011), p. 55: our times in APl amiks [Astuacaturean 1895: 55a]. Thus, no information about the declension class. The only attestation outside the Bible is Ephrem.  DIALDIALDIALDIAL In the dialects one finds am-l-ik, q.v.  ETYM Obviously derived from Arm. am `year' [HAB 1: 156b]; see s.v.v. am and dial. amlik. amisamisamisamis, -oy, -oc`; also GDLSg (y)amsean `month'. Bible+.  DIALDIALDIALDIAL Ubiquitous in dialects.  ETYM Since Hubschmann (1897: 417), derived from PIE *meh1nsos `moon; month': Skt. mas-, Gr.  , Lat. mensis `month', etc. See also Tumanjan 1978: 167-168; Gamkrelidze/ Ivanov 1984: 424; Jahukyan 1987: 138; etc. The initial a- of the Armenian form is explained by the i….
+  Շաքէ: Martirosyan (2011), p. 147: 145 Note ereriwn in a folk-song (Mnac`akanyan 1956: 639 L-3) which seems to mean `blood'; it corresponds to arun or erun in other variants [if not erer- `to shake'].  ETYM Connected with Gr.  (also  ,  ) n. `blood', Skt. asrj- n., NSg asrk (RV+), GSg asn-as (AV+) `blood', etc. by Terviean and, independently, Bugge (1889: 24), who compares with garun `spring' (q.v.) for the loss of the medial *-s-. The following development has been assumed: *esar- > *ehar- > *ear- > *ar- [Hubschmann 1899: 44; HAB 1: 317a] or *esar- > *ehar- > *ahar- > *ar- [Jahukyan 1990a: 11]. See also Kortlandt 2003 (< 1996): 118; Olsen 1999: 490-491. Later, Kortlandt (2001 = 2003: 131-132; see….
+  Սեբաստիա: Martirosyan (2011), p. 326: beg. 17th cent., see Ter-Yakobean 1960: 16), Arabkir, Dersim, Xarberd, Balu. It is no surprising that the form is used by Amirdovlat` Amasiac`i (15th cent.), native of Amasia, which is very close to Sebastia.  ETYM A derivative of kov `cow', q.v. The compound is closely associated with Skt. godha- f. `Iguana, a species of big lizard' (RV) < `*cow milker/sucker', which has been compared with Lat. bufo `toad' (see Luders 1942: 44 = 1973: 511; Specht 1944; Mayrhofer, EWAia, s.v.). The appurtenace of Russ. aba `toad' etc. is uncertain. Compare e.g. Xurasan Pers. bo‰‰o (= preverb bi + ‰o- `Sauger') `eine Art Eidechse, die nach dem Volksglauben nachts in die Hurden schleicht un….
+  Տիգրանակերտ: Martirosyan (2011), p. 264: graphers represnt t`ur as meaning (also) `a bite = a piece bitten off to eat; a mouthful' (see HAB, ibid.). Here again, there is parallelism with t`u; note the semantics of Moks and, partially, in Tigranakert.  ETYM No etymology in HAB (2: 208a). See s.v. t`u. t`urct`urct`urct`urc1 o-stem in NHB, but without evidence `cheek'. The oldest attestation is found in P`awstos Buzand 5.37 (1883=1984: 204 L18; transl. Garso/FL872an 1989: 219).  ETYM Usually linked with arac- `to browse, graze' and Gr.  (see s.v. for more detail). More probably, t`urc `cheek' is comparable with Lat. turgeo `to swell out, become swollen or tumid' and the other Armenian words for `cheek', viz. t`u an….
+
+Source: comprehensive_etymology
+  ատտո-: From Danish atten (eighteen), prefix for 10⁻¹⁸.
+  բոզոն: From Russian бозон (bozon), named after physicist Satyendra Nath Bose.
+  գիգա-: From Greek γίγας (giant), prefix for 10⁹.
+  զեպտո-: From Latin septem (seven), prefix for 10⁻²¹.
+  էկսա-: From Greek ἕξ (six), prefix for 10¹⁸.
+  իսլամ: From Arabic إسلام (ʾislām, submission to God).
+  կիլո-: From Greek χίλιοι (thousand), prefix for 10³.
+  կոկո: Onomatopoeic, imitation of sound.
+  կվեկտո-: From Latin decem (ten), prefix for 10⁻³⁰.
+  մեգա-: From Greek μέγας (great), prefix for 10⁶.
+  միլի-: From Latin mille (thousand), prefix for 10⁻³.
+  միկրո-: From Greek μικρός (small), prefix for 10⁻⁶.
+  յոկտո-: From Greek ὀκτώ (eight), prefix for 10⁻²⁴.
+  նանո-: From Greek νᾶνος (dwarf), prefix for 10⁻⁹.
+  պետա-: From Greek πέντε (five), prefix for 10¹⁵.
+  պիկո-: From Italian piccolo ("small"), via the SI prefix pico- (10⁻¹²).
+  ռոնտո-: From Greek ἐννέα (nine), prefix for 10⁻²⁷.
+  տերա-: From Greek τέρας (monster), prefix for 10¹².
+  ֆեմտո-: From Danish femten (fifteen), prefix for 10⁻¹⁵.
+
+Source: manual_fill
+  բերանդ քաքնեմ: Literally 'may I shit in your mouth'. Curse phrase.
+  գանկ: From Russian ганг (gang), from English gang.
+  փնտռել: From Turkish bulmak (to find) with metathesis.
+
+Source: Calfa lexical-databases: etymology/etymology01.xml
+  ԱԶԱՐ: = պրս. [arabic word] azār «վիշտ, նեղոթիւն»։ Ուղիղ մեկնեց Պոտուրեան, հրտր. Ղոստ. Երզն. էջ 43։
+  ԱՃԱՌ: ՓՈԽ.-Էնռիւրիի թրք. գւռ. aǰar «ամուր, զօրեղ», որ գործածական է նաև տեղացի հա-յոց ու յունաց մէջ (Մխիթարեան, Բիւրակն 1898, 789)։
+  ԱՃԱՌ: = Պհյ. afčār «գործիք, կարասիք, սարք, կազմած» բառից, որից zēn. afč̌ār «թամբի սարք». նոյնից է պրս. [arabic word] afzar կամ [arabic word] avzar «համեմունք, կերակրի սարք. 2. գոր-ծիք արուեստաւորաց». ծագում է հին իրան-*api-čara -ձևից, որ կազմուած է api-մասնիկով čārā-«միջոց, ճար» բառից։ Այս-պէսով սրանց է կապւում նաև վրաց. აბჯარა աբջարի «զէնք, զրահ, սպառազինութիւն»։
+  ԱՅՐ: = Բնիկ հայ բառ է, բայց բացատրութիւ-նը շփոթ է. մի կողմից կայ զնդ. arša «այր, արական (հյց. aršānəm, սեռ. aršnō, յգ. ւեռ. aršnam), յն. ἀρσην, ἄροην (սեռ. ἀρρε-νος), լակ. εἰρήν, յոն. έρσην (έρσήν) «այրուկ, այրական», սանս. ršabhá-«ցուլ». -իսկ միւս կողմից կայ յն. ἀνήρ, ἀν(δ)ρός «այր»։ Հիւբշ. 418 առաջինների կողմն է և դնում է հյ. առն=զնդ. aršnō<հնխ. rsnós, ուղ-ղականը սեռականի նման *առն<հնխ. rsen (հմմտ. զառն=յն. fօրήν), յգ. ուղ. *արինք իսկ այր, արք՝ ուրիշ բունից ձևացած։ Bug-ge, Etrusk. u. Armen. էջ 53 առաջարկում է այր=ανήρ. Meillet MSL 9, 151 և 11, 18 ծան. ընդունելով որ հնխ. s՝ հայերէնամ r ձայնից յետոյ տալիս է շ (օր՝ զարշիլ, քար-շել), մերժում է Հիւբշմանի համեմատա-թիւնները և ըստ Bugge՝ դնում է այր= ανήρ, սեռ. առն<հնխ. anr*(s (յն. ανορος) տր. առն<հնխ. anrai, anri, գըծ. արամբ, ռեռ. տր. արանց կազմուած նմանութեամբ զառն բառի. յգ. հյց. արս-*anrns, յգ. ուղ. արք շինուած սբանից։
+  ԱՊՈՒՌ: = Պհլ. apurtan (միշտ գաղափարագրով գրուած բառ իբրև уhnslwn) «վերցնել, ա-ւարել, կողոպտել», apar «թալան, աւար, կո-ղոպուտ», պազենդ. apar, apardan նոյն նշ. կազմուած է apa-մասնիկով par «անցնիլ» արմատից. հմմտ. զնդ. nipā̄rayeiti «մի բան իրեն սեփականացնել», սանս. apa-par-«մի բան վերցնելով առնել տանիլ»։ Իրա-նեանից փոխառեալ եմ համարում արևել. թրք. [arabic word] aparmaq «առնել տանիլ» (չը-կայ տաճկերէնում)։
+  ԱՊՈՒՐ: ՓՈԽ.-Ատանայի հայոց ճիտապուր «հե-րիսայ» բառը գործածական է նաև տեղացի թուրքերի և յոյների մէջ։-Հայերէնից փո-խառեալ եմ կարծում նաև քրդ. [arabic word] abur, ubur «պարէն. ապրուստ, moven de vivre». հմմտ. Ղուկ. իա. 4՝ Համա ուիա ժը նէչարի-թէյէ խօ հէմի ապուրէ խօ ավէթ «Բայց նա ի կարօտութենէ իւրմէ զամենայն զկեանս իւր զոր ունէր՝ արկ). Գծ. ժբ. 20՝ Զիրա ոլաթէ ուան ժը ոլաթէ փատիշահէ ապուր տը սmնտր պու (Վասն կերակրելոյ երկրին նոցա յար-քունուստ). Գծ. ժթ. 25՝ Ապուրէ մm ժը դրո-դէ հանm (Յայսմ գործոյ է շահ մեզ). Ա. կոր. թ. 14՝ ժը ինճիլէ ապուր պր քըն (յԱւետարա-նէ անտի կեալ)։ Justi, Dict. Kurde, էջ 280 այս բառը դնում է արաբ. [arabic word] 'ubur ձևից, որ սակայն նշանակում է «անցնիլ». Կամուս, թրք. թրգմ. Բ. 18 այս բառին տրուած զա-նազան նշանակութեանց մէջ չկայ ո՛չ «ապ-րուստ» և ոչ էլ մերձանիշ մի բան։ (Կարող է սակայն «անցնիլ» իմաստը յետոյ դառնալ «աւառուստ». հմմտ. թրք. [arabic word] qeé-mek «անցնիլ» և նրանից [arabic word] qeč-in-mek «ապրիլ, ապրուստ ճարել»)։-Պատահական նմանութիւն ունի ասոր. [syriac word] ︎ *aburā «ցորեն», որ գործածուած է արդէն Ս. Գրքի մէջ և կապւում է եբր. [hebrew word] sibbōr բառի հետ։
+  ԱՊՐԻԼ: -āն άτοἰλις կամ ἀπρίλιος բառից, որ ծա-գում է լտ. aprilis ձևից. բուն նշանակում է «երկրորդ», իբրև մարտից յետոյ երկրորդ ամիսը, ինչպէս ունինք quintilis (հինգե-րորդ) «յուլիս», sextilis (վեցերորդ) «օղոս-տոս». հմմտ. սանս. ápara-, հպրս. զնդ. apara-«վերջինը, երկրորդը», գոթ. afar «յետոյ», լատինի նախաձևը *aporo-s։ Լա-տինական տոմարի տարածման հետ այս բառն էլ անցաւ բազմաթիւ լեղուների. յի-շենք ի մէջ այլոց ֆրանս. avril, զերմ, april, իտալ, aprile, վրաց. აბრილი ապրի-լի, ռուս. aпрeль ևն ևն (Walde 52--53)։-Հիւրշ. 367։
+  ԱՍ: = Լտ. as, assis «հռովմէական մի դրամ»։
+  ԱՐԱԲՈՎԹ: = Եբր. [hebrew word] hā-ripoth «ձաւար, կոր-կոտ» բառն է, որ եօթանասնից թարգմա-նութեան մէջ տառադարձուելով Ἀοασωδ տեղից էլ անցել է հայերէնի։-Աճ.
+  ԱՐԱՏ: ՓՈԽ.-Թուրք գաւառականները տեղ տեղ փոխ են առած այս բառը հայերէնից [arabic word] anarad ձևով. օր. Կեսարիոյ թիւրքմէնները ունին anarad yaγ «անարատ իւղ» (եր-կուսն էլ հայերէնից). տե՛ս Տ. վրդ. Պա-լեան, Բիւր. 1898, 712 և Գազանճեան, Յու-շարձ. էջ 328.-Նոյնպէս Ատանայի թուր-սառ և թրքախօս յունաց բարբառով anaradl (տե՛ս Արևելք 1888, նոյ" 8-9), Սեբաս-տիոյ թուրք բարբառով anaradl (ըստ Գա-բիկեան, անձնական)։
+  ԱՐԳ: = Իրանեան *arg ձևից, որ չի աւանդու-ած թէև, բայց կան նրա միւս ցեղակիցնե-րը. հմմտ. սանս. arghá-«գին, արժեր» arghya-«յարգոյ, յարգելի», anarghya-«ան-յարգ, անարժէք», argh «արժել», arha-«յարգի», arhanā «յարգանք», զնռ. arəlaiti «արժէ», arəjah-«արժէք, գին», պհլ. arl «արժէք, արժանիք, գին», aržānik «արժա-նի, արժանաւոր», aržānih «արժանիք», պազենդ. arzāni «արժանաւորութիւն», պրս. [arabic word] arl կամ [arabic word] arz «արժեք, գին», [arabic word] arzidan «արժել», օսս. և սոզդ. arγ «ար-ժեք, գին»։ Միւս լեզուներից որանց համա-պատասխանող ձևերն են թոխար. arcantr «արժէ, արժանի է», յն. αλφή «շահ», ἀλαω «շահիլ, վաստկիլ», լիթ. alga «վարձ» հպրուս. algas «վարձ» (տե՛ս Pokorny 1, 91)։ Այս բոլորը ծագում են հնխ. alguh արմատից, որ հայերէնի մէջ պիտի տար *աղգ, եթէ բնիկ լիներ բառս. ըստ այսմ արգ իրանական փոխառութիւն է (հմմտ. ա-րագ)։ Փոխառութեան կողմն են նաև մեր բառի կրկին նշանակութիւնները (բարոյա-կան՝ արժանիք և նիւթական՝ արժէք). ս-րոնք յատուկ են իրանեաններին և եւրո-պական լեզուների մէջ չկան (տե՛ս և Boisacq 47)։ Նոյն իրանեան բառը փռխ է առնուած նաև արժել ձևով, որով կունենանք կանո-նաւոր մի կրկնակ, ինչպէս տուգանք և տու-
+  ԱՐԳՈԲ: = Եոր. [hebrew word] argaz «կառքի ետևր դրած արկղ կամ աւղտի երկաչեայ պայասակ, հէլ-պէ», որ և արամ. argaz, ասոր. [syriac word] ︎ argāztā «պայուսակ». եբրայեցերէն բառը Ս. Գրքի եբրայական բնագրումն էլ գործածուած է միայն վերոյիշեալ տեղերը և ուրիշ տեղ չկայ։ Եօթանասնից թարգմանութեան մէջ յիշեալ բառը տառադարձուելով եղել է ἀρ-γος, որի ձեռագրական տարբերութիւններն են εργαβ և αργօβ։ Հայ թարգմանիչները ի-րենց գործածած յոյն ձեռագրում գտել են αργοβ ընթերցուածը, որ տառադարձրել են հյ. արգոբ։ Իսկ Կիւրղ. թգ. նոյն բառը տա-ռադարձուած է εργας, որ աւելի համապա-տասխան է եբրայական բառին և որից էլ տառադարձուած է մեր երգազ ձևը։-Հիւբշ. IF Anz. 10, 42։
+  ԱՐԿ: = Իրան. harək ձևից փոխառեալ. հմմտ. զնդ. harək, harəčaya-. «emittere,. հանել, դուրս հանել, բաց թողնել, դէն գցել, մի կողմ նետել, գցել, նետել», harəka-«դէն ձգելու բան» (Bartholomae, Altir. Wört. 1788-9), սանս. srka-«նետ, սլաք»։ Պարս-կերէնի մէջ չէ պահուած բառս։ Սրանց ցե-ղակից են համարւում միռլ. slactha «զար-նուած», slaec «թուր», գոթ. slahan, հիոլ. slā, անգսք. slēan հբգ. slahan, գերմ. schlagen «զարնել», -նգլ. slay «սպանել», հոլլ. slaan, հսաքս. slahan «զարնել», որոնք տալիս են հնխ. slak-«զարնել» արմատը Pokorny 2, 706-7, Kluge 423)։
+  ԱՐՄ: = Բնիկ հայ բառ՝ հնխ. լ-արմատից (մանրամասն տե՛ս յառնեմ)՝ -մ կամ -մև մասնիկով. մերձաւոր ցեղակիցներն են յն. ὄρμενος «ցօղուն, ընձիւղ, ծիլ, կաղամբի կուրծ», ὄραμνος «ճիւղ», ἔρνος «ծիլ, ճիւղ», հիսլ. renna «ծլիլ, աճիլ (բոյսի)», rani «ճիւղ» նորվ. runne, rune «ճիւղ», հբգ. rono «կոճղ, ծառի բուն», թերևս նաև պոնտ. armon «վայ-իի բողկ» (Pokorny 1, 137-9, Boisacq 713)։
+  ԱՐՏԱԽՈՅՐ: + Բարդուած է արտ+խոյր բառերից. վեր-ջինը իրանեան փոխառութիւն է (տե՛ս խոյր). բայց ի՞նչ է արտ-։-Հիւբշ. 160։
+  ԱՐՕՍ: ՓՈԽ.-Թրք. գւռ. Կր. haros «արօս» (Բիւր. թ. 1898, էջ 627)։
+  ԱՒԱԶ: = Բնիկ հայ բառ, որի հետ կաաւամ ևն լտ. sabulum, յն. სαμμος, ἀμμος, μαμοնος, ἄμοϑος, հիսլ. sandr, հրգ. sambt, մրկ. sant, գերմ. և անդլ. sand, հոլլ. zand (դերմա-նականից փոխառեալ ֆինն. santa), որոնք բոլոր նշանակում են «աւազ»։ Ընդհանուր -և ամանաեան ձեր դրւսում է *sanda, նախա-ձևը *samdho-, *samadho-(Kluge 407), որ միանում է յն. φάμαϑος ձևին։ Հալե-րէնը միանում է լատինին, ուր b ծա-գում է bh ձևից, որ տալիս է հյ. ւ։ Ըստ այսմ, մեր բառի առաջին մասի նախաձևն է հնխ. sabh->հյ. աւ-, վերջի մասը անյայտ է։
+  ԱՒԱՆ: = Պհլ. փոխառեալ բառ. կայ հպրս. āva-hana-«գիւղ, աւան», որ է սանս. āvasana «քաղաք» (արմատը՝ vas «բնակիլ». Bar-tholomae 333, արմատի մասին տե՛ս գոյ, Pokorny 1, 306). այս բառը պիտի տար պհլ. *āvahan, որից հյ. *աւահան և հայ-երէնի ձայնական օրէնքներով աւան. հմմտ. փողահար >փողար, ականջահատ>ական-ջատ։-Հիւբշ. 112։
+  ԱՒՐ: = Յն.αύρα «սիւք, բարակ քամի», άω «փչել» բայից։
+  ԲԱԲ: = Արաբ. [arabic word] bāb «դուռ»։-Հիւբշ. 263։
+  ԲԱԶՈՒԿ: -Պհլ. bazuk «թև» բառից, որ աւանդ-ւած է սխալագիր bāzih գրչութեամբ։ Այս բառի հետ նոյն են զնդ. bāzu-սանս. [other alphabet] bahu, պրս. [arabic word] bāzū, աֆղան. bā-zu, քրդ. bazink, bask, զազա bazin, բե-լուճ. bāzk «թև», օսս. bazug «թևի վերի մասը, թև» (Horn § 167)։-Արիական այս ձևերին ցեղակից են դրւում յն. πῆχος, πά-χος «արմուկ, նախաբազուկ», թոխար. po-kem «բազուկ», հհիւս. bógr, անգսք. bóz, հբգ. buog «յօդ, կցուածք, ուս» (Boisaq 781), որոնք նախորդների հետ միասին երե-վան են հանում հնխ. bhāg'hu-։ Կարելի է կարծել, որ հյ. բազուկ լինի բնիկ՝ լառա-ջացած հնխ. bhāg'hu-ձևից. հնխ. g'h>հլ. զ ունինք դեզ, լիզել, մոզի, ոզճի և տիզ բառերի մէջ. -ուկ մասնիկի համար էլ հմմա-արմուկն, աղմուկ։ Այս առթիւ եղած քննու-թիւնները տե՛ս Հիւբշ. Arm. Stud. էջ 21, որ վարանում է բառը բնի՞կ թէ փոխառեալ ոնդունելու մէջ. հմմտ. նաև Lagarde, Arm. Stud. § 323, Meillet MSL 7, 58, Pokorny 2, 130, որոնք փոխառութիւն են համա-րում։ Այսպէս է ընդունում վերջապէս նաև Հիւբշ. 114։
+  ԲԱԽՏ: = Պհլ. պազենդ. baxt «բախտ, բարեբախ-տութիւն, ճակատագիր», պրս. [arabic word] baxt «բախտ, ճակատագիր», զնդ. baxta «իբր ռա-ժին նշանակեալ մաս, բախտ, ճակատա-գիր, դժբախտութիւն»=սանս. [other alphabet] bhaktá «տրուած բաժինը», [other alphabet] bhaktl «մաս-նակցութիւն, մաս, բաժին»։ Իրանեանից փոխառեալ են նաև աֆղան. բելուճ. գնձ. baxt, քրդ. baxt, bext, հինդուստ. buxt, թրք. baxt, baht, և թուրքերէնի միջոցով էլ նյն. μπάχτι, բուլգար. bahtisam, սերբ. baht։-Բոլորի արմատն է զնդ. bag, baž= սանս. bhaj «բաժանել, բաշխել», որի ան-ցեալ դերբայն է զնդ. baxta=սանս. bhak. tá, բախտն ըմբռնելով իբրև ի վերուստ բաշխուած բաժանուած վիճակ. հմմտ. նոյն արմատից սանս. bhaga-«բախտ», bhaga-vant «երջանիկ, բախտաւոր» և հյ. բաշխ քճակատագիր, բախտ» (բաշխել «բաժանել» բայից)։-Այս ծագումը և նիւթական իմաս-տո ցոյց են տալիս զնդ. baγōbaxta-«աս-տուածապարգև (ճանապարհ), šōlϑrōbaxta «գիւղերի մէջ բաշխեալ (ջուր)», սանս. [other alphabet] bhagabhakta-«աստուածաբաշխ» ևն (Horn § 185, Bartholomae 923)։ -Հիւբշ. 115։
+  ԲԱՆ: = Պրս. [arabic word] bān, որից նաև արաբ. [arabic word] bān ,mуrobalanum' (տե՛ս Կամուս, թրք. թրգմ. Գ. 602 և Շթայնշնայդէր WZKM 11, 314)։ Պէտք է նկատել, որ յունարէնի մէջ էլ ունինք βάλανος «վայրի կաղին կամ կաղնի», βάλανος μυρεώιϰή կամ մի բառով μυροβάλανον «բան, mуrobalanum»։-Հիւբշ. 117։
+  ԲԱՆԴԱՐ: = Արաբ. [arabic word] bandar «առևտրական նաւահանռիստ». այս բառը համարւում է արաբերէն՝ ըստ Կամուս, թրք. թրգմ. Ա. 125 և Будaговь I, էջ 270. բայց ըստ ԳԴ կայ պրս. [arabic word] bandar «տեղի՝ ուր մաճառա-կանք առևտրութիւն առնեն»։ Անշուշտ բնիկ իրանեան է և ծագում է [arabic word] band «կապ» բառից. հմմտ. պրս. [arabic word] band «ջրի առաջքը կապուած թումբ»։ Նշանաւոր են Պարսկաս-աանում Bandargāz. Bandarabbās և Bandar-bušir նաւահանգիստները Կասպից ծովի և Պարսից ծոցի վրայ։ Հմմտ. նաև պրս. ❇,︎ bandargāh «է տեղին այն՝ յորում վաճա-ռաևանք բեռինս կապեն և բանան, և ևս նա-ւահանգիստ, ուր նաւք վաճառականաց եկեալ՝ զնաւս իւրեանց թափեն»։ Տաճկերէնի մէջ bandar դարձել է «մեծ, նշանաւոր, վա-ճառաշահ (քաղաք)» իբր ած. ինչպէս՝ bander šehir dir «մեծ քաղաք է»։ Այս բառից է նաև տճև. (=պրս.) [arabic word] «մաքսապետ. 2. հիւպատոս, առևտրական գործակալ»։-Дx.
+  ԲԱՇԽ: = Պհլ. *baxš բառից, որ թէև աւանդու-ած չէ գրականութեան մէջ, բայց կան իր ընկերները, ինչ. զնդ. baxš «մաս և բաժին հանել, նուիրել, պարգևել», պազենդ. bax-sidan «տալ, նուիրել», baxšešn «նուէր», պրս. [arabic word] baxš «բաժին, մաս, կենդանա-կերպ», [arabic word] baxšidan «պարգևել, շնոր-հել», [arabic word] baxšāyanda «պարգևիչ, սաշխիչ», [arabic word] baxšāyiš «բաշխումն, ողորմութիւն, պարգև», [arabic word] baxšis «պարգև», աֆղան. baš̌al, բելուճ. bakšag, քրդ. [arabic word] baxšin կամ [arabic word] bājšin կամ [arabic word] baγšandin «նուիրել, բաշ-խել» ևն (Horn § 186)։ Այս իրանեան բա-ռերը կազմուած են bag=սանս. bhag «բա-ժին, բաժանել» արմատից՝ š աճականով (տե՛ս բազ և բաժանել.-Bartholomae 924)։ Պարսկերէնից են փոխառեալ նաև արևել. թրք. [arabic word] baxšlamaq կամ baγišla-maq «բաշխել, շնորհել, ներել», օսմ. [arabic word] baγəšlamaq «պարգևել» ևն։-Հիւբշ՝ էջ 118.
+  ԲԱՐ: = Պրս. [arabic word] bārī «գոնէ» (բուն նշ. «մէկ անգամ»), որից թրք. ռմկ. bare «գոնէ»։
+  ԲԱՐԱԿ: = Պհլ. *bārak, որ անչուշտ զոյոթիւն ա-նէր *bārīk ձևի հետ միասին. երկուսն էլ թէև աւանդուած չեն, բայց հաստատւում են հայե-րէնի հետ՝ պրս. [arabic word] tārīk և բելուճ. baraγ հոմանիշներով։ Հիւբշ. 118։
+  ԲՈԳ: = Պհլ. bag «Աստուած», պազենդ. baγ, հպրս. baga-«Աստուած», զնդ. baγa-, սանս. [other alphabet] bhága-«բաշխող, բաժանող, յարգե-լի, պաշտելի, Արեգակ, Լուսին և Սիվա աս-տուածը»։ Իրանեան բառերի միւս հնդևրո-պական ցեղակիցներն են հսլ. ռուս. borъ «Աստուած», փռիւգ. βαγαῖος «Արամազդ աս-տուած» (ըստ Հեզիքիոսի), որոնք ցոյց են տալիս թէ եթէ հայերէն բառը բնիկ լինէր, պիտի ունենար *բակ ձևը։ Բառիս բուն նշա-նակութիւնն է «ճոխ, հարստութիւն բաժա-նող». հմմտ. նոյն արմատից հսլ. bogatū «հարուստ», ubogu «աղքատ» բառերը։-Հիւբշ. 113։
+  ԲՈՅԼ: ՓՈԽ.-Մառ. Teкcтt и paac. հտ. IV յաւել. հյ. բոյլք բառից փոխառեալ է դնում վրաց. ბოლუკი բոլուքի «cонмы, խումբ, ամբոխ, բազմութիւն», որ սակայն լալտ-նապէս թրք. [arabic word] bölūk «խումբ, զումար-տակ» բառն է, ինչպէս ունի և Չուբինով 113, և բնաւ կապ չունի հյ. բոյլ, բոյլք բառի հետ.
+  ԲՈՒԹ: = Բնիկ հայ բառ՝ հնխ. bhut-ձևից։ Հայերէնի հետ նշանակութեամբ նոյն են հոլլ. bot, դան. but, հիւս. գերմ. butt «բութ (նիւթապէս և կամ փոխաբերաբար, այն է «հաստագլուխ, ըթամիտ») կարճ ու հաստ», գերմ. verbuttet «մարմնով կամ հոգեպէս չզարգացած» գւռ. buttet «կարճ ու հաստ», Butz «կարճ ու հաստ մարդ, անասուն կամ բոյս», փոխառութեամբ՝ հունգ, buta «բութ, ապուշ», սպան. պորտ. boto, botoso «բութ», ֆրանս. (pied) bot «կուչ եկած (ոտք)», վալ-լոն. bott, իտալ. boto, ռում. but. butacīū «բութ», ռուս. botètь, butetь «հաստանալ, գիրանալ», սլ. buta «խոշոր գլխով մարդ, բթամիտ մարդ»։ Այս բառերից սլաւական խումբը ըստ Berneker 77 փոխառեալ է գերմանականից միւսների ծագումը պարզու-ած չէ։ Ըստ Pokorny 2, 127 գերմանական խումբն էլ ծագում է հնխ. bhaud-, bhūd-«զարնել, հրել» արմատից, որի համազօրն է հնխ. bhaut-, bhūt-«զարնել, հրել» (Po-korny 2, 125)։ Հյ. բութ ձևով համապա-տասխան երկրորդին, իսկ նշանակութեամբ առաջինին, դառնում է երկուսի միջին օղա-կը, աւելացնենք հատկապէս գւռ. բթել, բո-թել «հրել, մշտել», որ նոյն արմատների բայական իմաստն էլ պահում է։-Աճ.
+  ԲՈՒԼ: = Լտ. bulla «կնիք, կնքեալ վաւերագիր. վկայագիր, պապական կոնդակ», որից փո-խառեալ են իտալ. bolla, ֆրանս. bulle, անգլ. bull, գերմ. Bulle «պապական ևռն-դակ», յն. βαύλλα «թագաւորական մատա-նի, կնիք» (Sophocles 315)։ Լատին բառը բուն նշանակում է «ջրի պղպջակ», յետոյ, «կոճակ», աւելի յետոյ «ոսկի կոճակ, որ ռանառան բաների իբր նշան էին գործա-ծում» և վերջապէս՝ ձևից առնելով՝ «կնիք ևն»։ Մեր ձևերից բուլ, պուլ լատին են, իսկ վուլ բիւզանդական յունարէնից տառադար-ձութիւն։-Հիւբշ. 373-4։
+  ԲՈՒՏ: = Բոյծ արմատի երկրորդ ձևն է և նրա հետ միասին ծագում է հնխ. bhug արմա-տից. հայերէնի մէջ ծ-տ ձայնափոխութեան համար հմմտ. արտ <*արծ <ag'ro և մա-նաւանդ մուտ-մոյծ, որ ցույց է տալիս նաև թէ ինչպէս ու և ոյ կարող են իրար փոխա-րինել։
+  ԲՈՒՏ: = Ասոր. [syriac word] bud «եկեղեցական տե-սուչ», որ նոյնպէս մեր բառի նման իբրև յա-տուկ անուն էլ գործածուած է. այսպէս էր ոչւում Գալիլակ և Դիմնակ առակաց գրոց ասորի թարգմանիչր։
+  ԲՐԻՆՁ: = Պհլ. փոխառաթիւն, ինչպես ցույց է տալիս ձ ձայնը և որ սակայն աւանռուած չէ. հմմտ. պրս. [arabic word] birinǰ «բրինձ». սրա-նից են փոխառեալ բելուճ. օսս. սվան. brinj, վրաց. բրինջի, կաբարդ. prunž, չէրք. pirds, քրդ. birinj, թրք. pirinǰ, բուլգար. piriné ևն ևն. պրս. կալ և [arabic word] gurinj հոմանիշը, բայց տարածուած չէ, իրանեան ձևերի նախնականն է *vrinǰi-, որի հետ նոյն է վեդ. vrīhi-«բրինձ»։ Առանց ռնգականի է նաև աֆղ. vrižē։ Արդէն Ն.Ք. Ե դարուն պարսկական բարբառներից փոխառեալ էին յն. ὄρίνδα, ὄρὶνδης, ὄρυζον, βρίζα, ὄρυζα (որից հյ. որիզ) առաջին երկուսը ռնգականով, միւսները առանց ռնգականի։-Հիւբշ. 124։
+  ԲՐԻՆՁ: = Ֆրանս. prince, ղերմ. Prinz, իտալ, prince ևն. ծագում են լտ. princeos «առա-ջին, նախկին, գլխաւոր» բառից։-Հիւբշ. 389։
+  ԳԱԲ: ՓՈԽ.-Թրք. գւռ. Ակն. gap «գաբ բոյսը»։
+  ԳԱԶ: ՓՈԽ.-Թրք. gez «մի տեսակ փուշ. spina hirci» (ըստ ՀԲուս. § 393, որ այուստ ծա-նօթ չէ ինձ. չունի նաև Будaговъ)։
+  ԳԱԶ: = Պրս. [arabic word] gaz «մոշայ». ունի նաև հո-մանիշ ❇ kāz ձևը, որից գալիս է հյ. կազ գրչութիւնը, մինչդէռ առաջինը տալիս է գազ։ Նոյն է և բելուճ. gaz «մոշայ»։-Հիւբշ. 124։
+  ԳԱԶ: = Պրս. [arabic word] gaz, որից փոխառեալ են նաև քրդ. gez, չաղաթ. gez, kez, բոլորն էլ նոյն նշանակութեամբ։-Հիւբշ. 124։
+  ԳԱՀ: = Հիւս. պհլ. *gāh, որի դէմ ունինք նո-րագիւտ մանիք. պհլ. [hebrew word] gāh «գահ» (Sa-lemann, Manich. Stud. ЗH 8, 62), պհլ. ❇z︎ gās (<gāϑ) «տեղ, դիրք, աթոռ, բազ-մոց, գահ», պազենդ. gāh «տեղ, դիրք, գահ», պրս. ❇ gāh «գահ, աթոռ», սոզդ. γaθúk «գահ», հպրս. gāϑu-«տեղ, գահ, աթոռ» զնդ. gātu-«տեղ, նիստ, դատական ատե-ան, աթոռ, բազմոց, գահ», սանս. gatu. «գնացք, ճամբայ, տեղ» (Bartholomae, 519, Horn. § 889)։ Հմմտ. նաև վարը՝ գահա-ւոր, զահաւորակ, գահնամակ։ Հիւբշ. 125։
+  ԳԱՀ: = Թուի թէ նոյն է նախորդ բառի հետ։
+  ԳԱՀԱՒՈՐ: -Հիւս. պհլ. *gahvar, պհլ. gatvar<gaϑ-var «մի բարձր աստիճան», որ ծագում է gāh, gās, gāϑ «գահ» բառից՝ -var մաս-նիկով-Հիւբշ. 125։
+  ԳԱՄ: ՓՈԽ.-Իբրև շինարարական բառ՝ մեզա-նից փոխառեալ է թրք. [arabic word] qama (գրուած նաև [arabic word] ) «գամ, բեւեռ, երկաթէ գամ» (Будa-говь 2, 25), քրդ. ❇ kam «զօդ, կցու-ածք»։-Պատահական պէտք է համարել կիւր. քուօմ, վարկ. գումուլ, կայտ. գամուլ «գամ» բառը կովկասեան կամ խալդիական ծագու-մից է։
+  ԳԱՆ: = Հնխ. g2hen-արմատից, որի միւս ժա-ռանգներն են սանս. ghaná-«բիր, կոպալ», ghāta-«զարկ, հարուած», hati-, hatha-«ծեծ, հարուած», hatyá-«ոպանութեւն», hánti «ծեծում, զարնում, սպանում էջ, ghnánti «զարնում են», զնդ. jan, jainti «զարնում, սպանում է», պհլ. zatan, պրս. [arabic word] zadan, [arabic word] zanad «զարնել, սպաննել», օրդ. ženin «կրակ վառել, հրացան ար-ձակել», յն. ϑείνω «զարնեմ», φóνos «սպա-նութիւն», ἔ-πε-φν-ον «զարկաւ», հիռլ. gonim «վիրաւորել, սպանել», gegon «սպանեզ», guin «վերք», հիսլ. gandr «գաւազան, ցուպ», guδr, gunnr «կոիւ», անգլսք. guδ «կռիւ», հբգ. gund-fano «պատերազմական դրօշ», հսլ. žena «զարնելով քշել, վանել», žinja, žeti «հնձել», ռուս. гонить «վարել, քշել, հա-լածել», выгонъ «արածացնել, արօտ», չեխ. hon «որս», լիթ. ganyti «տաւար արածաց-նել», gānas «հովիւ», ginzia «կռիւ», լեթթ, gans «հովիւ», ալբան. gan «քշել, հալա-ծել», լտ. de-fendo «պաշտպանել, արգի-լել», of-fendo «ընդհարուիլ, զարնուիլ, նա-խատել, յանդիմանել», in-fensus «թշնամի» ևն (Walde, 224, Boisacq, 336, Berneker, 328, Horn, § 653, Trautman, 86), Կամիս. kuen «զարնել, սպանել», kuenzi «զարնում է». տե՛ս Pokorny, 1, 680, Ernout-Meillet, 330։ Հայերէն գան բառի կրկնակն է ջին «գաւազան»<հնխ. g2hên-, որի վրայ տե՛ս առանձին։-Հիւբշ. 431։
+  ԳԱՆՁ: = Պհլ. ganǰ, պրս. [arabic word] gani «գանձ թաղեալ ինչք բազում», բելուճ. ganǰ, սոգդ. γánzə «գանձ»։ Իրանեանից փոխառեալ են նաև սանս. gañja-«գանձարան, գոհարեղէ-նի հանք, գանձ ևն», յն. γαζα «արքունի գանձ» (որից γαζοφυλάϰιον, γαζοφῦλας «գան-ձապահ»), լատ. gāza «գանձարան», եբր. արամ. )) ginzi «գանձ», ասոր. [other alphabet] ga-zā, արաբ. [arabic word] kanz, յգ. [arabic word] kunuz «գանձ», հունգ. kines, ն. սլով. խրվաթ kinč «գանձ»։ Իրանեանից է փոխառեալ նաև ասուռ. gunzu «գանձ» (Muss-Arnolt, Ass. eng. Handwb. էջ 227բ)։-Հիւրշ. 126
+  ԳԵՐ: = Բնիկ հայ բառ՝ հնխ. uer «բարձրանալ» արմատից, որի միակ ժառանգորդն է յն. ծεἰρω, αίρω (<αfεριω, fαριω) «բարձրա-նալ, վերանալ, բարձրացնել, վերացնել»։ Կարծւում է թէ նոյն հնխ. uer պարզ արմատի աճականներն են հնխ. uers և uerd. առաջի-նից ծագում են սանս. váršman-«բարձրու-թիւն, բարձունք, ծայր», váršiyān «բարձ-ռագոյն, գերագոյն», հսլ. vruchu «ռառաթ բարձունք», լիթ. virszús «վերևինը», լտ. verruca «բարձրութիւն, պալար, բիծ», անգլ-սք. wearr «մարմնի վրայ կոշտ», հիռլ. ferr «լաւագոյն», Նիռլ. farr «սիւն, մոյթ», -իսկ երկրորդից՝ հբգ. warza, հիսլ. varta, հսաքս. warta, անգլսք. vearte, անգլ. wart, հոլլ. wrat, դերմ. warze և պրս. [arabic word] bālū, բոլորն էլ «պալար, շիտ» (Walde, 823, Boisacq, 15, Kluge, 519, Pokorny, 1, 267, Ernout-Meillet, 1049, Trautmann, 362)։
+  ԳԶԻՐ: = Պրս. [arabic word] gizir «գիւղապետ», որի ծա-գումը և բուն իմաստը տե՛ս Վճիռ բառի տակ։ Սրանից են փոխառեալ նաև ասոր. ❇ gəzīrā, արաբ. ❇ ǰazī̄r, ուտ. gi-21r, քրդ. [arabic word] kizir, ատրպտ. թրք. [arabic word] qizil «գղիր, դիւղապետի օդնականը»= Հիւբշ. 264։
+  ԳՈԳ: ՓՈԽ.-Հյ. գոգնոց բառը փոխառեալ է թուրքերէնի մէջ. տե՛ս Ծաղիկ, 1891, էջ 89-90. գործածւում է օր. Զիլէի թուրքերի բար-բառով (տե՛ս Յուշարձ. էջ 327)։
+  ԳՈՒՄ: -Սխալ ենթադրուած է գումար բառից. իբր սրա արմատը։
+  ԳՈՒՆԴ: -Պհլ. *gund «գունդ, գնդակ, զնդաձև» բառից, որ կորած է. սրանից են յառաջացած սակայն պհլ. gund, gundak, պրս. [arabic word] gunda «հացի խմորի գունդ կամ ծեծած մսի գնտակ» (տե՛ս նաև մեր գաւառականները), զնդ. gunda-«հացի խմորի գունդ» (Horn, § 936, Bartholomae, 525)։ Նոյն բառից չէ՝ նաև պրս. [arabic word] γund=հյ. գունդ «խումբ, վաշտ», որի վրայ տե՛ս յաջորդը առանձին։-Հիւբշ. 130։

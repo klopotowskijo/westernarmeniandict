@@ -1,0 +1,161 @@
+[
+  {
+    "title": "-ա",
+    "wikitext": "{{also|-ա-|ա|Ա}}\n==Armenian==\n\n===Etymology===\nAbstracted away from European female given names commonly ending in -''a''.\n\n===Pronunciation===\n{{hy-IPA}}\n\n===Suffix===\n{{head|hy|suffix}}\n\n# {{tlb|hy|neologism|rare}} {{non-gloss|Forming fanciful female given names}}\n#: {{affixusex|hy|Արեգ|-ա|Արեգա|pos1=a male given name}}\n#: {{affixusex|hy|Սևան|-ա|Սևանա|pos1=name of a lake}}\n\n====Derived terms====\n{{suffixsee|hy}}",
+    "etymology": [
+      {
+        "text": "Abstracted away from European female given names commonly ending in -''a''.",
+        "relation": "unknown"
+      }
+    ],
+    "definition": [
+      "neologism, rare Forming fanciful female given names."
+    ]
+  },
+  {
+    "title": "-ա-",
+    "wikitext": "{{also|-ա|ա|w|Ա}}\n==Armenian==\n\n===Etymology===\nFrom {{inh|hy|axm|-ա-}}.\n\n===Pronunciation===\n{{hy-IPA}}\n\n===Interfix===\n{{head|hy|interfix}}\n\n# {{non-gloss|an agglutinating interfix}}\n#: {{affixusex|hy|գետ|-ա-|ձի|գետաձի|t4=hippopotamus|t1=river|t3=horse}}\n\n====Derived terms====\n{{interfixsee|hy}}\n\n==Middle Armenian==\n\n===Etymology===\nFrom {{inh|axm|xcl|-ա-}}.\n\n===Interfix===\n{{head|axm|interfix}}\n\n# {{non-gloss|an agglutinating interfix}}\n#: {{ux|axm|[[մգլահոտ]]|t=smelling like mould|inline=1}}\n\n====Derived terms====\n{{interfixsee|axm}}\n\n====Descendants====\n* {{desc|hy|-ա-}}\n\n==Old Armenian==\n\n===Interfix===\n{{head|xcl|interfix}}\n\n# {{non-gloss|an agglutinating interfix}}\n#: {{ux|xcl|[[ծայրաքաղաք|ծայր-ա-քաղաք]]|t=acropolis|inline=1}}\n\n====Usage notes====\nThe members of compound words, as a rule, are linked together by this interfix, unless the second member begins with a vowel.\n\n====Derived terms====\n{{interfixsee|xcl}}\n\n====Descendants====\n* {{desctree|axm|-ա-}}\n\n===References===\n* {{R:xcl:Godel|page=55}}",
+    "etymology": [
+      {
+        "text": "Inherited from Old Armenian.",
+        "relation": "inherited",
+        "source_language": "Old Armenian"
+      }
+    ],
+    "definition": [
+      "an agglutinating interfix."
+    ]
+  },
+  {
+    "title": "-աբար",
+    "wikitext": "==Armenian==\n\n===Etymology===\nFrom {{uder|hy|xcl|-աբար}}.\n\n===Pronunciation===\n{{hy-IPA}}\n\n===Suffix===\n{{hy-h|suffix|sort=աբար}}\n\n# {{alternative form of|hy|-բար}}\n\n==Old Armenian==\n\n===Etymology===\nFrom {{m|xcl|-ա-}} + {{m|xcl|-բար}}.\n\n===Suffix===\n{{head|xcl|suffix}}\n\n# {{alternative form of|xcl|-բար}}",
+    "etymology": [
+      {
+        "text": "From Old Armenian -abar",
+        "relation": "inherited",
+        "source": "hy.wiktionary.org (translated from Armenian)"
+      }
+    ],
+    "definition": [
+      "alternative form of -բար."
+    ],
+    "definition_en": "alternative form of -bar.",
+    "translated_by": "Google Translate (API)",
+    "armenian_etymology_original": "From Old Armenian -աբար"
+  },
+  {
+    "title": "-ագին",
+    "wikitext": "==Armenian==\n\n===Etymology===\nFrom {{uder|hy|xcl|-ագին}}.\n\n===Pronunciation===\n{{hy-IPA}}\n\n===Suffix===\n{{hy-h|suffix|sort=ագին}}\n\n# {{alternative form of|hy|-գին}}\n\n==Old Armenian==\n\n===Etymology===\nFrom {{m|xcl|-ա-}} + {{m|xcl|-գին}}.\n\n===Suffix===\n{{head|xcl|suffix}}\n\n# {{alternative form of|xcl|-գին}}",
+    "etymology": [
+      {
+        "text": "From Old Armenian -agın",
+        "relation": "inherited",
+        "source": "hy.wiktionary.org (translated from Armenian)"
+      }
+    ],
+    "definition": [
+      "alternative form of -գին."
+    ],
+    "definition_en": "alternative form of -price.",
+    "translated_by": "Google Translate (API)",
+    "armenian_etymology_original": "From Old Armenian -ագին"
+  },
+  {
+    "title": "-ագույն",
+    "wikitext": "==Armenian==\n\n===Etymology===\nFrom {{uder|hy|xcl|-ագոյն}}.\n\n===Pronunciation===\n{{hy-IPA|W=0}}\n\n===Suffix===\n{{hy-h|suffix|TAO=-ագոյն}}\n\n# {{alternative form of|hy|-գույն}}",
+    "etymology": [
+      {
+        "text": "From Old Armenian -agon",
+        "relation": "inherited",
+        "source": "hy.wiktionary.org (translated from Armenian)"
+      }
+    ],
+    "definition": [
+      "alternative form of -գույն."
+    ],
+    "definition_en": "alternative form of -color.",
+    "translated_by": "Google Translate (API)",
+    "armenian_etymology_original": "From Old Armenian -ագոյն"
+  },
+  {
+    "title": "-ալ",
+    "wikitext": "{{also|ալ}}\n==Armenian==\n\n===Pronunciation===\n{{hy-IPA}}\n* {{audio|hy|LL-Q8785 (hye)-Veravi95--ալ.wav|a=Western Armenian}}\n\n===Suffix===\n{{head|hy|suffix|cat2=inflectional suffixes}}\n\n# One of two suffixes added to verb stems to form their [[infinitive]], the other being {{m|hy|-ել}}\n#: {{m|hy|գնալ}}, {{m|hy|ուզենալ}}, {{m|hy|խաղալ}}\n# {{lb|hy|Western Armenian}} One of four suffixes added to verb stems to form their [[infinitive]], the others being {{m|hy|-ել}}, {{m|hy|-իլ}}, and {{m|hy|-ուլ}}\n\n{{cln|hy|suffixes|sort=ալ}}",
+    "etymology": [
+      {
+        "text": "From Old Armenian infinitive suffix -al. From PIE *-l- suffix forming verbal nouns.",
+        "relation": "inherited",
+        "source": "hy.wiktionary.org (translated from Armenian)"
+      }
+    ],
+    "definition": [
+      "One of two suffixes added to verb stems to form their infinitive, the other being -ել."
+    ],
+    "definition_en": "One of two suffixes added to verb stems to form their infinitive, the other being -el.",
+    "translated_by": "Google Translate (API)",
+    "etymology_en": "From Old Armenian infinitive suffix -al. From PIE *-l- suffix forming verbal nouns.",
+    "armenian_etymology_original": "From Old Armenian infinitive suffix -ալ. From PIE *-l- suffix forming verbal nouns."
+  },
+  {
+    "title": "-ած",
+    "wikitext": "{{also|ած}}\n==Armenian==\n\n===Etymology===\nFrom {{uder|hy|xcl|-ած}}.\n\n===Pronunciation===\n{{hy-IPA}}\n\n===Suffix===\n{{head|hy|suffix|cat2=inflectional suffixes}}\n\n# Appended to the verb stem to form its resultative participle.\n#: {{l|hy|սիրել}} — ''to like''\n#:: {{l|hy|սիրած}} — ''liked, that which is liked''\n\n==Old Armenian==\n\n===Etymology===\nFrom the root of {{m|xcl|ածեմ|ած-եմ}}.\n\n===Suffix===\n{{head|xcl|suffix}}\n\n# {{non-gloss|Forming nouns, denoting the result of an action.}}\n#: {{ux|xcl|[[առնում]]|t=I receive|inline=1}}\n#: {{ux|xcl|[[առած]]|t=something received|inline=1}}\n#: {{ux|xcl|[[առնեմ]]|t=I create|inline=1}}\n#: {{ux|xcl|[[արարած]]|t=creature|inline=1}}\n#: {{ux|xcl|[[ասեմ]]|t=I say|inline=1}}\n#: {{ux|xcl|[[ասացած]]|t=saying, word|inline=1}}\n\n====Derived terms====\n{{suffixsee|xcl}}\n\n====Descendants====\n* {{desc|hy|-ած}}\n\n===References===\n* {{R:xcl:Jahukyan:1998|-ած}}",
+    "etymology": [
+      {
+        "text": "From Old Armenian -ats",
+        "relation": "inherited",
+        "source": "hy.wiktionary.org (translated from Armenian)"
+      }
+    ],
+    "definition": [
+      "Appended to the verb stem to form its resultative participle."
+    ],
+    "armenian_etymology_original": "From Old Armenian -ած"
+  },
+  {
+    "title": "-ածո",
+    "wikitext": "==Armenian==\n\n===Alternative forms===\n* {{alt|hy|-ածու}}\n\n===Etymology===\nFrom {{uder|hy|xcl|-ածոյ}}.\n\n===Pronunciation===\n{{hy-IPA}}\n\n===Suffix===\n{{hy-h|suffix|sort=ածո|TAO=-ածոյ}}\n\n# {{n-g|Forms nouns and adjectives with the meaning of a consequence of an action.}}\n#: {{suffixusex|hy|գտնել|t1=to find|գտածո|t2=a found thing}}\n#: {{suffixusex|hy|պահել|t1=to keep|պահածո|t2=canned food}}\n\n====Derived terms====\n{{suffixsee|hy}}\n{{suffixsee|hy|head=-ածու}}",
+    "etymology": [
+      {
+        "text": "From Old Armenian -adjective",
+        "relation": "inherited",
+        "source": "hy.wiktionary.org (translated from Armenian)"
+      }
+    ],
+    "definition": [
+      "Forms nouns and adjectives with the meaning of a consequence of an action."
+    ],
+    "armenian_etymology_original": "From Old Armenian -ածոյ"
+  },
+  {
+    "title": "-ածու",
+    "wikitext": "{{also|ածու}}\n==Armenian==\n\n===Pronunciation===\n{{hy-IPA}}\n\n===Suffix===\n{{hy-h|suffix|sort=ածու}}\n\n# {{alternative form of|hy|-ածո}}",
+    "etymology": [
+      {
+        "text": "From Old Armenian - atsu. Forms nouns from past participles.",
+        "relation": "inherited",
+        "source": "hy.wiktionary.org (translated from Armenian)"
+      }
+    ],
+    "definition": [
+      "alternative form of -ածո."
+    ],
+    "definition_en": "alternative form of -adjective.",
+    "translated_by": "Google Translate (API)",
+    "etymology_en": "From Old Armenian - atsu. Forms nouns from past participles.",
+    "armenian_etymology_original": "From Old Armenian -ածու. Forms nouns from past participles."
+  },
+  {
+    "title": "-ակ",
+    "wikitext": "{{also|ակ|Appendix:Variations of \"ak\"}}\n==Armenian==\n\n===Etymology===\nFrom {{inh|hy|xcl|-ակ}}.\n\n===Pronunciation===\n{{hy-IPA|ակ}}\n\n===Suffix===\n{{hy-h|suffix}} {{cln|hy|diminutive suffixes}}\n\n# {{non-gloss|forming diminutives}}\n#: {{syn|hy|-իկ|-ուկ}}\n#: {{ux|hy|գետակ|t=rivulet|inline=1}}\n#: {{ux|hy|տնակ|t=little house|inline=1}}\n# {{non-gloss|forming names of things (tools) or people performing some action}}\n#: {{ux|hy|սուզակ|t=diver|inline=1}}\n#: {{ux|hy|սահնակ|t=sled, sleigh|inline=1}}\n# {{non-gloss|forming names of animals and plants}}\n#: {{ux|hy|թավրնջակ|t=primrose|inline=1}}\n#: {{ux|hy|սրընչակ|t=shrew|inline=1}}\n\n====Derived terms====\n{{suffixsee|hy}}\n\n==Old Armenian==\n\n===Etymology===\nFrom {{bor|xcl|ira-mid}} {{m|und||*-ak}}, from {{der|xcl|ira-pro|*-akah}}. Compare also {{cog|oge|-აკი}}.\n\nAccording to Asatrian, the agent-noun-forming suffix is etymologically distinct and is borrowed from {{bor|xcl|ira-mid}} {{m|und||*-āk}}. According to him, it is found in the following wholly borrowed terms: {{m|xcl|դերձակ}}, {{m|xcl|վարձակ}}, {{m|xcl|պատմուճակ}}, {{m|xcl|նուիրակ}} and perhaps {{m|xcl|աւազակ}}.\n\n===Suffix===\n{{head|xcl|suffix}}{{cln|xcl|diminutive suffixes}}\n\n# {{non-gloss|forming diminutives from nominal stems}}\n#: {{ux|xcl|[[աթոռ]]|t=chair|inline=1}}\n#: {{ux|xcl|[[աթոռակ]]|t=small chair|inline=1}}\n#: {{ux|xcl|[[նաւ]]|t=ship|inline=1}}\n#: {{ux|xcl|[[նաւակ]]|t=boat|inline=1}}\n# {{non-gloss|forming [[agent noun]]s from verbal stems}}\n#: {{ux|xcl|[[գտանեմ]]|t=to find, invent|inline=1}}\n#: {{ux|xcl|[[գտակ]]|t=inventor|inline=1}}\n#: {{ux|xcl|[[լողամ]]|t=to swim|inline=1}}\n#: {{ux|xcl|[[լողակ]]|t=swimmer|inline=1}}\n# {{non-gloss|forming adjectives}}\n#: {{ux|xcl|[[բոլորակ]]|t=circular|inline=1}}\n# {{non-gloss|forming nouns from verbs}}\n#: {{ux|xcl|[[է]]|t=is|inline=1}}\n#: {{ux|xcl|[[էակ]]|t=being|inline=1}}\n# {{non-gloss|forming nouns from adjectives, adverbs and pronouns}}\n#: {{ux|xcl|[[քանի]]|t=how many?|inline=1}}\n#: {{ux|xcl|[[քանակ]]|t=quantity|inline=1}}\n\n====Declension====\n{{xcl-noun-ի-ա}}\n\n====Synonyms====\n* {{sense|diminutive}} {{l|xcl|-իկ}}, {{l|xcl|-ուկ}}\n\n====Derived terms====\n{{suffixsee|xcl}}\n\n====Related terms====\n{{col|xcl|աւերակ|հրովարտակ|նշանակ|-անդակ|վարշամակ|մշակ|զուարակ}}\n\n====Descendants====\n* {{desc|hy|-ակ}}\n\n===Further reading===\n* {{R:Asatryan:2013|page=103}}\n* {{R:xcl:Gochanean:2011|page=64}}\n* {{R:xcl:Jahukyan:1998|-ակ}}",
+    "etymology": [
+      {
+        "text": "Borrowed via Classical Armenian from Middle Iranian *-ak. Compare Old Georgian -აკი. Ultimately from Proto-Iranian *-akah.",
+        "relation": "borrowed",
+        "source": "wikitext",
+        "source_language": "Middle Iranian"
+      }
+    ],
+    "definition": [
+      "forming diminutives."
+    ]
+  }
+]

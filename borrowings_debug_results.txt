@@ -1,0 +1,14 @@
+աբա
+  BEFORE: [{'text': 'From .', 'relation': 'unknown', 'source': 'wikitext', 'source_language': 'Ottoman Turkish'}]
+  AFTER: [{'text': 'Borrowed from Ottoman Turkish عبا', 'relation': 'borrowed', 'source': 'wikitext_extracted', 'source_language': 'Ottoman Turkish'}]
+  MATCHED: True
+  DEBUG: ('uder', 'ota', 'عبا')
+  UPDATED: True
+
+աբասի
+  BEFORE: [{'text': 'From .', 'relation': 'unknown', 'source': 'wikitext', 'source_language': 'Persian'}]
+  AFTER: [{'text': 'Borrowed from Persian عباسی', 'relation': 'borrowed', 'source': 'wikitext_extracted', 'source_language': 'Persian'}]
+  MATCHED: True
+  DEBUG: ('uder', 'fa', 'عباسی')
+  UPDATED: True
+

@@ -1,0 +1,38 @@
+=== վնասել ===
+BEFORE:
+[
+  {
+    "text": "From Old Armenian վնասեմ (vnasiem). Borrowed from Iranian *vanas- ('to harm, injure').",
+    "relation": "Iranian",
+    "source": "manual",
+    "source_language": "Iranian"
+  }
+]
+AFTER:
+[
+  {
+    "text": "From Old Armenian վնասեմ (vnasiem). Borrowed from Iranian *vanas- ('to harm, injure'). Cognate with Persian ونس (vanas, 'harm, damage').",
+    "relation": "borrowed",
+    "source": "Iranian root restoration",
+    "source_language": "Iranian"
+  },
+  {
+    "text": "From Old Armenian վնասեմ (vnasiem). Borrowed from Iranian *vanas- ('to harm, injure').",
+    "relation": "Iranian",
+    "source": "manual",
+    "source_language": "Iranian"
+  }
+]
+
+=== հորինվել ===
+BEFORE:
+[]
+AFTER:
+[
+  {
+    "text": "Mediopassive form of հորինել (horinel, 'to invent, compose, fabricate').",
+    "relation": "derived",
+    "source": "Armenian verb analysis",
+    "source_language": "Armenian"
+  }
+]

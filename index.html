@@ -4542,6 +4542,7 @@
     let inflectedEntriesLoaded = false;
     let inflectedEntriesLoading = false;
     let inflectedCallbacks = [];
+    let lemmaToInflected = {};
     function ensureInflectedEntries(callback) {
       if (inflectedEntriesLoaded) { callback(); return; }
       inflectedCallbacks.push(callback);
@@ -4570,12 +4571,15 @@
 
     function loadDictionary() {
       Promise.all([
-        fetch("western_armenian_merged_complete_updated.json")
-          .then(r => {
-            if (!r.ok) throw new Error("merged dictionary not found");
-            return r.json();
+        fetch("western_armenian_merged_complete_updated.json.gz")
+          .then(async response => {
+            if (!response.ok) throw new Error("Dictionary not found");
+            const buf = await response.arrayBuffer();
+            const text = await decompressGzipBuf(buf);
+            if (!text) throw new Error("Decompression failed");
+            return JSON.parse(text);
           })
-          .catch(() => fetch("western_armenian_merged_complete_updated.json").then(r => r.json())),
+        .catch(() => fetch("western_armenian_merged_complete_updated.json").then(r => r.json())),
         fetch("lemmatization_index.json")
           .then(r => r.json())
           .catch(() => ({}))
@@ -4583,6 +4587,13 @@
       .then(([data, lemmaIndex]) => {
         dictionary = data || [];
         lemmatizationIndex = lemmaIndex || {};
+      
+        // Build reverse index: lemma -> list of inflected forms
+        lemmaToInflected = {};
+        for (const [inflected, lemma] of Object.entries(lemmatizationIndex)) {
+          if (!lemmaToInflected[lemma]) lemmaToInflected[lemma] = [];
+          lemmaToInflected[lemma].push(inflected);
+        }
         alternativeFormIndex = {};
         for (const e of dictionary) {
           titleIndex[e.title] = e;
