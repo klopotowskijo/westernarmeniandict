@@ -133,3 +133,7 @@ scans/
 inflected_entries.jsonl
 western_armenian_with_inflections.json
 entries/
+*.py
+*.txt
+*.json
+*.rtf
