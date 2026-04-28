@@ -4135,7 +4135,22 @@
         word = matchingKey; // Update word to the correct capitalization for URL
       }
     }
-    
+    // If still not found, check lemmatization index case-insensitively
+    if (!entry && lemmatizationIndex) {
+      const lowerWord = word.toLowerCase();
+      let matchedInflected = null;
+      for (const [inflected, lemma] of Object.entries(lemmatizationIndex)) {
+        if (inflected.toLowerCase() === lowerWord) {
+          matchedInflected = lemma;
+          break;
+       }
+     }
+     if (matchedInflected) {
+       entry = titleIndex[matchedInflected];
+       if (entry) word = entry.title;
+     }
+    }
+
     // Normal entry display code
     const nayiriEntry = (entry && entry.nayiri) || (window.nayiriIndex && window.nayiriIndex[entry.title]);
     const morphologyHtml = entry ? renderMorphology(entry) : "";
