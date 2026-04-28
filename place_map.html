@@ -1,77 +1,134 @@
-<!DOCTYPE html>
+k<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Armenian Place Names Map</title>
+    <title>Place Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #f5f0e8; margin: 0; padding: 20px; }
-        .map-container { max-width: 1200px; margin: 0 auto; background: #fffef8; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow: hidden; }
-        h1 { color: #4a3727; padding: 20px 20px 0 20px; margin: 0; border-left: 4px solid #8a4f28; margin-left: 20px; }
-        #placeMap { height: 550px; width: 100%; }
-        .controls { padding: 15px 20px; background: #f0e8dc; display: flex; gap: 10px; flex-wrap: wrap; }
-        input { padding: 8px 12px; border: 1px solid #c8b59a; border-radius: 6px; width: 250px; }
-        button { padding: 8px 16px; background: #8a4f28; color: white; border: none; border-radius: 6px; cursor: pointer; }
-        button:hover { background: #6a3a1a; }
-        .legend { background: white; padding: 10px 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        body { margin: 0; font-family: Georgia, serif; }
+        #map { height: 550px; }
+        .info-panel { position: absolute; bottom: 20px; left: 20px; background: rgba(255,255,255,0.9); padding: 10px 15px; border-radius: 8px; z-index: 1000; font-size: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); pointer-events: none; }
     </style>
 </head>
 <body>
-<div class="map-container">
-    <h1>🗺️ Armenian Place Names & Origins</h1>
-    <div class="controls">
-        <input type="text" id="placeSearch" placeholder="Search place name...">
-        <button onclick="searchPlace()">Find</button>
-        <button onclick="resetMap()">Reset</button>
+    <div id="map"></div>
+    <div class="info-panel">
+        <b>🗺️ Armenian Historical Sites</b><br>
+        Click markers for etymology & history
     </div>
-    <div id="placeMap"></div>
-</div>
+    <script>
+        var map = L.map('map').setView([40.2, 44.5], 7);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
+        }).addTo(map);
 
-<script>
-const map = L.map('placeMap').setView([40.2, 44.5], 7);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap'
-}).addTo(map);
+        // Expanded place names with etymologies
+        var places = [
+	    // Major cities (Western Armenian spellings)
+    	    { name: "Երեւան", lat: 40.177, lng: 44.503, ety: "From Urartian 'Erebuni' (fortress)", period: "782 BCE", type: "capital" },
+    	    { name: "Անի", lat: 40.506, lng: 43.572, ety: "From Hurrian 'Ani' (sky goddess)", period: "961-1045 CE", type: "ancient" },
+            { name: "Վան", lat: 38.471, lng: 43.381, ety: "From Urartian 'Biaina'", period: "9th c. BCE", type: "ancient" },
+            { name: "Կիւմրի", lat: 40.785, lng: 43.842, ety: "Possibly from Georgian 'Gumri'", period: "5th c. CE", type: "city" },
+            { name: "Սիս", lat: 37.383, lng: 36.933, ety: "Capital of Armenian Kingdom of Cilicia", period: "12th-14th c.", type: "historical" },
+    
+            // Historical capitals (Western Armenian)
+            { name: "Արտաշատ", lat: 39.956, lng: 44.550, ety: "From Artaxias I, founder of Artaxiad dynasty", period: "176 BCE", type: "historical" },
+            { name: "Տիգրանակերտ", lat: 38.140, lng: 41.001, ety: "Founded by Tigranes the Great", period: "1st c. BCE", type: "historical" },
+            { name: "Դուին", lat: 40.017, lng: 44.583, ety: "From Old Persian 'dūvīn' (hill)", period: "4th-13th c.", type: "historical" },
+    
+            // Constantinople/Istanbul (Western Armenian)
+            { name: "Պոլիս (Կոստանդնուպոլիս)", lat: 41.008, lng: 28.978, ety: "From Greek 'πόλις' (city) — historic center of Armenian intellectual and cultural life", period: "Constantinople founded 330 CE, Armenian community since 4th c.", type: "historical" },
+    
+            // Monasteries and religious sites (Western Armenian)
+            { name: "Էջմիածին", lat: 40.162, lng: 44.292, ety: "From 'descent of the Only-Begotten'", period: "301 CE", type: "religious" },
+            { name: "Գեղարդ", lat: 40.159, lng: 44.795, ety: "From 'spear' (Holy Lance)", period: "4th c.", type: "religious" },
+            { name: "Թաթեւ", lat: 39.379, lng: 46.248, ety: "Possibly from 'wing' (St. Bartholomew)", period: "9th c.", type: "religious" },
+            { name: "Հաղբատ", lat: 41.094, lng: 44.711, ety: "From 'high wall' or foundation", period: "10th c.", type: "religious" },
+            { name: "Սանահին", lat: 41.086, lng: 44.667, ety: "From 'this is older than that'", period: "10th c.", type: "religious" },
+    
+            // Mountains and natural features (Western Armenian)
+            { name: "Արարատ", lat: 39.716, lng: 44.298, ety: "From Urartian 'Urartu', via Hebrew", period: "Biblical", type: "mountain" },
+            { name: "Սեւան", lat: 40.564, lng: 45.011, ety: "From Urartian 'Siuini'", period: "Ancient", type: "lake" },
+            { name: "Արագած", lat: 40.533, lng: 44.200, ety: "Possibly from 'throne' (Aragats)", period: "Ancient", type: "mountain" },
+    
+            // Cilician Armenian Kingdom cities (Western Armenian)
+            { name: "Կոռիկոս", lat: 36.633, lng: 34.317, ety: "From Greek 'Korikos' — Armenian Cilician port city", period: "11th-14th c.", type: "historical" },
+            { name: "Սելեւկիա", lat: 36.117, lng: 35.917, ety: "From Greek 'Seleukeia' — Armenian Cilician city", period: "12th-14th c.", type: "historical" },
+            { name: "Մարաշ", lat: 37.583, lng: 36.933, ety: "From Hittite 'Markasi' — historic Armenian city", period: "Ancient", type: "city" },
+            { name: "Այնթապ", lat: 37.067, lng: 37.383, ety: "From Armenian 'աղբիւր' (spring) + 'թափ' (pour)", period: "Medieval", type: "city" },
+            { name: "Ատանա", lat: 37.000, lng: 35.317, ety: "From Hittite 'Adaniya' — major Armenian community", period: "Ancient", type: "city" },
 
-const places = [
-    { name: "Երևան", lat: 40.177, lng: 44.503, ety: "From Urartian 'Erebuni' (fortress)", period: "782 BCE", type: "capital" },
-    { name: "Անի", lat: 40.506, lng: 43.572, ety: "From Hurrian 'Ani' (sky goddess)", period: "5th-14th c.", type: "ancient" },
-    { name: "Վան", lat: 38.471, lng: 43.381, ety: "From Urartian 'Biaina'", period: "9th c. BCE", type: "ancient" },
-    { name: "Գյումրի", lat: 40.785, lng: 43.842, ety: "Possibly from Georgian 'Gumri'", period: "5th c.", type: "city" },
-    { name: "Սիս", lat: 37.383, lng: 36.933, ety: "Capital of Cilician Armenia", period: "12th-14th c.", type: "historical" },
-    { name: "Արարատ", lat: 39.716, lng: 44.298, ety: "From Urartian 'Urartu'", period: "Biblical", type: "mountain" },
-    { name: "Սևան", lat: 40.564, lng: 45.011, ety: "From Urartian 'Siuini'", period: "Ancient", type: "lake" },
-    { name: "Կարս", lat: 40.608, lng: 43.098, ety: "From Armenian 'կարս' (breast/hill)", period: "Medieval", type: "city" },
-    { name: "Մուշ", lat: 38.733, lng: 41.483, ety: "From Armenian 'մուշ' (mist)", period: "Ancient", type: "city" }
+            // Western Anatolian Armenian centers (Western Armenian)
+            { name: "Պրուսա", lat: 40.183, lng: 29.067, ety: "Early Ottoman capital with large Armenian community", period: "14th c.", type: "historical" },
+            { name: "Զմիւռնիա", lat: 38.417, lng: 27.133, ety: "Ancient Smyrna — major Armenian commercial center", period: "Ancient", type: "city" },
+            { name: "Տրապիզոն", lat: 41.005, lng: 39.726, ety: "From Greek 'Trapezous' — important Armenian port", period: "Ancient", type: "historical" },
+            { name: "Սամսուն", lat: 41.283, lng: 36.333, ety: "Ancient Greek 'Amisos' — Armenian trade center", period: "Ancient", type: "city" },
+
+            // Historic Armenian towns in Eastern Turkey (Western Armenian)
+    	    { name: "Բայազիտ", lat: 39.417, lng: 44.133, ety: "Armenian fortress town on Iranian border", period: "Medieval", type: "city" },
+   	    { name: "Ալաշկերտ", lat: 39.583, lng: 42.667, ety: "From Armenian 'ալաշկերտ' — historic Armenian region", period: "Medieval", type: "city" },
+    	    { name: "Մանազկերտ", lat: 39.083, lng: 42.183, ety: "Historic Armenian city, site of 1071 battle", period: "Ancient", type: "historical" },
+    	    { name: "Բերկրի", lat: 39.050, lng: 42.550, ety: "From Armenian 'բերկրի' (fertile)", period: "Medieval", type: "city" },
+   	    { name: "Կարս", lat: 40.608, lng: 43.098, ety: "From Armenian 'կարս' (breast/hill)", period: "Medieval", type: "city" },
+   	    { name: "Մուշ", lat: 38.733, lng: 41.483, ety: "From Armenian 'մուշ' (mist)", period: "Ancient", type: "city" },
+   	    { name: "Բաղէշ", lat: 38.393, lng: 42.108, ety: "From Armenian 'բաղ' (garden) + suffix", period: "Medieval", type: "city" },
+   	    { name: "Սեբաստիա", lat: 39.750, lng: 37.017, ety: "From Greek 'Sebasteia' (Augustus)", period: "1st c.", type: "historical" },
+   	    { name: "Երզնկա", lat: 39.746, lng: 39.491, ety: "From Armenian 'երզն' (plow)", period: "Medieval", type: "city" },
+    	    { name: "Կարին", lat: 40.159, lng: 41.735, ety: "Armenian name for Erzurum", period: "Ancient", type: "historical" },
+    	    { name: "Խարբերդ", lat: 38.500, lng: 39.220, ety: "From Armenian 'խարբերդ' (fortress on the rock)", period: "Medieval", type: "city" },
+    	    { name: "Ամիտ", lat: 37.917, lng: 40.233, ety: "Historic Armenian city (modern Diyarbakır)", period: "Ancient", type: "city" },
+
+   	    // Jugha / Artsakh (Western Armenian)
+   	    { name: "Ջուղա (Հին Ջուղայ)", lat: 38.967, lng: 45.617, ety: "From Old Armenian 'Ջուղա' — major Armenian trade center, destroyed 1605", period: "5th-17th c.", type: "historical" },
+    	    { name: "Շուշի", lat: 39.767, lng: 46.750, ety: "From Armenian 'շոշ' (rock) — cultural center of Artsakh", period: "18th c.", type: "historical" },
+   	    { name: "Ստեփանակերտ", lat: 39.817, lng: 46.750, ety: "Meaning 'Stephen's city' — capital of Artsakh", period: "20th c.", type: "city" },
+    	    { name: "Գանձակ", lat: 40.683, lng: 46.367, ety: "From Persian 'ganj' (treasure) — historic Armenian community", period: "Ancient", type: "city" },
+
+   	    // Mesopotamian / Syrian early Christian centers (Western Armenian)
+    	    { name: "Մծբին", lat: 37.067, lng: 41.667, ety: "From Syriac 'Mṣibin' — early Christian center", period: "Ancient", type: "religious" },
+   	    { name: "Եդեսիա", lat: 37.150, lng: 38.800, ety: "From Greek 'Edessa' — early Armenian cultural center", period: "Ancient", type: "historical" }
 ];
+        // Color by type
+        function getColor(type) {
+            const colors = {
+                capital: '#c0392b',
+                ancient: '#8e44ad',
+                city: '#2980b9',
+                mountain: '#27ae60',
+                lake: '#1abc9c',
+                historical: '#d35400',
+                religious: '#f39c12'
+            };
+            return colors[type] || '#7f8c8d';
+        }
 
-function getColor(type) {
-    const colors = { capital: '#c0392b', ancient: '#8e44ad', city: '#2980b9', mountain: '#27ae60', lake: '#1abc9c', historical: '#d35400' };
-    return colors[type] || '#7f8c8d';
-}
+        // Add markers
+        places.forEach(p => {
+            var marker = L.marker([p.lat, p.lng]).bindPopup(`
+                <b>${p.name}</b><br>
+                <i>${p.ety}</i><br>
+                <small>${p.period}</small>
+            `);
+            marker.addTo(map);
+        });
 
-places.forEach(p => {
-    L.marker([p.lat, p.lng], {
-        icon: L.divIcon({ html: `<div style="background:${getColor(p.type)};width:12px;height:12px;border-radius:50%;border:2px solid white;"></div>`, iconSize: [12,12] })
-    }).bindPopup(`<b>${p.name}</b><br><i>${p.ety}</i><br><small>${p.period}</small>`).addTo(map);
-});
-
-const legend = L.control({ position: 'bottomright' });
-legend.onAdd = () => {
-    const div = L.DomUtil.create('div', 'legend');
-    div.innerHTML = `<b>Place Types</b><br><span style="color:#c0392b">●</span> Capital<br><span style="color:#8e44ad">●</span> Ancient<br><span style="color:#2980b9">●</span> City<br><span style="color:#27ae60">●</span> Mountain<br><span style="color:#1abc9c">●</span> Lake`;
-    return div;
-};
-legend.addTo(map);
-
-function searchPlace() {
-    const q = document.getElementById('placeSearch').value.trim();
-    const p = places.find(p => p.name.toLowerCase() === q.toLowerCase());
-    if (p) { map.setView([p.lat, p.lng], 12); }
-    else alert(`Not found. Try: ${places.map(p => p.name).join(', ')}`);
-}
-function resetMap() { map.setView([40.2, 44.5], 7); document.getElementById('placeSearch').value = ''; }
-</script>
+        // Add legend
+        var legend = L.control({ position: 'bottomright' });
+        legend.onAdd = function() {
+            var div = L.DomUtil.create('div', 'legend');
+            div.innerHTML = `
+                <b>Place Types</b><br>
+                <span style="color:#c0392b">●</span> Capital<br>
+                <span style="color:#8e44ad">●</span> Ancient<br>
+                <span style="color:#2980b9">●</span> City<br>
+                <span style="color:#27ae60">●</span> Mountain<br>
+                <span style="color:#1abc9c">●</span> Lake<br>
+                <span style="color:#d35400">●</span> Historical<br>
+                <span style="color:#f39c12">●</span> Religious
+            `;
+            return div;
+        };
+        legend.addTo(map);
+    </script>
 </body>
 </html>
