@@ -1712,6 +1712,10 @@
         <button id="showSuffixBtn" class="tab-btn">Suffixes</button>
         <button id="showPrefixBtn" class="tab-btn">Prefixes</button>
         <button id="showSourcesBtn" class="tab-btn">Sources</button>
+	<span class="tab-separator" aria-hidden="true"></span>
+        <button id="showTreeBtn" class="tab-btn">🌳 Etymology Tree</button>
+        <button id="showMapBtn" class="tab-btn">🗺️ Place Map</button>
+</div>
       </div>
             <div class="keyboard-wrap">
         <div id="armenianKeyboard" class="keyboard-panel" aria-hidden="true"></div>
@@ -1782,23 +1786,35 @@
       <div class="guide-grid" id="sourcesGrid"></div>
     </section>
 
+     <section id="treeSection" style="display:none">
+      <h2>🌳 Armenian Etymology Tree</h2>
+      <p class="guide-intro">Language family tree showing Proto-Indo-European origins and loanwords from Persian, Arabic, Greek, Turkish, and other languages.</p>
+      <iframe src="etymology_tree.html" style="width:100%; height:600px; border:1px solid var(--line); border-radius:8px; background: #fffef8;"></iframe>
+    </section>
+
+    <section id="mapSection" style="display:none">
+      <h2>🗺️ Armenian Place Names Map</h2>
+      <p class="guide-intro">Historical Armenian cities, capitals, and landmarks with their etymological origins and historical periods.</p>
+      <iframe src="place_map.html" style="width:100%; height:550px; border:1px solid var(--line); border-radius:8px; background: #fffef8;"></iframe>
+    </section>
+
     <footer class="site-footer">
-      <button id="footerHomeBtn" type="button" class="brand-home-btn">Dictionary Ardemis</button>
-      <span class="footer-sep">&middot;</span>
-      <span>Western Armenian Etymological Dictionary</span>
-      <span class="footer-sep">&middot;</span>
-      <span>Sources: Wiktionary, Nayiri</span>
-      <span class="footer-sep">&middot;</span>
-      <div style="margin-top:1.2rem; font-size:0.95rem; color:#7a6242; text-align:center;">
-        Historic photos:
-        <a href="https://www.loc.gov/collections/abdullah-freres/" target="_blank" rel="noopener" style="color:#7a6242;text-decoration:underline;">
-          Abdullah Frères / Library of Congress
-        </a>
-      </div>
-      <span><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></span>
-      <span class="footer-sep">&middot;</span>
-      <span>Շնորհակալ եմ Տատիկ</span>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.3rem 0.55rem; align-items: center; justify-content: space-between; width: 100%;">
+      <div style="display: flex; flex-wrap: wrap; gap: 0.3rem 0.55rem; align-items: center;">
+       <button id="footerHomeBtn" type="button" class="brand-home-btn">Dictionary Ardemis</button>
+       <span class="footer-sep">&middot;</span>
+       <span>Western Armenian Etymological Dictionary</span>
+       <span class="footer-sep">&middot;</span>
+       <span>Sources: Wiktionary, Nayiri, Calfa</span>
+       <span class="footer-sep">&middot;</span>
+       <span>Historic photos: <a href="https://www.loc.gov/collections/abdullah-freres/" target="_blank" rel="noopener">Abdullah Frères / Library of Congress</a></span>
+       <span class="footer-sep">&middot;</span>
+       <span><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></span>
+       <span class="footer-sep">&middot;</span>
+       <span>Շնորհակալ եմ Տատիկ</span>
+     </div>
     </footer>
+
   </div>
   <script src="https://unpkg.com/vis-network@9.1.9/dist/vis-network.min.js" defer></script>
   <script>

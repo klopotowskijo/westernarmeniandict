@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Armenian Place Names Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f5f0e8; margin: 0; padding: 20px; }
+        .map-container { max-width: 1200px; margin: 0 auto; background: #fffef8; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow: hidden; }
+        h1 { color: #4a3727; padding: 20px 20px 0 20px; margin: 0; border-left: 4px solid #8a4f28; margin-left: 20px; }
+        #placeMap { height: 550px; width: 100%; }
+        .controls { padding: 15px 20px; background: #f0e8dc; display: flex; gap: 10px; flex-wrap: wrap; }
+        input { padding: 8px 12px; border: 1px solid #c8b59a; border-radius: 6px; width: 250px; }
+        button { padding: 8px 16px; background: #8a4f28; color: white; border: none; border-radius: 6px; cursor: pointer; }
+        button:hover { background: #6a3a1a; }
+        .legend { background: white; padding: 10px 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+<div class="map-container">
+    <h1>🗺️ Armenian Place Names & Origins</h1>
+    <div class="controls">
+        <input type="text" id="placeSearch" placeholder="Search place name...">
+        <button onclick="searchPlace()">Find</button>
+        <button onclick="resetMap()">Reset</button>
+    </div>
+    <div id="placeMap"></div>
+</div>
+
+<script>
+const map = L.map('placeMap').setView([40.2, 44.5], 7);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap'
+}).addTo(map);
+
+const places = [
+    { name: "Երևան", lat: 40.177, lng: 44.503, ety: "From Urartian 'Erebuni' (fortress)", period: "782 BCE", type: "capital" },
+    { name: "Անի", lat: 40.506, lng: 43.572, ety: "From Hurrian 'Ani' (sky goddess)", period: "5th-14th c.", type: "ancient" },
+    { name: "Վան", lat: 38.471, lng: 43.381, ety: "From Urartian 'Biaina'", period: "9th c. BCE", type: "ancient" },
+    { name: "Գյումրի", lat: 40.785, lng: 43.842, ety: "Possibly from Georgian 'Gumri'", period: "5th c.", type: "city" },
+    { name: "Սիս", lat: 37.383, lng: 36.933, ety: "Capital of Cilician Armenia", period: "12th-14th c.", type: "historical" },
+    { name: "Արարատ", lat: 39.716, lng: 44.298, ety: "From Urartian 'Urartu'", period: "Biblical", type: "mountain" },
+    { name: "Սևան", lat: 40.564, lng: 45.011, ety: "From Urartian 'Siuini'", period: "Ancient", type: "lake" },
+    { name: "Կարս", lat: 40.608, lng: 43.098, ety: "From Armenian 'կարս' (breast/hill)", period: "Medieval", type: "city" },
+    { name: "Մուշ", lat: 38.733, lng: 41.483, ety: "From Armenian 'մուշ' (mist)", period: "Ancient", type: "city" }
+];
+
+function getColor(type) {
+    const colors = { capital: '#c0392b', ancient: '#8e44ad', city: '#2980b9', mountain: '#27ae60', lake: '#1abc9c', historical: '#d35400' };
+    return colors[type] || '#7f8c8d';
+}
+
+places.forEach(p => {
+    L.marker([p.lat, p.lng], {
+        icon: L.divIcon({ html: `<div style="background:${getColor(p.type)};width:12px;height:12px;border-radius:50%;border:2px solid white;"></div>`, iconSize: [12,12] })
+    }).bindPopup(`<b>${p.name}</b><br><i>${p.ety}</i><br><small>${p.period}</small>`).addTo(map);
+});
+
+const legend = L.control({ position: 'bottomright' });
+legend.onAdd = () => {
+    const div = L.DomUtil.create('div', 'legend');
+    div.innerHTML = `<b>Place Types</b><br><span style="color:#c0392b">●</span> Capital<br><span style="color:#8e44ad">●</span> Ancient<br><span style="color:#2980b9">●</span> City<br><span style="color:#27ae60">●</span> Mountain<br><span style="color:#1abc9c">●</span> Lake`;
+    return div;
+};
+legend.addTo(map);
+
+function searchPlace() {
+    const q = document.getElementById('placeSearch').value.trim();
+    const p = places.find(p => p.name.toLowerCase() === q.toLowerCase());
+    if (p) { map.setView([p.lat, p.lng], 12); }
+    else alert(`Not found. Try: ${places.map(p => p.name).join(', ')}`);
+}
+function resetMap() { map.setView([40.2, 44.5], 7); document.getElementById('placeSearch').value = ''; }
+</script>
+</body>
+</html>

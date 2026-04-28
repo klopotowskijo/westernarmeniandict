@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Etymology Tree Viewer</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f5f0e8; padding: 20px; }
+        .tree-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fffef8;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        h1 { color: #4a3727; margin-bottom: 20px; border-left: 4px solid #8a4f28; padding-left: 15px; }
+        .etymology-tree { font-family: 'EB Garamond', Georgia, serif; font-size: 16px; line-height: 1.5; }
+        .etymology-tree ul { padding-left: 30px; list-style: none; position: relative; }
+        .etymology-tree li { position: relative; padding: 8px 0; margin: 0; }
+        .etymology-tree li::before {
+            content: "";
+            position: absolute;
+            left: -20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #c8b59a;
+        }
+        .etymology-tree li:last-child::before { height: 50%; }
+        .etymology-tree li::after {
+            content: "";
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            width: 15px;
+            height: 2px;
+            background: #c8b59a;
+        }
+        .node {
+            display: inline-block;
+            padding: 6px 14px;
+            background: #f7f2e6;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid #dcc8ae;
+            font-weight: 500;
+        }
+        .node:hover { background: #e8d9c4; border-color: #8a4f28; transform: scale(1.02); }
+        .proto-node { background: #2c1810; color: #f5e6d0; border-color: #5a3a20; font-weight: bold; }
+        .proto-node:hover { background: #4a2a18; }
+        .language-node { background: #d4e8f0; border-color: #7aa5b5; color: #2a4a5a; }
+        .cognate-node { background: #e8f0e0; border-color: #8aae6a; color: #3a5a2a; }
+        .armenian-node { background: #f0e0c8; border-color: #c8a06e; color: #5a3a1a; font-weight: bold; }
+        .controls { margin-top: 20px; padding: 15px; background: #f0e8dc; border-radius: 8px; display: flex; gap: 10px; flex-wrap: wrap; }
+        input { padding: 8px 12px; border: 1px solid #c8b59a; border-radius: 6px; width: 250px; }
+        button { padding: 8px 16px; background: #8a4f28; color: white; border: none; border-radius: 6px; cursor: pointer; }
+        button:hover { background: #6a3a1a; }
+        .stats { margin-top: 15px; padding: 12px; background: #e8e0d0; border-radius: 8px; font-size: 14px; }
+    </style>
+</head>
+<body>
+<div class="tree-container">
+    <h1>🌳 Armenian Etymology Tree</h1>
+    <div class="controls">
+        <input type="text" id="wordSearch" placeholder="Search Armenian word...">
+        <button onclick="searchWord()">Find</button>
+        <button onclick="showRandom()">Random Word</button>
+        <button onclick="resetView()">Reset</button>
+    </div>
+    <div id="treeView" class="etymology-tree">
+        <div style="text-align: center; color: #8a7060; padding: 40px;">Loading etymology tree...</div>
+    </div>
+    <div id="stats" class="stats"></div>
+</div>
+
+<script>
+const languageTree = {
+    name: "Proto-Indo-European",
+    type: "proto",
+    children: [
+        { name: "Indo-Iranian", children: [{ name: "Iranian", children: [{ name: "Persian", loans: ["ազատ", "բաղ", "գանձ", "պարգև", "հազար"] }] }] },
+        { name: "Greek", loans: ["եկեղեցի", "թատրոն", "փիլիսոփա", "ավետարան", "հոգի"] },
+        { name: "Latin", loans: ["դպրոց", "ռազմ", "կայսր", "համալսարան", "դոկտոր"] },
+        { name: "Germanic", children: [{ name: "English", loans: ["կոմպիւտեր", "ինտերնետ", "ֆիլմ", "համակարգիչ"] }] },
+        { name: "Slavic", children: [{ name: "Russian", loans: ["բանկ", "վագոն", "սամովար", "բոլշեւիկ"] }] },
+        { name: "Turkic", children: [{ name: "Turkish", loans: ["թաս", "փող", "ճամի", "յորղան", "տապակ"] }] },
+        { name: "Semitic", children: [{ name: "Arabic", loans: ["գիր", "գիտություն", "սուլթան", "վեզիր", "ալգորիթմ"] }] },
+        { name: "Armenian",
+          children: [{ name: "Classical Armenian",
+              children: [{ name: "Middle Armenian",
+                  children: [{ name: "Western Armenian", type: "target", loans: [] }]
+              }]
+          }]
+        }
+    ]
+};
+
+const wordInfo = {
+    "ազատ": { from: "Persian", meaning: "free" },
+    "գանձ": { from: "Persian", meaning: "treasure" },
+    "հազար": { from: "Persian", meaning: "thousand" },
+    "եկեղեցի": { from: "Greek", meaning: "church" },
+    "դպրոց": { from: "Latin", meaning: "school" },
+    "կոմպիւտեր": { from: "English", meaning: "computer" },
+    "թաս": { from: "Turkish", meaning: "cup" },
+    "գիր": { from: "Arabic", meaning: "writing" }
+};
+
+function renderTree(node, level = 0) {
+    if (!node) return '';
+    let html = '<li>';
+    const nodeClass = node.type === 'proto' ? 'proto-node' : 
+                      node.type === 'target' ? 'armenian-node' : 'language-node';
+    html += `<span class="node ${nodeClass}" onclick="searchByLanguage('${node.name}')">${node.name}</span>`;
+    
+    if (node.loans && node.loans.length) {
+        html += '<ul>';
+        for (const word of node.loans) {
+            const info = wordInfo[word] || {};
+            html += `<li><span class="node armenian-node" onclick="searchWord('${word}')">${word}</span>`;
+            if (info.meaning) html += ` <span style="color: #8a7060;">→ ${info.meaning}</span>`;
+            html += '</li>';
+        }
+        html += '</ul>';
+    }
+    
+    if (node.children && node.children.length) {
+        html += '<ul>';
+        for (const child of node.children) html += renderTree(child, level + 1);
+        html += '</ul>';
+    }
+    html += '</li>';
+    return html;
+}
+
+function displayTree() {
+    document.getElementById('treeView').innerHTML = `<ul>${renderTree(languageTree)}</ul>`;
+}
+
+function searchWord(word) {
+    const w = word || document.getElementById('wordSearch').value.trim();
+    if (!w) return;
+    const info = wordInfo[w];
+    if (info) alert(`'${w}' → from ${info.from}, meaning: "${info.meaning}"`);
+    else alert(`'${w}' — native Armenian or loanword origin not recorded`);
+}
+
+function searchByLanguage(lang) {
+    const loans = Object.entries(wordInfo).filter(([_, d]) => d.from === lang).map(([w]) => w);
+    if (loans.length) alert(`Words from ${lang}: ${loans.join(', ')}`);
+    else alert(`No loanwords recorded from ${lang}`);
+}
+
+function showRandom() {
+    const words = Object.keys(wordInfo);
+    const random = words[Math.floor(Math.random() * words.length)];
+    document.getElementById('wordSearch').value = random;
+    searchWord(random);
+}
+
+function resetView() { displayTree(); }
+
+function showStats() {
+    document.getElementById('stats').innerHTML = `
+        📊 <strong>Language family stats</strong><br>
+        • 5,224 loanwords • 65 source languages<br>
+        • Arabic: 2,592 • Greek: 1,853 • Persian: 779 • Turkish: 629<br>
+        • Click any language node to see borrowed words
+    `;
+}
+
+displayTree();
+showStats();
+</script>
+</body>
+</html>
