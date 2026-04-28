@@ -13,19 +13,10 @@
     .topbar {
       position: relative;
       background:
-        linear-gradient(rgba(243,238,226,0.85), rgba(243,238,226,0.85)),
-        url("sources/images/vieux-serail.jpg") center center / cover no-repeat;
-      filter: sepia(0.15);
+        url("sources/images/panorama.jpg") center center / cover no-repeat;
       z-index: 1;
     }
-    .topbar::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(243,238,226,0.85);
-      pointer-events: none;
-      z-index: 2;
-    }
+    /* .topbar::before overlay removed for troubleshooting */
     .topbar > * {
       position: relative;
       z-index: 3;
@@ -34,21 +25,15 @@
     /* --- EMPTY STATE BACKGROUND --- */
     .empty-state {
       position: relative;
-      background: none;
+      background: rgba(255, 253, 248, 0.82);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+      border-radius: 18px;
+      backdrop-filter: blur(1.5px);
       z-index: 1;
       overflow: hidden;
     }
     .empty-state::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      width: 70vw;
-      height: 70vh;
-      background: url("sources/images/chiens-rues.jpg") bottom right / contain no-repeat;
-      opacity: 0.08;
-      pointer-events: none;
-      z-index: 0;
+      content: none;
     }
     .empty-state > * {
       position: relative;
@@ -57,6 +42,23 @@
 
     /* --- GRAPH SECTION PANORAMA BACKGROUND --- */
     #graphSection {
+          /* Add a separator gradient above the panorama */
+          position: relative;
+        }
+        #graphSection::before {
+          /* Existing panorama background */
+          /* ...existing code... */
+        }
+        #graphSection::after {
+          content: "";
+          position: absolute;
+          top: -32px;
+          left: 0;
+          width: 100%;
+          height: 48px;
+          background: linear-gradient(to bottom, rgba(255,253,248,0.95) 0%, rgba(255,253,248,0.0) 100%);
+          pointer-events: none;
+          z-index: 2;
       position: relative;
       background: none;
       z-index: 1;
@@ -66,8 +68,8 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: url("sources/images/panorama-constantinople.jpg") center center / cover no-repeat;
-      opacity: 0.05;
+      background: url("sources/images/panorama.jpg") center center / cover no-repeat;
+      opacity: 0.22;
       pointer-events: none;
       z-index: 0;
     }
@@ -116,6 +118,7 @@
       color: var(--ink);
       font-family: "EB Garamond", Georgia, serif;
       background:
+        url('sources/images/chiens-rues.jpg') center 40% / cover no-repeat fixed,
         radial-gradient(circle at 5% 0%, var(--bg-radial-a) 0%, transparent 40%),
         radial-gradient(circle at 95% 10%, var(--bg-radial-b) 0%, transparent 38%),
         linear-gradient(180deg, var(--bg-linear-top) 0%, var(--bg-linear-bottom) 100%);
@@ -125,8 +128,12 @@
     .container {
       width: min(980px, 92vw);
       margin: 2.2rem auto;
-      border: 1px solid var(--line);
-      background: var(--card);
+      border: none;
+      background: rgba(255, 253, 248, 0.45);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+      border-radius: 32px;
+      overflow: hidden;
+      backdrop-filter: blur(1.5px);
       box-shadow: var(--container-shadow);
     }
     .topbar {
@@ -196,7 +203,7 @@
     .controls {
       padding: 0.6rem 1.6rem 1rem;
       border-bottom: 1px solid var(--line);
-      background: linear-gradient(180deg, #f7efe1 0%, #f4ead9 100%);
+      background: linear-gradient(180deg, rgba(247,239,225,0.38) 0%, rgba(244,234,217,0.38) 100%);
     }
     .search-wrap {
       position: relative;
@@ -979,7 +986,7 @@
       color: #8a4a0a;
     }
     .morphology-link {
-      border: none;
+      border: 1px solid var(--line);
       background: none;
       padding: 0;
       color: var(--accent);
@@ -1664,6 +1671,14 @@
   </style>
 </head>
 <body>
+  <div style="width:100vw;max-width:100%;overflow:hidden;margin:0 0 0.5rem 0;">
+    <div id="panoramaBanner">
+      <img src="sources/images/panorama.jpg" alt="Panorama by Abdullah Frères" style="display:block;width:100vw;max-width:100%;height:auto;object-fit:cover;object-position:center;">
+      <div style="height:2.5rem; background:var(--card); display:flex; align-items:center; justify-content:flex-end; padding:0 2vw 0 0;">
+        <span style="font-size:0.95em;color:#756a5c;opacity:0.85;">Panorama of Constantinople from Beyazıt Tower, 1865 (Abdullah Frères)</span>
+      </div>
+    </div>
+  </div>
   <div class="container">
     <header class="topbar">
       <div class="topbar-inner">
@@ -1722,6 +1737,9 @@
       </div>
     </section>
     <main id="result"><div class="empty-state"><h2 class="empty-title">Start With A Word</h2><p class="empty-copy">Type a word to view definition, etymology, and morphology. You can also switch to language search if you want all words borrowed from a source language.</p></div></main>
+        <div id="chiensCaption" style="text-align:right;padding:0.5rem 1.5rem 0.2rem 0;font-size:1.02em;color:#6a4c2a;opacity:0.82;">
+          <span style="background:rgba(255,253,248,0.82);padding:0.18em 0.7em;border-radius:1em;box-shadow:0 2px 8px #fffdf8;">Le chiens des rues, Abdullah Frères (1880)</span>
+        </div>
     <section id="graphSection" style="display:none">
       <h2>Etymology Graph</h2>
       <div class="graph-controls">
@@ -1760,6 +1778,10 @@
         <button class="graph-preset-btn" data-graph-preset="French">French</button>
       </div>
       <div id="graphContainer"></div>
+      <figure style="text-align:center;margin-top:2.5rem;">
+        <img src="sources/images/panorama.jpg" alt="Panorama by Abdullah Frères" style="max-width:100%;height:auto;border-radius:8px;box-shadow:0 4px 24px rgba(0,0,0,0.10);margin-bottom:0.5rem;">
+        <figcaption style="font-size:0.95em;color:#756a5c;">Panorama of Constantinople by Abdullah Frères (Library of Congress)</figcaption>
+      </figure>
     </section>
 
     <section id="langGuideSection" style="display:none">
@@ -1806,7 +1828,7 @@
        <span>Western Armenian Etymological Dictionary</span>
        <span class="footer-sep">&middot;</span>
        <span>Sources: Wiktionary, Nayiri, Calfa</span>
-       <span class="footer-sep">&middot;</span>
+    
        <span>Historic photos: <a href="https://www.loc.gov/collections/abdullah-freres/" target="_blank" rel="noopener">Abdullah Frères / Library of Congress</a></span>
        <span class="footer-sep">&middot;</span>
        <span><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></span>
@@ -5218,4 +5240,6 @@ function displaySourceResults(sourceName, matches) {
   });  // ← This closes DOMContentLoaded - ONLY ONE
 </script>
 </body>
+  <div style="position:fixed;right:1vw;bottom:1.2vw;z-index:10;font-size:1.02em;color:#6a4c2a;opacity:0.82;pointer-events:none;text-shadow:0 2px 8px #fffdf8;">
+  <script src="page-logic.js"></script>
 </html>
