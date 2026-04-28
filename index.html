@@ -2855,6 +2855,8 @@
       prefixBtn.classList.toggle("section-active", section === "prefix");
       const sourcesBtn = document.getElementById("showSourcesBtn");
       if (sourcesBtn) sourcesBtn.classList.toggle("section-active", section === "sources");
+      document.getElementById("showTreeBtn").classList.toggle("section-active", section === "tree");
+      document.getElementById("showMapBtn").classList.toggle("section-active", section === "map");    
     }
     function setGraphMode(mode) {
       graphMode = mode === "language" || mode === "lineage" || mode === "tree" ? mode : "tree";
@@ -5134,6 +5136,8 @@ function displaySourceResults(sourceName, matches) {
       document.getElementById("suffixSection").style.display = section === "suffix" ? "block" : "none";
       document.getElementById("prefixSection").style.display = section === "prefix" ? "block" : "none";
       document.getElementById("sourcesSection").style.display = section === "sources" ? "block" : "none";
+      document.getElementById("treeSection").style.display = section === "tree" ? "block" : "none";
+      document.getElementById("mapSection").style.display = section === "map" ? "block" : "none";
       setSectionTabs(section);
     }
 
@@ -5146,7 +5150,17 @@ function displaySourceResults(sourceName, matches) {
       showSection("graph");
       openGraphSection();
     };
+    document.getElementById("showTreeBtn").onclick = () => {
+      showSection("tree");
+      graphVisible = false;
+      updateUrlState(searchMode, document.getElementById("search").value.trim());
+    };
 
+    document.getElementById("showMapBtn").onclick = () => {
+      showSection("map");
+      graphVisible = false;
+      updateUrlState(searchMode, document.getElementById("search").value.trim());
+    };
     document.getElementById("showLangGuideBtn").onclick = () => {
       showSection("guide");
       renderLangGuide();
