@@ -2498,6 +2498,12 @@
     }
     function parseEtymology(entry, seen = new Set()) {
       if (!entry || !entry.title) return "";
+      
+      // NEW: Prioritize direct text field if it's substantial (real etymology)
+      if (entry.etymology && entry.etymology[0] && entry.etymology[0].text && entry.etymology[0].text.length > 50) {
+        return entry.etymology[0].text;
+      }
+
       if (Object.prototype.hasOwnProperty.call(etyCache, entry.title)) return etyCache[entry.title];
       let t = "";
       if (Array.isArray(entry.etymology)) {
