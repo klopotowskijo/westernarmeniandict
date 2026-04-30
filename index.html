@@ -30,7 +30,7 @@
       border-radius: 18px;
       backdrop-filter: blur(1.5px);
       z-index: 1;
-      overflow: hidden;
+      overflow-y: auto; overflow-x: hidden;
     }
     .empty-state::after {
       content: none;
@@ -62,7 +62,7 @@
       position: relative;
       background: none;
       z-index: 1;
-      overflow: hidden;
+      overflow-y: auto; overflow-x: hidden;
     }
     #graphSection::before {
       content: "";
@@ -132,7 +132,7 @@
       background: rgba(255, 253, 248, 0.45);
       box-shadow: 0 8px 32px rgba(0,0,0,0.10);
       border-radius: 32px;
-      overflow: hidden;
+      overflow-y: auto; overflow-x: hidden;
       backdrop-filter: blur(1.5px);
       box-shadow: var(--container-shadow);
     }
@@ -1671,9 +1671,9 @@
   </style>
 </head>
 <body>
-  <div style="width:100vw;max-width:100%;overflow:hidden;margin:0 0 0.5rem 0;">
+  <div style="width:100%;max-width:100%;margin:0 0 0.5rem 0;">
     <div id="panoramaBanner">
-      <img src="sources/images/panorama.jpg" alt="Panorama by Abdullah Frères" style="display:block;width:100vw;max-width:100%;height:auto;object-fit:cover;object-position:center;">
+      <img src="sources/images/panorama.jpg" alt="Panorama by Abdullah Frères" style="display:block;width:100%;max-width:100%;height:auto;object-fit:cover;object-position:center;">
       <div style="height:2.5rem; background:var(--card); display:flex; align-items:center; justify-content:flex-end; padding:0 2vw 0 0;">
         <span style="font-size:0.95em;color:#756a5c;opacity:0.85;">Panorama of Constantinople from Beyazıt Tower, 1865 (Abdullah Frères)</span>
       </div>
