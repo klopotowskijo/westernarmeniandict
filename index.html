@@ -2905,10 +2905,13 @@
     }
 
     function updateBannerVisibility() {
-      const banner = document.getElementById('panoramaBanner');
+      const banner = document.getElementById('panoramaBanner');     
+      console.log('Banner found:', banner);
       if (!banner) return;
       const hasEntry = document.querySelector('.entry-card') !== null;
+      console.log('hasEntry:', hasEntry);
       banner.style.display = hasEntry ? 'block' : 'none';
+      console.log('Banner display set to:', banner.style.display);
     }
 
     function updateUrlState(mode, query) {
