@@ -123,10 +123,13 @@
         radial-gradient(circle at 95% 10%, var(--bg-radial-b) 0%, transparent 38%),
         linear-gradient(180deg, var(--bg-linear-top) 0%, var(--bg-linear-bottom) 100%);
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
       transition: background 0.25s ease, color 0.25s ease;
     }
     .container {
       width: min(980px, 92vw);
+      flex: 1;
       margin: 2.2rem auto;
       border: none;
       background: rgba(255, 253, 248, 0.45);
