@@ -2900,6 +2900,14 @@
             : "Language Clusters: broader overview by source language. Use filters to avoid clutter.";
       }
     }
+
+    function updateBannerVisibility() {
+      const banner = document.getElementById('panoramaBanner');
+      if (!banner) return;
+      const hasEntry = document.querySelector('.entry-card') !== null;
+      banner.style.display = hasEntry ? 'block' : 'none';
+    }
+
     function updateUrlState(mode, query) {
       const url = new URL(window.location.href);
       const cleanMode = mode === "language" ? "language" : "word";
@@ -4101,6 +4109,7 @@
       }
       el.innerHTML = html;
       showSection("results");
+      updateBannerVisibility();
       if (syncUrl) updateUrlState("language", cleanQuery);
     }
     function lookup(word, syncUrl = true) {
@@ -4470,6 +4479,7 @@
           triggerRandomWordLookup();
         });
       }
+      updateBannerVisibility();
     }
     function setKeyboardOpen(open) {
       const panel = document.getElementById("armenianKeyboard");
@@ -5024,6 +5034,7 @@
         document.getElementById("search").value = lang;
         lookupLanguage(lang, true);
         showSection("results");
+        updateBannerVisibility()
       });
     }
     function renderSourcesGuide() {
@@ -5243,6 +5254,7 @@ function displaySourceResults(sourceName, matches) {
     // Nayiri is loaded on first actual word lookup (see lookup() above).
     // Do NOT load it at startup — it blocks the main thread for several seconds.
     loadDictionary();
+    updateBannerVisibility();
   });  // ← This closes DOMContentLoaded - ONLY ONE
 </script>
 </body>
